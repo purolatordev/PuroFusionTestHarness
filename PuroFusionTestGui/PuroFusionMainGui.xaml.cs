@@ -112,23 +112,44 @@ namespace PuroFusionTestGui
         {
             InitializeComponent();
             mainGridData = new GridData1();
-            //PuroReportingServiceClass o = new PuroReportingServiceClass();
-            //o.TestConn();
-            //PuroTouchServiceClass o2 = new PuroTouchServiceClass();
-            //o2.TestConn();
-            //IList <dtoapplicationRoles> qAppRole = o.GeUserRoles();
-            //mainGridData.AppRules = CollectionViewSource.GetDefaultView(qAppRole);
-            //DataContext = mainGridData;
 
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             AssemblyName myAssemblyName = myAssembly.GetName();
             this.Title = "PuroFusion Test Gui Ver " + myAssemblyName.Version.ToString();
+
+            comboBoxMainDB.Items.Add(PuroReportingServiceClass.ConnString.PatientLocal);
+            comboBoxMainDB.Items.Add(PuroReportingServiceClass.ConnString.PatientLocal2);
+            comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal);
+            comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal);
+        }
+        private string GetdbLocation(ComboBox cmb)
+        {
+            string curItem = ((string)cmb.SelectedItem);
+            if (curItem == null)
+            {
+                lbldbConnErrorMsg.Visibility = System.Windows.Visibility.Visible;
+                return "na";
+            }
+            else
+                lbldbConnErrorMsg.Visibility = System.Windows.Visibility.Collapsed;
+
+            String strDbVal = curItem;
+            string connection = "";
+            if (strDbVal == PuroReportingServiceClass.ConnString.PatientLocal)
+                connection = PuroReportingServiceClass.ConnString.FullPatientLocal;
+            else if (strDbVal == PuroReportingServiceClass.ConnString.PatientLocal2)
+                connection = PuroReportingServiceClass.ConnString.FullPatientLocal2;
+            else if (strDbVal == PuroTouchServiceClass.ConnString.PatientLocal)
+                connection = PuroTouchServiceClass.ConnString.FullPatientLocal;
+            else if (strDbVal == PuroTouchServiceClass.ConnString.PatientLocal2)
+                connection = PuroTouchServiceClass.ConnString.FullPatientLocal2;
+            return connection;
         }
 
         private void btnMainLoadGridTopLeft_Click(object sender, RoutedEventArgs e)
         {
-            string strConn = "na";// GetPatientdbLocation();
-            if (strConn == "na")
+            string strConn = GetdbLocation(comboBoxMainDB);
+            if (strConn != "na")
             {
                 ComboBoxItem ReportItem = ((ComboBoxItem)comboBoxMainReportNames.SelectedItem);
                 if (ReportItem == null)
@@ -160,7 +181,7 @@ namespace PuroFusionTestGui
                         lbl = lblMainLowerLeftCount;
                     }
                     #endregion
-                    PuroReportingServiceClass o = new PuroReportingServiceClass();
+                    PuroReportingServiceClass o = new PuroReportingServiceClass(strConn);
                     String strReportItem = ReportItem.Content.ToString();
                     if ("tblPI_Applications" == strReportItem)
                     {
@@ -217,8 +238,8 @@ namespace PuroFusionTestGui
 
         private void btnTouchDBLoadGrid_Click(object sender, RoutedEventArgs e)
         {
-            string strConn = "na";// GetPatientdbLocation();
-            if (strConn == "na")
+            string strConn = GetdbLocation(comboBoxTouchDB);
+            if (strConn != "na")
             {
                 ComboBoxItem ReportItem = ((ComboBoxItem)comboBoxTouchDBMainReportNames.SelectedItem);
                 if (ReportItem == null)
@@ -249,7 +270,7 @@ namespace PuroFusionTestGui
                         lbl = lblTouchDBLowerLeftCount;
                     }
                     #endregion
-                    PuroTouchServiceClass o = new PuroTouchServiceClass();
+                    PuroTouchServiceClass o = new PuroTouchServiceClass(strConn);
                     String strReportItem = ReportItem.Content.ToString();
                     if ("tblDiscoveryRequest" == strReportItem)
                     {

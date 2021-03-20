@@ -78,8 +78,9 @@
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel Grid.Row="2" Orientation="Horizontal">
-                                <Label Content="First Name:"/>
-                                <TextBox Name="txtBxFirstName" Width="100" Padding="0,2,0,0"></TextBox>
+                                <Label Content="Database:"/>
+                                <ComboBox Height="23" Name="comboBoxMainDB" Width="Auto" >
+                                </ComboBox>
                                 <Label Content="Last Name:"/>
                                 <TextBox Name="txtBxLastName" Width="100" Padding="0,2,0,0"></TextBox>
                                 <Label Content="User Name:"/>
@@ -597,8 +598,9 @@
                                 <Button Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0"  Width="75" Height="25"  IsEnabled="False" Style="{StaticResource RoundedButton}" />
                             </StackPanel>
                             <StackPanel Grid.Row="2" Orientation="Horizontal">
-                                <Label Content="First Name:"/>
-                                <TextBox Name="txtBxCommitFirstName" Width="100" Padding="0,2,0,0"></TextBox>
+                                <Label Content="database:"/>
+                                <ComboBox Height="23" Name="comboBoxTouchDB" Width="Auto" >
+                                </ComboBox>
                                 <Label Content="Last Name:"/>
                                 <TextBox Name="txtBxCommitLastName" Width="100" Padding="0,2,0,0"></TextBox>
                                 <Button Name="btnCommitUpdateTopLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Height="25" VerticalAlignment="Bottom" Style="{StaticResource RoundedButton}" IsEnabled="False"   >Update</Button>
