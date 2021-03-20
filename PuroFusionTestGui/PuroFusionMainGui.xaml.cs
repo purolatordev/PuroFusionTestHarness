@@ -120,7 +120,7 @@ namespace PuroFusionTestGui
             comboBoxMainDB.Items.Add(PuroReportingServiceClass.ConnString.PatientLocal);
             comboBoxMainDB.Items.Add(PuroReportingServiceClass.ConnString.PatientLocal2);
             comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal);
-            comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal);
+            comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal2);
         }
         private string GetdbLocation(ComboBox cmb)
         {
