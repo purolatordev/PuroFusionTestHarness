@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="48f143cdd5c1431982f01c3aefa673a3" Name="Diagram1" ZoomLevel="44">
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblBrokers" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblCloseReason" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblCommunicationMethod" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblCustomsTypes" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDataEntryMethods" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequest_Archive" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequestDetails" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequestEDI" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequestEquipment" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequestNotes" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequestNotes_Archive" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequestProducts" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequestProducts_Archive" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequestServices" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequestServices_Archive" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequestTargetDates" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequestUploads" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequestUploads_Archive" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDRContacts" Width="1.5" PointX="14.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblEDISolutions" Width="1.5" PointX="8.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblEquipment" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblFileType" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblInductionPoints" Width="1.5" PointX="10.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblInvoiceType" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblITBA" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblOnboardingPhase" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblRequestTypes" Width="1.5" PointX="16.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblShippingChannel" Width="1.5" PointX="16.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblShippingProducts" Width="1.5" PointX="16.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblShippingServices" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblShippingVendor" Width="1.5" PointX="18.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblTaskType" Width="1.5" PointX="6.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblThirdPartyVendor" Width="1.5" PointX="18.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblVendorType" Width="1.5" PointX="18.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblBillingTypes" Width="1.5" PointX="12.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblContactType" Width="1.5" PointX="18.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblProducts" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblProductTypeRel" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblProductTypes" Width="1.5" PointX="20.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblSolutionType" Width="1.5" PointX="20.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.ZIPCodes" Width="1.5" PointX="8.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblContact" Width="1.5" PointX="21" PointY="16.25" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idContactType_ContactType" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequest" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequest_" Width="1.5" PointX="5" PointY="8.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

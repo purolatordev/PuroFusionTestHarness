@@ -1,0 +1,566 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A208BBA6-4652-452E-82C4-5B6C670C9AC3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PuroReportingEntities</RootNamespace>
+    <AssemblyName>PuroReportingEntities</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BeaconAR.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BeaconARAcc.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__RefactorLog.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ELMAH_Error.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="exp_tblInvoices_Backup_09202016.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="exp_tblServiceTypes.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="exp_tblServiceTypesNEW.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LookupProductsBI.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LookupProductsBIAccessorials.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LookupProductsGL.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PI_Customers.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurolatorReportingEntities.cs" />
+    <Compile Include="PuroReportingModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PuroReportingModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PuroReportingModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PuroReportingModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PuroReportingModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccessorials.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccessorials_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccessorialType.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccessorialType_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountAddressType.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountAddressType_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountContactType.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountContactType_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountImport.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountingCodes.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountingCodes_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountingCodeType.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountingCodeType_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountMargins.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountMargins_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccounts.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccounts_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountTargets.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccountTargets_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAddressType.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAddressType_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBusinessType.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBusinessType_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCertificates.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCertificates_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClientAddresses.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClientAddresses_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClientAddressTypes.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClientAddressTypes_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClientContacts.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClientContacts_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClientContactType.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClients.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClients_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCommissionBasis.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCommissionDetail.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCommissionPlan.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblContactType.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblContactType_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblContractAddressType.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblContractAddressType_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblContractContactType.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblContractContactType_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblContracts.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblContracts_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCostCenters.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCostCenters_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCountries.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCountries_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCurrencyCodes.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCurrencyCodes_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblDistricts.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblDistricts_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmployee.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmployeeCertifications.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmployeeCertifications_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmployeeFunction.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmployeeFunction_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmployeeNG.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmployee_0130NG.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmployee_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmployee_backup_03152017.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmployee_backup_09272016.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmployee_Updated_03202017.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblExchangeRates.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblExchangeRates_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblHolidayDefinitions.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblManagerLevel.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblManagerLevel_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMeasurementUnit.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMeasurementUnit_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPayoutFrequency.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationDepartment.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationDepartment_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationDistrictRestriction.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationException.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationRegionRestriction.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationReportArchives.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationReportRoles.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationReports.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationRoles.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationRoles_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_Applications.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationSRIDRestriction.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_Applications_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationUser.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationUserRole.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationUserRole_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationUserRole_backup.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationUser_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ApplicationUser_backup.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_DepartmentMember.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_DepartmentMember_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_Departments.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_Departments_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPI_ReportType.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductGroup.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductGroup_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductName.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductName_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRegions.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRegions_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRevenueTypes.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRevenueTypes_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesDepartment.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesDepartmentMember.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesDepartmentMember_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesDepartment_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesManager.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesManager_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesRep.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesRepAccounts.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesRepAccounts_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesRepCodes.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesRepDefaultTarget.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesRepDefaultTarget_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesRep_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesRoles.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesRoles_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesTeam.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesTeam_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesTypes.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSalesTypes_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSAPFileBICodes.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblScheduledProcess.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblScheduledProcessLog.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblScheduledProcessLogFile.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblScheduledProcessSchedule.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblServiceGroupType.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblServiceGroupType_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblServiceType.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblServiceTypeGroups.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblServiceTypeGroups_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblServiceType_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSource.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTransactions.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTransactions_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTransactionTypes.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTransactionTypes_Archive.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_dailytasks.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_migratedTables.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_projects.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_typeofrequests.cs">
+      <DependentUpon>PuroReportingModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="PuroReportingModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PuroReportingModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="PuroReportingModel.edmx.diagram">
+      <DependentUpon>PuroReportingModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PuroReportingModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PuroReportingModel.Context.cs</LastGenOutput>
+      <DependentUpon>PuroReportingModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="PuroReportingModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PuroReportingModel.edmx</DependentUpon>
+      <LastGenOutput>PuroReportingModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

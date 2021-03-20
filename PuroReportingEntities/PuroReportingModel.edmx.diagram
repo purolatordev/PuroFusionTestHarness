@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7b20d9c0c81b4d57a6487b4ece22f9ce" Name="Diagram1">
+        <EntityTypeShape EntityType="PurolatorReportingModel.C__RefactorLog" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.BeaconAR" Width="1.5" PointX="21.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.BeaconARAcc" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.ELMAH_Error" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.LookupProductsBI" Width="1.5" PointX="10.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.LookupProductsBIAccessorials" Width="1.5" PointX="12.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.LookupProductsGL" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.sysdiagrams" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tbl_dailytasks" Width="1.5" PointX="19.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tbl_projects" Width="1.5" PointX="21.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccessorials" Width="1.5" PointX="15" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccessorials_Archive" Width="1.5" PointX="21.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccessorialType" Width="1.5" PointX="12.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccessorialType_Archive" Width="1.5" PointX="23.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccountAddressType" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccountAddressType_Archive" Width="1.5" PointX="23.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccountContactType" Width="1.5" PointX="7.5" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccountContactType_Archive" Width="1.5" PointX="23.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccountingCodes" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccountingCodes_Archive" Width="1.5" PointX="23.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccountingCodeType" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccountingCodeType_Archive" Width="1.5" PointX="24.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccountMargins" Width="1.5" PointX="7.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccountMargins_Archive" Width="1.5" PointX="24.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccounts" Width="1.5" PointX="5.25" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccounts_Archive" Width="1.5" PointX="24.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccountTargets" Width="1.5" PointX="7.5" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccountTargets_Archive" Width="1.5" PointX="25.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAddressType" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAddressType_Archive" Width="1.5" PointX="25.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblBusinessType" Width="1.5" PointX="14.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblBusinessType_Archive" Width="1.5" PointX="16.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblCertificates" Width="1.5" PointX="6" PointY="44.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblCertificates_Archive" Width="1.5" PointX="25.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblClientAddresses" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblClientAddresses_Archive" Width="1.5" PointX="25.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblClientAddressTypes" Width="1.5" PointX="8.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblClientAddressTypes_Archive" Width="1.5" PointX="26.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblClientContacts" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblClientContacts_Archive" Width="1.5" PointX="26.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblClientContactType" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblClients" Width="1.5" PointX="0.75" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblClients_Archive" Width="1.5" PointX="27.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblCommissionBasis" Width="1.5" PointX="21.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblCommissionDetail" Width="1.5" PointX="27.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblCommissionPlan" Width="1.5" PointX="27.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblContactType" Width="1.5" PointX="5.25" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblContactType_Archive" Width="1.5" PointX="27.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblContractAddressType" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblContractAddressType_Archive" Width="1.5" PointX="22.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblContractContactType" Width="1.5" PointX="10.25" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblContractContactType_Archive" Width="1.5" PointX="27.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblContracts" Width="1.5" PointX="3" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblContracts_Archive" Width="1.5" PointX="24.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblCostCenters" Width="1.5" PointX="8" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblCostCenters_Archive" Width="1.5" PointX="26.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblCountries" Width="1.5" PointX="28.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblCountries_Archive" Width="1.5" PointX="28.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblCurrencyCodes" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblCurrencyCodes_Archive" Width="1.5" PointX="12.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblDistricts" Width="1.5" PointX="8" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblDistricts_Archive" Width="1.5" PointX="28.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblEmployee" Width="1.5" PointX="0.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblEmployee_0130NG" Width="1.5" PointX="6" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblEmployee_Archive" Width="1.5" PointX="29.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblEmployeeCertifications" Width="1.5" PointX="8.25" PointY="44.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblEmployeeCertifications_Archive" Width="1.5" PointX="14.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblEmployeeFunction" Width="1.5" PointX="29.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblEmployeeFunction_Archive" Width="1.5" PointX="29.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblEmployeeNG" Width="1.5" PointX="16.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblExchangeRates" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblExchangeRates_Archive" Width="1.5" PointX="29.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblHolidayDefinitions" Width="1.5" PointX="29.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblManagerLevel" Width="1.5" PointX="11" PointY="47.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblManagerLevel_Archive" Width="1.5" PointX="30.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblMeasurementUnit" Width="1.5" PointX="10.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblMeasurementUnit_Archive" Width="1.5" PointX="30.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPayoutFrequency" Width="1.5" PointX="30.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationDepartment" Width="1.5" PointX="20" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationDepartment_Archive" Width="1.5" PointX="30.75" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationDistrictRestriction" Width="1.5" PointX="31.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationException" Width="1.5" PointX="17" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationRegionRestriction" Width="1.5" PointX="31.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationReportArchives" Width="1.5" PointX="22.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationReportRoles" Width="1.5" PointX="22.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationReports" Width="1.5" PointX="20" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationRoles" Width="1.5" PointX="17" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationRoles_Archive" Width="1.5" PointX="31.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_Applications" Width="1.5" PointX="14.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_Applications_Archive" Width="1.5" PointX="31.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationSRIDRestriction" Width="1.5" PointX="18.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationUser" Width="1.5" PointX="17" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationUser_Archive" Width="1.5" PointX="31.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationUserRole" Width="1.5" PointX="19.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationUserRole_Archive" Width="1.5" PointX="20.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_DepartmentMember" Width="1.5" PointX="20" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_DepartmentMember_Archive" Width="1.5" PointX="26.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_Departments" Width="1.5" PointX="17.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_Departments_Archive" Width="1.5" PointX="2.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ReportType" Width="1.5" PointX="17.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblProductGroup" Width="1.5" PointX="31.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblProductGroup_Archive" Width="1.5" PointX="32.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblProductName" Width="1.5" PointX="32.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblProductName_Archive" Width="1.5" PointX="22.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblRegions" Width="1.5" PointX="10.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblRegions_Archive" Width="1.5" PointX="32.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblRevenueTypes" Width="1.5" PointX="10.25" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblRevenueTypes_Archive" Width="1.5" PointX="32.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesDepartment" Width="1.5" PointX="11" PointY="49.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesDepartment_Archive" Width="1.5" PointX="33.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesDepartmentMember" Width="1.5" PointX="10.5" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesDepartmentMember_Archive" Width="1.5" PointX="12.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesManager" Width="1.5" PointX="13.25" PointY="40.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesManager_Archive" Width="1.5" PointX="33.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesRep" Width="1.5" PointX="8.25" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesRep_Archive" Width="1.5" PointX="14.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesRepAccounts" Width="1.5" PointX="10.5" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesRepAccounts_Archive" Width="1.5" PointX="33.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesRepDefaultTarget" Width="1.5" PointX="10.5" PointY="42.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesRepDefaultTarget_Archive" Width="1.5" PointX="33.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesRoles" Width="1.5" PointX="33.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesRoles_Archive" Width="1.5" PointX="34.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesTeam" Width="1.5" PointX="16.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesTeam_Archive" Width="1.5" PointX="34.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesTypes" Width="1.5" PointX="28.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesTypes_Archive" Width="1.5" PointX="34.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblScheduledProcess" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblScheduledProcessLog" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblScheduledProcessLogFile" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblScheduledProcessSchedule" Width="1.5" PointX="34.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblServiceGroupType" Width="1.5" PointX="5.75" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblServiceGroupType_Archive" Width="1.5" PointX="35.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblServiceType" Width="1.5" PointX="10.25" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblServiceType_Archive" Width="1.5" PointX="35.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblServiceTypeGroups" Width="1.5" PointX="8" PointY="32.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblServiceTypeGroups_Archive" Width="1.5" PointX="35.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblTransactions" Width="1.5" PointX="12.5" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblTransactions_Archive" Width="1.5" PointX="18.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblTransactionTypes" Width="1.5" PointX="10.25" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblTransactionTypes_Archive" Width="1.5" PointX="35.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.exp_tblInvoices_Backup_09202016" Width="1.5" PointX="24.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.exp_tblServiceTypes" Width="1.5" PointX="30.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.exp_tblServiceTypesNEW" Width="1.5" PointX="36.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.PI_Customers" Width="1.5" PointX="0.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tbl_migratedTables" Width="1.5" PointX="2.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tbl_typeofrequests" Width="1.5" PointX="36.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblAccountImport" Width="1.5" PointX="20.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblEmployee_backup_03152017" Width="1.5" PointX="36.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblEmployee_backup_09272016" Width="1.5" PointX="36.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblEmployee_Updated_03202017" Width="1.5" PointX="36.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationUser_backup" Width="1.5" PointX="4.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblPI_ApplicationUserRole_backup" Width="1.5" PointX="32.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSalesRepCodes" Width="1.5" PointX="34.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSAPFileBICodes" Width="1.5" PointX="36.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PurolatorReportingModel.tblSource" Width="1.5" PointX="37.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblAccessorials_AccessorialType" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblAccountAddressTyp_AddressTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblAccountAddressTyp_ClientAddresses" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblAccountContactType_ClientContacts" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblAccountContactType_ContactType" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblAccountContactType_Contracts" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblAccountingCodes_tblAccountingCodeType" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblAccountMargins_Accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblAccounts_Contracts" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblAccountTargets_tblAccountTargets" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblSalesRepAccounts_Accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblTransactions_tblAccounts" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblClientAddressTypes_AddressTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblContractAddressType_AddressTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_EmployeeCertifications_Certificates" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblClientAddresses_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblClientAddressTypes_ClientAddresses" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblContractAddressType_ClientAddresses" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblClientContact_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblClientContactType_ClientContacts" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblContractContactType_ClientContacts" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblClientContactType_ContactType" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblContracts_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblContractContactType_ContactType" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblContractContactType_Contracts" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblRegions_CostCenter" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblExchangeRates_CurrencyCodes" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblRegions_District" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_EmployeeCertifications_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_SalesRep_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblPI_DepartmentMember_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblSalesManager_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblSalesManager_ManagerLevel" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblTransactions_tblMeasurementUnit" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblPI_ApplicationDepartment_PI_Applications" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblPI_ApplicationDepartment_PI_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblPI_ApplicationException_tblPI_Applications" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblPI_ApplicationReportArchives_PI_ApplicationReport" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblPI_ApplicationReportRoles_PI_AppliationReport" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblPI_ApplicationReportRoles_PI_ApplicationRole" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblPI_ApplicationReports_PI_Applications" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblPI_ApplicationReports_PI_ReportType" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblPI_ApplicationRoles_PI_Application" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblPI_ApplicationUserRole_tblPI_ApplicationRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblPI_ApplicationUser_PI_Application" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblPI_ApplicationUserRole_tblPI_ApplicationUser" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblPI_DepartmentMember_PI_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblTransactions_idRegion" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblTransactions_tblRevenueType" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblSalesManager_SalesDepartment" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblSalesDepartmentMember_SalesRep" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblSalesRepAccounts_SalesRep" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblSalesRepDefaultTarget_tblSalesRep" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblScheduledProcessLog_ScheduledProcess" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblScheduledProcessLogFile_ScheduledProcessLog" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblServiceTypeGroups_tblServiceGroupType" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblServiceType_tblServiceTypeGroups" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblTransactions_tblServiceTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="PurolatorReportingModel.FK_tblTransactions_tblTransactionType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

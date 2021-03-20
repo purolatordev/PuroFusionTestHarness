@@ -1,0 +1,689 @@
+﻿<Window x:Class="PuroFusionTestGui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:local="clr-namespace:PuroFusionTestGui"
+        mc:Ignorable="d"
+        Title="MainWindow"  Height="950" Width="1850" WindowState="Maximized" Icon="favicon.ico" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MainDict.xaml" ></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <TabControl TabStripPlacement="Left" >
+            <TabItem Header="Main View" IsSelected="False" >
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <!--Upper Left-->
+                        <Grid  Grid.Row="0" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Label Name="lbldbConnErrorMsg" Foreground="Red" Visibility="Collapsed">Must select a db location</Label>
+                                <Label Content="Report Name:"  />
+                                <ComboBox Height="23" Name="comboBoxMainReportNames" Width="Auto" >
+                                    <ComboBoxItem>tblPI_Applications</ComboBoxItem>
+                                    <ComboBoxItem>tblPI_ApplicationsGroup</ComboBoxItem>
+                                    <ComboBoxItem>tblEmployee</ComboBoxItem>
+                                    <ComboBoxItem>tblPI_ApplicationUser</ComboBoxItem>
+                                    <ComboBoxItem>tblPI_ApplicationUserRole</ComboBoxItem>
+                                    <ComboBoxItem>tblPI_ApplicationRoles</ComboBoxItem>
+                                    <ComboBoxItem>CARREstRevSalesPricing</ComboBoxItem>
+                                    <ComboBoxItem>PODCodesAppliedPersistent</ComboBoxItem>
+                                    <ComboBoxItem>PODCodesAppliedSession</ComboBoxItem>
+                                    <ComboBoxItem>PODPINsReviewedSession</ComboBoxItem>
+                                    <ComboBoxItem>sp_LatePINsDW</ComboBoxItem>
+                                    <ComboBoxItem>sp_LatePINsCompletedDW</ComboBoxItem>
+                                    <ComboBoxItem>sp_UnacceptableDelayPINsDW</ComboBoxItem>
+                                    <ComboBoxItem>sp_UnacceptableDelayPINsCompletedDW</ComboBoxItem>
+                                    <ComboBoxItem>SRIDs</ComboBoxItem>
+                                    <ComboBoxItem>tblRegions</ComboBoxItem>
+                                </ComboBox>
+                                <Label Name="lblRecs">Contact Recs</Label>
+                                <ComboBox Height="23" Name="comboBoxRecs" Width="Auto" SelectedIndex="0" IsEnabled="False">
+                                    <ComboBoxItem>Last 10</ComboBoxItem>
+                                    <ComboBoxItem>Search</ComboBoxItem>
+                                    <ComboBoxItem>All</ComboBoxItem>
+                                </ComboBox>
+                                <Label Name="lblComplianceChooseReportTypeErrorMsg" Foreground="Red" Visibility="Collapsed">Must select a Report Type</Label>
+
+                                <Label Name="lblMainTopLeftCount">Rec count</Label>
+                                <Label Name="lblMainTopLeftCountFiltered">Filtered recs:</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                <Button Name="btnMainLoadGridTopLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Click="btnMainLoadGridTopLeft_Click"  >Load Grid</Button>
+                                <Button Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0" Name="btnComplianceExportGridTopLeft" Width="75"  IsEnabled="False" />
+                                <Label Content="Applications:"/>
+                                <ComboBox Height="23" Width="Auto" Name="comboBoxApplications" ItemsSource="{Binding Path=Applications}" DisplayMemberPath="ApplicationName" SelectedValue="{Binding Path=idPI_Application}" SelectedIndex="0" IsSynchronizedWithCurrentItem="False" >
+                                </ComboBox>
+                                <Label Content="Employee:"/>
+                                <ComboBox Height="23" Width="Auto" Name="comboBoxEmployee" ItemsSource="{Binding Path=Employee}" DisplayMemberPath="LastName" SelectedValue="{Binding Path=idEmployee}" SelectedItem="{Binding Path=SelectedItem}" SelectedIndex="0" IsSynchronizedWithCurrentItem="False" >
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <Label Content="First Name:"/>
+                                <TextBox Name="txtBxFirstName" Width="100" Padding="0,2,0,0"></TextBox>
+                                <Label Content="Last Name:"/>
+                                <TextBox Name="txtBxLastName" Width="100" Padding="0,2,0,0"></TextBox>
+                                <Label Content="User Name:"/>
+                                <TextBox Name="txtBxUserName" Width="120" Padding="0,2,0,0"></TextBox>
+                                <Label Content="Password:"/>
+                                <TextBox Name="txtBxPassword" Width="100" Padding="0,2,0,0"></TextBox>
+                                <Label Content="Date:"/>
+                                <!--<DatePicker DisplayDate="7/1/2020"  Name="dpStartDate" SelectedDate="7/1/2020" />-->
+                            </StackPanel>
+                            <telerik:RadGridView x:Name="radGridMainTopLeft" ToolTip="This grid allows for updating. Just select a record an updated it." Grid.Row="3" RowHeight="20"  ShowGroupPanel="True"   >
+                            </telerik:RadGridView>
+                        </Grid>
+                        <!--Left Pane Splitter between top and bottom-->
+                        <GridSplitter Grid.Row="0" Width="Auto" Height="5" ResizeDirection="Rows" Background="DarkGoldenrod" Grid.RowSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0" />
+                        <!--Lower Left ODS Date of Contact-->
+                        <Grid  Grid.Row="1" >
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <!--<ColumnDefinition Width="*"/>-->
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                        <Button Name="btnMainLoadGridBottomLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Click="btnMainLoadGridTopLeft_Click" >Load Grid</Button>
+                                        <Label Name="lblMainLowerLeftCount">Cnt</Label>
+                                        <Button Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0" Name="btnExportComplianceGridLowerRight" Width="75" IsEnabled="False" />
+                                    </StackPanel>
+                                    <telerik:RadGridView x:Name="radGridMainLowerLeft" Grid.Row="1" ToolTip=""  RowHeight="20"  ShowGroupPanel="True" >
+                                    </telerik:RadGridView>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <!--Multi Split Center Splitter-->
+                    <GridSplitter Grid.Row="0" Grid.Column="0" Background="Green" Width="5"/>
+                    <!--Multi Split Right Panel-->
+                    <Grid Grid.Row="0" Grid.Column="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid  Grid.Row="0" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                <Button Content="Load Grid" Name="btnMainTopRightLoadGrid"  Margin="10,0,0,0" Padding="10,0,10,0" Click="btnMainLoadGridTopLeft_Click" >
+                                    <Button.ToolTip>Use the Cache Type</Button.ToolTip>
+                                </Button>
+                                <Label Name="lblMainTopRightCount">Rec count</Label>
+                                <Button Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0" Width="75" IsEnabled="False"  />
+                                <TextBox Name="txtComplianceWmsNumber" Width="75" Text="S5066883" IsEnabled="False">
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                                <Image Name="imgOne" Source="https://spthumbnails.5min.com/10371855/518592742_c_570_411.jpg"  Height="60" Width="60" />
+                                <Button Content="Load Images"  Margin="10,0,0,0" Name="btnLoadImages" Width="95" Height="30" IsEnabled="False"   />
+                            </StackPanel>
+                            <telerik:RadGridView x:Name="radGridMainTopRight" Grid.Row="3" RowHeight="20" ShowGroupPanel="True">
+                            </telerik:RadGridView>
+                            <!--Right Pane Splitter between top and bottom-->
+                            <GridSplitter Grid.Row="3" Width="Auto" Height="5" ResizeDirection="Rows" Background="DarkGoldenrod" Grid.RowSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0" />
+                        </Grid>
+                        <Grid  Grid.Row="1" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" >
+                                <Label Name="lblMainContractDetails" Grid.Row="0" >Contract Details</Label>
+                            </Grid>
+                            <Border Grid.Row="1" Margin="3,3,1,1" Style="{StaticResource myBorderStyle2}" Background="{DynamicResource MainScreenGradient}">
+                                <Grid Grid.Row="1" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+                                        <Label Name="lblMainIndustry">Industry</Label>
+                                        <TextBox Name="txtBxIndustry" Width="100" Padding="0,2,0,0">
+                                            <TextBox.Resources>
+                                                <Style TargetType="{x:Type Border}">
+                                                    <Setter Property="CornerRadius" Value="3"/>
+                                                </Style>
+                                            </TextBox.Resources>
+                                        </TextBox>
+                                        <Label Name="lblMainBtoB">B-B or B-C</Label>
+                                        <TextBox Name="txtBxMainBtoB" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" ></TextBox>
+                                        <Label Name="lblMainCourierFuel">Courier Fuel Alignment</Label>
+                                        <TextBox Name="txtBxMainCourierFuel" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0"></TextBox>
+                                        <Label Name="lblMainVersionDesc">Version Desc</Label>
+                                        <TextBox Name="txtBxMainVersionDesc" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0"></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                                        <Label Name="lblMainCurrentProvider">Current Provider</Label>
+                                        <TextBox Name="txtBxMainCurrentProvider" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" ></TextBox>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <Grid Grid.Row="2" >
+                                <Label Name="lblMainLocateService" Grid.Row="0" HorizontalAlignment="Center">Drop Downs</Label>
+                            </Grid>
+                            <Border Grid.Row="3" Margin="3,3,1,1" Style="{StaticResource myBorderStyle2}" Background="{DynamicResource MainScreenGradient}">
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Label Name="lblMainAllDrops">Place Holder for drop name</Label>
+                                    <ComboBox Height="23" Name="comboBoxMainAllDrops" Width="Auto" SelectedIndex="0" ItemsSource="{Binding Path=DropDowns}" DisplayMemberPath="Name" SelectedValue="{Binding Path=Value}" IsSynchronizedWithCurrentItem="False" >
+                                    </ComboBox>
+                                    <Label Name="lblMainAllDropsValue">Selected item value:</Label>
+                                    <TextBox Name="txtBxMainAllDropsValue" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" ></TextBox>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Log In" IsSelected="False" >
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <Button Name="btnLoginLoad"  Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}"  >Load
+                            </Button>
+                            <Label Content="Roles:"  />
+                            <ComboBox Height="23" Width="Auto" Name="comboBoxLogInRoles" ItemsSource="{Binding Path=AppRules}" DisplayMemberPath="_Role" SelectedValue="{Binding Path=id}"  SelectedIndex="0" IsSynchronizedWithCurrentItem="False"  >
+                            </ComboBox>
+                            <Label Content="Users:"  />
+                            <ComboBox Height="23" Width="Auto" Name="comboBoxLogInAppRoles" ItemsSource="{Binding Path=AppUserRules}" DisplayMemberPath="_ActiveDirectory" SelectedValue="{Binding Path=id}" IsSynchronizedWithCurrentItem="False" Margin="0,0,0,0" SelectedIndex="0"  >
+                            </ComboBox>
+                            <Label Name="lblLoginReportName" Margin="15,0,0,0" Content="MyCarr Recs:" ></Label>
+                            <Button Name="btnLoginMyCarr" Content="My Carr"  Margin="15,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" >
+                            </Button>
+                            <Button Name="btnLoginCompletedCarr" Content="Completed Carr"  Margin="15,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}"  >
+                            </Button>
+                            <Button Name="btnLoginAllCarr" Content="All Carr"  Margin="15,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}"  >
+                            </Button>
+
+                        </StackPanel>
+                        <telerik:RadGridView x:Name="radGridLoginMyCarr" Grid.Row="1" ToolTip=""  RowHeight="20"  ShowGroupPanel="True" Margin="0,10,0,0" >
+                        </telerik:RadGridView>
+                        <Grid Grid.Row="2" Background="#FFE4D5D5" >
+                            <Label Name="lblLoginCorpInfo" Grid.Row="0" HorizontalAlignment="Center" >Corporate Info</Label>
+                        </Grid>
+                        <StackPanel Grid.Row="3" Orientation="Horizontal" >
+                            <Label Name="lblLoginCorpLegalName"  Content="Corporate Info" ></Label>
+                            <TextBox Name="txtBxLoginCorpLegalName" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0"></TextBox>
+                            <Label Name="lblLoginCarrType"  Content="Carr Type" ></Label>
+                            <ComboBox Height="23" Width="Auto" Name="comboBoxLogInCarrType" ItemsSource="{Binding Path=CarrType}" DisplayMemberPath="Name" SelectedValue="{Binding Path=Value}" Margin="0,0,0,0"  >
+                            </ComboBox>
+                        </StackPanel>
+                        <Border Grid.Row="4" Margin="3,3,1,1" Style="{StaticResource myBorderStyle2}" Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="75"/>
+                                            <ColumnDefinition Width="125"/>
+                                            <ColumnDefinition Width="95"/>
+                                            <ColumnDefinition Width="105"/>
+                                            <ColumnDefinition Width="85"/>
+                                            <ColumnDefinition Width="115"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Name="lblCarrFirstName">First Name</Label>
+                                        <TextBox Grid.Column="1"  Name="txtBxCarrFirstName" Width="100" Padding="0,2,0,0" Style="{StaticResource TextBxRounded1}" HorizontalAlignment="Left">
+                                        </TextBox>
+                                        <Label Grid.Column="2" Name="lblCarrLastName">Last Name</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxCarrLastName" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" HorizontalAlignment="Left" ></TextBox>
+                                        <Label Grid.Column="4" Name="lblCarrTitle" HorizontalAlignment="Right">Title</Label>
+                                        <TextBox Grid.Column="5" Name="txtBxCarrTitle" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0"></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="75"/>
+                                            <ColumnDefinition Width="125"/>
+                                            <ColumnDefinition Width="95"/>
+                                            <ColumnDefinition Width="105"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Name="lblCarrEmail">Email</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxCarrEmail" Width="100" Padding="0,2,0,0" Style="{StaticResource TextBxRounded1}" HorizontalAlignment="Left">
+                                        </TextBox>
+                                        <Label Grid.Column="2" Name="lblCarrPhoneNumber">Phone Number</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxCarrPhoneNumber" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" HorizontalAlignment="Left" ></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="75"/>
+                                            <ColumnDefinition Width="125"/>
+                                            <ColumnDefinition Width="95"/>
+                                            <ColumnDefinition Width="105"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Name="lblCarrAddress1">Address 1</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxCarrAddress1" Width="100" Padding="0,2,0,0" Style="{StaticResource TextBxRounded1}" HorizontalAlignment="Left">
+                                        </TextBox>
+                                        <Label Grid.Column="2" Name="lblCarrAddress2">Address 2</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxCarrAddress2" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" HorizontalAlignment="Left" ></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="75"/>
+                                            <ColumnDefinition Width="125"/>
+                                            <ColumnDefinition Width="95"/>
+                                            <ColumnDefinition Width="105"/>
+                                            <ColumnDefinition Width="85"/>
+                                            <ColumnDefinition Width="115"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Name="lblCarrCity">City</Label>
+                                        <TextBox Grid.Column="1"  Name="txtBxCarrCity" Width="100" Padding="0,2,0,0" Style="{StaticResource TextBxRounded1}" HorizontalAlignment="Left">
+                                        </TextBox>
+                                        <Label Grid.Column="2" Name="lblCarrSelectState">Select State</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxCarrSelectState" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" HorizontalAlignment="Left" ></TextBox>
+                                        <Label Grid.Column="4" Name="lblCarrStateAbbrev" HorizontalAlignment="Right">State Abbrev</Label>
+                                        <TextBox Grid.Column="5" Name="txtBxCarrStateAbbrev" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0"></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="75"/>
+                                            <ColumnDefinition Width="125"/>
+                                            <ColumnDefinition Width="95"/>
+                                            <ColumnDefinition Width="105"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Name="lblCarrPostalCode">Postal Code</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxCarrPostalCode" Width="100" Padding="0,2,0,0" Style="{StaticResource TextBxRounded1}" HorizontalAlignment="Left">
+                                        </TextBox>
+                                        <Label Grid.Column="2" Name="lblCarrCountry">Country</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxCarrCountry" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" HorizontalAlignment="Left" ></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                        <Grid Grid.Row="5" Background="#FFE4D5D5" >
+                            <Label Name="lblLoginCorpDetails" Grid.Row="0" HorizontalAlignment="Center" >Corporate Details</Label>
+                        </Grid>
+                        <Border Grid.Row="6" Margin="3,3,1,1" Style="{StaticResource myBorderStyle2}" Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+                                    <Grid local:GridHelpers.ColumnCount="8" local:GridHelpers.StarColumns="{StaticResource grid7Cols}">
+                                        <Label Grid.Column="0"  Name="lblLoginContractBegin">Contract Begin</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxLoginContractBegin" Style="{StaticResource TextBxRounded1}"  Width="150" Padding="0,2,0,0">
+                                        </TextBox>
+                                        <Label Grid.Column="2" Name="lblLoginContractExpire">Contract Expire</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxLoginContractExpire" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>
+                                        <Label Grid.Column="4" Name="lblLoginContractNum">Contract Num</Label>
+                                        <TextBox Grid.Column="5" Name="txtBxLoginContractNum" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0"></TextBox>
+                                        <CheckBox Grid.Column="6" x:Name="chBxLoginMultiYear" Margin="8,5,0,0" Content="Multi-Year"></CheckBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                                    <Grid local:GridHelpers.ColumnCount="6" local:GridHelpers.StarColumns="{StaticResource grid7Cols}">
+                                        <Label Grid.Column="0"  Name="lblLoginCurrency">Currency</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxLoginCurrency" Style="{StaticResource TextBxRounded1}"  Width="150" Padding="0,2,0,0">
+                                        </TextBox>
+                                        <Label Grid.Column="2" Name="lblLoginProgramType">ProgramType</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxLoginProgramType" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
+                                    <Grid local:GridHelpers.ColumnCount="6" local:GridHelpers.StarColumns="{StaticResource grid7Cols}">
+                                        <Label Grid.Column="0"  Name="lblLoginDecisionMaker">Decision Maker</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxLoginDecisionMaker" Style="{StaticResource TextBxRounded1}"  Width="150" Padding="0,2,0,0">
+                                        </TextBox>
+                                        <Label Grid.Column="2" Name="lblLoginSalesForce">Sales Force</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxLoginSalesForce" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5">
+                                    <Grid local:GridHelpers.ColumnCount="6" local:GridHelpers.StarColumns="{StaticResource grid7Cols}">
+                                        <Label Grid.Column="0"  Name="lblLoginSalesProf">Sales Professional</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxLoginSalesProf" Style="{StaticResource TextBxRounded1}"  Width="150" Padding="0,2,0,0" />
+                                        <Label Grid.Column="2" Name="lblLoginSalesManager">Sales Manager</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxLoginSalesManager" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>
+                                        <Label Grid.Column="4" Name="lblLoginSDR">SDR</Label>
+                                        <TextBox Grid.Column="5" Name="txtBxLoginSDR" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0"></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="5">
+                                    <Grid local:GridHelpers.ColumnCount="6" local:GridHelpers.StarColumns="{StaticResource grid7Cols}">
+                                        <Label Grid.Column="0"  Name="lblLoginDistrictManager">District Manager</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxLoginDistrictManager" Style="{StaticResource TextBxRounded1}"  Width="150" Padding="0,2,0,0" />
+                                        <Label Grid.Column="2" Name="lblLoginIndustry">Industry</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxLoginIndustry" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>
+                                        <Label Grid.Column="4" Name="lblLoginBtoB">B-B or B-C</Label>
+                                        <TextBox Grid.Column="5" Name="txtBxLoginBtoB" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0"></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="5">
+                                    <Grid local:GridHelpers.ColumnCount="4" local:GridHelpers.StarColumns="{StaticResource grid4Cols}">
+                                        <Label Grid.Column="0"  Name="lblLoginCourierFuel">Courier Fuel Alignment</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxLoginCourierFuel" Style="{StaticResource TextBxRounded1}"  Width="150" Padding="0,2,0,0">
+                                        </TextBox>
+                                        <Label Grid.Column="2" Name="lblLoginVersion">Version Desc</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxLoginVersion" Style="{StaticResource TextBxRounded1}" Width="170" Padding="0,2,0,0" ></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="5">
+                                    <Grid local:GridHelpers.ColumnCount="4" local:GridHelpers.StarColumns="{StaticResource grid4Cols}">
+                                        <Label Grid.Column="0"  Name="lblLoginCurrentProvider">Current Provider</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxLoginCurrentProvider" Style="{StaticResource TextBxRounded1}"  Width="150" Padding="0,2,0,0">
+                                        </TextBox>
+                                        <Label Grid.Column="2" Name="lblLoginCurrentProviderCom">Current Provider Com</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxLoginCurrentProviderCom" Style="{StaticResource TextBxRounded1}" Width="170" Padding="0,2,0,0" ></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <!--Multi Split Center Splitter-->
+                    <GridSplitter Grid.Row="0" Grid.Column="0" Background="Green" Width="5"/>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <!--Row 1-->
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <!--Row 6-->
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <!--Row 11-->
+                            <RowDefinition Height="Auto" />
+                            <!--Row 12-->
+                            <RowDefinition Height="Auto" />
+                            <!--Row 13-->
+                            <RowDefinition Height="Auto" />
+                            <!--Row 14-->
+                            <RowDefinition Height="Auto" />
+                            <!--Row 15-->
+                            <RowDefinition Height="Auto" />
+                            <!--Row 16-->
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Label Name="lblLoginRight1" Content="Record from table:" HorizontalAlignment="Center"  />
+                        </StackPanel>
+                        <telerik:RadGridView x:Name="radGridLoginRight1" Grid.Row="1" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0"  >
+                        </telerik:RadGridView>
+                        <StackPanel Grid.Row="2"   Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Label Name="lblLoginRight2" Content="Record from table:"  />
+                        </StackPanel>
+                        <telerik:RadGridView x:Name="radGridLoginRight2" Grid.Row="3" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0"  >
+                        </telerik:RadGridView>
+                        <StackPanel Grid.Row="4"   Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Label Name="lblLoginRight3" Content="Record from table:"  />
+                        </StackPanel>
+                        <telerik:RadGridView x:Name="radGridLoginRight3" Grid.Row="5" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0"  >
+                        </telerik:RadGridView>
+                        <StackPanel Grid.Row="6"   Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Label Name="lblLoginCarrLocation"  Content="Carr Location"  />
+                        </StackPanel>
+                        <telerik:RadGridView x:Name="radGridLoginCarrLocation" Grid.Row="7" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0"  >
+                        </telerik:RadGridView>
+                        <StackPanel Grid.Row="8"   Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Label Name="lblLoginCarrService"  Content="Carr Service"  />
+                        </StackPanel>
+                        <telerik:RadGridView x:Name="radGridLoginCarService" Grid.Row="9" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0"  >
+                        </telerik:RadGridView>
+                        <StackPanel Grid.Row="10"   Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Label Name="lblLoginServiceVolume"  Content="Service Volume"  />
+                        </StackPanel>
+                        <telerik:RadGridView x:Name="radGridLoginServiceVolume" Grid.Row="11" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0"  >
+                        </telerik:RadGridView>
+                        <StackPanel Grid.Row="12"   Orientation="Horizontal" HorizontalAlignment="Center" >
+                            <Label Name="lblLoginInductionPoints"  Content="Induction Points"  />
+                        </StackPanel>
+                        <telerik:RadGridView x:Name="radGridLoginInductionPoints" Grid.Row="13" ToolTip=""  RowHeight="20"   Margin="0,10,0,0" ShowGroupPanel="False"  >
+                        </telerik:RadGridView>
+                        <StackPanel Grid.Row="14"   Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Label Content="For Web Site"  />
+                        </StackPanel>
+                        <Border Grid.Row="15" Margin="3,3,1,1" Style="{StaticResource myBorderStyle2}" Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+                                    <Grid local:GridHelpers.ColumnCount="6" local:GridHelpers.StarColumns="{StaticResource grid7BCols}" >
+                                        <Label Grid.Column="0"  Name="lblLoginCreatedBy">Created By</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxLoginCreatedBy" Style="{StaticResource TextBxRounded1}"  Width="100" Padding="0,2,0,0" BorderBrush="#FF3455BA">
+                                        </TextBox>
+                                        <Label Grid.Column="2" Name="lblLoginRoutedTo">Routed To</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxLoginRoutedTo" ToolTip="car.CARRDetail.idRoutedTo = car.Routing.idRouting" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                                    <Grid local:GridHelpers.ColumnCount="6" local:GridHelpers.StarColumns="{StaticResource grid7BCols}" >
+                                        <Label Grid.Column="0"  Name="lblLoginCompleted">Completed</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxLoginCompleted" Style="{StaticResource TextBxRounded1}"  Width="100" Padding="0,2,0,0">
+                                        </TextBox>
+                                        <Label Grid.Column="2" Name="lblLoginCompletedDate">Completed Date</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxLoginCompletedDate" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
+                                    <Grid local:GridHelpers.ColumnCount="6" local:GridHelpers.StarColumns="{StaticResource grid7BCols}" >
+                                        <Label Grid.Column="0"  Name="lblLoginPricingComplete">Pricing Complete</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxLoginPricingComplete" Style="{StaticResource TextBxRounded1}"  Width="100" Padding="0,2,0,0">
+                                        </TextBox>
+                                        <Label Grid.Column="2" Name="lblLoginPricingCopmpleted">Pricing Copmpleted</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxLoginPricingCopmpleted" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>
+                                        <Label Grid.Column="4" Name="lblLoginCompletedBy" HorizontalAlignment="Right">Price Completed By</Label>
+                                        <TextBox Grid.Column="5" Name="txtBxLoginPriceCompletedBy" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5">
+                                    <Grid local:GridHelpers.ColumnCount="6" local:GridHelpers.StarColumns="{StaticResource grid7BCols}" >
+                                        <Label Grid.Column="0"  Name="lblLoginInvoiceType">Invoice Type</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxLoginInvoiceType" ToolTip="car.Service.idBillingOption" Style="{StaticResource TextBxRounded1}"  Width="100" Padding="0,2,0,0">
+                                        </TextBox>
+                                        <Label Grid.Column="2" Name="lblLoginAPContactEmail">AP Contact Email</Label>
+                                        <TextBox Grid.Column="3" Name="txtBxLoginAPContactEmail" ToolTip="car.Service.APEmail"  Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>
+                                        <!--<Label Grid.Column="4" Name="lblLoginCompletedBy" HorizontalAlignment="Right">Price Completed By</Label>
+                                        <TextBox Grid.Column="5" Name="txtBxLoginPriceCompletedBy" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>-->
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="TouchDB" IsSelected="True" Height="24" Margin="-2,-2,0.2,2" VerticalAlignment="Bottom" >
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <!--Upper Left-->
+                        <Grid  Grid.Row="0" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Label Name="lblTouchDBConnErrorMsg" Foreground="Red" Visibility="Collapsed">Must select a db location</Label>
+                                <Label Content="Report Name:"  />
+                                <ComboBox Height="23" Name="comboBoxTouchDBMainReportNames" Width="Auto" >
+                                    <ComboBoxItem>tblDiscoveryRequest</ComboBoxItem>
+                                    <ComboBoxItem>blContactType</ComboBoxItem>
+                                    <ComboBoxItem>tblContact</ComboBoxItem>
+                                    <ComboBoxItem>tblContactGroup</ComboBoxItem>
+                                    <ComboBoxItem>PartialDiscoveryRequest</ComboBoxItem>
+                                    <ComboBoxItem>DiscoveryRequestBusContacts</ComboBoxItem>
+                                    <ComboBoxItem>DiscoveryRequestITContacts</ComboBoxItem>
+                                </ComboBox>
+                                <Label Name="lblTouchDBChooseReportTypeErrorMsg" Foreground="Red" Visibility="Collapsed">Must select a Report Type</Label>
+                                <Label Name="lblTouchDBTopLeftCount">Rec count</Label>
+                                <Label Name="lblTouchDBTopLeftCountFiltered">Filtered recs:</Label>
+                                <Label Name="lblTouchDBTopLeftSubmitStatus">Submit Status:</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,5">
+                                <Button Name="btnTouchDBLoadGridTopLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Height="25" VerticalAlignment="Bottom"  Style="{StaticResource RoundedButton}" Click="btnTouchDBLoadGrid_Click"  >Load Grid</Button>
+                                <Label>POD Users</Label>
+                                <ComboBox Height="23" Width="Auto" Name="comboBoxPODUser" ItemsSource="{Binding Path=Users}" DisplayMemberPath="UpdatedBy" SelectedValue="{Binding Path=UpdatedBy}" SelectedIndex="0" IsSynchronizedWithCurrentItem="False" IsEnabled="False" >
+                                </ComboBox>
+                                <CheckBox x:Name="chBxCommitReadyToCommit" Margin="10,6,0,0">Ready to Submit</CheckBox>
+                                <Button Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0"  Width="75" Height="25"  IsEnabled="False" Style="{StaticResource RoundedButton}" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <Label Content="First Name:"/>
+                                <TextBox Name="txtBxCommitFirstName" Width="100" Padding="0,2,0,0"></TextBox>
+                                <Label Content="Last Name:"/>
+                                <TextBox Name="txtBxCommitLastName" Width="100" Padding="0,2,0,0"></TextBox>
+                                <Button Name="btnCommitUpdateTopLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Height="25" VerticalAlignment="Bottom" Style="{StaticResource RoundedButton}" IsEnabled="False"   >Update</Button>
+                                <Button Name="btnCommitUpdateAllTopLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Height="25" VerticalAlignment="Bottom" Style="{StaticResource RoundedButton}" IsEnabled="False"  >Update All</Button>
+                            </StackPanel>
+                            <telerik:RadGridView x:Name="radGridTouchDBTopLeft" ToolTip="This grid allows for updating. Just select a record an updated it." Grid.Row="3" RowHeight="20"  ShowGroupPanel="True" Filtered="radGridTouchDBTopLeft_Filtered"  >
+                            </telerik:RadGridView>
+                        </Grid>
+                        <!--Left Pane Splitter between top and bottom-->
+                        <GridSplitter Grid.Row="0" Width="Auto" Height="5" ResizeDirection="Rows" Background="DarkGoldenrod" Grid.RowSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0" />
+                        <!--Lower Left ODS Date of Contact-->
+                        <Grid  Grid.Row="1" >
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <!--<ColumnDefinition Width="*"/>-->
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                        <Button Name="btnTouchDBLoadGridBottomLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" Click="btnTouchDBLoadGrid_Click">Load Grid</Button>
+                                        <Label Name="lblTouchDBLowerLeftCount">Cnt</Label>
+                                        <Label Name="lblCommitLowerLeftCountFiltered">Filtered recs:</Label>
+                                        <Button Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0" Name="btnExportCommitGridLowerRight" Width="75" IsEnabled="False" Style="{StaticResource RoundedButton}"  />
+                                    </StackPanel>
+                                    <telerik:RadGridView x:Name="radGridTouchDBLowerLeft" Grid.Row="1" ToolTip=""  RowHeight="20"  ShowGroupPanel="True" >
+                                    </telerik:RadGridView>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <!--Multi Split Center Splitter-->
+                    <GridSplitter Grid.Row="0" Grid.Column="0" Background="Green" Width="5"/>
+                    <!--Multi Split Right Panel-->
+                    <Grid Grid.Row="0" Grid.Column="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid  Grid.Row="0" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,5">
+                                <Button Content="Load Grid" Name="btnTouchDBTopRightLoadGrid"  Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" Click="btnTouchDBLoadGrid_Click"  >
+                                    <Button.ToolTip>Use the Cache Type</Button.ToolTip>
+                                </Button>
+                                <Label Name="lblTouchDBTopRightCount">Rec count</Label>
+                                <Label Name="lblCommitTopRightCountFiltered">Filtered recs:</Label>
+                                <Label Name="lblCommitTopRightSubmitStatus">Submit Status:</Label>
+                                <Button Name="btnCommitUpdateAllTopRight"  Margin="10,0,0,0" Padding="10,0,10,0" Height="25" VerticalAlignment="Bottom" Style="{StaticResource RoundedButton}" IsEnabled="False"  >Update All</Button>
+                                <Button Content="Update"  Margin="10,0,0,0" Padding="10,0,10,0" Name="btnUpdateCommitGridTopRight" Width="75"  Style="{StaticResource RoundedButton}" Height="26" VerticalAlignment="Top" IsEnabled="False" />
+                                <TextBox Name="txtCommitWmsNumber" Width="75" Text="S5066883" IsEnabled="False">
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                            </StackPanel>
+                            <telerik:RadGridView x:Name="radGridTouchDBTopRight" Grid.Row="3" RowHeight="20" ShowGroupPanel="True" >
+                            </telerik:RadGridView>
+                            <!--Right Pane Splitter between top and bottom-->
+                            <GridSplitter Grid.Row="3" Width="Auto" Height="5" ResizeDirection="Rows" Background="DarkGoldenrod" Grid.RowSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0" />
+                        </Grid>
+                        <Grid  Grid.Row="1" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" >
+                                <Label Name="lblCommitContractDetails" Grid.Row="0" >Contract Details</Label>
+                            </Grid>
+
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+
+</Window>
