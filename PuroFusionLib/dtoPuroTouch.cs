@@ -273,5 +273,9 @@ namespace PuroFusionLib
         public Nullable<System.DateTime> UpdatedOn { get; set; }
         public Nullable<bool> ActiveFlag { get; set; }
     }
-
+    public class dtoTableCompare
+    {
+        public string TableName { get; set; }
+        public string ColumnName { get; set; }
+    }
 }

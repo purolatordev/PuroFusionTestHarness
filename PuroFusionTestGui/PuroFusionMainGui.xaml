@@ -582,7 +582,9 @@
                                     <ComboBoxItem>tblContactGroup</ComboBoxItem>
                                     <ComboBoxItem>PartialDiscoveryRequest</ComboBoxItem>
                                     <ComboBoxItem>DiscoveryRequestBusContacts</ComboBoxItem>
-                                    <ComboBoxItem>DiscoveryRequestITContacts</ComboBoxItem>
+                                    <ComboBoxItem>DiscoveryRequestITContacts</ComboBoxItem> 
+                                    <ComboBoxItem>CompareDiscReq-ToReq</ComboBoxItem>
+                                    <ComboBoxItem>CompareDiscReqToReq-</ComboBoxItem>
                                 </ComboBox>
                                 <Label Name="lblTouchDBChooseReportTypeErrorMsg" Foreground="Red" Visibility="Collapsed">Must select a Report Type</Label>
                                 <Label Name="lblTouchDBTopLeftCount">Rec count</Label>

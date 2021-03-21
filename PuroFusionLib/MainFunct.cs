@@ -2,6 +2,7 @@
 using PuroTouchEntities;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -345,6 +346,76 @@ namespace PuroFusionLib
             return qtheCount;
         }
         #endregion
+        #region Migration Strategy
+        public IList<dtoTableCompare> GetDiscoveryDiff1()
+        {
+            IList<dtoTableCompare> qTableCompare = new List<dtoTableCompare>();
+            try
+            {
+                string sql = "SELECT c2.table_name, c2.COLUMN_NAME FROM[INFORMATION_SCHEMA].[COLUMNS] c2 WHERE table_name = '" +
+                                "tblDiscoveryRequest_' AND c2.COLUMN_NAME NOT IN" +
+                                " (SELECT column_name FROM[INFORMATION_SCHEMA].[COLUMNS] WHERE table_name = 'tblDiscoveryRequest')";
+
+                using (SqlConnection con = new SqlConnection(strConn))
+                {
+                    using (SqlCommand com = new SqlCommand(sql, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader sdr = com.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                qTableCompare.Add( new dtoTableCompare() { ColumnName = sdr["COLUMN_NAME"].ToString().Trim(), TableName = sdr["table_name"].ToString().Trim() });
+                                int er = 0;
+                                er++;
+                            }
+                        }
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //retValue = ex.ToString();ProgramSubdiv
+            }
+            return qTableCompare;
+        }
+        public IList<dtoTableCompare> GetDiscoveryDiff1(string tbl1, string tbl2)
+        {
+            IList<dtoTableCompare> qTableCompare = new List<dtoTableCompare>();
+            try
+            {
+                string sql = "SELECT c2.table_name, c2.COLUMN_NAME FROM[INFORMATION_SCHEMA].[COLUMNS] c2 WHERE table_name = '" + 
+                                    tbl1 + "' AND c2.COLUMN_NAME NOT IN" +
+                                    " (SELECT column_name FROM[INFORMATION_SCHEMA].[COLUMNS] WHERE table_name = '" +
+                                    tbl2 + "')";
+
+                using (SqlConnection con = new SqlConnection(strConn))
+                {
+                    using (SqlCommand com = new SqlCommand(sql, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader sdr = com.ExecuteReader())
+                        {
+                            while (sdr.Read())
+                            {
+                                qTableCompare.Add(new dtoTableCompare() { ColumnName = sdr["COLUMN_NAME"].ToString().Trim(), TableName = sdr["table_name"].ToString().Trim() });
+                                int er = 0;
+                                er++;
+                            }
+                        }
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //retValue = ex.ToString();ProgramSubdiv
+            }
+            return qTableCompare;
+        }
+
+        #endregion
     }
-   
+
 }

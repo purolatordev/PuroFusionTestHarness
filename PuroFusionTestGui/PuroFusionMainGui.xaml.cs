@@ -121,6 +121,8 @@ namespace PuroFusionTestGui
             comboBoxMainDB.Items.Add(PuroReportingServiceClass.ConnString.PatientLocal2);
             comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal);
             comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal2);
+            PuroTouchServiceClass o = new PuroTouchServiceClass(PuroTouchServiceClass.ConnString.PatientLocal);
+            o.GetDiscoveryDiff1("tblDiscoveryRequest_", "tblDiscoveryRequest");
         }
         private string GetdbLocation(ComboBox cmb)
         {
@@ -320,6 +322,22 @@ namespace PuroFusionTestGui
                         ObservableCollection<dtoPartialDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtoPartialDiscoveryRequest>();
                         grid.ItemsSource = ocWmsGroup.Concat<dtoPartialDiscoveryRequest>(qDiscoveryRequest);
                         lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
+                    }
+                    else if ("CompareDiscReq-ToReq" == strReportItem)
+                    {
+                        o.strConn = comboBoxTouchDB.SelectedItem.ToString();
+                        IList<dtoTableCompare> qTableCompare = o.GetDiscoveryDiff1("tblDiscoveryRequest_", "tblDiscoveryRequest");
+                        ObservableCollection<dtoTableCompare> ocWmsGroup = new ObservableCollection<dtoTableCompare>();
+                        grid.ItemsSource = ocWmsGroup.Concat<dtoTableCompare>(qTableCompare);
+                        lbl.Content = strReportItem + " count: " + qTableCompare.Count();
+                    }
+                    else if ("CompareDiscReqToReq-" == strReportItem)
+                    {
+                        o.strConn = comboBoxTouchDB.SelectedItem.ToString();
+                        IList<dtoTableCompare> qTableCompare = o.GetDiscoveryDiff1("tblDiscoveryRequest","tblDiscoveryRequest_");
+                        ObservableCollection<dtoTableCompare> ocWmsGroup = new ObservableCollection<dtoTableCompare>();
+                        grid.ItemsSource = ocWmsGroup.Concat<dtoTableCompare>(qTableCompare);
+                        lbl.Content = strReportItem + " count: " + qTableCompare.Count();
                     }
                 }
             }
