@@ -13,7 +13,7 @@
     </RootPath>
     <RootNamespace>PuroTouchDBdatabase</RootNamespace>
     <AssemblyName>PuroTouchDBdatabase</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -22,6 +22,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -56,5 +58,131 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\tblCollectionSpecialist.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequest.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestUploads.sql" />
+    <Build Include="dbo\Tables\tblITRequestTracker.sql" />
+    <Build Include="dbo\Tables\tblRequestTypes.sql" />
+    <Build Include="dbo\Tables\tblAccountMasterDescriptions.sql" />
+    <Build Include="dbo\Tables\tblShippingChannelAccount.sql" />
+    <Build Include="dbo\Tables\tblEDIShipMethodTypes.sql" />
+    <Build Include="dbo\Tables\tblNon-CourierContracts.sql" />
+    <Build Include="dbo\Tables\tblShippingChannelAccounts.sql" />
+    <Build Include="dbo\Tables\tblWP_LIST.sql" />
+    <Build Include="dbo\Tables\tblCustomizedCustomersegment.sql" />
+    <Build Include="dbo\Tables\%27Migration Portal_%27.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestTargetDates.sql" />
+    <Build Include="dbo\Tables\%27Worldpak Team Support_%27.sql" />
+    <Build Include="dbo\Tables\tblITBA.sql" />
+    <Build Include="dbo\Tables\tblOnboardingPhase.sql" />
+    <Build Include="dbo\Tables\tblShippingChannel.sql" />
+    <Build Include="dbo\Tables\tblShippingVendor.sql" />
+    <Build Include="dbo\Tables\tblTaskType.sql" />
+    <Build Include="dbo\Tables\tblVendorType.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestNotes.sql" />
+    <Build Include="dbo\Tables\tblEDIShipMethods.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequest_Archive.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequest_v2.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestNotes_Archive.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestProducts_Archive.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestServices_Archive.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestServices.sql" />
+    <Build Include="dbo\Tables\tblShippingServices.sql" />
+    <Build Include="dbo\Tables\tblEDITranscationType.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestUploads_Archive.sql" />
+    <Build Include="dbo\Tables\ZIPCodes.sql" />
+    <Build Include="dbo\Tables\tblProductTypes.sql" />
+    <Build Include="dbo\Tables\tblProducts.sql" />
+    <Build Include="dbo\Tables\tblProductTypeRel.sql" />
+    <Build Include="dbo\Tables\tblBillingTypes.sql" />
+    <Build Include="dbo\Tables\tblBillingTypeDetails.sql" />
+    <Build Include="dbo\Tables\tblBillingTypeRel.sql" />
+    <Build Include="dbo\Tables\tblCustomerProfile.sql" />
+    <Build Include="dbo\Tables\tblEDITranscations.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequest_v3.sql" />
+    <Build Include="dbo\Tables\tblShippingProducts.sql" />
+    <Build Include="dbo\Tables\tblAdditionalDistricts.sql" />
+    <Build Include="dbo\Tables\tblDataEntryMethods.sql" />
+    <Build Include="dbo\Tables\tblInvoiceType.sql" />
+    <Build Include="dbo\Tables\tblFileType.sql" />
+    <Build Include="dbo\Tables\tblCommunicationMethod.sql" />
+    <Build Include="dbo\Tables\tblEquipment.sql" />
+    <Build Include="dbo\Tables\tblThirdPartyVendor.sql" />
+    <Build Include="dbo\Tables\tblSolutionType.sql" />
+    <Build Include="dbo\Tables\tblBrokers.sql" />
+    <Build Include="dbo\Tables\tblContactType.sql" />
+    <Build Include="dbo\Tables\tblEDISolutions.sql" />
+    <Build Include="dbo\Tables\tblDRContacts.sql" />
+    <Build Include="dbo\Tables\tblInductionPoints.sql" />
+    <Build Include="dbo\Tables\tblCustomsTypes.sql" />
+    <Build Include="dbo\Tables\tblEDISpecialist.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestProducts.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequest_v4.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestEquipment.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestEDI.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestDetails.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestImport_.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestSvcsImport_.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequestImport2_.sql" />
+    <Build Include="dbo\Tables\tblCloseReason.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequest_.sql" />
+    <Build Include="dbo\Tables\tblBillingSpecialist.sql" />
+    <Build Include="dbo\Tables\tblContact.sql" />
+    <Build Include="dbo\Views\vw_BillingSpecialist.sql" />
+    <Build Include="dbo\Views\vw_CollectionSpecialist.sql" />
+    <Build Include="dbo\Views\vw_Districts.sql" />
+    <Build Include="dbo\Views\vw_RelationshipNames.sql" />
+    <Build Include="dbo\Views\vw_ITBA.sql" />
+    <Build Include="dbo\Views\vw_UserRoles.sql" />
+    <Build Include="dbo\Views\vw_DiscoveryRequestSummary.sql" />
+    <Build Include="dbo\Views\vw_DiscoveryRequests.sql" />
+    <Build Include="dbo\Views\vw_Regions.sql" />
+    <Build Include="dbo\Views\vw_Currency.sql" />
+    <Build Include="dbo\Views\vw_Collectors.sql" />
+    <Build Include="dbo\Views\vw_EDISpecialist.sql" />
+    <Build Include="Security\CPG-GPC_1138-SVC-SQLAG-PRD.sql" />
+    <Build Include="Security\CPG-GPC_1138-SVC-SQLAG-PRD_1.sql" />
+    <Build Include="Security\puroIT.sql" />
+    <Build Include="Security\puroIT_1.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetDashboardStats.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetDetailByPhase.sql" />
+    <Build Include="dbo\Stored Procedures\sp_scheduledGoLive.sql" />
+    <Build Include="dbo\Stored Procedures\sp_scheduledGoLiveWithWIP.sql" />
+    <Build Include="dbo\Stored Procedures\sp_email_scheduledGoLive.sql" />
+    <Build Include="dbo\Stored Procedures\sp_OnboardingNotesReport.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetProductsForSvcs.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ChangingTargetDates.sql" />
+    <Build Include="dbo\Stored Procedures\sp_email_OnHoldAndClosed.sql" />
+    <Build Include="dbo\Stored Procedures\sp_email_OnboardingSnapshot.sql" />
+    <Build Include="dbo\Stored Procedures\sp_email_OnboardingSnapshot_Body.sql" />
+    <Build Include="dbo\Stored Procedures\sp_email_OnboardingSnapshot2.sql" />
+    <Build Include="dbo\Stored Procedures\sp_email_Onboarding_MondayRpt.sql" />
+    <Build Include="dbo\Stored Procedures\sp_CustomerDelayReport.sql" />
+    <Build Include="dbo\Stored Procedures\sp_SPColumnChartData.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetOnboardingPhaseCountDistrict.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetProjRevenueDistrict.sql" />
+    <Build Include="dbo\Stored Procedures\ImporHistoryFromTemp.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetOnboardingPhaseCountSales.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetOnboardingPhaseCountITBA.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetOnboardingPhaseCountAll.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetProjRevenueAll.sql" />
+    <Build Include="dbo\Stored Procedures\sp_OnboardingTimePerShippingChannel.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetProjRevenueITBA.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetProjRevenueSales.sql" />
+    <Build Include="dbo\Stored Procedures\sp_OnboardingTimePerPhase.sql" />
+    <Build Include="dbo\Stored Procedures\sp_OnboardingDetailReport.sql" />
+    <Build Include="dbo\Stored Procedures\sp_OnboardingTimePerCustomer.sql" />
+    <Build Include="dbo\Stored Procedures\sp_ClosedRequests.sql" />
+    <Build Include="dbo\Stored Procedures\sp_TopTenTimeSpent.sql" />
+    <Build Include="dbo\Stored Procedures\sp_TopTenRevenue.sql" />
+    <Build Include="dbo\Stored Procedures\sp_OnboardingTimePerITBA.sql" />
   </ItemGroup>
 </Project>
