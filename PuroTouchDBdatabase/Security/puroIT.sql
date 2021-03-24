@@ -1,2 +1,0 @@
-﻿CREATE USER [puroIT] FOR LOGIN [puroIT];
-

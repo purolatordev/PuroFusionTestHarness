@@ -1,3 +1,0 @@
-﻿CREATE LOGIN [puroIT]
-    WITH PASSWORD = N'j~rojmraP twx{Yu+{bShzu`msFT7_&#$!~<Ql5{9ry7hNmY', SID = 0xB78076FE38151E46B84A360B24D66A78, DEFAULT_LANGUAGE = [us_english];
-
