@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[tblDiscoveryRequest] (
+﻿CREATE TABLE [dbo].[tblDiscoveryRequest_v5] (
     [idRequest]              INT            IDENTITY (1, 1) NOT NULL,
     [isNewRequest]           BIT            NULL,
     [SalesRepName]           VARCHAR (255)  NULL,
@@ -106,16 +106,6 @@
     [idEDISpecialist]        INT            NULL,
     [idBillingSpecialist]    INT            NULL,
     [idCollectionSpecialist] INT            NULL,
-    [AuditorPortal]          BIT            NULL,
-    [AuditorURL]             VARCHAR (255)  NULL,
-    [AuditorUserName]        VARCHAR (255)  NULL,
-    [AuditorPassword]        VARCHAR (255)  NULL,
-    [EDITargetGoLive]        DATETIME       NULL,
-    [EDICurrentGoLive]       DATETIME       NULL,
-    [EDIActualGoLive]        DATETIME       NULL,
-    CONSTRAINT [PK_tblDiscoveryRequest] PRIMARY KEY CLUSTERED ([idRequest] ASC),
-    CONSTRAINT [FK_idOnBPh_OnboardPhase] FOREIGN KEY ([idOnboardingPhase]) REFERENCES [dbo].[tblOnboardingPhase] ([idOnboardingPhase])
+    CONSTRAINT [PK_tblDiscoveryRequest_v5] PRIMARY KEY CLUSTERED ([idRequest] ASC)
 );
-
-
 
