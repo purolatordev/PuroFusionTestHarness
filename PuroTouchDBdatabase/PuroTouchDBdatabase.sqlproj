@@ -185,5 +185,7 @@
     <Build Include="dbo\Stored Procedures\sp_TopTenRevenue.sql" />
     <Build Include="dbo\Stored Procedures\sp_OnboardingTimePerITBA.sql" />
     <Build Include="dbo\Tables\tblDiscoveryRequest_v5.sql" />
+    <Build Include="dbo\Tables\tblEDIOnboardingPhase.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequest_v6.sql" />
   </ItemGroup>
 </Project>

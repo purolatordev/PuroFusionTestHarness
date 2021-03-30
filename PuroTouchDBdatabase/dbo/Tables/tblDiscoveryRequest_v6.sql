@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[tblDiscoveryRequest] (
+﻿CREATE TABLE [dbo].[tblDiscoveryRequest_v6] (
     [idRequest]              INT            IDENTITY (1, 1) NOT NULL,
     [isNewRequest]           BIT            NULL,
     [SalesRepName]           VARCHAR (255)  NULL,
@@ -113,13 +113,7 @@
     [EDITargetGoLive]        DATETIME       NULL,
     [EDICurrentGoLive]       DATETIME       NULL,
     [EDIActualGoLive]        DATETIME       NULL,
-    [idEDIOnboardingPhase]   INT            NOT NULL,
-    CONSTRAINT [PK_tblDiscoveryRequest] PRIMARY KEY CLUSTERED ([idRequest] ASC),
-    CONSTRAINT [FK_idEDIOnboard_Disc_EDIOnB] FOREIGN KEY ([idEDIOnboardingPhase]) REFERENCES [dbo].[tblEDIOnboardingPhase] ([idEDIOnboardingPhase]),
-    CONSTRAINT [FK_idOnBPh_OnboardPhase] FOREIGN KEY ([idOnboardingPhase]) REFERENCES [dbo].[tblOnboardingPhase] ([idOnboardingPhase])
+    [idEDIOnboardingPhase]   INT            NULL,
+    CONSTRAINT [PK_tblDiscoveryRequest_v6] PRIMARY KEY CLUSTERED ([idRequest] ASC)
 );
-
-
-
-
 
