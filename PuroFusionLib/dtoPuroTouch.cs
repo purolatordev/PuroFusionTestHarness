@@ -118,6 +118,19 @@ namespace PuroFusionLib
         public Nullable<int> idVendorType { get; set; }
         public string Route { get; set; }
         public Nullable<int> idSolutionType { get; set; }
+        public Nullable<bool> FreightAuditor { get; set; }
+        public string EDIDetails { get; set; }
+        public Nullable<int> idEDISpecialist { get; set; }
+        public Nullable<int> idBillingSpecialist { get; set; }
+        public Nullable<int> idCollectionSpecialist { get; set; }
+        public Nullable<bool> AuditorPortal { get; set; }
+        public string AuditorURL { get; set; }
+        public string AuditorUserName { get; set; }
+        public string AuditorPassword { get; set; }
+        public Nullable<System.DateTime> EDITargetGoLive { get; set; }
+        public Nullable<System.DateTime> EDICurrentGoLive { get; set; }
+        public Nullable<System.DateTime> EDIActualGoLive { get; set; }
+        public int idEDIOnboardingPhase { get; set; }
     }
     public class dtotblDiscoveryRequest_
     {
@@ -278,4 +291,62 @@ namespace PuroFusionLib
         public string TableName { get; set; }
         public string ColumnName { get; set; }
     }
+    public class dtotblEDITranscations
+    {
+        public int idEDITranscation { get; set; }
+        public int idRequest { get; set; }
+        public int idEDITranscationType { get; set; }
+        public string EDITranscationType { get; set; }
+        public int TotalRequests { get; set; }
+        public Nullable<bool> CombinePayer { get; set; }
+        public Nullable<bool> BatchInvoices { get; set; }
+        public string CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public Nullable<bool> ActiveFlag { get; set; }
+    }
+    public class dtotblEDIShipMethods
+    {
+        public int idEDIShipMethod { get; set; }
+        public int idRequest { get; set; }
+        public int idEDIShipMethodType { get; set; }
+        public string MethodType { get; set; }
+
+        public string CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public Nullable<bool> ActiveFlag { get; set; }
+    }
+    public class dtotblEDIRecipReqs
+    {
+        public int idEDIRecipReqs { get; set; }
+        public int RecipReqNum { get; set; }
+        public int idRequest { get; set; }
+        public int idEDITranscation { get; set; }
+        public int idFileType { get; set; }
+        public string X12_ISA { get; set; }
+        public string X12_GS { get; set; }
+        public string X12_Qualifier { get; set; }
+        public int idCommunicationMethod { get; set; }
+        public string FTPAddress { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string FolderPath { get; set; }
+        public string Email { get; set; }
+        public int idTriggerMechanism { get; set; }
+        public int idTiming { get; set; }
+        public Nullable<System.DateTime> TimeOfFile { get; set; }
+        public int idStatusCodes { get; set; }
+        public string EDITranscationType { get; set; }
+        public int idEDITranscationType { get; set; }
+        public string Category { get; set; }
+        public string CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public Nullable<bool> ActiveFlag { get; set; }
+    }
+
 }

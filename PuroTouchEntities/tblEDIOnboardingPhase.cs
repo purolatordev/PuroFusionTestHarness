@@ -12,22 +12,21 @@ namespace PuroTouchEntities
     using System;
     using System.Collections.Generic;
     
-    public partial class tblOnboardingPhase
+    public partial class tblEDIOnboardingPhase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblOnboardingPhase()
+        public tblEDIOnboardingPhase()
         {
             this.tblDiscoveryRequest = new HashSet<tblDiscoveryRequest>();
         }
     
-        public int idOnboardingPhase { get; set; }
-        public string OnboardingPhase { get; set; }
+        public int idEDIOnboardingPhase { get; set; }
+        public string EDIOnboardingPhaseType { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<bool> ActiveFlag { get; set; }
-        public Nullable<int> SortValue { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblDiscoveryRequest> tblDiscoveryRequest { get; set; }

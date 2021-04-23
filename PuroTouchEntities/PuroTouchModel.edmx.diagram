@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="48f143cdd5c1431982f01c3aefa673a3" Name="Diagram1" ZoomLevel="44">
+      <Diagram DiagramId="48f143cdd5c1431982f01c3aefa673a3" Name="Diagram1" ZoomLevel="39">
         <EntityTypeShape EntityType="PuroTouchDBModel.tblBrokers" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblCloseReason" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuroTouchDBModel.tblCommunicationMethod" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblCommunicationMethod" Width="1.5" PointX="27.25" PointY="22.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblCustomsTypes" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblDataEntryMethods" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequest_Archive" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
@@ -26,11 +26,11 @@
         <EntityTypeShape EntityType="PuroTouchDBModel.tblDRContacts" Width="1.5" PointX="14.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblEDISolutions" Width="1.5" PointX="8.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblEquipment" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuroTouchDBModel.tblFileType" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblFileType" Width="1.5" PointX="27.625" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblInductionPoints" Width="1.5" PointX="10.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblInvoiceType" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblITBA" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuroTouchDBModel.tblOnboardingPhase" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblOnboardingPhase" Width="1.5" PointX="19.5" PointY="22.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblRequestTypes" Width="1.5" PointX="16.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblShippingChannel" Width="1.5" PointX="16.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblShippingProducts" Width="1.5" PointX="16.75" PointY="16.75" IsExpanded="true" />
@@ -48,8 +48,34 @@
         <EntityTypeShape EntityType="PuroTouchDBModel.ZIPCodes" Width="1.5" PointX="8.75" PointY="20.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblContact" Width="1.5" PointX="21" PointY="16.25" />
         <AssociationConnector Association="PuroTouchDBModel.FK_idContactType_ContactType" />
-        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequest" Width="1.5" PointX="3.375" PointY="8.75" />
-        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequest_" Width="1.5" PointX="5" PointY="8.75" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequest" Width="1.5" PointX="16.5" PointY="22.375" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblDiscoveryRequest_" Width="1.5" PointX="3.375" PointY="8.75" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idOnBPh_OnboardPhase" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblBillingSpecialist" Width="1.5" PointX="5.375" PointY="22.75" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblEDIAccounts" Width="1.5" PointX="25.625" PointY="28.75" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblEDIOnboardingPhase" Width="1.5" PointX="14.25" PointY="33" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblEDIRecipReqs" Width="1.5" PointX="24" PointY="15" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblEDIShipMethods" Width="1.5" PointX="19" PointY="38.125" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblEDIShipMethodTypes" Width="1.5" PointX="21.5" PointY="38.75" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblEDISpecialist" Width="1.5" PointX="11.375" PointY="22.75" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblEDITranscations" Width="1.5" PointX="18.875" PointY="27.625" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblEDITranscationType" Width="1.5" PointX="19.125" PointY="34" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblExceptionLogging" Width="1.5" PointX="13.375" PointY="22.75" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblStatusCodes" Width="1.5" PointX="21.75" PointY="12.875" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblTiming" Width="1.5" PointX="27.5" PointY="19.125" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblTriggerMechanism" Width="1.5" PointX="21.75" PointY="21.25" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idComMeth_EDIRecipReqs_ComMeth" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idEDIOnboard_Disc_EDIOnB" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idReq_EDITran_DisReq" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idRequest_DiscoveryRequest" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idTrans_Accts_Trans" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idFileType_EDIRecipReqs_FileType" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idStatCode_EDIRecipReqs_StatCode" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idTime_EDIRecipReqs_Timing" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idTrans_RecipReqs_Trans" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idTrig_EDIRecipReqs_TrigMech" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idEDIShipMethType_EDIShipMethTypes" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idEDITransType_EDITransType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

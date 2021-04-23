@@ -37,6 +37,25 @@ namespace PuroFusionLib
         public string EncryptedPassword { get; set; }
         public string Password { get; set; }
     }
+    public partial class dtoPuroTouchUsers
+    {
+        public string ApplicationName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string RoleName { get; set; }
+
+        public int idEmployee { get; set; }
+
+        public int idPI_ApplicationUser { get; set; }
+        public int idPI_Application { get; set; }
+        public int idPI_ApplicationUserRole { get; set; }
+        public int idPI_ApplicationRole { get; set; }
+
+        public string UpdatedBy { get; set; }
+        public System.DateTime UpdatedOn { get; set; }
+        public string EncryptedPassword { get; set; }
+        public string Password { get; set; }
+    }
     public class dtotblPI_ApplicationUserRole
     {
         public int idPI_ApplicationUserRole { get; set; }

@@ -12,23 +12,32 @@ namespace PuroTouchEntities
     using System;
     using System.Collections.Generic;
     
-    public partial class tblCommunicationMethod
+    public partial class tblEDITranscations
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblCommunicationMethod()
+        public tblEDITranscations()
         {
+            this.tblEDIAccounts = new HashSet<tblEDIAccounts>();
             this.tblEDIRecipReqs = new HashSet<tblEDIRecipReqs>();
         }
     
-        public int idCommunicationMethod { get; set; }
-        public string CommunicationMethod { get; set; }
-        public string UpdatedBy { get; set; }
-        public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public int idEDITranscation { get; set; }
+        public int idRequest { get; set; }
+        public int idEDITranscationType { get; set; }
+        public int TotalRequests { get; set; }
+        public Nullable<bool> CombinePayer { get; set; }
+        public Nullable<bool> BatchInvoices { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedOn { get; set; }
         public Nullable<bool> ActiveFlag { get; set; }
     
+        public virtual tblDiscoveryRequest tblDiscoveryRequest { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEDIAccounts> tblEDIAccounts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblEDIRecipReqs> tblEDIRecipReqs { get; set; }
+        public virtual tblEDITranscationType tblEDITranscationType { get; set; }
     }
 }

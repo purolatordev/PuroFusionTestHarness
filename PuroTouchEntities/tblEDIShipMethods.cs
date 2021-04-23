@@ -12,23 +12,18 @@ namespace PuroTouchEntities
     using System;
     using System.Collections.Generic;
     
-    public partial class tblFileType
+    public partial class tblEDIShipMethods
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblFileType()
-        {
-            this.tblEDIRecipReqs = new HashSet<tblEDIRecipReqs>();
-        }
-    
-        public int idFileType { get; set; }
-        public string FileType { get; set; }
-        public string UpdatedBy { get; set; }
-        public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public int idEDIShipMethod { get; set; }
+        public int idRequest { get; set; }
+        public int idEDIShipMethodType { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedOn { get; set; }
         public Nullable<bool> ActiveFlag { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblEDIRecipReqs> tblEDIRecipReqs { get; set; }
+        public virtual tblDiscoveryRequest tblDiscoveryRequest { get; set; }
+        public virtual tblEDIShipMethodTypes tblEDIShipMethodTypes { get; set; }
     }
 }

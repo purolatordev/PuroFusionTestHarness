@@ -123,6 +123,10 @@ namespace PuroFusionTestGui
             comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal2);
             PuroTouchServiceClass o = new PuroTouchServiceClass(PuroTouchServiceClass.ConnString.PatientLocal);
             o.GetDiscoveryDiff1("tblDiscoveryRequest_", "tblDiscoveryRequest");
+
+            //string strConn = GetdbLocation(comboBoxMainDB);
+            //PuroReportingServiceClass o2 = new PuroReportingServiceClass(PuroReportingServiceClass.ConnString.FullPatientLocal2);
+            //o2.GetPuroTouchUsers();
         }
         private string GetdbLocation(ComboBox cmb)
         {
@@ -191,6 +195,13 @@ namespace PuroFusionTestGui
                         ObservableCollection<dtotblPI_Applications> ocWmsGroup = new ObservableCollection<dtotblPI_Applications>();
                         grid.ItemsSource = ocWmsGroup.Concat<dtotblPI_Applications>(qtblPI_Applications);
                         lbl.Content = strReportItem + " count: " + qtblPI_Applications.Count();
+                    }
+                    else if ("PuroFusion Users" == strReportItem)
+                    {
+                        IList<dtoPuroTouchUsers> qPI_ApplicationUser = o.GetPuroTouchUsers();
+                        ObservableCollection<dtoPuroTouchUsers> ocWmsGroup = new ObservableCollection<dtoPuroTouchUsers>();
+                        grid.ItemsSource = ocWmsGroup.Concat<dtoPuroTouchUsers>(qPI_ApplicationUser);
+                        lbl.Content = strReportItem + " count: " + qPI_ApplicationUser.Count();
                     }
                     else if ("tblPI_ApplicationsGroup" == strReportItem)
                     {
@@ -295,6 +306,13 @@ namespace PuroFusionTestGui
                         grid.ItemsSource = ocWmsGroup.Concat<dtotblContact>(qtblContact);
                         lbl.Content = strReportItem + " count: " + qtblContact.Count();
                     }
+                    else if ("tblEDIRecipReq" == strReportItem)
+                    {
+                        List<dtotblEDIRecipReqs> qEDIRecipReq = o.GetEDIRecipReqs();
+                        ObservableCollection<dtotblEDIRecipReqs> ocWmsGroup = new ObservableCollection<dtotblEDIRecipReqs>();
+                        grid.ItemsSource = ocWmsGroup.Concat<dtotblEDIRecipReqs>(qEDIRecipReq);
+                        lbl.Content = strReportItem + " count: " + qEDIRecipReq.Count();
+                    }
                     else if ("tblContactGroup" == strReportItem)
                     {
                         IList<Counters> qtheCount = o.GettblContactGroupBy();
@@ -346,6 +364,32 @@ namespace PuroFusionTestGui
         private void radGridTouchDBTopLeft_Filtered(object sender, Telerik.Windows.Controls.GridView.GridViewFilteredEventArgs e)
         {
             lblTouchDBTopLeftCountFiltered.Content = "Filtered recs: " + radGridTouchDBTopLeft.Items.Count.ToString();
+        }
+        private void radGridTouchDBTopLeft_SelectionChanged(object sender, SelectionChangeEventArgs e)
+        {
+            if (((RadGridView)sender).SelectedItem is dtotblDiscoveryRequest)
+            {
+                string strConn = GetdbLocation(comboBoxTouchDB);
+                PuroTouchServiceClass o = new PuroTouchServiceClass(strConn);
+                dtotblDiscoveryRequest rec = ((dtotblDiscoveryRequest)(((RadGridView)sender).SelectedItem));
+                IList<dtotblContact> qtblContact = o.GetContactsByRequestID(rec.idRequest);
+                ObservableCollection<dtotblContact> ocWmsGroup = new ObservableCollection<dtotblContact>();
+                radGridTouchDBLowRight1.ItemsSource = ocWmsGroup.Concat<dtotblContact>(qtblContact);
+                lblTouchDBLowRight1.Content = "Contact count: " + qtblContact.Count();
+
+                List<dtotblEDITranscations> qEDITrans = o.GetEDITransactionsByidRequest(rec.idRequest);
+                ObservableCollection<dtotblEDITranscations> ocWmsGroup2 = new ObservableCollection<dtotblEDITranscations>();
+                radGridTouchDBLowRight2.ItemsSource = ocWmsGroup2.Concat<dtotblEDITranscations>(qEDITrans);
+                lblTouchDBLowRight2.Content = "EDITranscations count: " + qEDITrans.Count();
+
+                List<dtotblEDIShipMethods> qShipMeth = o.GetEDIShipMethodTypesByidRequest(rec.idRequest);
+                ObservableCollection<dtotblEDIShipMethods> ocWmsGroup3 = new ObservableCollection<dtotblEDIShipMethods>();
+                radGridTouchDBLowRight3.ItemsSource = ocWmsGroup3.Concat<dtotblEDIShipMethods>(qShipMeth);
+                lblTouchDBLowRight3.Content = "EDIShipMethod count: " + qShipMeth.Count();
+
+                int er = 0;
+                er++;
+            }
         }
     }
     // https://stackoverflow.com/questions/5175629/how-to-style-grid-columndefinitions-in-wpf

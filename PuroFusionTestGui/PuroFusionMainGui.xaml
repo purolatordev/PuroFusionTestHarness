@@ -39,6 +39,7 @@
                                 <Label Name="lbldbConnErrorMsg" Foreground="Red" Visibility="Collapsed">Must select a db location</Label>
                                 <Label Content="Report Name:"  />
                                 <ComboBox Height="23" Name="comboBoxMainReportNames" Width="Auto" >
+                                    <ComboBoxItem>PuroFusion Users</ComboBoxItem>
                                     <ComboBoxItem>tblPI_Applications</ComboBoxItem>
                                     <ComboBoxItem>tblPI_ApplicationsGroup</ComboBoxItem>
                                     <ComboBoxItem>tblEmployee</ComboBoxItem>
@@ -579,6 +580,7 @@
                                     <ComboBoxItem>tblDiscoveryRequest</ComboBoxItem>
                                     <ComboBoxItem>blContactType</ComboBoxItem>
                                     <ComboBoxItem>tblContact</ComboBoxItem>
+                                    <ComboBoxItem>tblEDIRecipReq</ComboBoxItem>
                                     <ComboBoxItem>tblContactGroup</ComboBoxItem>
                                     <ComboBoxItem>PartialDiscoveryRequest</ComboBoxItem>
                                     <ComboBoxItem>DiscoveryRequestBusContacts</ComboBoxItem>
@@ -608,7 +610,7 @@
                                 <Button Name="btnCommitUpdateTopLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Height="25" VerticalAlignment="Bottom" Style="{StaticResource RoundedButton}" IsEnabled="False"   >Update</Button>
                                 <Button Name="btnCommitUpdateAllTopLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Height="25" VerticalAlignment="Bottom" Style="{StaticResource RoundedButton}" IsEnabled="False"  >Update All</Button>
                             </StackPanel>
-                            <telerik:RadGridView x:Name="radGridTouchDBTopLeft" ToolTip="This grid allows for updating. Just select a record an updated it." Grid.Row="3" RowHeight="20"  ShowGroupPanel="True" Filtered="radGridTouchDBTopLeft_Filtered"  >
+                            <telerik:RadGridView x:Name="radGridTouchDBTopLeft" ToolTip="" Grid.Row="3" RowHeight="20"  ShowGroupPanel="True" Filtered="radGridTouchDBTopLeft_Filtered" SelectionChanged="radGridTouchDBTopLeft_SelectionChanged"  >
                             </telerik:RadGridView>
                         </Grid>
                         <!--Left Pane Splitter between top and bottom-->
@@ -677,11 +679,24 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Grid Grid.Row="0" >
-                                <Label Name="lblCommitContractDetails" Grid.Row="0" >Contract Details</Label>
-                            </Grid>
-
+                            <StackPanel Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Label Name="lblTouchDBLowRight1" Content="Record from table:" HorizontalAlignment="Center"  />
+                            </StackPanel>
+                            <telerik:RadGridView x:Name="radGridTouchDBLowRight1" Grid.Row="1" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0"  >
+                            </telerik:RadGridView>
+                            <StackPanel Grid.Row="2"   Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Label Name="lblTouchDBLowRight2" Content="Record from table:"  />
+                            </StackPanel>
+                            <telerik:RadGridView x:Name="radGridTouchDBLowRight2" Grid.Row="3" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0"  >
+                            </telerik:RadGridView>
+                            <StackPanel Grid.Row="4"   Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Label Name="lblTouchDBLowRight3" Content="Record from table:"  />
+                            </StackPanel>
+                            <telerik:RadGridView x:Name="radGridTouchDBLowRight3" Grid.Row="5" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0"  >
+                            </telerik:RadGridView>
                         </Grid>
                     </Grid>
                 </Grid>

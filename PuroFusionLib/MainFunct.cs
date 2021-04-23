@@ -136,6 +136,34 @@ namespace PuroFusionLib
             }
             return qPI_ApplicationUser;
         }
+        public class MyUsers
+        {
+            public string ApplicationName { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public int idEmployee { get; set; }
+        }
+        public IList<dtoPuroTouchUsers> GetPuroTouchUsers()
+        {
+            IList<dtoPuroTouchUsers> qPI_ApplicationUser = new List<dtoPuroTouchUsers>();
+            try
+            {
+                PurolatorReportingEntities o = new PurolatorReportingEntities(strConn);
+                qPI_ApplicationUser = (from appU in o.tblPI_ApplicationUser
+                        join emp in o.tblEmployee on appU.idEmployee equals emp.idEmployee
+                        join app in o.tblPI_Applications on appU.idPI_Application equals app.idPI_Application
+                        join appURole in o.tblPI_ApplicationUserRole on appU.idPI_ApplicationUser equals appURole.idPI_ApplicationUser
+                        join appRole in o.tblPI_ApplicationRoles on appURole.idPI_ApplicationRole equals appRole.idPI_ApplicationRole
+                        where appU.idPI_Application == 1018
+                        select new dtoPuroTouchUsers() { idEmployee = appU.idEmployee, FirstName = emp.FirstName, LastName = emp.LastName, ApplicationName = app.ApplicationName,RoleName = appRole.RoleName, idPI_Application = appU.idPI_Application, idPI_ApplicationUser = appU.idPI_ApplicationUser, idPI_ApplicationUserRole = appURole.idPI_ApplicationUserRole, idPI_ApplicationRole = appURole.idPI_ApplicationRole })
+                        .ToList();
+            }
+            catch (Exception ex)
+            {
+                //retValue = ex.ToString();ProgramSubdiv
+            }
+            return qPI_ApplicationUser;
+        }
         #endregion
         #region dtotblPI_ApplicationUserRole
         public IList<dtotblPI_ApplicationUserRole> GettblPI_ApplicationUserRole()
@@ -345,7 +373,54 @@ namespace PuroFusionLib
             }
             return qtheCount;
         }
+        public List<dtotblContact> GetContactsByRequestID(int idRequest)
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            List<dtotblContact> qtblContact = o.tblContact
+                                           .Where(p=>p.idRequest == idRequest)
+                                         .Select(p => new dtotblContact() { idContact = p.idContact, idRequest = p.idRequest, idContactType = p.idContactType, Email = p.Email, Name = p.Name, Phone = p.Phone.Substring(0, 20), Title = p.Title, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, ActiveFlag = p.ActiveFlag })
+                                         .ToList();
+            return qtblContact;
+        }
         #endregion
+        #region tblEDITranscations
+        public List<dtotblEDITranscations> GetEDITransactionsByidRequest(int idRequest)
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            List<dtotblEDITranscations> qEDITrans = o.tblEDITranscations
+                                                .Where(p => p.idRequest == idRequest && p.tblEDITranscationType.CategoryID == 0)
+                                                .Select(p => new dtotblEDITranscations() { idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, EDITranscationType = p.tblEDITranscationType.EDITranscationType, idEDITranscationType = p.idEDITranscationType, TotalRequests = p.TotalRequests, BatchInvoices = p.BatchInvoices, CombinePayer = p.CombinePayer, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                                .ToList();
+
+            return qEDITrans;
+        }
+        #endregion
+        #region tblEDIShipMethod
+        public List<dtotblEDIShipMethods> GetEDIShipMethodTypesByidRequest(int idRequest)
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+
+            List<dtotblEDIShipMethods> qShipMeth = o.tblEDIShipMethods
+                                    .Where(p => p.idRequest == idRequest)
+                                    .Select(p => new dtotblEDIShipMethods() { idEDIShipMethod = p.idEDIShipMethod, idRequest = p.idRequest, MethodType = p.tblEDIShipMethodTypes.MethodType, idEDIShipMethodType = p.idEDIShipMethodType, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                    .ToList();
+            return qShipMeth;
+        }
+        #endregion
+        #region tblEDIRecipReq
+        public List<dtotblEDIRecipReqs> GetEDIRecipReqs()
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+
+            List<dtotblEDIRecipReqs> qEDIRecipReqs = o.tblEDIRecipReqs
+                                    //.Where(p => p.idEDIRecipReqs == idEDIRecipReqs)
+                                    .Select(p => new dtotblEDIRecipReqs() { idEDIRecipReqs = p.idEDIRecipReqs, RecipReqNum = p.RecipReqNum, idFileType = p.idFileType, X12_GS = p.X12_GS, X12_ISA = p.X12_ISA, X12_Qualifier = p.X12_Qualifier, idCommunicationMethod = p.idCommunicationMethod, FTPAddress = p.FTPAddress, UserName = p.UserName, Password = p.Password, FolderPath = p.FolderPath, Email = p.Email, idTriggerMechanism = p.idTriggerMechanism, idTiming = p.idTiming, TimeOfFile = p.TimeOfFile, idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, idEDITranscationType = p.tblEDITranscations.idEDITranscationType, EDITranscationType = p.EDITranscationType, idStatusCodes = p.idStatusCodes, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                    .ToList();
+
+            return qEDIRecipReqs;
+        }
+        #endregion
+
         #region Migration Strategy
         public IList<dtoTableCompare> GetDiscoveryDiff1()
         {

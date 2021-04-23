@@ -14,6 +14,13 @@ namespace PuroTouchEntities
     
     public partial class tblDiscoveryRequest
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblDiscoveryRequest()
+        {
+            this.tblEDITranscations = new HashSet<tblEDITranscations>();
+            this.tblEDIShipMethods = new HashSet<tblEDIShipMethods>();
+        }
+    
         public int idRequest { get; set; }
         public Nullable<bool> isNewRequest { get; set; }
         public string SalesRepName { get; set; }
@@ -116,5 +123,25 @@ namespace PuroTouchEntities
         public Nullable<int> idVendorType { get; set; }
         public string Route { get; set; }
         public Nullable<int> idSolutionType { get; set; }
+        public Nullable<bool> FreightAuditor { get; set; }
+        public string EDIDetails { get; set; }
+        public Nullable<int> idEDISpecialist { get; set; }
+        public Nullable<int> idBillingSpecialist { get; set; }
+        public Nullable<int> idCollectionSpecialist { get; set; }
+        public Nullable<bool> AuditorPortal { get; set; }
+        public string AuditorURL { get; set; }
+        public string AuditorUserName { get; set; }
+        public string AuditorPassword { get; set; }
+        public Nullable<System.DateTime> EDITargetGoLive { get; set; }
+        public Nullable<System.DateTime> EDICurrentGoLive { get; set; }
+        public Nullable<System.DateTime> EDIActualGoLive { get; set; }
+        public int idEDIOnboardingPhase { get; set; }
+    
+        public virtual tblOnboardingPhase tblOnboardingPhase { get; set; }
+        public virtual tblEDIOnboardingPhase tblEDIOnboardingPhase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEDITranscations> tblEDITranscations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEDIShipMethods> tblEDIShipMethods { get; set; }
     }
 }

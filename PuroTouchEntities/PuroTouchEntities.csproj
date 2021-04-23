@@ -68,6 +68,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PuroTouchModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="tblBillingSpecialist.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblBillingTypes.cs">
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
@@ -140,10 +143,37 @@
     <Compile Include="tblDRContacts.cs">
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblEDIAccounts.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEDIOnboardingPhase.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEDIRecipReqs.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEDIShipMethods.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEDIShipMethodTypes.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblEDISolutions.cs">
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblEDISpecialist.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEDITranscations.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEDITranscationType.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblEquipment.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblExceptionLogging.cs">
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblFileType.cs">
@@ -188,10 +218,19 @@
     <Compile Include="tblSolutionType.cs">
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblStatusCodes.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblTaskType.cs">
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblThirdPartyVendor.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTiming.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTriggerMechanism.cs">
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblVendorType.cs">
