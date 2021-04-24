@@ -69,8 +69,7 @@
                                 <Label Name="lblMainTopLeftCountFiltered">Filtered recs:</Label>
                             </StackPanel>
                             <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                <Button Name="btnMainLoadGridTopLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Click="btnMainLoadGridTopLeft_Click"  >Load Grid</Button>
-                                <Button Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0" Name="btnComplianceExportGridTopLeft" Width="75"  IsEnabled="False" />
+                                <Button Name="btnMainLoadGridTopLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Click="btnMainLoadGridTopLeft_Click" Style="{StaticResource RoundedButton}" >Load Grid</Button>
                                 <Label Content="Applications:"/>
                                 <ComboBox Height="23" Width="Auto" Name="comboBoxApplications" ItemsSource="{Binding Path=Applications}" DisplayMemberPath="ApplicationName" SelectedValue="{Binding Path=idPI_Application}" SelectedIndex="0" IsSynchronizedWithCurrentItem="False" >
                                 </ComboBox>
@@ -82,16 +81,8 @@
                                 <Label Content="Database:"/>
                                 <ComboBox Height="23" Name="comboBoxMainDB" Width="Auto" >
                                 </ComboBox>
-                                <Label Content="Last Name:"/>
-                                <TextBox Name="txtBxLastName" Width="100" Padding="0,2,0,0"></TextBox>
-                                <Label Content="User Name:"/>
-                                <TextBox Name="txtBxUserName" Width="120" Padding="0,2,0,0"></TextBox>
-                                <Label Content="Password:"/>
-                                <TextBox Name="txtBxPassword" Width="100" Padding="0,2,0,0"></TextBox>
-                                <Label Content="Date:"/>
-                                <!--<DatePicker DisplayDate="7/1/2020"  Name="dpStartDate" SelectedDate="7/1/2020" />-->
                             </StackPanel>
-                            <telerik:RadGridView x:Name="radGridMainTopLeft" ToolTip="This grid allows for updating. Just select a record an updated it." Grid.Row="3" RowHeight="20"  ShowGroupPanel="True"   >
+                            <telerik:RadGridView x:Name="radGridMainTopLeft" ToolTip="This grid allows for updating. Just select a record an updated it." Grid.Row="3" RowHeight="20"  ShowGroupPanel="True" SelectionChanged="radGridMainTopLeft_SelectionChanged"   >
                             </telerik:RadGridView>
                         </Grid>
                         <!--Left Pane Splitter between top and bottom-->
@@ -109,7 +100,7 @@
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                        <Button Name="btnMainLoadGridBottomLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Click="btnMainLoadGridTopLeft_Click" >Load Grid</Button>
+                                        <Button Name="btnMainLoadGridBottomLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Click="btnMainLoadGridTopLeft_Click" Style="{StaticResource RoundedButton}">Load Grid</Button>
                                         <Label Name="lblMainLowerLeftCount">Cnt</Label>
                                         <Button Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0" Name="btnExportComplianceGridLowerRight" Width="75" IsEnabled="False" />
                                     </StackPanel>
@@ -135,17 +126,10 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
-                                <Button Content="Load Grid" Name="btnMainTopRightLoadGrid"  Margin="10,0,0,0" Padding="10,0,10,0" Click="btnMainLoadGridTopLeft_Click" >
+                                <Button Content="Load Grid" Name="btnMainTopRightLoadGrid"  Margin="10,0,0,0" Padding="10,0,10,0" Click="btnMainLoadGridTopLeft_Click" Style="{StaticResource RoundedButton}">
                                     <Button.ToolTip>Use the Cache Type</Button.ToolTip>
                                 </Button>
                                 <Label Name="lblMainTopRightCount">Rec count</Label>
-                                <Button Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0" Width="75" IsEnabled="False"  />
-                                <TextBox Name="txtComplianceWmsNumber" Width="75" Text="S5066883" IsEnabled="False">
-                                </TextBox>
-                            </StackPanel>
-                            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
-                                <Image Name="imgOne" Source="https://spthumbnails.5min.com/10371855/518592742_c_570_411.jpg"  Height="60" Width="60" />
-                                <Button Content="Load Images"  Margin="10,0,0,0" Name="btnLoadImages" Width="95" Height="30" IsEnabled="False"   />
                             </StackPanel>
                             <telerik:RadGridView x:Name="radGridMainTopRight" Grid.Row="3" RowHeight="20" ShowGroupPanel="True">
                             </telerik:RadGridView>
@@ -160,7 +144,7 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0" >
-                                <Label Name="lblMainContractDetails" Grid.Row="0" >Contract Details</Label>
+                                <Label Name="lblMainContractDetails" Grid.Row="0" >PuroFusion User</Label>
                             </Grid>
                             <Border Grid.Row="1" Margin="3,3,1,1" Style="{StaticResource myBorderStyle2}" Background="{DynamicResource MainScreenGradient}">
                                 <Grid Grid.Row="1" >
@@ -169,24 +153,26 @@
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
-                                        <Label Name="lblMainIndustry">Industry</Label>
-                                        <TextBox Name="txtBxIndustry" Width="100" Padding="0,2,0,0">
+                                        <Label Name="lblMainFirst">First</Label>
+                                        <TextBox Name="txtBxFirst" Width="100" Padding="0,2,0,0">
                                             <TextBox.Resources>
                                                 <Style TargetType="{x:Type Border}">
                                                     <Setter Property="CornerRadius" Value="3"/>
                                                 </Style>
                                             </TextBox.Resources>
                                         </TextBox>
-                                        <Label Name="lblMainBtoB">B-B or B-C</Label>
-                                        <TextBox Name="txtBxMainBtoB" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" ></TextBox>
-                                        <Label Name="lblMainCourierFuel">Courier Fuel Alignment</Label>
-                                        <TextBox Name="txtBxMainCourierFuel" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0"></TextBox>
-                                        <Label Name="lblMainVersionDesc">Version Desc</Label>
-                                        <TextBox Name="txtBxMainVersionDesc" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0"></TextBox>
+                                        <Label Name="lblMainLast">Last</Label>
+                                        <TextBox Name="txtBxMainLast" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" ></TextBox>
+                                        <Label Name="lblMainCurrentRole">Role</Label>
+                                        <TextBox Name="txtBxMainCurrentRole" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0"></TextBox>
+                                        <Label Name="lblMainEmployeeID">Employee ID</Label>
+                                        <TextBox Name="txtBxMainEmployeeID" Style="{StaticResource TextBxRounded1}" Width="75" Padding="0,2,0,0"></TextBox>
                                     </StackPanel>
                                     <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
-                                        <Label Name="lblMainCurrentProvider">Current Provider</Label>
-                                        <TextBox Name="txtBxMainCurrentProvider" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" ></TextBox>
+                                        <Label Name="lblMainApplicationUserRole">ApplicationUserRole</Label>
+                                        <TextBox Name="txtBxMainApplicationUserRole" Style="{StaticResource TextBxRounded1}" Width="75" Padding="0,2,0,0" ></TextBox>
+                                        <Label Name="lblMainApplicationRole">ApplicationRole</Label>
+                                        <TextBox Name="txtBxMainApplicationRole" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" ></TextBox>
                                     </StackPanel>
                                 </Grid>
                             </Border>
@@ -195,8 +181,9 @@
                             </Grid>
                             <Border Grid.Row="3" Margin="3,3,1,1" Style="{StaticResource myBorderStyle2}" Background="{DynamicResource MainScreenGradient}">
                                 <StackPanel Orientation="Horizontal" Margin="5">
-                                    <Label Name="lblMainAllDrops">Place Holder for drop name</Label>
-                                    <ComboBox Height="23" Name="comboBoxMainAllDrops" Width="Auto" SelectedIndex="0" ItemsSource="{Binding Path=DropDowns}" DisplayMemberPath="Name" SelectedValue="{Binding Path=Value}" IsSynchronizedWithCurrentItem="False" >
+                                    <Button Name="btnMainLoadPuroRoles"  Margin="0,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" Click="btnMainLoadPuroRoles_Click">Load</Button>
+                                    <Label Name="lblMainAllDrops">PuroFusion Roles</Label>
+                                    <ComboBox Height="23" Name="comboBoxMainPuroRoles" Width="Auto" SelectedIndex="0"  ItemsSource="{Binding Path=AppUserRules}" DisplayMemberPath="RoleName" SelectedValue="{Binding Path=idPI_ApplicationRole}" IsSynchronizedWithCurrentItem="False" >
                                     </ComboBox>
                                     <Label Name="lblMainAllDropsValue">Selected item value:</Label>
                                     <TextBox Name="txtBxMainAllDropsValue" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" ></TextBox>

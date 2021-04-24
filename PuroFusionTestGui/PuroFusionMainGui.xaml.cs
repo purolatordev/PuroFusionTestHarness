@@ -68,16 +68,6 @@ namespace PuroFusionTestGui
                     OnPropertyChanged("Employee");
                 }
             }
-            //public string _selectedItem;
-            //public string SelectedItem
-            //{
-            //    get { return _selectedItem; }
-            //    set 
-            //    { 
-            //        _selectedItem = value;
-            //        OnPropertyChanged("SelectedItem");
-            //    }
-            //}
             public ICollectionView Applications
             {
                 get { return _Applications; }
@@ -391,7 +381,37 @@ namespace PuroFusionTestGui
                 er++;
             }
         }
+
+        private void radGridMainTopLeft_SelectionChanged(object sender, SelectionChangeEventArgs e)
+        {
+            if (((RadGridView)sender).SelectedItem is dtoPuroTouchUsers)
+            {
+                dtoPuroTouchUsers rec = ((dtoPuroTouchUsers)(((RadGridView)sender).SelectedItem));
+                txtBxFirst.Text = rec.FirstName;
+                txtBxMainLast.Text = rec.LastName;
+                txtBxMainCurrentRole.Text = rec.RoleName;
+                txtBxMainEmployeeID.Text = rec.idEmployee.ToString();
+                txtBxMainApplicationUserRole.Text = rec.idPI_ApplicationUserRole.ToString();
+                txtBxMainApplicationRole.Text = rec.idPI_ApplicationRole.ToString() + "-" + rec.RoleName;
+            }
+        }
+
+        private void btnMainLoadPuroRoles_Click(object sender, RoutedEventArgs e)
+        {
+            string strConn = GetdbLocation(comboBoxMainDB);
+            if (strConn != "na")
+            {
+                PuroReportingServiceClass o = new PuroReportingServiceClass(strConn);
+                IList<dtotblPI_ApplicationRoles> qtblPI_Applications = o.GetPuroFusionApplicationRoles();
+                mainGridData.AppUserRules = CollectionViewSource.GetDefaultView(qtblPI_Applications);
+                DataContext = mainGridData;
+                comboBoxMainPuroRoles.SelectedIndex = 0;
+            }
+        }
     }
+
+
+
     // https://stackoverflow.com/questions/5175629/how-to-style-grid-columndefinitions-in-wpf
     public class GridHelpers
     {

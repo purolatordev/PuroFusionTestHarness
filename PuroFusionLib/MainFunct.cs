@@ -200,6 +200,23 @@ namespace PuroFusionLib
             }
             return qtblPI_ApplicationRoles;
         }
+        public IList<dtotblPI_ApplicationRoles> GetPuroFusionApplicationRoles()
+        {
+            IList<dtotblPI_ApplicationRoles> qtblPI_ApplicationRoles = new List<dtotblPI_ApplicationRoles>();
+            try
+            {
+                PurolatorReportingEntities o = new PurolatorReportingEntities(strConn);
+                qtblPI_ApplicationRoles = o.tblPI_ApplicationRoles
+                    .Where(p=>p.idPI_Application == 1018)
+                    .Select(p => new dtotblPI_ApplicationRoles() { idPI_Application = p.idPI_Application, idPI_ApplicationRole = p.idPI_ApplicationRole, RoleCode = p.RoleCode, RoleName = p.RoleName, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                //retValue = ex.ToString();ProgramSubdiv
+            }
+            return qtblPI_ApplicationRoles;
+        }
         #endregion
 
     }
