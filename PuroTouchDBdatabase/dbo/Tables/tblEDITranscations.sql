@@ -2,6 +2,9 @@
     [idEDITranscation]     INT            IDENTITY (1, 1) NOT NULL,
     [idRequest]            INT            NOT NULL,
     [idEDITranscationType] INT            NOT NULL,
+    [TotalRequests]        INT            NOT NULL,
+    [CombinePayer]         BIT            NULL,
+    [BatchInvoices]        BIT            NULL,
     [CreatedBy]            NVARCHAR (100) NULL,
     [CreatedOn]            DATETIME       NULL,
     [UpdatedBy]            NVARCHAR (100) NULL,
@@ -11,4 +14,6 @@
     CONSTRAINT [FK_idEDITransType_EDITransType] FOREIGN KEY ([idEDITranscationType]) REFERENCES [dbo].[tblEDITranscationType] ([idEDITranscationType]),
     CONSTRAINT [FK_idReq_EDITran_DisReq] FOREIGN KEY ([idRequest]) REFERENCES [dbo].[tblDiscoveryRequest] ([idRequest])
 );
+
+
 
