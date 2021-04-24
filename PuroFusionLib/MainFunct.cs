@@ -182,6 +182,28 @@ namespace PuroFusionLib
             }
             return qtblPI_ApplicationUserRole;
         }
+        public bool UpdateApplicationUserRole(dtoPuroTouchUsers PuroTouchUser, dtotblPI_ApplicationRoles appRole)
+        {
+            try
+            {
+                PurolatorReportingEntities o = new PurolatorReportingEntities(strConn);
+
+                tblPI_ApplicationUserRole qAppUserRole = o.tblPI_ApplicationUserRole
+                                        .Where(p => p.idPI_ApplicationUserRole == PuroTouchUser.idPI_ApplicationUserRole)
+                                        .FirstOrDefault();
+                if (qAppUserRole != null)
+                {
+                    qAppUserRole.idPI_ApplicationRole = appRole.idPI_ApplicationRole;
+                    o.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                //retValue = ex.ToString();ProgramSubdiv
+            }
+            return true;
+        }
+
         #endregion
         #region dtotblPI_ApplicationRoles
         public IList<dtotblPI_ApplicationRoles> GettblPI_ApplicationRoles()

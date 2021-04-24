@@ -172,7 +172,7 @@
                                         <Label Name="lblMainApplicationUserRole">ApplicationUserRole</Label>
                                         <TextBox Name="txtBxMainApplicationUserRole" Style="{StaticResource TextBxRounded1}" Width="75" Padding="0,2,0,0" ></TextBox>
                                         <Label Name="lblMainApplicationRole">ApplicationRole</Label>
-                                        <TextBox Name="txtBxMainApplicationRole" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" ></TextBox>
+                                        <TextBox Name="txtBxMainApplicationRole" Style="{StaticResource TextBxRounded1}" Width="120" Padding="0,2,0,0" ></TextBox>
                                     </StackPanel>
                                 </Grid>
                             </Border>
@@ -185,6 +185,7 @@
                                     <Label Name="lblMainAllDrops">PuroFusion Roles</Label>
                                     <ComboBox Height="23" Name="comboBoxMainPuroRoles" Width="Auto" SelectedIndex="0"  ItemsSource="{Binding Path=AppUserRules}" DisplayMemberPath="RoleName" SelectedValue="{Binding Path=idPI_ApplicationRole}" IsSynchronizedWithCurrentItem="False" >
                                     </ComboBox>
+                                    <Button Name="btnMainChangePuroRoles"  Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" Click="btnMainChangePuroRoles_Click" >Change</Button>
                                     <Label Name="lblMainAllDropsValue">Selected item value:</Label>
                                     <TextBox Name="txtBxMainAllDropsValue" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" ></TextBox>
                                 </StackPanel>

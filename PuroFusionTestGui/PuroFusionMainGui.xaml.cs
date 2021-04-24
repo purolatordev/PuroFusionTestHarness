@@ -408,6 +408,19 @@ namespace PuroFusionTestGui
                 comboBoxMainPuroRoles.SelectedIndex = 0;
             }
         }
+
+        private void btnMainChangePuroRoles_Click(object sender, RoutedEventArgs e)
+        {
+            dtotblPI_ApplicationRoles appRole = (dtotblPI_ApplicationRoles)comboBoxMainPuroRoles.SelectedItem;
+            dtoPuroTouchUsers PuroTouchUser = ((dtoPuroTouchUsers)((radGridMainTopLeft).SelectedItem));
+            string strConn = GetdbLocation(comboBoxMainDB);
+            if (strConn != "na")
+            {
+                PuroReportingServiceClass o = new PuroReportingServiceClass(strConn);
+                o.UpdateApplicationUserRole(PuroTouchUser, appRole);
+            }
+
+        }
     }
 
 
