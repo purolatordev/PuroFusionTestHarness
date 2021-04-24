@@ -282,6 +282,13 @@ namespace PuroFusionTestGui
                         grid.ItemsSource = ocWmsGroup.Concat<dtotblDiscoveryRequest>(qDiscoveryRequest);
                         lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
                     }
+                    else if ("Error Logs" == strReportItem)
+                    {
+                        List<clsExceptionLogging> qErrors = o.GetExceptionLogging();
+                        ObservableCollection<clsExceptionLogging> ocWmsGroup = new ObservableCollection<clsExceptionLogging>();
+                        grid.ItemsSource = ocWmsGroup.Concat<clsExceptionLogging>(qErrors);
+                        lbl.Content = strReportItem + " count: " + qErrors.Count();
+                    }
                     else if ("blContactType" == strReportItem)
                     {
                         IList<dtotblContactType> qtblContactType = o.GettblContactType();
@@ -302,6 +309,41 @@ namespace PuroFusionTestGui
                         ObservableCollection<dtotblEDIRecipReqs> ocWmsGroup = new ObservableCollection<dtotblEDIRecipReqs>();
                         grid.ItemsSource = ocWmsGroup.Concat<dtotblEDIRecipReqs>(qEDIRecipReq);
                         lbl.Content = strReportItem + " count: " + qEDIRecipReq.Count();
+                    }
+                    else if ("tblEDIAccounts" == strReportItem)
+                    {
+                        List<clsEDIAccount> qEDIAccounts = o.GetEDIAccounts();
+                        ObservableCollection<clsEDIAccount> ocWmsGroup = new ObservableCollection<clsEDIAccount>();
+                        grid.ItemsSource = ocWmsGroup.Concat<clsEDIAccount>(qEDIAccounts);
+                        lbl.Content = strReportItem + " count: " + qEDIAccounts.Count();
+                    }
+                    else if ("tblEDITranscationType" == strReportItem)
+                    {
+                        IList<clsEDITransactionType> qTransType = o.GetEDITransactionTypes();
+                        ObservableCollection<clsEDITransactionType> ocWmsGroup = new ObservableCollection<clsEDITransactionType>();
+                        grid.ItemsSource = ocWmsGroup.Concat<clsEDITransactionType>(qTransType);
+                        lbl.Content = strReportItem + " count: " + qTransType.Count();
+                    }
+                    else if ("tblFileType" == strReportItem)
+                    {
+                        List<ClsFileType> qFileTypes = o.GetFileTypes();
+                        ObservableCollection<ClsFileType> ocWmsGroup = new ObservableCollection<ClsFileType>();
+                        grid.ItemsSource = ocWmsGroup.Concat<ClsFileType>(qFileTypes);
+                        lbl.Content = strReportItem + " count: " + qFileTypes.Count();
+                    }
+                    else if ("tblCommunicationMethod" == strReportItem)
+                    {
+                        IList<ClsCommunicationMethod> qCommMeth = o.GetCommunicationMethods();
+                        ObservableCollection<ClsCommunicationMethod> ocWmsGroup = new ObservableCollection<ClsCommunicationMethod>();
+                        grid.ItemsSource = ocWmsGroup.Concat<ClsCommunicationMethod>(qCommMeth);
+                        lbl.Content = strReportItem + " count: " + qCommMeth.Count();
+                    }
+                    else if ("tblTriggerMechanism" == strReportItem)
+                    {
+                        List<clsTriggerMechanism> qTrigMeth = o.GetTriggerMechanisms();
+                        ObservableCollection<clsTriggerMechanism> ocWmsGroup = new ObservableCollection<clsTriggerMechanism>();
+                        grid.ItemsSource = ocWmsGroup.Concat<clsTriggerMechanism>(qTrigMeth);
+                        lbl.Content = strReportItem + " count: " + qTrigMeth.Count();
                     }
                     else if ("tblContactGroup" == strReportItem)
                     {
@@ -367,7 +409,7 @@ namespace PuroFusionTestGui
                 radGridTouchDBLowRight1.ItemsSource = ocWmsGroup.Concat<dtotblContact>(qtblContact);
                 lblTouchDBLowRight1.Content = "Contact count: " + qtblContact.Count();
 
-                List<dtotblEDITranscations> qEDITrans = o.GetEDITransactionsByidRequest(rec.idRequest);
+                List<dtotblEDITranscations> qEDITrans = o.GetEDITransactionsByidRequestW_OCategory(rec.idRequest);
                 ObservableCollection<dtotblEDITranscations> ocWmsGroup2 = new ObservableCollection<dtotblEDITranscations>();
                 radGridTouchDBLowRight2.ItemsSource = ocWmsGroup2.Concat<dtotblEDITranscations>(qEDITrans);
                 lblTouchDBLowRight2.Content = "EDITranscations count: " + qEDITrans.Count();
@@ -377,6 +419,15 @@ namespace PuroFusionTestGui
                 radGridTouchDBLowRight3.ItemsSource = ocWmsGroup3.Concat<dtotblEDIShipMethods>(qShipMeth);
                 lblTouchDBLowRight3.Content = "EDIShipMethod count: " + qShipMeth.Count();
 
+                List<dtotblEDIRecipReqs> qEDIRecipReqs = o.GetEDIRecipReqsByRequesID(rec.idRequest);
+                ObservableCollection<dtotblEDIRecipReqs> ocWmsGroup4 = new ObservableCollection<dtotblEDIRecipReqs>();
+                radGridTouchDBLowRight4.ItemsSource = ocWmsGroup4.Concat<dtotblEDIRecipReqs>(qEDIRecipReqs);
+                lblTouchDBLowRight4.Content = "tblEDIRecipReqs count: " + qEDIRecipReqs.Count();
+
+                List<clsEDIAccount> qEDIAccounts = o.GetEDIAccountByidRequest(rec.idRequest);
+                ObservableCollection<clsEDIAccount> ocWmsGroup5 = new ObservableCollection<clsEDIAccount>();
+                radGridTouchDBLowRight5.ItemsSource = ocWmsGroup5.Concat<clsEDIAccount>(qEDIAccounts);
+                lblTouchDBLowRight5.Content = "tblEDIAccounts count: " + qEDIAccounts.Count();
                 int er = 0;
                 er++;
             }
@@ -420,6 +471,28 @@ namespace PuroFusionTestGui
                 o.UpdateApplicationUserRole(PuroTouchUser, appRole);
             }
 
+        }
+
+        private void radGridTouchDBLowRight2_SelectionChanged(object sender, SelectionChangeEventArgs e)
+        {
+            if (((RadGridView)sender).SelectedItem is dtotblEDITranscations)
+            {
+                dtotblEDITranscations rec = ((dtotblEDITranscations)(((RadGridView)sender).SelectedItem));
+                string strConn = GetdbLocation(comboBoxTouchDB);
+                if (strConn != "na")
+                {
+                    PuroTouchServiceClass o = new PuroTouchServiceClass(strConn);
+                    List<dtotblEDIRecipReqs> qEDIRecipReqs = o.GetEDIRecipReqsByID(rec.idEDITranscation);
+                    ObservableCollection<dtotblEDIRecipReqs> ocWmsGroup4 = new ObservableCollection<dtotblEDIRecipReqs>();
+                    radGridTouchDBLowRight4.ItemsSource = ocWmsGroup4.Concat<dtotblEDIRecipReqs>(qEDIRecipReqs);
+                    lblTouchDBLowRight4.Content = "tblEDIRecipReqs count: " + qEDIRecipReqs.Count();
+
+                    List<clsEDIAccount> qEDIAccounts = o.GetEDIAccountByidEDITranscation(rec.idEDITranscation);
+                    ObservableCollection<clsEDIAccount> ocWmsGroup5 = new ObservableCollection<clsEDIAccount>();
+                    radGridTouchDBLowRight5.ItemsSource = ocWmsGroup5.Concat<clsEDIAccount>(qEDIAccounts);
+                    lblTouchDBLowRight5.Content = "tblEDIAccounts count: " + qEDIAccounts.Count();
+                }
+            }
         }
     }
 

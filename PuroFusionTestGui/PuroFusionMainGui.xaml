@@ -116,12 +116,10 @@
                     <Grid Grid.Row="0" Grid.Column="1" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="2*" />
                         </Grid.RowDefinitions>
                         <Grid  Grid.Row="0" Grid.Column="1">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
@@ -566,15 +564,20 @@
                                 <Label Content="Report Name:"  />
                                 <ComboBox Height="23" Name="comboBoxTouchDBMainReportNames" Width="Auto" >
                                     <ComboBoxItem>tblDiscoveryRequest</ComboBoxItem>
+                                    <ComboBoxItem>Error Logs</ComboBoxItem>
                                     <ComboBoxItem>blContactType</ComboBoxItem>
                                     <ComboBoxItem>tblContact</ComboBoxItem>
+                                    <ComboBoxItem>tblEDIAccounts</ComboBoxItem>
                                     <ComboBoxItem>tblEDIRecipReq</ComboBoxItem>
-                                    <ComboBoxItem>tblContactGroup</ComboBoxItem>
+                                    <ComboBoxItem>tblContactGroup</ComboBoxItem> 
+                                    <ComboBoxItem>tblEDITranscationType</ComboBoxItem>
+                                    <ComboBoxItem>tblFileType</ComboBoxItem> 
+                                    <ComboBoxItem>tblCommunicationMethod</ComboBoxItem>
+                                    <ComboBoxItem>tblTriggerMechanism</ComboBoxItem>
                                     <ComboBoxItem>PartialDiscoveryRequest</ComboBoxItem>
                                     <ComboBoxItem>DiscoveryRequestBusContacts</ComboBoxItem>
                                     <ComboBoxItem>DiscoveryRequestITContacts</ComboBoxItem> 
                                     <ComboBoxItem>CompareDiscReq-ToReq</ComboBoxItem>
-                                    <ComboBoxItem>CompareDiscReqToReq-</ComboBoxItem>
                                 </ComboBox>
                                 <Label Name="lblTouchDBChooseReportTypeErrorMsg" Foreground="Red" Visibility="Collapsed">Must select a Report Type</Label>
                                 <Label Name="lblTouchDBTopLeftCount">Rec count</Label>
@@ -633,12 +636,10 @@
                     <Grid Grid.Row="0" Grid.Column="1" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="2*" />
                         </Grid.RowDefinitions>
                         <Grid  Grid.Row="0" Grid.Column="1">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
@@ -649,14 +650,8 @@
                                 <Label Name="lblTouchDBTopRightCount">Rec count</Label>
                                 <Label Name="lblCommitTopRightCountFiltered">Filtered recs:</Label>
                                 <Label Name="lblCommitTopRightSubmitStatus">Submit Status:</Label>
-                                <Button Name="btnCommitUpdateAllTopRight"  Margin="10,0,0,0" Padding="10,0,10,0" Height="25" VerticalAlignment="Bottom" Style="{StaticResource RoundedButton}" IsEnabled="False"  >Update All</Button>
-                                <Button Content="Update"  Margin="10,0,0,0" Padding="10,0,10,0" Name="btnUpdateCommitGridTopRight" Width="75"  Style="{StaticResource RoundedButton}" Height="26" VerticalAlignment="Top" IsEnabled="False" />
-                                <TextBox Name="txtCommitWmsNumber" Width="75" Text="S5066883" IsEnabled="False">
-                                </TextBox>
                             </StackPanel>
-                            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
-                            </StackPanel>
-                            <telerik:RadGridView x:Name="radGridTouchDBTopRight" Grid.Row="3" RowHeight="20" ShowGroupPanel="True" >
+                            <telerik:RadGridView x:Name="radGridTouchDBTopRight" Grid.Row="1" RowHeight="20" ShowGroupPanel="True" >
                             </telerik:RadGridView>
                             <!--Right Pane Splitter between top and bottom-->
                             <GridSplitter Grid.Row="3" Width="Auto" Height="5" ResizeDirection="Rows" Background="DarkGoldenrod" Grid.RowSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0" />
@@ -669,21 +664,35 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Label Name="lblTouchDBLowRight1" Content="Record from table:" HorizontalAlignment="Center"  />
+                                <Label Name="lblTouchDBLowRight1" Content="Record from table 0:" HorizontalAlignment="Center"  />
                             </StackPanel>
                             <telerik:RadGridView x:Name="radGridTouchDBLowRight1" Grid.Row="1" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0"  >
                             </telerik:RadGridView>
                             <StackPanel Grid.Row="2"   Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Label Name="lblTouchDBLowRight2" Content="Record from table:"  />
+                                <Label Name="lblTouchDBLowRight2" Content="Record from table 2:"  />
                             </StackPanel>
-                            <telerik:RadGridView x:Name="radGridTouchDBLowRight2" Grid.Row="3" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0"  >
+                            <telerik:RadGridView x:Name="radGridTouchDBLowRight2" Grid.Row="3" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0" SelectionChanged="radGridTouchDBLowRight2_SelectionChanged"  >
                             </telerik:RadGridView>
                             <StackPanel Grid.Row="4"   Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Label Name="lblTouchDBLowRight3" Content="Record from table:"  />
+                                <Label Name="lblTouchDBLowRight3" Content="Record from table 4:"  />
                             </StackPanel>
                             <telerik:RadGridView x:Name="radGridTouchDBLowRight3" Grid.Row="5" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0"  >
+                            </telerik:RadGridView>
+                            <StackPanel Grid.Row="6"   Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Label Name="lblTouchDBLowRight4" Content="Record from table 6:"  />
+                            </StackPanel>
+                            <telerik:RadGridView x:Name="radGridTouchDBLowRight4" Grid.Row="7" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0"  >
+                            </telerik:RadGridView>
+                            <StackPanel Grid.Row="8"   Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Label Name="lblTouchDBLowRight5" Content="Record from table 8:"  />
+                            </StackPanel>
+                            <telerik:RadGridView x:Name="radGridTouchDBLowRight5" Grid.Row="9" ToolTip=""  RowHeight="20"  ShowGroupPanel="false" Margin="0,10,0,0"  >
                             </telerik:RadGridView>
                         </Grid>
                     </Grid>

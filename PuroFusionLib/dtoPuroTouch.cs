@@ -22,14 +22,6 @@ namespace PuroFusionLib
         public string Country { get; set; }
         public string Commodity { get; set; }
         public Nullable<decimal> ProjectedRevenue { get; set; }
-        //public string CustomerBusContact { get; set; }
-        //public string CustomerBusTitle { get; set; }
-        //public string CustomerBusEmail { get; set; }
-        //public string CustomerBusPhone { get; set; }
-        //public string CustomerITContact { get; set; }
-        //public string CustomerITTitle { get; set; }
-        //public string CustomerITEmail { get; set; }
-        //public string CustomerITPhone { get; set; }
         public string CurrentSolution { get; set; }
         public string ProposedCustoms { get; set; }
         public Nullable<System.DateTime> CallDate1 { get; set; }
@@ -348,5 +340,92 @@ namespace PuroFusionLib
         public Nullable<System.DateTime> UpdatedOn { get; set; }
         public Nullable<bool> ActiveFlag { get; set; }
     }
+    public class clsExceptionLogging
+    {
+        public long Logid { get; set; }
+        public string Method { get; set; }
+        public string ExceptionMsg { get; set; }
+        public string ExceptionType { get; set; }
+        public string ExceptionSource { get; set; }
+        public string ExceptionURL { get; set; }
+        public string CreatedBy { get; set; }
+        public System.Nullable<System.DateTime> CreatedOn { get; set; }
 
+    }
+    public class clsEDITransactionType
+    {
+        public int idEDITranscationType { get; set; }
+
+        public string EDITranscationType { get; set; }
+        public int CategoryID { get; set; }
+
+        public string Category { get; set; }
+
+        public string CreatedBy { get; set; }
+
+        public System.Nullable<System.DateTime> CreatedOn { get; set; }
+
+        public string UpdatedBy { get; set; }
+
+        public System.Nullable<System.DateTime> UpdatedOn { get; set; }
+
+        public System.Nullable<bool> ActiveFlag { get; set; }
+    }
+    public class ClsFileType
+    {
+        public int idFileType { get; set; }
+        public string FileType { get; set; }
+        public string UpdatedBy { get; set; }
+        public DateTime? UpdatedOn { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime? CreatedOn { get; set; }
+        public bool? ActiveFlag { get; set; }
+    }
+    public class ClsCommunicationMethod
+    {
+        public int idCommunicationMethod { get; set; }
+        public string CommunicationMethod { get; set; }
+        public string UpdatedBy { get; set; }
+        public DateTime? UpdatedOn { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime? CreatedOn { get; set; }
+        public bool? ActiveFlag { get; set; }
+    }
+    public class clsTriggerMechanism
+    {
+        public int idTriggerMechanism { get; set; }
+        public string TriggerMechanism { get; set; }
+
+        public string CreatedBy { get; set; }
+
+        public System.Nullable<System.DateTime> CreatedOn { get; set; }
+
+        public string UpdatedBy { get; set; }
+
+        public System.Nullable<System.DateTime> UpdatedOn { get; set; }
+
+        public System.Nullable<bool> ActiveFlag { get; set; }
+    }
+    public class clsEDIAccount
+    {
+        public int idEDIAccount { get; set; }
+        public string AccountNumber { get; set; }
+
+        public int idEDITranscation { get; set; }
+        public int idRequest { get; set; }
+        public int idEDITranscationType { get; set; }
+        public string EDITranscationType { get; set; }
+
+        public string Category { get; set; }
+
+        public string CreatedBy { get; set; }
+
+        public System.Nullable<System.DateTime> CreatedOn { get; set; }
+
+        public string UpdatedBy { get; set; }
+
+        public System.Nullable<System.DateTime> UpdatedOn { get; set; }
+
+        public System.Nullable<bool> ActiveFlag { get; set; }
+    }
 }

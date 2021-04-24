@@ -439,6 +439,35 @@ namespace PuroFusionLib
             return qtblContact;
         }
         #endregion
+        #region tblEDIAccount
+        public List<clsEDIAccount> GetEDIAccounts()
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            List<clsEDIAccount> qEDIAccounts = o.tblEDIAccounts
+                                        //.Where(p => p.idRequest == idRequest)
+                                        .Select(p => new clsEDIAccount() { idEDIAccount = p.idEDIAccount, idEDITranscation = p.idEDITranscation, AccountNumber = p.AccountNumber, idRequest = p.idRequest, EDITranscationType = p.EDITranscationType, Category = p.Category, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                        .ToList();
+            return qEDIAccounts;
+        }
+        public List<clsEDIAccount> GetEDIAccountByidRequest(int idRequest)
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            List<clsEDIAccount> qEDIAccounts = o.tblEDIAccounts
+                                                .Where(p => p.idRequest == idRequest)
+                                                .Select(p => new clsEDIAccount() { idEDIAccount = p.idEDIAccount, idEDITranscation = p.idEDITranscation, AccountNumber = p.AccountNumber, idRequest = p.idRequest, EDITranscationType = p.EDITranscationType, Category = p.Category, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                                .ToList();
+            return qEDIAccounts;
+        }
+        public List<clsEDIAccount> GetEDIAccountByidEDITranscation(int idEDITranscation)
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            List<clsEDIAccount> qEDIAccounts = o.tblEDIAccounts
+                                                .Where(p => p.idEDITranscation == idEDITranscation)
+                                                .Select(p => new clsEDIAccount() { idEDIAccount = p.idEDIAccount, idEDITranscation = p.idEDITranscation, AccountNumber = p.AccountNumber, idRequest = p.idRequest, EDITranscationType = p.EDITranscationType, Category = p.Category, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                                .ToList();
+            return qEDIAccounts;
+        }
+        #endregion
         #region tblEDITranscations
         public List<dtotblEDITranscations> GetEDITransactionsByidRequest(int idRequest)
         {
@@ -449,6 +478,27 @@ namespace PuroFusionLib
                                                 .ToList();
 
             return qEDITrans;
+        }
+        public List<dtotblEDITranscations> GetEDITransactionsByidRequestW_OCategory(int idRequest)
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            List<dtotblEDITranscations> qEDITrans = o.tblEDITranscations
+                                                .Where(p => p.idRequest == idRequest )
+                                                .Select(p => new dtotblEDITranscations() { idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, EDITranscationType = p.tblEDITranscationType.EDITranscationType, idEDITranscationType = p.idEDITranscationType, TotalRequests = p.TotalRequests, BatchInvoices = p.BatchInvoices, CombinePayer = p.CombinePayer, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                                .ToList();
+
+            return qEDITrans;
+        }
+        #endregion
+        #region tblEDITranscationType
+        public List<clsEDITransactionType> GetEDITransactionTypes()
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            List<clsEDITransactionType> qTransType = o.tblEDITranscationType
+                                                .Select(p => new clsEDITransactionType() { idEDITranscationType = p.idEDITranscationType, EDITranscationType = p.EDITranscationType, Category = p.Category, CategoryID = p.CategoryID, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                                //.Where(f => f.ActiveFlag == true)
+                                                .ToList();
+            return qTransType;
         }
         #endregion
         #region tblEDIShipMethod
@@ -470,13 +520,102 @@ namespace PuroFusionLib
 
             List<dtotblEDIRecipReqs> qEDIRecipReqs = o.tblEDIRecipReqs
                                     //.Where(p => p.idEDIRecipReqs == idEDIRecipReqs)
-                                    .Select(p => new dtotblEDIRecipReqs() { idEDIRecipReqs = p.idEDIRecipReqs, RecipReqNum = p.RecipReqNum, idFileType = p.idFileType, X12_GS = p.X12_GS, X12_ISA = p.X12_ISA, X12_Qualifier = p.X12_Qualifier, idCommunicationMethod = p.idCommunicationMethod, FTPAddress = p.FTPAddress, UserName = p.UserName, Password = p.Password, FolderPath = p.FolderPath, Email = p.Email, idTriggerMechanism = p.idTriggerMechanism, idTiming = p.idTiming, TimeOfFile = p.TimeOfFile, idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, idEDITranscationType = p.tblEDITranscations.idEDITranscationType, EDITranscationType = p.EDITranscationType, idStatusCodes = p.idStatusCodes, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                    .Select(p => new dtotblEDIRecipReqs() { idEDIRecipReqs = p.idEDIRecipReqs, RecipReqNum = p.RecipReqNum, idFileType = p.idFileType, X12_GS = p.X12_GS, X12_ISA = p.X12_ISA, X12_Qualifier = p.X12_Qualifier, idCommunicationMethod = p.idCommunicationMethod, FTPAddress = p.FTPAddress, UserName = p.UserName, Password = p.Password, FolderPath = p.FolderPath, Email = p.Email, idTriggerMechanism = p.idTriggerMechanism, idTiming = p.idTiming, TimeOfFile = p.TimeOfFile, idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, idEDITranscationType = p.tblEDITranscations.idEDITranscationType, EDITranscationType = p.EDITranscationType, idStatusCodes = p.idStatusCodes, Category = p.Category, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
                                     .ToList();
+            return qEDIRecipReqs;
+        }
+        public List<dtotblEDIRecipReqs> GetEDIRecipReqsByRequesID(int idRequest)
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
 
+            List<dtotblEDIRecipReqs> qEDIRecipReqs = o.tblEDIRecipReqs
+                                    .Where(p => p.idRequest == idRequest)
+                                    .Select(p => new dtotblEDIRecipReqs() { idEDIRecipReqs = p.idEDIRecipReqs, RecipReqNum = p.RecipReqNum, idFileType = p.idFileType, X12_GS = p.X12_GS, X12_ISA = p.X12_ISA, X12_Qualifier = p.X12_Qualifier, idCommunicationMethod = p.idCommunicationMethod, FTPAddress = p.FTPAddress, UserName = p.UserName, Password = p.Password, FolderPath = p.FolderPath, Email = p.Email, idTriggerMechanism = p.idTriggerMechanism, idTiming = p.idTiming, TimeOfFile = p.TimeOfFile, idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, idEDITranscationType = p.tblEDITranscations.idEDITranscationType, EDITranscationType = p.EDITranscationType, idStatusCodes = p.idStatusCodes, Category = p.Category ,ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                    .ToList();
+            return qEDIRecipReqs;
+        }
+        public List<dtotblEDIRecipReqs> GetEDIRecipReqsByID(int idEDITranscation)
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+
+            List<dtotblEDIRecipReqs> qEDIRecipReqs = o.tblEDIRecipReqs
+                                    .Where(p => p.idEDITranscation == idEDITranscation)
+                                    .Select(p => new dtotblEDIRecipReqs() { idEDIRecipReqs = p.idEDIRecipReqs, RecipReqNum = p.RecipReqNum, idFileType = p.idFileType, X12_GS = p.X12_GS, X12_ISA = p.X12_ISA, X12_Qualifier = p.X12_Qualifier, idCommunicationMethod = p.idCommunicationMethod, FTPAddress = p.FTPAddress, UserName = p.UserName, Password = p.Password, FolderPath = p.FolderPath, Email = p.Email, idTriggerMechanism = p.idTriggerMechanism, idTiming = p.idTiming, TimeOfFile = p.TimeOfFile, idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, idEDITranscationType = p.tblEDITranscations.idEDITranscationType, EDITranscationType = p.EDITranscationType, idStatusCodes = p.idStatusCodes, Category = p.Category, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                    .ToList();
             return qEDIRecipReqs;
         }
         #endregion
+        #region tblFileType
+        public List<ClsFileType> GetFileTypes()
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            List<ClsFileType> qFileTypes = o.tblFileType
+                                                //.Where(p => p.ActiveFlag == true)
+                                                .Select(p => new ClsFileType() { idFileType = p.idFileType, FileType = p.FileType, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                                .ToList();
 
+            return qFileTypes;
+        }
+        #endregion
+        #region tblCommunicationMethod
+        public List<ClsCommunicationMethod> GetCommunicationMethods()
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            List<ClsCommunicationMethod> qCommMeth = o.tblCommunicationMethod
+                                                //.Where(p => p.ActiveFlag == true)
+                                                .Select(p => new ClsCommunicationMethod() { idCommunicationMethod = p.idCommunicationMethod, CommunicationMethod = p.CommunicationMethod, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                                .ToList();
+            return qCommMeth;
+        }
+        #endregion
+        #region tblTriggerMechanism
+        public List<clsTriggerMechanism> GetTriggerMechanisms()
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            List<clsTriggerMechanism> qTrigMeth = o.tblTriggerMechanism
+                                            //.Where(p => p.ActiveFlag == true)
+                                            .Select(p => new clsTriggerMechanism() { idTriggerMechanism = p.idTriggerMechanism, TriggerMechanism = p.TriggerMechanism, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                             .ToList();
+            return qTrigMeth;
+        }
+        #endregion
+        #region tblExceptionLogging
+        public List<clsExceptionLogging> GetExceptionLogging()
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+
+            List<clsExceptionLogging> qErrors = o.tblExceptionLogging
+                                    .Select(p => new clsExceptionLogging() {Logid = p.Logid ,ExceptionMsg = p.ExceptionMsg, Method = p.Method, ExceptionType = p.ExceptionType, ExceptionSource = p.ExceptionSource, ExceptionURL = p.ExceptionURL, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn })
+                                    .ToList();
+            return qErrors;
+        }
+        public string Insert(clsExceptionLogging data, out long newID)
+        {
+            string errMsg = "";
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            newID = -1;
+            try
+            {
+                tblExceptionLogging oNewRow = new tblExceptionLogging()
+                {
+                    ExceptionMsg = data.ExceptionMsg,
+                    Method = data.Method,
+                    ExceptionType = data.ExceptionType,
+                    ExceptionSource = data.ExceptionSource,
+                    ExceptionURL = data.ExceptionURL,
+                    CreatedBy = data.CreatedBy,
+                    CreatedOn = data.CreatedOn,
+                };
+                o.tblExceptionLogging.Add(oNewRow);
+                o.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                errMsg = ex.Message.ToString();
+            }
+            return errMsg;
+        }
+        #endregion
         #region Migration Strategy
         public IList<dtoTableCompare> GetDiscoveryDiff1()
         {
