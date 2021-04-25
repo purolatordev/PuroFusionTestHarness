@@ -111,12 +111,12 @@ namespace PuroFusionTestGui
             comboBoxMainDB.Items.Add(PuroReportingServiceClass.ConnString.PatientLocal2);
             comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal);
             comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal2);
-            PuroTouchServiceClass o = new PuroTouchServiceClass(PuroTouchServiceClass.ConnString.PatientLocal);
-            o.GetDiscoveryDiff1("tblDiscoveryRequest_", "tblDiscoveryRequest");
+            //PuroTouchServiceClass o = new PuroTouchServiceClass(PuroTouchServiceClass.ConnString.PatientLocal);
+            //o.GetDiscoveryDiff1("tblDiscoveryRequest_", "tblDiscoveryRequest");
 
             //string strConn = GetdbLocation(comboBoxMainDB);
-            //PuroReportingServiceClass o2 = new PuroReportingServiceClass(PuroReportingServiceClass.ConnString.FullPatientLocal2);
-            //o2.GetPuroTouchUsers();
+            //PuroReportingServiceClass o2 = new PuroReportingServiceClass(PuroReportingServiceClass.ConnString.FullPatientLocal);
+            //o2.GetPuroTouchUsersLambda();
         }
         private string GetdbLocation(ComboBox cmb)
         {

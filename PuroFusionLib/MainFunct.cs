@@ -164,6 +164,34 @@ namespace PuroFusionLib
             }
             return qPI_ApplicationUser;
         }
+        public IList<dtoPuroTouchUsers> GetPuroTouchUsersLambda()
+        {
+            IList<dtoPuroTouchUsers> qPI_ApplicationUser = new List<dtoPuroTouchUsers>();
+            try
+            {
+                PurolatorReportingEntities o = new PurolatorReportingEntities(strConn);
+                qPI_ApplicationUser = (from appU in o.tblPI_ApplicationUser
+                                       join emp in o.tblEmployee on appU.idEmployee equals emp.idEmployee
+                                       join app in o.tblPI_Applications on appU.idPI_Application equals app.idPI_Application
+                                       join appURole in o.tblPI_ApplicationUserRole on appU.idPI_ApplicationUser equals appURole.idPI_ApplicationUser
+                                       join appRole in o.tblPI_ApplicationRoles on appURole.idPI_ApplicationRole equals appRole.idPI_ApplicationRole
+                                       where appU.idPI_Application == 1018
+                                       select new dtoPuroTouchUsers() { idEmployee = appU.idEmployee, FirstName = emp.FirstName, LastName = emp.LastName, ApplicationName = app.ApplicationName, RoleName = appRole.RoleName, idPI_Application = appU.idPI_Application, idPI_ApplicationUser = appU.idPI_ApplicationUser, idPI_ApplicationUserRole = appURole.idPI_ApplicationUserRole, idPI_ApplicationRole = appURole.idPI_ApplicationRole })
+                        .ToList();
+
+                qPI_ApplicationUser = o.tblPI_ApplicationUser
+                                .Join(o.tblEmployee, appU => appU.idEmployee, emp => emp.idEmployee, (appU, emp) => new dtoPuroTouchUsers() { idEmployee = emp.idEmployee, FirstName = emp.FirstName, idPI_Application = appU.idPI_Application })
+                                .Where(p => p.idPI_Application == 1018)
+                                .ToList();
+                int er = 0;
+                er++;
+            }
+            catch (Exception ex)
+            {
+                //retValue = ex.ToString();ProgramSubdiv
+            }
+            return qPI_ApplicationUser;
+        }
         #endregion
         #region dtotblPI_ApplicationUserRole
         public IList<dtotblPI_ApplicationUserRole> GettblPI_ApplicationUserRole()
