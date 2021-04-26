@@ -569,8 +569,9 @@
                                     <ComboBoxItem>tblContact</ComboBoxItem>
                                     <ComboBoxItem>tblEDIAccounts</ComboBoxItem>
                                     <ComboBoxItem>tblEDIRecipReq</ComboBoxItem>
-                                    <ComboBoxItem>tblContactGroup</ComboBoxItem> 
+                                    <ComboBoxItem>tblContactGroup</ComboBoxItem>
                                     <ComboBoxItem>tblEDITranscationType</ComboBoxItem>
+                                    <ComboBoxItem>tblEDITranscations</ComboBoxItem>
                                     <ComboBoxItem>tblFileType</ComboBoxItem> 
                                     <ComboBoxItem>tblCommunicationMethod</ComboBoxItem>
                                     <ComboBoxItem>tblTriggerMechanism</ComboBoxItem>
