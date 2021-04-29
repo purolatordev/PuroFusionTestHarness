@@ -72,7 +72,6 @@ namespace PuroTouchEntities
         public virtual DbSet<tblBillingSpecialist> tblBillingSpecialist { get; set; }
         public virtual DbSet<tblEDIAccounts> tblEDIAccounts { get; set; }
         public virtual DbSet<tblEDIOnboardingPhase> tblEDIOnboardingPhase { get; set; }
-        public virtual DbSet<tblEDIRecipReqs> tblEDIRecipReqs { get; set; }
         public virtual DbSet<tblEDIShipMethods> tblEDIShipMethods { get; set; }
         public virtual DbSet<tblEDIShipMethodTypes> tblEDIShipMethodTypes { get; set; }
         public virtual DbSet<tblEDISpecialist> tblEDISpecialist { get; set; }
@@ -82,5 +81,6 @@ namespace PuroTouchEntities
         public virtual DbSet<tblStatusCodes> tblStatusCodes { get; set; }
         public virtual DbSet<tblTiming> tblTiming { get; set; }
         public virtual DbSet<tblTriggerMechanism> tblTriggerMechanism { get; set; }
+        public virtual DbSet<tblEDIRecipReqs> tblEDIRecipReqs { get; set; }
     }
 }

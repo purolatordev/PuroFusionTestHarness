@@ -54,7 +54,6 @@
         <EntityTypeShape EntityType="PuroTouchDBModel.tblBillingSpecialist" Width="1.5" PointX="5.375" PointY="22.75" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblEDIAccounts" Width="1.5" PointX="25.625" PointY="28.75" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblEDIOnboardingPhase" Width="1.5" PointX="14.25" PointY="33" />
-        <EntityTypeShape EntityType="PuroTouchDBModel.tblEDIRecipReqs" Width="1.5" PointX="24" PointY="15" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblEDIShipMethods" Width="1.5" PointX="19" PointY="38.125" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblEDIShipMethodTypes" Width="1.5" PointX="21.5" PointY="38.75" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblEDISpecialist" Width="1.5" PointX="11.375" PointY="22.75" />
@@ -64,18 +63,19 @@
         <EntityTypeShape EntityType="PuroTouchDBModel.tblStatusCodes" Width="1.5" PointX="21.75" PointY="12.875" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblTiming" Width="1.5" PointX="27.5" PointY="19.125" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblTriggerMechanism" Width="1.5" PointX="21.75" PointY="21.25" />
-        <AssociationConnector Association="PuroTouchDBModel.FK_idComMeth_EDIRecipReqs_ComMeth" />
         <AssociationConnector Association="PuroTouchDBModel.FK_idEDIOnboard_Disc_EDIOnB" />
         <AssociationConnector Association="PuroTouchDBModel.FK_idReq_EDITran_DisReq" />
         <AssociationConnector Association="PuroTouchDBModel.FK_idRequest_DiscoveryRequest" />
         <AssociationConnector Association="PuroTouchDBModel.FK_idTrans_Accts_Trans" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idEDIShipMethType_EDIShipMethTypes" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idEDITransType_EDITransType" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblEDIRecipReqs" Width="1.5" PointX="24.5" PointY="17.125" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idComMeth_EDIRecipReqs_ComMeth" />
         <AssociationConnector Association="PuroTouchDBModel.FK_idFileType_EDIRecipReqs_FileType" />
         <AssociationConnector Association="PuroTouchDBModel.FK_idStatCode_EDIRecipReqs_StatCode" />
         <AssociationConnector Association="PuroTouchDBModel.FK_idTime_EDIRecipReqs_Timing" />
         <AssociationConnector Association="PuroTouchDBModel.FK_idTrans_RecipReqs_Trans" />
         <AssociationConnector Association="PuroTouchDBModel.FK_idTrig_EDIRecipReqs_TrigMech" />
-        <AssociationConnector Association="PuroTouchDBModel.FK_idEDIShipMethType_EDIShipMethTypes" />
-        <AssociationConnector Association="PuroTouchDBModel.FK_idEDITransType_EDITransType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

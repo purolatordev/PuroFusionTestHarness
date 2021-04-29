@@ -316,6 +316,8 @@ namespace PuroFusionLib
         public int idEDIRecipReqs { get; set; }
         public int RecipReqNum { get; set; }
         public int idRequest { get; set; }
+        public string PanelTitle { get; set; }
+
         public int idEDITranscation { get; set; }
         public int idFileType { get; set; }
         public string X12_ISA { get; set; }
