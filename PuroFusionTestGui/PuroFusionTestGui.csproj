@@ -52,7 +52,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <ApplicationIcon>purofusion.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -151,9 +151,7 @@
     <Resource Include="TechSupport.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="purofusion.ico" />
     <Content Include="Telerik\HtmlAgilityPack.dll" />
     <Content Include="Telerik\Telerik.Windows.Controls.Data.dll" />
     <Content Include="Telerik\Telerik.Windows.Controls.dll" />

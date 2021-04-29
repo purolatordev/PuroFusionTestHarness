@@ -6,7 +6,7 @@
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         xmlns:local="clr-namespace:PuroFusionTestGui"
         mc:Ignorable="d"
-        Title="MainWindow"  Height="950" Width="1850" WindowState="Maximized" Icon="favicon.ico" >
+        Title="MainWindow"  Height="950" Width="1850" WindowState="Maximized" Icon="purofusion.ico" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
