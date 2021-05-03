@@ -17,8 +17,8 @@ namespace PuroTouchEntities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblDiscoveryRequest()
         {
-            this.tblEDITranscations = new HashSet<tblEDITranscations>();
             this.tblEDIShipMethods = new HashSet<tblEDIShipMethods>();
+            this.tblEDITranscations = new HashSet<tblEDITranscations>();
         }
     
         public int idRequest { get; set; }
@@ -140,8 +140,8 @@ namespace PuroTouchEntities
         public virtual tblOnboardingPhase tblOnboardingPhase { get; set; }
         public virtual tblEDIOnboardingPhase tblEDIOnboardingPhase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblEDITranscations> tblEDITranscations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblEDIShipMethods> tblEDIShipMethods { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEDITranscations> tblEDITranscations { get; set; }
     }
 }

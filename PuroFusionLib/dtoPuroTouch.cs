@@ -292,6 +292,9 @@ namespace PuroFusionLib
         public int TotalRequests { get; set; }
         public Nullable<bool> CombinePayer { get; set; }
         public Nullable<bool> BatchInvoices { get; set; }
+        public string SFTPFolder { get; set; }
+        public Nullable<bool> TestEnvironment { get; set; }
+        public int TestSentMethod { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string UpdatedBy { get; set; }

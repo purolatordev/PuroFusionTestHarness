@@ -768,6 +768,9 @@ warning 6002: The table/view 'PuroTouchDB.dbo.tblBillingTypes' does not have a p
           <Property Name="TotalRequests" Type="int" Nullable="false" />
           <Property Name="CombinePayer" Type="bit" />
           <Property Name="BatchInvoices" Type="bit" />
+          <Property Name="SFTPFolder" Type="varchar" MaxLength="255" />
+          <Property Name="TestEnvironment" Type="bit" />
+          <Property Name="TestSentMethod" Type="int" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="100" />
@@ -2126,7 +2129,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <EntitySet Name="tblEDIShipMethods" EntityType="PuroTouchDBModel.tblEDIShipMethods" />
           <EntitySet Name="tblEDIShipMethodTypes" EntityType="PuroTouchDBModel.tblEDIShipMethodTypes" />
           <EntitySet Name="tblEDISpecialist" EntityType="PuroTouchDBModel.tblEDISpecialist" />
-          <EntitySet Name="tblEDITranscations" EntityType="PuroTouchDBModel.tblEDITranscations" />
           <EntitySet Name="tblEDITranscationType" EntityType="PuroTouchDBModel.tblEDITranscationType" />
           <EntitySet Name="tblExceptionLogging" EntityType="PuroTouchDBModel.tblExceptionLogging" />
           <EntitySet Name="tblStatusCodes" EntityType="PuroTouchDBModel.tblStatusCodes" />
@@ -2136,25 +2138,13 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             <End Role="tblEDIOnboardingPhase" EntitySet="tblEDIOnboardingPhase" />
             <End Role="tblDiscoveryRequest" EntitySet="tblDiscoveryRequest" />
           </AssociationSet>
-          <AssociationSet Name="FK_idReq_EDITran_DisReq" Association="PuroTouchDBModel.FK_idReq_EDITran_DisReq">
-            <End Role="tblDiscoveryRequest" EntitySet="tblDiscoveryRequest" />
-            <End Role="tblEDITranscations" EntitySet="tblEDITranscations" />
-          </AssociationSet>
           <AssociationSet Name="FK_idRequest_DiscoveryRequest" Association="PuroTouchDBModel.FK_idRequest_DiscoveryRequest">
             <End Role="tblDiscoveryRequest" EntitySet="tblDiscoveryRequest" />
             <End Role="tblEDIShipMethods" EntitySet="tblEDIShipMethods" />
           </AssociationSet>
-          <AssociationSet Name="FK_idTrans_Accts_Trans" Association="PuroTouchDBModel.FK_idTrans_Accts_Trans">
-            <End Role="tblEDITranscations" EntitySet="tblEDITranscations" />
-            <End Role="tblEDIAccounts" EntitySet="tblEDIAccounts" />
-          </AssociationSet>
           <AssociationSet Name="FK_idEDIShipMethType_EDIShipMethTypes" Association="PuroTouchDBModel.FK_idEDIShipMethType_EDIShipMethTypes">
             <End Role="tblEDIShipMethodTypes" EntitySet="tblEDIShipMethodTypes" />
             <End Role="tblEDIShipMethods" EntitySet="tblEDIShipMethods" />
-          </AssociationSet>
-          <AssociationSet Name="FK_idEDITransType_EDITransType" Association="PuroTouchDBModel.FK_idEDITransType_EDITransType">
-            <End Role="tblEDITranscationType" EntitySet="tblEDITranscationType" />
-            <End Role="tblEDITranscations" EntitySet="tblEDITranscations" />
           </AssociationSet>
           <EntitySet Name="tblEDIRecipReqs" EntityType="PuroTouchDBModel.tblEDIRecipReqs" />
           <AssociationSet Name="FK_idComMeth_EDIRecipReqs_ComMeth" Association="PuroTouchDBModel.FK_idComMeth_EDIRecipReqs_ComMeth">
@@ -2173,13 +2163,26 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             <End Role="tblTiming" EntitySet="tblTiming" />
             <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
           </AssociationSet>
+          <AssociationSet Name="FK_idTrig_EDIRecipReqs_TrigMech" Association="PuroTouchDBModel.FK_idTrig_EDIRecipReqs_TrigMech">
+            <End Role="tblTriggerMechanism" EntitySet="tblTriggerMechanism" />
+            <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
+          </AssociationSet>
+          <EntitySet Name="tblEDITranscations" EntityType="PuroTouchDBModel.tblEDITranscations" />
+          <AssociationSet Name="FK_idReq_EDITran_DisReq" Association="PuroTouchDBModel.FK_idReq_EDITran_DisReq">
+            <End Role="tblDiscoveryRequest" EntitySet="tblDiscoveryRequest" />
+            <End Role="tblEDITranscations" EntitySet="tblEDITranscations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idTrans_Accts_Trans" Association="PuroTouchDBModel.FK_idTrans_Accts_Trans">
+            <End Role="tblEDITranscations" EntitySet="tblEDITranscations" />
+            <End Role="tblEDIAccounts" EntitySet="tblEDIAccounts" />
+          </AssociationSet>
           <AssociationSet Name="FK_idTrans_RecipReqs_Trans" Association="PuroTouchDBModel.FK_idTrans_RecipReqs_Trans">
             <End Role="tblEDITranscations" EntitySet="tblEDITranscations" />
             <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
           </AssociationSet>
-          <AssociationSet Name="FK_idTrig_EDIRecipReqs_TrigMech" Association="PuroTouchDBModel.FK_idTrig_EDIRecipReqs_TrigMech">
-            <End Role="tblTriggerMechanism" EntitySet="tblTriggerMechanism" />
-            <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
+          <AssociationSet Name="FK_idEDITransType_EDITransType" Association="PuroTouchDBModel.FK_idEDITransType_EDITransType">
+            <End Role="tblEDITranscationType" EntitySet="tblEDITranscationType" />
+            <End Role="tblEDITranscations" EntitySet="tblEDITranscations" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2333,8 +2336,8 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <Property Name="idEDIOnboardingPhase" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblOnboardingPhase" Relationship="PuroTouchDBModel.FK_idOnBPh_OnboardPhase" FromRole="tblDiscoveryRequest" ToRole="tblOnboardingPhase" />
           <NavigationProperty Name="tblEDIOnboardingPhase" Relationship="PuroTouchDBModel.FK_idEDIOnboard_Disc_EDIOnB" FromRole="tblDiscoveryRequest" ToRole="tblEDIOnboardingPhase" />
-          <NavigationProperty Name="tblEDITranscations" Relationship="PuroTouchDBModel.FK_idReq_EDITran_DisReq" FromRole="tblDiscoveryRequest" ToRole="tblEDITranscations" />
           <NavigationProperty Name="tblEDIShipMethods" Relationship="PuroTouchDBModel.FK_idRequest_DiscoveryRequest" FromRole="tblDiscoveryRequest" ToRole="tblEDIShipMethods" />
+          <NavigationProperty Name="tblEDITranscations" Relationship="PuroTouchDBModel.FK_idReq_EDITran_DisReq" FromRole="tblDiscoveryRequest" ToRole="tblEDITranscations" />
         </EntityType>
         <EntityType Name="tblDiscoveryRequest_">
           <Key>
@@ -2551,26 +2554,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <Property Name="ReceiveNewReqEmail" Type="Boolean" />
           <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="tblEDITranscations">
-          <Key>
-            <PropertyRef Name="idEDITranscation" />
-          </Key>
-          <Property Name="idEDITranscation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idRequest" Type="Int32" Nullable="false" />
-          <Property Name="idEDITranscationType" Type="Int32" Nullable="false" />
-          <Property Name="TotalRequests" Type="Int32" Nullable="false" />
-          <Property Name="CombinePayer" Type="Boolean" />
-          <Property Name="BatchInvoices" Type="Boolean" />
-          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ActiveFlag" Type="Boolean" />
-          <NavigationProperty Name="tblDiscoveryRequest" Relationship="PuroTouchDBModel.FK_idReq_EDITran_DisReq" FromRole="tblEDITranscations" ToRole="tblDiscoveryRequest" />
-          <NavigationProperty Name="tblEDIAccounts" Relationship="PuroTouchDBModel.FK_idTrans_Accts_Trans" FromRole="tblEDITranscations" ToRole="tblEDIAccounts" />
-          <NavigationProperty Name="tblEDITranscationType" Relationship="PuroTouchDBModel.FK_idEDITransType_EDITransType" FromRole="tblEDITranscations" ToRole="tblEDITranscationType" />
-          <NavigationProperty Name="tblEDIRecipReqs" Relationship="PuroTouchDBModel.FK_idTrans_RecipReqs_Trans" FromRole="tblEDITranscations" ToRole="tblEDIRecipReqs" />
-        </EntityType>
         <EntityType Name="tblEDITranscationType">
           <Key>
             <PropertyRef Name="idEDITranscationType" />
@@ -2650,18 +2633,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_idReq_EDITran_DisReq">
-          <End Type="PuroTouchDBModel.tblDiscoveryRequest" Role="tblDiscoveryRequest" Multiplicity="1" />
-          <End Type="PuroTouchDBModel.tblEDITranscations" Role="tblEDITranscations" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblDiscoveryRequest">
-              <PropertyRef Name="idRequest" />
-            </Principal>
-            <Dependent Role="tblEDITranscations">
-              <PropertyRef Name="idRequest" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_idRequest_DiscoveryRequest">
           <End Type="PuroTouchDBModel.tblDiscoveryRequest" Role="tblDiscoveryRequest" Multiplicity="1" />
           <End Type="PuroTouchDBModel.tblEDIShipMethods" Role="tblEDIShipMethods" Multiplicity="*" />
@@ -2674,18 +2645,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_idTrans_Accts_Trans">
-          <End Type="PuroTouchDBModel.tblEDITranscations" Role="tblEDITranscations" Multiplicity="1" />
-          <End Type="PuroTouchDBModel.tblEDIAccounts" Role="tblEDIAccounts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEDITranscations">
-              <PropertyRef Name="idEDITranscation" />
-            </Principal>
-            <Dependent Role="tblEDIAccounts">
-              <PropertyRef Name="idEDITranscation" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_idEDIShipMethType_EDIShipMethTypes">
           <End Type="PuroTouchDBModel.tblEDIShipMethodTypes" Role="tblEDIShipMethodTypes" Multiplicity="1" />
           <End Type="PuroTouchDBModel.tblEDIShipMethods" Role="tblEDIShipMethods" Multiplicity="*" />
@@ -2695,18 +2654,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             </Principal>
             <Dependent Role="tblEDIShipMethods">
               <PropertyRef Name="idEDIShipMethodType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_idEDITransType_EDITransType">
-          <End Type="PuroTouchDBModel.tblEDITranscationType" Role="tblEDITranscationType" Multiplicity="1" />
-          <End Type="PuroTouchDBModel.tblEDITranscations" Role="tblEDITranscations" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEDITranscationType">
-              <PropertyRef Name="idEDITranscationType" />
-            </Principal>
-            <Dependent Role="tblEDITranscations">
-              <PropertyRef Name="idEDITranscationType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2744,8 +2691,8 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <NavigationProperty Name="tblFileType" Relationship="PuroTouchDBModel.FK_idFileType_EDIRecipReqs_FileType" FromRole="tblEDIRecipReqs" ToRole="tblFileType" />
           <NavigationProperty Name="tblStatusCodes" Relationship="PuroTouchDBModel.FK_idStatCode_EDIRecipReqs_StatCode" FromRole="tblEDIRecipReqs" ToRole="tblStatusCodes" />
           <NavigationProperty Name="tblTiming" Relationship="PuroTouchDBModel.FK_idTime_EDIRecipReqs_Timing" FromRole="tblEDIRecipReqs" ToRole="tblTiming" />
-          <NavigationProperty Name="tblEDITranscations" Relationship="PuroTouchDBModel.FK_idTrans_RecipReqs_Trans" FromRole="tblEDIRecipReqs" ToRole="tblEDITranscations" />
           <NavigationProperty Name="tblTriggerMechanism" Relationship="PuroTouchDBModel.FK_idTrig_EDIRecipReqs_TrigMech" FromRole="tblEDIRecipReqs" ToRole="tblTriggerMechanism" />
+          <NavigationProperty Name="tblEDITranscations" Relationship="PuroTouchDBModel.FK_idTrans_RecipReqs_Trans" FromRole="tblEDIRecipReqs" ToRole="tblEDITranscations" />
         </EntityType>
         <Association Name="FK_idComMeth_EDIRecipReqs_ComMeth">
           <End Type="PuroTouchDBModel.tblCommunicationMethod" Role="tblCommunicationMethod" Multiplicity="1" />
@@ -2795,6 +2742,65 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_idTrig_EDIRecipReqs_TrigMech">
+          <End Type="PuroTouchDBModel.tblTriggerMechanism" Role="tblTriggerMechanism" Multiplicity="1" />
+          <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTriggerMechanism">
+              <PropertyRef Name="idTriggerMechanism" />
+            </Principal>
+            <Dependent Role="tblEDIRecipReqs">
+              <PropertyRef Name="idTriggerMechanism" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblEDITranscations">
+          <Key>
+            <PropertyRef Name="idEDITranscation" />
+          </Key>
+          <Property Name="idEDITranscation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRequest" Type="Int32" Nullable="false" />
+          <Property Name="idEDITranscationType" Type="Int32" Nullable="false" />
+          <Property Name="TotalRequests" Type="Int32" Nullable="false" />
+          <Property Name="CombinePayer" Type="Boolean" />
+          <Property Name="BatchInvoices" Type="Boolean" />
+          <Property Name="SFTPFolder" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TestEnvironment" Type="Boolean" />
+          <Property Name="TestSentMethod" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ActiveFlag" Type="Boolean" />
+          <NavigationProperty Name="tblDiscoveryRequest" Relationship="PuroTouchDBModel.FK_idReq_EDITran_DisReq" FromRole="tblEDITranscations" ToRole="tblDiscoveryRequest" />
+          <NavigationProperty Name="tblEDIAccounts" Relationship="PuroTouchDBModel.FK_idTrans_Accts_Trans" FromRole="tblEDITranscations" ToRole="tblEDIAccounts" />
+          <NavigationProperty Name="tblEDIRecipReqs" Relationship="PuroTouchDBModel.FK_idTrans_RecipReqs_Trans" FromRole="tblEDITranscations" ToRole="tblEDIRecipReqs" />
+          <NavigationProperty Name="tblEDITranscationType" Relationship="PuroTouchDBModel.FK_idEDITransType_EDITransType" FromRole="tblEDITranscations" ToRole="tblEDITranscationType" />
+        </EntityType>
+        <Association Name="FK_idReq_EDITran_DisReq">
+          <End Type="PuroTouchDBModel.tblDiscoveryRequest" Role="tblDiscoveryRequest" Multiplicity="1" />
+          <End Type="PuroTouchDBModel.tblEDITranscations" Role="tblEDITranscations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDiscoveryRequest">
+              <PropertyRef Name="idRequest" />
+            </Principal>
+            <Dependent Role="tblEDITranscations">
+              <PropertyRef Name="idRequest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idTrans_Accts_Trans">
+          <End Type="PuroTouchDBModel.tblEDITranscations" Role="tblEDITranscations" Multiplicity="1" />
+          <End Type="PuroTouchDBModel.tblEDIAccounts" Role="tblEDIAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEDITranscations">
+              <PropertyRef Name="idEDITranscation" />
+            </Principal>
+            <Dependent Role="tblEDIAccounts">
+              <PropertyRef Name="idEDITranscation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_idTrans_RecipReqs_Trans">
           <End Type="PuroTouchDBModel.tblEDITranscations" Role="tblEDITranscations" Multiplicity="1" />
           <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
@@ -2807,15 +2813,15 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_idTrig_EDIRecipReqs_TrigMech">
-          <End Type="PuroTouchDBModel.tblTriggerMechanism" Role="tblTriggerMechanism" Multiplicity="1" />
-          <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
+        <Association Name="FK_idEDITransType_EDITransType">
+          <End Type="PuroTouchDBModel.tblEDITranscationType" Role="tblEDITranscationType" Multiplicity="1" />
+          <End Type="PuroTouchDBModel.tblEDITranscations" Role="tblEDITranscations" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblTriggerMechanism">
-              <PropertyRef Name="idTriggerMechanism" />
+            <Principal Role="tblEDITranscationType">
+              <PropertyRef Name="idEDITranscationType" />
             </Principal>
-            <Dependent Role="tblEDIRecipReqs">
-              <PropertyRef Name="idTriggerMechanism" />
+            <Dependent Role="tblEDITranscations">
+              <PropertyRef Name="idEDITranscationType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3836,23 +3842,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblEDITranscations">
-            <EntityTypeMapping TypeName="PuroTouchDBModel.tblEDITranscations">
-              <MappingFragment StoreEntitySet="tblEDITranscations">
-                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="BatchInvoices" ColumnName="BatchInvoices" />
-                <ScalarProperty Name="CombinePayer" ColumnName="CombinePayer" />
-                <ScalarProperty Name="TotalRequests" ColumnName="TotalRequests" />
-                <ScalarProperty Name="idEDITranscationType" ColumnName="idEDITranscationType" />
-                <ScalarProperty Name="idRequest" ColumnName="idRequest" />
-                <ScalarProperty Name="idEDITranscation" ColumnName="idEDITranscation" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblEDITranscationType">
             <EntityTypeMapping TypeName="PuroTouchDBModel.tblEDITranscationType">
               <MappingFragment StoreEntitySet="tblEDITranscationType">
@@ -3950,6 +3939,26 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
                 <ScalarProperty Name="idRequest" ColumnName="idRequest" />
                 <ScalarProperty Name="RecipReqNum" ColumnName="RecipReqNum" />
                 <ScalarProperty Name="idEDIRecipReqs" ColumnName="idEDIRecipReqs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEDITranscations">
+            <EntityTypeMapping TypeName="PuroTouchDBModel.tblEDITranscations">
+              <MappingFragment StoreEntitySet="tblEDITranscations">
+                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="TestSentMethod" ColumnName="TestSentMethod" />
+                <ScalarProperty Name="TestEnvironment" ColumnName="TestEnvironment" />
+                <ScalarProperty Name="SFTPFolder" ColumnName="SFTPFolder" />
+                <ScalarProperty Name="BatchInvoices" ColumnName="BatchInvoices" />
+                <ScalarProperty Name="CombinePayer" ColumnName="CombinePayer" />
+                <ScalarProperty Name="TotalRequests" ColumnName="TotalRequests" />
+                <ScalarProperty Name="idEDITranscationType" ColumnName="idEDITranscationType" />
+                <ScalarProperty Name="idRequest" ColumnName="idRequest" />
+                <ScalarProperty Name="idEDITranscation" ColumnName="idEDITranscation" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

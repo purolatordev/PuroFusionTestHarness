@@ -45,7 +45,7 @@ namespace PuroTouchEntities
         public virtual tblFileType tblFileType { get; set; }
         public virtual tblStatusCodes tblStatusCodes { get; set; }
         public virtual tblTiming tblTiming { get; set; }
-        public virtual tblEDITranscations tblEDITranscations { get; set; }
         public virtual tblTriggerMechanism tblTriggerMechanism { get; set; }
+        public virtual tblEDITranscations tblEDITranscations { get; set; }
     }
 }

@@ -517,7 +517,7 @@ namespace PuroFusionLib
             try
             {
                 qEDITrans = o.tblEDITranscations
-                            .Select(p => new dtotblEDITranscations() { idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, EDITranscationType = p.tblEDITranscationType.EDITranscationType, idEDITranscationType = p.idEDITranscationType, TotalRequests = p.TotalRequests, BatchInvoices = p.BatchInvoices, CombinePayer = p.CombinePayer, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                            .Select(p => new dtotblEDITranscations() { idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, EDITranscationType = p.tblEDITranscationType.EDITranscationType, idEDITranscationType = p.idEDITranscationType, TotalRequests = p.TotalRequests, BatchInvoices = p.BatchInvoices, CombinePayer = p.CombinePayer,SFTPFolder = p.SFTPFolder, TestEnvironment = p.TestEnvironment, TestSentMethod = p.TestSentMethod ,ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
                             .ToList();
             }
             catch (Exception ex)
@@ -537,7 +537,7 @@ namespace PuroFusionLib
             {
                 qEDITrans = o.tblEDITranscations
                             .Where(p => p.idRequest == idRequest && p.tblEDITranscationType.CategoryID == 0)
-                            .Select(p => new dtotblEDITranscations() { idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, EDITranscationType = p.tblEDITranscationType.EDITranscationType, idEDITranscationType = p.idEDITranscationType, TotalRequests = p.TotalRequests, BatchInvoices = p.BatchInvoices, CombinePayer = p.CombinePayer, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                            .Select(p => new dtotblEDITranscations() { idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, EDITranscationType = p.tblEDITranscationType.EDITranscationType, idEDITranscationType = p.idEDITranscationType, TotalRequests = p.TotalRequests, BatchInvoices = p.BatchInvoices, CombinePayer = p.CombinePayer, SFTPFolder = p.SFTPFolder, TestEnvironment = p.TestEnvironment, TestSentMethod = p.TestSentMethod, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
                             .ToList();
             }
             catch (Exception ex)
@@ -557,7 +557,7 @@ namespace PuroFusionLib
             {
                 qEDITrans = o.tblEDITranscations
                              .Where(p => p.idRequest == idRequest && p.ActiveFlag == true)
-                            .Select(p => new dtotblEDITranscations() { idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, EDITranscationType = p.tblEDITranscationType.EDITranscationType, idEDITranscationType = p.idEDITranscationType, TotalRequests = p.TotalRequests, BatchInvoices = p.BatchInvoices, CombinePayer = p.CombinePayer, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                            .Select(p => new dtotblEDITranscations() { idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, EDITranscationType = p.tblEDITranscationType.EDITranscationType, idEDITranscationType = p.idEDITranscationType, TotalRequests = p.TotalRequests, BatchInvoices = p.BatchInvoices, CombinePayer = p.CombinePayer, SFTPFolder = p.SFTPFolder, TestEnvironment = p.TestEnvironment, TestSentMethod = p.TestSentMethod, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
                             .ToList();
             }
             catch (Exception ex)
