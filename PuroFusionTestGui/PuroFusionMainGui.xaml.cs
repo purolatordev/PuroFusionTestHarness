@@ -317,6 +317,13 @@ namespace PuroFusionTestGui
                         grid.ItemsSource = ocWmsGroup.Concat<clsEDIAccount>(qEDIAccounts);
                         lbl.Content = strReportItem + " count: " + qEDIAccounts.Count();
                     }
+                    else if ("tblEDITranscations" == strReportItem)
+                    {
+                        IList<dtotblEDITranscations> qTransType = o.GetEDITransactions();
+                        ObservableCollection<dtotblEDITranscations> ocWmsGroup = new ObservableCollection<dtotblEDITranscations>();
+                        grid.ItemsSource = ocWmsGroup.Concat<dtotblEDITranscations>(qTransType);
+                        lbl.Content = strReportItem + " count: " + qTransType.Count();
+                    }
                     else if ("tblEDITranscationType" == strReportItem)
                     {
                         IList<clsEDITransactionType> qTransType = o.GetEDITransactionTypes();

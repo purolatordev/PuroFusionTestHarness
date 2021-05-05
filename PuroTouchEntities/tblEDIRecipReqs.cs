@@ -18,6 +18,7 @@ namespace PuroTouchEntities
         public int RecipReqNum { get; set; }
         public int idRequest { get; set; }
         public int idEDITranscation { get; set; }
+        public string PanelTitle { get; set; }
         public int idFileType { get; set; }
         public string X12_ISA { get; set; }
         public string X12_GS { get; set; }
@@ -44,7 +45,7 @@ namespace PuroTouchEntities
         public virtual tblFileType tblFileType { get; set; }
         public virtual tblStatusCodes tblStatusCodes { get; set; }
         public virtual tblTiming tblTiming { get; set; }
-        public virtual tblEDITranscations tblEDITranscations { get; set; }
         public virtual tblTriggerMechanism tblTriggerMechanism { get; set; }
+        public virtual tblEDITranscations tblEDITranscations { get; set; }
     }
 }
