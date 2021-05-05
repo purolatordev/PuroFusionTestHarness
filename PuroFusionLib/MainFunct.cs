@@ -18,6 +18,9 @@ namespace PuroFusionLib
     public class PuroReportingServiceClass
     {
         public string strConn;
+        public const string strRetCodeNA = "na";
+        public const string strRetCodeOK = "OK";
+
         public static class ConnString
         {
             public static string MetatData = @"metadata=res://*/PuroReportingModel.csdl|res://*/PuroReportingModel.ssdl|res://*/PuroReportingModel.msl;";
@@ -44,13 +47,13 @@ namespace PuroFusionLib
         }
         public string TestConn()
         {
-            string strRetVal = "na";
+            string strRetVal = strRetCodeNA;
             try
             {
                 PurolatorReportingEntities o = new PurolatorReportingEntities(strConn);
-                int iCount = o.PI_Customers.Count();
+                int iCount = o.tblAccounts.Count();
                 iCount++;
-                //strRetVal = OK;
+                strRetVal = strRetCodeOK;
             }
             catch (System.Exception ex)
             {

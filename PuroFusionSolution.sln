@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuroFusionLib", "PuroFusion
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PuroTouchDBdatabase", "PuroTouchDBdatabase\PuroTouchDBdatabase.sqlproj", "{E1BD03EE-849D-4840-B980-51C9C3641A71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestPuroFusionLib", "UnitTestPuroFusionLib\UnitTestPuroFusionLib.csproj", "{DAFB9EDA-2AF4-42E9-87D7-95B9B7ADA5A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{E1BD03EE-849D-4840-B980-51C9C3641A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1BD03EE-849D-4840-B980-51C9C3641A71}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E1BD03EE-849D-4840-B980-51C9C3641A71}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{DAFB9EDA-2AF4-42E9-87D7-95B9B7ADA5A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAFB9EDA-2AF4-42E9-87D7-95B9B7ADA5A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAFB9EDA-2AF4-42E9-87D7-95B9B7ADA5A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAFB9EDA-2AF4-42E9-87D7-95B9B7ADA5A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

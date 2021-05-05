@@ -116,7 +116,7 @@ namespace PuroFusionTestGui
 
             //string strConn = GetdbLocation(comboBoxMainDB);
             //PuroReportingServiceClass o2 = new PuroReportingServiceClass(PuroReportingServiceClass.ConnString.FullPatientLocal);
-            //o2.GetPuroTouchUsersLambda();
+            //o2.TestConn();
         }
         private string GetdbLocation(ComboBox cmb)
         {
