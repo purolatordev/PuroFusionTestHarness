@@ -3,6 +3,7 @@
     [RecipReqNum]           INT            NOT NULL,
     [idRequest]             INT            NOT NULL,
     [idEDITranscation]      INT            NOT NULL,
+    [PanelTitle]            VARCHAR (50)   NULL,
     [idFileType]            INT            NOT NULL,
     [X12_ISA]               VARCHAR (50)   NULL,
     [X12_GS]                VARCHAR (50)   NULL,
@@ -32,4 +33,6 @@
     CONSTRAINT [FK_idTrans_RecipReqs_Trans] FOREIGN KEY ([idEDITranscation]) REFERENCES [dbo].[tblEDITranscations] ([idEDITranscation]),
     CONSTRAINT [FK_idTrig_EDIRecipReqs_TrigMech] FOREIGN KEY ([idTriggerMechanism]) REFERENCES [dbo].[tblTriggerMechanism] ([idTriggerMechanism])
 );
+
+
 

@@ -193,5 +193,6 @@
     <Build Include="dbo\Tables\tblExceptionLogging.sql" />
     <Build Include="dbo\Tables\tblEDIRecipReqs.sql" />
     <Build Include="dbo\Tables\tblEDIAccounts.sql" />
+    <Build Include="dbo\Tables\tblDiscoveryRequest_v7.sql" />
   </ItemGroup>
 </Project>
