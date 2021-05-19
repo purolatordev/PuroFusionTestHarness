@@ -52,7 +52,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>divider2.ico</ApplicationIcon>
+    <ApplicationIcon>purofusion2.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -153,6 +153,7 @@
   <ItemGroup>
     <Resource Include="purofusion.ico" />
     <Resource Include="divider2.ico" />
+    <Resource Include="purofusion2.ico" />
     <Content Include="Telerik\HtmlAgilityPack.dll" />
     <Content Include="Telerik\Telerik.Windows.Controls.Data.dll" />
     <Content Include="Telerik\Telerik.Windows.Controls.dll" />

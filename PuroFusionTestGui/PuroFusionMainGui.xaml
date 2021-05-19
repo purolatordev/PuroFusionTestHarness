@@ -6,7 +6,7 @@
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         xmlns:local="clr-namespace:PuroFusionTestGui"
         mc:Ignorable="d"
-        Title="MainWindow"  Height="950" Width="1850" WindowState="Maximized" Icon="divider2.ico" >
+        Title="MainWindow"  Height="950" Width="1850" WindowState="Maximized" Icon="purofusion2.ico" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -637,7 +637,7 @@
                     <Grid Grid.Row="0" Grid.Column="1" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="3*" />
                         </Grid.RowDefinitions>
                         <Grid  Grid.Row="0" Grid.Column="1">
                             <Grid.RowDefinitions>
