@@ -31,7 +31,9 @@ namespace PuroFusionLib
             public static string Framework = @"MultipleActiveResultSets=True;App=EntityFramework';";
             public static string PatientLocal = @"data source=VIRTUALONE\WIN10DEV2019;initial catalog=PurolatorReporting;integrated security=True;";
             public static string PatientLocal2 = @"data source=PI-DEV-SQL;initial catalog=PurolatorReporting;integrated security=True;";
+            public static string PatientLocal3 = @"data source=DESKTOP-OHSBG8J\SQL2019;initial catalog=PurolatorReporting;integrated security=True;";
 
+            public static string FullPatientLocal3 = MetatData + SqlClient + Provider + PatientLocal3 + Framework; 
             public static string FullPatientLocal2 = MetatData + SqlClient + Provider + PatientLocal2 + Framework;
             public static string FullPatientLocal = MetatData + SqlClient + Provider + PatientLocal + Framework;
         }
@@ -287,9 +289,11 @@ namespace PuroFusionLib
             public static string Framework = @"MultipleActiveResultSets=True;App=EntityFramework';";
             public static string PatientLocal2 = @"data source=PI-DEV-SQL;initial catalog=PuroTouchDB;integrated security=True;";
             public static string PatientLocal = @"data source=VIRTUALONE\WIN10DEV2019;initial catalog=PuroTouchDB;integrated security=True;";
+            public static string PatientLocal3 = @"data source=DESKTOP-OHSBG8J\SQL2019;initial catalog=PuroTouchDB;integrated security=True;";
 
             public static string FullPatientLocal = MetatData + SqlClient + Provider + PatientLocal + Framework;
             public static string FullPatientLocal2 = MetatData + SqlClient + Provider + PatientLocal2 + Framework;
+            public static string FullPatientLocal3 = MetatData + SqlClient + Provider + PatientLocal3 + Framework;
         }
         public PuroTouchServiceClass()
         {

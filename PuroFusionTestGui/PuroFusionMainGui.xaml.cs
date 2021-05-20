@@ -109,8 +109,10 @@ namespace PuroFusionTestGui
 
             comboBoxMainDB.Items.Add(PuroReportingServiceClass.ConnString.PatientLocal);
             comboBoxMainDB.Items.Add(PuroReportingServiceClass.ConnString.PatientLocal2);
+            comboBoxMainDB.Items.Add(PuroReportingServiceClass.ConnString.PatientLocal3);
             comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal);
             comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal2);
+            comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal3);
             //PuroTouchServiceClass o = new PuroTouchServiceClass(PuroTouchServiceClass.ConnString.PatientLocal);
             //o.GetDiscoveryDiff1("tblDiscoveryRequest_", "tblDiscoveryRequest");
 
@@ -135,10 +137,14 @@ namespace PuroFusionTestGui
                 connection = PuroReportingServiceClass.ConnString.FullPatientLocal;
             else if (strDbVal == PuroReportingServiceClass.ConnString.PatientLocal2)
                 connection = PuroReportingServiceClass.ConnString.FullPatientLocal2;
+            else if (strDbVal == PuroReportingServiceClass.ConnString.PatientLocal3)
+                connection = PuroReportingServiceClass.ConnString.FullPatientLocal3;
             else if (strDbVal == PuroTouchServiceClass.ConnString.PatientLocal)
                 connection = PuroTouchServiceClass.ConnString.FullPatientLocal;
             else if (strDbVal == PuroTouchServiceClass.ConnString.PatientLocal2)
                 connection = PuroTouchServiceClass.ConnString.FullPatientLocal2;
+            else if (strDbVal == PuroTouchServiceClass.ConnString.PatientLocal3)
+                connection = PuroTouchServiceClass.ConnString.FullPatientLocal3;
             return connection;
         }
 
