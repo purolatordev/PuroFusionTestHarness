@@ -365,6 +365,13 @@ namespace PuroFusionTestGui
                         grid.ItemsSource = ocWmsGroup.Concat<Counters>(qtheCount);
                         lbl.Content = strReportItem + " count: " + qtheCount.Count();
                     }
+                    else if ("vw_ITBA" == strReportItem)
+                    {
+                        List<dtotblITBA> qITBAs = o.GetITBAs();
+                        ObservableCollection<dtotblITBA> ocWmsGroup = new ObservableCollection<dtotblITBA>();
+                        grid.ItemsSource = ocWmsGroup.Concat<dtotblITBA>(qITBAs);
+                        lbl.Content = strReportItem + " count: " + qITBAs.Count();
+                    }
                     else if ("PartialDiscoveryRequest" == strReportItem)
                     {
                         IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = o.GetPartialDiscoveryRequest();

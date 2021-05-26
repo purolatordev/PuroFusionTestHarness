@@ -487,6 +487,18 @@ namespace PuroFusionLib
             return qtblContact;
         }
         #endregion
+        #region tblITBA
+        public List<dtotblITBA> GetITBAs()
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            List<dtotblITBA> qITBAs = o.tblITBA
+                                                .Select(p => new dtotblITBA() { idITBA = p.idITBA, idEmployee = p.idEmployee, ITBAemail = p.ITBAemail, login = p.login, ReceiveNewReqEmail = p.ReceiveNewReqEmail, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                                .ToList();
+
+            return qITBAs;
+        }
+        #endregion
+
         #region tblEDIAccount
         public List<clsEDIAccount> GetEDIAccounts()
         {

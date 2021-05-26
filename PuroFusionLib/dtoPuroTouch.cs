@@ -433,4 +433,18 @@ namespace PuroFusionLib
 
         public System.Nullable<bool> ActiveFlag { get; set; }
     }
+    public class dtotblITBA
+    {
+        public int idITBA { get; set; }
+        public int idEmployee { get; set; }
+        public string ITBAemail { get; set; }
+        public Nullable<bool> ReceiveNewReqEmail { get; set; }
+        public string login { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public string CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public Nullable<bool> ActiveFlag { get; set; }
+    }
+
 }

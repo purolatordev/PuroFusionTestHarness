@@ -575,6 +575,7 @@
                                     <ComboBoxItem>tblFileType</ComboBoxItem> 
                                     <ComboBoxItem>tblCommunicationMethod</ComboBoxItem>
                                     <ComboBoxItem>tblTriggerMechanism</ComboBoxItem>
+                                    <ComboBoxItem>vw_ITBA</ComboBoxItem>
                                     <ComboBoxItem>PartialDiscoveryRequest</ComboBoxItem>
                                     <ComboBoxItem>DiscoveryRequestBusContacts</ComboBoxItem>
                                     <ComboBoxItem>DiscoveryRequestITContacts</ComboBoxItem> 
