@@ -28,7 +28,7 @@ namespace PuroFusionTestGui
 
             public ICollectionView _AppRules;
             public ICollectionView _AppUserRules;
-            public ICollectionView _CarrType;
+            public ICollectionView _SolutionType;
             public ICollectionView _Employee;
             public ICollectionView _Applications;
             public ICollectionView _Users;
@@ -50,13 +50,13 @@ namespace PuroFusionTestGui
                     OnPropertyChanged("AppUserRules");
                 }
             }
-            public ICollectionView CarrType
+            public ICollectionView SolutionType
             {
-                get { return _CarrType; }
+                get { return _SolutionType; }
                 set
                 {
-                    _CarrType = value;
-                    OnPropertyChanged("CarrType");
+                    _SolutionType = value;
+                    OnPropertyChanged("SolutionType");
                 }
             }
             public ICollectionView Employee
@@ -113,6 +113,9 @@ namespace PuroFusionTestGui
             comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal);
             comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal2);
             comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal3);
+            comboBoxTestingTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal);
+            comboBoxTestingTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal2);
+            comboBoxTestingTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal3);
             //PuroTouchServiceClass o = new PuroTouchServiceClass(PuroTouchServiceClass.ConnString.PatientLocal);
             //o.GetDiscoveryDiff1("tblDiscoveryRequest_", "tblDiscoveryRequest");
 
@@ -147,7 +150,26 @@ namespace PuroFusionTestGui
                 connection = PuroTouchServiceClass.ConnString.FullPatientLocal3;
             return connection;
         }
-
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            string extension = "xls";
+            Microsoft.Win32.SaveFileDialog dialog = new Microsoft.Win32.SaveFileDialog()
+            {
+                DefaultExt = extension,
+                Filter = String.Format("{1} files (*.{0})|*.{0}|All files (*.*)|*.*", extension, "Excel"),
+                FilterIndex = 1
+            };
+            if (dialog.ShowDialog() == true)
+            {
+                using (Stream stream = dialog.OpenFile())
+                {
+                    if (((Button)sender).Name == "TouchDBExportTopLeft")
+                        this.radGridTouchDBTopLeft.Export(stream, new GridViewExportOptions() { Format = ExportFormat.Text, ShowColumnHeaders = true, ShowColumnFooters = false, ShowGroupFooters = false, });
+                    //else if (((Button)sender).Name == "MainradGridTopRight")
+                    //    this.MainradGridTopRight.Export(stream, new GridViewExportOptions() { Format = ExportFormat.Text, ShowColumnHeaders = true, ShowColumnFooters = false, ShowGroupFooters = false, });
+                }
+            }
+        }
         private void btnMainLoadGridTopLeft_Click(object sender, RoutedEventArgs e)
         {
             string strConn = GetdbLocation(comboBoxMainDB);
@@ -514,9 +536,105 @@ namespace PuroFusionTestGui
                 }
             }
         }
+
+        private void btnTestingLoad_Click(object sender, RoutedEventArgs e)
+        {
+            string strConn = GetdbLocation(comboBoxTestingTouchDB);
+            if (strConn != "na")
+            {
+                ComboBoxItem ReportItem = ((ComboBoxItem)comboBoxTestingReportNames.SelectedItem);
+                if (ReportItem == null)
+                {
+                    lblTouchDBConnErrorMsg.Visibility = System.Windows.Visibility.Visible;
+                    lblTouchDBConnErrorMsg.Content = "Must select a report type";
+                }
+                else
+                {
+                    lblTouchDBConnErrorMsg.Visibility = System.Windows.Visibility.Collapsed;
+
+                    System.Windows.Controls.Label lbl = lblTestingTopLeftRecCount;
+                    RadGridView grid = this.radGridTestingLeftTop;
+                    #region Test which button pressed
+                    if (((Button)sender).Name == "btnTestingLoad")
+                    {
+                        grid = this.radGridTestingLeftTop;
+                        lbl = lblTestingTopLeftRecCount;
+                    }
+                    //else if (((Button)sender).Name == "btnTouchDBTopRightLoadGrid")
+                    //{
+                    //    grid = this.radGridTouchDBTopRight;
+                    //    lbl = lblTouchDBTopRightCount;
+                    //}
+                    #endregion
+                    PuroTouchServiceClass o = new PuroTouchServiceClass(strConn);
+                    String strReportItem = ReportItem.Content.ToString();
+                    if ("tblDiscoveryRequest" == strReportItem)
+                    {
+                        IList<dtotblDiscoveryRequest> qDiscoveryRequest = o.GettblDiscoveryRequestDesc();
+                        ObservableCollection<dtotblDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtotblDiscoveryRequest>();
+                        grid.ItemsSource = ocWmsGroup.Concat<dtotblDiscoveryRequest>(qDiscoveryRequest);
+                        lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
+
+                        mainGridData.SolutionType = CollectionViewSource.GetDefaultView(o.GetSolutionTypes());
+                        DataContext = mainGridData;
+                    }
+                    else if ("Error Logs" == strReportItem)
+                    {
+                        List<clsExceptionLogging> qErrors = o.GetExceptionLogging();
+                        ObservableCollection<clsExceptionLogging> ocWmsGroup = new ObservableCollection<clsExceptionLogging>();
+                        grid.ItemsSource = ocWmsGroup.Concat<clsExceptionLogging>(qErrors);
+                        lbl.Content = strReportItem + " count: " + qErrors.Count();
+                    }
+                }
+            }
+        }
+
+        private void radGridTestingLeftTop_SelectionChanged(object sender, SelectionChangeEventArgs e)
+        {
+            if (((RadGridView)sender).SelectedItem is dtotblDiscoveryRequest)
+            {
+                dtotblDiscoveryRequest rec = ((dtotblDiscoveryRequest)(((RadGridView)sender).SelectedItem));
+                string strConn = GetdbLocation(comboBoxTestingTouchDB);
+                if (strConn != "na")
+                {
+                    //PuroTouchServiceClass o = new PuroTouchServiceClass(strConn);
+                    comboBoxTestingSolutionType.SelectedIndex = rec.idSolutionType.Value-1;
+                    txtBxTestingCustomerName.Text = rec.CustomerName;
+                    txtBxTestingAddress1.Text = rec.Address;
+                    numTextingRevenue.Text = rec.ProjectedRevenue.Value.ToString("c4");
+                }
+            }
+        }
+
+        private void btnTestingInsert_Click(object sender, RoutedEventArgs e)
+        {
+            if (radGridTestingLeftTop.SelectedItem is dtotblDiscoveryRequest)
+            {
+                dtotblDiscoveryRequest rec = (dtotblDiscoveryRequest)radGridTestingLeftTop.SelectedItem;
+                string strConn = GetdbLocation(comboBoxTestingTouchDB);
+                if (strConn != "na")
+                {
+                    dtotblSolutionType SolutionType = (dtotblSolutionType)comboBoxTestingSolutionType.SelectedItem;
+                    rec.CustomerName = txtBxTestingCustomerName.Text;
+                    rec.Address = txtBxTestingAddress1.Text;
+                    rec.idSolutionType = SolutionType.idSolutionType;
+                    rec.ProjectedRevenue = System.Convert.ToDecimal(numTextingRevenue.Value);
+                    rec.idRequest = 0;
+                    PuroTouchServiceClass o = new PuroTouchServiceClass(strConn);
+                    o.InsertDiscoveryRequest(rec);
+                }
+                int er = 0;
+                er++;
+            }
+        }
+
+        private void comboBoxTestingSolutionType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dtotblSolutionType Solution = (dtotblSolutionType)((ComboBox)sender).SelectedItem;
+            int er = 0;
+            er++;
+        }
     }
-
-
 
     // https://stackoverflow.com/questions/5175629/how-to-style-grid-columndefinitions-in-wpf
     public class GridHelpers
@@ -707,13 +825,11 @@ namespace PuroFusionTestGui
             Mouse.OverrideCursor = Cursors.Wait;
         }
 
-        #region IDisposable Members
-
         public void Dispose()
         {
             Mouse.OverrideCursor = _previousCursor;
         }
     }
-    #endregion
+    
 }
 

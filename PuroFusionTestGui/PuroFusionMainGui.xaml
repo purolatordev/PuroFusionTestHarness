@@ -192,7 +192,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Log In" IsSelected="False" >
+            <TabItem Header="Testing" IsSelected="True" >
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -209,16 +209,18 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <Button Name="btnLoginLoad"  Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}"  >Load
+                            <Button Name="btnTestingLoad"  Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" Click="btnTestingLoad_Click"  >Load
                             </Button>
-                            <Label Content="Roles:"  />
-                            <ComboBox Height="23" Width="Auto" Name="comboBoxLogInRoles" ItemsSource="{Binding Path=AppRules}" DisplayMemberPath="_Role" SelectedValue="{Binding Path=id}"  SelectedIndex="0" IsSynchronizedWithCurrentItem="False"  >
+                            <Label Content="Reports:"  />
+                            <ComboBox Height="23" Name="comboBoxTestingReportNames" Width="Auto" >
+                                <ComboBoxItem>tblDiscoveryRequest</ComboBoxItem>
+                                <ComboBoxItem>Error Logs</ComboBoxItem>
                             </ComboBox>
-                            <Label Content="Users:"  />
-                            <ComboBox Height="23" Width="Auto" Name="comboBoxLogInAppRoles" ItemsSource="{Binding Path=AppUserRules}" DisplayMemberPath="_ActiveDirectory" SelectedValue="{Binding Path=id}" IsSynchronizedWithCurrentItem="False" Margin="0,0,0,0" SelectedIndex="0"  >
+                            <Label Content="DBs:"  />
+                            <ComboBox Height="23" Width="Auto" Name="comboBoxTestingTouchDB"  Margin="0,0,0,0" SelectedIndex="0"  >
                             </ComboBox>
-                            <Label Name="lblLoginReportName" Margin="15,0,0,0" Content="MyCarr Recs:" ></Label>
-                            <Button Name="btnLoginMyCarr" Content="My Carr"  Margin="15,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" >
+                            <Label Name="lblTestingTopLeftRecCount" Margin="15,0,0,0" Content="Recs:" ></Label>
+                            <Button Name="btnTestingInsert" Content="Insert"  Margin="15,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" Click="btnTestingInsert_Click" >
                             </Button>
                             <Button Name="btnLoginCompletedCarr" Content="Completed Carr"  Margin="15,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}"  >
                             </Button>
@@ -226,16 +228,16 @@
                             </Button>
 
                         </StackPanel>
-                        <telerik:RadGridView x:Name="radGridLoginMyCarr" Grid.Row="1" ToolTip=""  RowHeight="20"  ShowGroupPanel="True" Margin="0,10,0,0" >
+                        <telerik:RadGridView x:Name="radGridTestingLeftTop" Grid.Row="1" ToolTip=""  RowHeight="20"  ShowGroupPanel="True" Margin="0,10,0,0" SelectionChanged="radGridTestingLeftTop_SelectionChanged" >
                         </telerik:RadGridView>
                         <Grid Grid.Row="2" Background="#FFE4D5D5" >
-                            <Label Name="lblLoginCorpInfo" Grid.Row="0" HorizontalAlignment="Center" >Corporate Info</Label>
+                            <Label Name="lblLoginCorpInfo" Grid.Row="0" HorizontalAlignment="Center" >Customer Info</Label>
                         </Grid>
                         <StackPanel Grid.Row="3" Orientation="Horizontal" >
-                            <Label Name="lblLoginCorpLegalName"  Content="Corporate Info" ></Label>
-                            <TextBox Name="txtBxLoginCorpLegalName" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0"></TextBox>
-                            <Label Name="lblLoginCarrType"  Content="Carr Type" ></Label>
-                            <ComboBox Height="23" Width="Auto" Name="comboBoxLogInCarrType" ItemsSource="{Binding Path=CarrType}" DisplayMemberPath="Name" SelectedValue="{Binding Path=Value}" Margin="0,0,0,0"  >
+                            <Label Name="lblTestingCustomerName"  Content="Customer Name" ></Label>
+                            <TextBox Name="txtBxTestingCustomerName" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0"></TextBox>
+                            <Label Name="lblTestingSolutionType"  Content="Solution Type" ></Label>
+                            <ComboBox Height="23" Width="Auto" Name="comboBoxTestingSolutionType" ItemsSource="{Binding Path=SolutionType}" DisplayMemberPath="SolutionType" SelectedValue="{Binding Path=idSolutionType}" Margin="0,0,0,0" SelectionChanged="comboBoxTestingSolutionType_SelectionChanged"  >
                             </ComboBox>
                         </StackPanel>
                         <Border Grid.Row="4" Margin="3,3,1,1" Style="{StaticResource myBorderStyle2}" Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}">
@@ -290,10 +292,11 @@
                                             <ColumnDefinition Width="105"/>
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Column="0" Name="lblCarrAddress1">Address 1</Label>
-                                        <TextBox Grid.Column="1" Name="txtBxCarrAddress1" Width="100" Padding="0,2,0,0" Style="{StaticResource TextBxRounded1}" HorizontalAlignment="Left">
+                                        <TextBox Grid.Column="1" Name="txtBxTestingAddress1" Width="100" Padding="0,2,0,0" Style="{StaticResource TextBxRounded1}" HorizontalAlignment="Left">
                                         </TextBox>
-                                        <Label Grid.Column="2" Name="lblCarrAddress2">Address 2</Label>
-                                        <TextBox Grid.Column="3" Name="txtBxCarrAddress2" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" HorizontalAlignment="Left" ></TextBox>
+                                        <Label Grid.Column="2" Name="lblCarrAddress2">Revenue</Label>
+                                        <telerik:RadMaskedNumericInput Grid.Column="3" Name="numTextingRevenue"  Culture="en-US"  ></telerik:RadMaskedNumericInput>
+                                        <!--<TextBox Grid.Column="3" Name="txtBxCarrAddress2" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" HorizontalAlignment="Left" ></TextBox>-->
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5">
@@ -540,7 +543,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="TouchDB" IsSelected="True" Height="24" Margin="-2,-2,0.2,2" VerticalAlignment="Bottom" >
+            <TabItem Header="TouchDB" IsSelected="False" Height="24" Margin="-2,-2,0.2,2" VerticalAlignment="Bottom" >
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -592,7 +595,7 @@
                                 <ComboBox Height="23" Width="Auto" Name="comboBoxPODUser" ItemsSource="{Binding Path=Users}" DisplayMemberPath="UpdatedBy" SelectedValue="{Binding Path=UpdatedBy}" SelectedIndex="0" IsSynchronizedWithCurrentItem="False" IsEnabled="False" >
                                 </ComboBox>
                                 <CheckBox x:Name="chBxCommitReadyToCommit" Margin="10,6,0,0">Ready to Submit</CheckBox>
-                                <Button Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0"  Width="75" Height="25"  IsEnabled="False" Style="{StaticResource RoundedButton}" />
+                                <Button x:Name="TouchDBExportTopLeft" Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0"  Width="75" Height="25"  IsEnabled="True" Style="{StaticResource RoundedButton}" Click="btnExport_Click" />
                             </StackPanel>
                             <StackPanel Grid.Row="2" Orientation="Horizontal">
                                 <Label Content="database:"/>

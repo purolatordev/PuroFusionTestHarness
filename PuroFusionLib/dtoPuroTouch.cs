@@ -446,5 +446,15 @@ namespace PuroFusionLib
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<bool> ActiveFlag { get; set; }
     }
+    public partial class dtotblSolutionType
+    {
+        public int idSolutionType { get; set; }
+        public string SolutionType { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public string CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public Nullable<bool> ActiveFlag { get; set; }
+    }
 
 }

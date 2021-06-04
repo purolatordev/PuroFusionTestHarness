@@ -349,6 +349,257 @@ namespace PuroFusionLib
             }
             return qDiscoveryRequest;
         }
+        public int InsertDiscoveryRequest(dtotblDiscoveryRequest data)
+        {
+            IList<dtotblDiscoveryRequest> qDiscoveryRequest = new List<dtotblDiscoveryRequest>();
+            try
+            {
+                PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+                var q = o.tblDiscoveryRequest.Where(f => f.idRequest == data.idRequest).FirstOrDefault();
+                if (q == null)
+                {
+                    tblDiscoveryRequest rec = new tblDiscoveryRequest()
+                    {
+                        isNewRequest = data.isNewRequest,
+                        SalesRepName = data.SalesRepName,
+                        SalesRepEmail = data.SalesRepEmail,
+                        idOnboardingPhase = (int?)data.idOnboardingPhase,
+                        District = data.District,
+                        CustomerName = data.CustomerName,
+                        Address = data.Address,
+                        City = data.City,
+                        State = data.State,
+                        Zipcode = data.Zipcode,
+                        Country = data.Country,
+                        Commodity = data.Commodity,
+                        ProjectedRevenue = (decimal)data.ProjectedRevenue,
+                        CurrentSolution = data.CurrentSolution,
+                        ProposedCustoms = data.ProposedCustoms,
+                        CallDate1 = (DateTime?)data.CallDate1,
+                        CallDate2 = (DateTime?)data.CallDate2,
+                        CallDate3 = (DateTime?)data.CallDate3,
+                        CreatedBy = data.CreatedBy,
+                        CreatedOn = DateTime.Now,
+                        UpdatedOn = DateTime.Now,
+                        UpdatedBy = data.CreatedBy,
+                        ActiveFlag = data.ActiveFlag,
+                        SalesComments = data.SalesComments,
+                        idITBA = (int?)data.idITBA,
+                        idShippingChannel = (int?)data.idShippingChannel,
+                        SolutionSummary = data.SolutionSummary,
+                        CustomerWebsite = data.CustomerWebsite,
+                        Branch = data.Branch,
+                        idVendor = (int?)data.idVendor,
+                        worldpakFlag = (bool?)data.worldpakFlag,
+                        thirdpartyFlag = (bool?)data.thirdpartyFlag,
+                        customFlag = (bool?)data.customFlag,
+                        DataScrubFlag = (Boolean)data.DataScrubFlag,
+                        InvoiceType = data.InvoiceType,
+                        BilltoAccount = data.BilltoAccount,
+                        FTPUsername = data.FTPUsername,
+                        FTPPassword = data.FTPPassword,
+                        CustomsSupportedFlag = data.CustomsSupportedFlag,
+                        ElinkFlag = data.ElinkFlag,
+                        PARS = data.PARS,
+                        PASS = data.PASS,
+                        CustomsBroker = data.CustomsBroker,
+                        BrokerNumber = data.BrokerNumber,
+                        SupportUser = data.SupportUser,
+                        SupportGroup = data.SupportGroup,
+                        Office = data.Office,
+                        Group = data.Group,
+                        MigrationDate = (DateTime?)data.MigrationDate,
+                        PreMigrationSolution = data.PreMigrationSolution,
+                        PostMigrationSolution = data.PostMigrationSolution,
+                        ControlBranch = data.ControlBranch,
+                        ContractNumber = data.ContractNumber,
+                        ContractStartDate = (DateTime?)data.ContractStartDate,
+                        ContractEndDate = (DateTime?)data.ContractEndDate,
+                        ContractCurrency = data.ContractCurrency,
+                        PaymentTerms = data.PaymentTerms,
+                        CloseReason = data.CloseReason,
+                        CRR = data.CRR,
+                        EDICustomizedFlag = data.EDICustomizedFlag,
+                        StrategicFlag = data.StrategicFlag,
+                        ReturnsAcctNbr = data.ReturnsAcctNbr,
+                        ReturnsAddress = data.ReturnsAddress,
+                        ReturnsCity = data.ReturnsCity,
+                        ReturnsState = data.ReturnsState,
+                        ReturnsZip = data.ReturnsZip,
+                        ReturnsCountry = data.ReturnsCountry,
+                        ReturnsDestroyFlag = (bool?)data.ReturnsDestroyFlag,
+                        ReturnsCreateLabelFlag = (bool?)data.ReturnsCreateLabelFlag,
+                        WPKSandboxUsername = data.WPKSandboxUsername,
+                        WPKSandboxPwd = data.WPKSandboxPwd,
+                        WPKProdUsername = data.WPKProdUsername,
+                        WPKProdPwd = data.WPKProdPwd,
+                        WPKCustomExportFlag = (bool?)data.WPKCustomExportFlag,
+                        WPKGhostScanFlag = (bool?)data.WPKGhostScanFlag,
+                        WPKEastWestSplitFlag = (bool?)data.WPKEastWestSplitFlag,
+                        WPKAddressUploadFlag = (bool?)data.WPKAddressUploadFlag,
+                        WPKProductUploadFlag = (bool?)data.WPKProductUploadFlag,
+                        WPKEquipmentFlag = (bool?)data.WPKEquipmentFlag,
+                        WPKDataEntryMethod = data.WPKDataEntryMethod,
+                        EWSelectBy = data.EWSelectBy,
+                        EWSortCodeFlag = (bool?)data.EWSortCodeFlag,
+                        EWEastSortCode = data.EWEastSortCode,
+                        EWWestSortCode = data.EWWestSortCode,
+                        EWSepCloseoutFlag = data.EWSepCloseoutFlag,
+                        EWSepPUFlag = data.EWSepPUFlag,
+                        EWSortDetails = data.EWSortDetails,
+                        EWMissortDetails = data.EWMissortDetails,
+                        CurrentGoLive = (DateTime?)data.CurrentGoLive,
+                        PhaseChangeDate = (DateTime?)data.PhaseChangeDate,
+                        idRequestType = (int?)data.idRequestType,
+                        idSolutionType = (int)data.idSolutionType,
+                        CurrentlyShippingFlag = (bool?)data.CurrentlyShippingFlag,
+                        idShippingVendor = (int?)data.idShippingVendor,
+                        OtherVendorName = data.OtherVendorName,
+                        idBroker = (int?)data.idBroker,
+                        OtherBrokerName = data.OtherBrokerName,
+                        idVendorType = (int?)data.idVendorType,
+                        FreightAuditor = (bool?)data.FreightAuditor,
+                        Route = data.Route,
+                        EDIDetails = data.EDIDetails,
+                        idEDISpecialist = (int?)data.idEDISpecialist,
+                        idBillingSpecialist = (int?)data.idBillingSpecialist,
+                        idCollectionSpecialist = (int?)data.idCollectionSpecialist,
+                        AuditorPortal = (bool?)data.AuditorPortal,
+                        AuditorURL = data.AuditorURL,
+                        AuditorUserName = data.AuditorUserName,
+                        AuditorPassword = data.AuditorPassword,
+                        EDITargetGoLive = (DateTime?)data.EDITargetGoLive,
+                        EDICurrentGoLive = (DateTime?)data.EDICurrentGoLive,
+                        EDIActualGoLive = (DateTime?)data.EDIActualGoLive,
+                        idEDIOnboardingPhase = (int)data.idEDIOnboardingPhase
+
+                    };
+                    o.tblDiscoveryRequest.Add(rec);
+                }
+                else
+                {
+                    q.isNewRequest = data.isNewRequest;
+                    q.SalesRepName = data.SalesRepName;
+                    q.SalesRepEmail = data.SalesRepEmail;
+                    q.idOnboardingPhase = (int?)data.idOnboardingPhase;
+                    q.District = data.District;
+                    q.CustomerName = data.CustomerName;
+                    q.Address = data.Address;
+                    q.City = data.City;
+                    q.State = data.State;
+                    q.Zipcode = data.Zipcode;
+                    q.Country = data.Country;
+                    q.Commodity = data.Commodity;
+                    q.ProjectedRevenue = (decimal)data.ProjectedRevenue;
+                    q.CurrentSolution = data.CurrentSolution;
+                    q.ProposedCustoms = data.ProposedCustoms;
+                    q.CallDate1 = (DateTime?)data.CallDate1;
+                    q.CallDate2 = (DateTime?)data.CallDate2;
+                    q.CallDate3 = (DateTime?)data.CallDate3;
+                    q.CreatedBy = data.CreatedBy;
+                    q.CreatedOn = (DateTime?)data.CreatedOn;
+                    q.ActiveFlag = data.ActiveFlag;
+                    q.SalesComments = data.SalesComments;
+                    q.idITBA = (int?)data.idITBA;
+                    q.idShippingChannel = (int?)data.idShippingChannel;
+                    q.SolutionSummary = data.SolutionSummary;
+                    q.CustomerWebsite = data.CustomerWebsite;
+                    q.Branch = data.Branch;
+                    q.idVendor = (int?)data.idVendor;
+                    q.worldpakFlag = (bool?)data.worldpakFlag;
+                    q.thirdpartyFlag = (bool?)data.thirdpartyFlag;
+                    q.customFlag = (bool?)data.customFlag;
+                    q.DataScrubFlag = (Boolean)data.DataScrubFlag;
+                    q.InvoiceType = data.InvoiceType;
+                    q.BilltoAccount = data.BilltoAccount;
+                    q.FTPUsername = data.FTPUsername;
+                    q.FTPPassword = data.FTPPassword;
+                    q.CustomsSupportedFlag = data.CustomsSupportedFlag;
+                    q.ElinkFlag = data.ElinkFlag;
+                    q.PARS = data.PARS;
+                    q.PASS = data.PASS;
+                    q.CustomsBroker = data.CustomsBroker;
+                    q.BrokerNumber = data.BrokerNumber;
+                    q.SupportUser = data.SupportUser;
+                    q.SupportGroup = data.SupportGroup;
+                    q.Office = data.Office;
+                    q.Group = data.Group;
+                    q.MigrationDate = (DateTime?)data.MigrationDate;
+                    q.PreMigrationSolution = data.PreMigrationSolution;
+                    q.PostMigrationSolution = data.PostMigrationSolution;
+                    q.ControlBranch = data.ControlBranch;
+                    q.ContractNumber = data.ContractNumber;
+                    q.ContractStartDate = (DateTime?)data.ContractStartDate;
+                    q.ContractEndDate = (DateTime?)data.ContractEndDate;
+                    q.ContractCurrency = data.ContractCurrency;
+                    q.PaymentTerms = data.PaymentTerms;
+                    q.CloseReason = data.CloseReason;
+                    q.CRR = data.CRR;
+                    q.EDICustomizedFlag = data.EDICustomizedFlag;
+                    q.StrategicFlag = data.StrategicFlag;
+                    q.ReturnsAcctNbr = data.ReturnsAcctNbr;
+                    q.ReturnsAddress = data.ReturnsAddress;
+                    q.ReturnsCity = data.ReturnsCity;
+                    q.ReturnsState = data.ReturnsState;
+                    q.ReturnsZip = data.ReturnsZip;
+                    q.ReturnsCountry = data.ReturnsCountry;
+                    q.ReturnsDestroyFlag = (bool?)data.ReturnsDestroyFlag;
+                    q.ReturnsCreateLabelFlag = (bool?)data.ReturnsCreateLabelFlag;
+                    q.WPKSandboxUsername = data.WPKSandboxUsername;
+                    q.WPKSandboxPwd = data.WPKSandboxPwd;
+                    q.WPKProdUsername = data.WPKProdUsername;
+                    q.WPKProdPwd = data.WPKProdPwd;
+                    q.WPKCustomExportFlag = (bool?)data.WPKCustomExportFlag;
+                    q.WPKGhostScanFlag = (bool?)data.WPKGhostScanFlag;
+                    q.WPKEastWestSplitFlag = (bool?)data.WPKEastWestSplitFlag;
+                    q.WPKAddressUploadFlag = (bool?)data.WPKAddressUploadFlag;
+                    q.WPKProductUploadFlag = (bool?)data.WPKProductUploadFlag;
+                    q.WPKEquipmentFlag = (bool?)data.WPKEquipmentFlag;
+                    q.WPKDataEntryMethod = data.WPKDataEntryMethod;
+                    q.EWSelectBy = data.EWSelectBy;
+                    q.EWSortCodeFlag = (bool?)data.EWSortCodeFlag;
+                    q.EWEastSortCode = data.EWEastSortCode;
+                    q.EWWestSortCode = data.EWWestSortCode;
+                    q.EWSepCloseoutFlag = data.EWSepCloseoutFlag;
+                    q.EWSepPUFlag = data.EWSepPUFlag;
+                    q.EWSortDetails = data.EWSortDetails;
+                    q.EWMissortDetails = data.EWMissortDetails;
+                    q.CurrentGoLive = (DateTime?)data.CurrentGoLive;
+                    q.PhaseChangeDate = (DateTime?)data.PhaseChangeDate;
+                    q.idRequestType = (int?)data.idRequestType;
+                    q.idSolutionType = (int)data.idSolutionType;
+                    q.CurrentlyShippingFlag = (bool?)data.CurrentlyShippingFlag;
+                    q.idShippingVendor = (int?)data.idShippingVendor;
+                    q.OtherVendorName = data.OtherVendorName;
+                    q.idBroker = (int?)data.idBroker;
+                    q.OtherBrokerName = data.OtherBrokerName;
+                    q.idVendorType = (int?)data.idVendorType;
+                    q.FreightAuditor = (bool?)data.FreightAuditor;
+                    q.Route = data.Route;
+                    q.EDIDetails = data.EDIDetails;
+                    q.idEDISpecialist = (int?)data.idEDISpecialist;
+                    q.idBillingSpecialist = (int?)data.idBillingSpecialist;
+                    q.idCollectionSpecialist = (int?)data.idCollectionSpecialist;
+                    q.AuditorPortal = (bool?)data.AuditorPortal;
+                    q.AuditorURL = data.AuditorURL;
+                    q.AuditorUserName = data.AuditorUserName;
+                    q.AuditorPassword = data.AuditorPassword;
+                    q.EDITargetGoLive = (DateTime?)data.EDITargetGoLive;
+                    q.EDICurrentGoLive = (DateTime?)data.EDICurrentGoLive;
+                    q.EDIActualGoLive = (DateTime?)data.EDIActualGoLive;
+                    q.idEDIOnboardingPhase = (int)data.idEDIOnboardingPhase;
+                }
+                o.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                long lnewID = 0;
+                clsExceptionLogging error = new clsExceptionLogging() { Method = GetCurrentMethod(), ExceptionMsg = ex.Message.ToString(), ExceptionType = ex.GetType().Name.ToString(), ExceptionSource = ex.StackTrace.ToString(), CreatedOn = DateTime.Now };
+                InsertErrorIntoDB(error, out lnewID);
+            }
+            return 0;
+        }
+
         public IList<dtotblDiscoveryRequest> GettblDiscoveryRequestDesc()
         {
             IList<dtotblDiscoveryRequest> qDiscoveryRequest = new List<dtotblDiscoveryRequest>();
@@ -356,7 +607,7 @@ namespace PuroFusionLib
             {
                 PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
                 qDiscoveryRequest = o.tblDiscoveryRequest
-                 .Select(p => new dtotblDiscoveryRequest() { idRequest = p.idRequest, isNewRequest = p.isNewRequest, SalesRepName = p.SalesRepName, SalesRepEmail = p.SalesRepEmail, idOnboardingPhase = p.idOnboardingPhase, District = p.District, CustomerName = p.CustomerName, Address = p.Address, City = p.City, State = p.State, Zipcode = p.Zipcode, Country = p.Country, Commodity = p.Commodity, ProjectedRevenue = p.ProjectedRevenue, CurrentSolution = p.CurrentSolution, ProposedCustoms = p.ProposedCustoms, CallDate1 = p.CallDate1, CallDate2 = p.CallDate2, CallDate3 = p.CallDate3, SalesComments = p.SalesComments, idITBA = p.idITBA, idShippingChannel = p.idShippingChannel, TargetGoLive = p.TargetGoLive, ActualGoLive = p.ActualGoLive, SolutionSummary = p.SolutionSummary, CustomerWebsite = p.CustomerWebsite, Branch = p.Branch, idVendor = p.idVendor, worldpakFlag = p.worldpakFlag, thirdpartyFlag = p.thirdpartyFlag, customFlag = p.customFlag, InvoiceType = p.InvoiceType, BilltoAccount = p.BilltoAccount, FTPUsername = p.FTPUsername, FTPPassword = p.FTPPassword, CustomsSupportedFlag = p.CustomsSupportedFlag, ElinkFlag = p.ElinkFlag, PARS = p.PARS, PASS = p.PASS, CustomsBroker = p.CustomsBroker, SupportUser = p.SupportUser, SupportGroup = p.SupportGroup, Office = p.Office, Group = p.Group, MigrationDate = p.MigrationDate, PreMigrationSolution = p.PreMigrationSolution, PostMigrationSolution = p.PostMigrationSolution, ControlBranch = p.ControlBranch, ContractNumber = p.ContractNumber, ContractStartDate = p.ContractStartDate, ContractEndDate = p.ContractEndDate, ContractCurrency = p.ContractCurrency, PaymentTerms = p.PaymentTerms, CloseReason = p.CloseReason, CRR = p.CRR, BrokerNumber = p.BrokerNumber, DataScrubFlag = p.DataScrubFlag, EDICustomizedFlag = p.EDICustomizedFlag, StrategicFlag = p.StrategicFlag, ReturnsAcctNbr = p.ReturnsAcctNbr, ReturnsAddress = p.ReturnsAddress, ReturnsCity = p.ReturnsCity, ReturnsState = p.ReturnsState, ReturnsZip = p.ReturnsZip, ReturnsCountry = p.ReturnsCountry, ReturnsDestroyFlag = p.ReturnsDestroyFlag, ReturnsCreateLabelFlag = p.ReturnsCreateLabelFlag, WPKSandboxUsername = p.WPKSandboxUsername, WPKSandboxPwd = p.WPKSandboxPwd, WPKProdUsername = p.WPKProdUsername, WPKProdPwd = p.WPKProdPwd, WPKCustomExportFlag = p.WPKCustomExportFlag, WPKGhostScanFlag = p.WPKGhostScanFlag, WPKEastWestSplitFlag = p.WPKEastWestSplitFlag, WPKAddressUploadFlag = p.WPKAddressUploadFlag, WPKProductUploadFlag = p.WPKProductUploadFlag, WPKDataEntryMethod = p.WPKDataEntryMethod, WPKEquipmentFlag = p.WPKEquipmentFlag, EWSelectBy = p.EWSelectBy, EWSortCodeFlag = p.EWSortCodeFlag, EWEastSortCode = p.EWEastSortCode, EWWestSortCode = p.EWWestSortCode, EWSepCloseoutFlag = p.EWSepCloseoutFlag, EWSepPUFlag = p.EWSepPUFlag, EWSortDetails = p.EWSortDetails, EWMissortDetails = p.EWMissortDetails, CurrentGoLive = p.CurrentGoLive, PhaseChangeDate = p.PhaseChangeDate, idRequestType = p.idRequestType, CurrentlyShippingFlag = p.CurrentlyShippingFlag, idShippingVendor = p.idShippingVendor, OtherVendorName = p.OtherVendorName, idBroker = p.idBroker, OtherBrokerName = p.OtherBrokerName, idVendorType = p.idVendorType, Route = p.Route, idSolutionType = p.idSolutionType, FreightAuditor = p.FreightAuditor, EDIDetails = p.EDIDetails.Remove(10), idEDISpecialist = p.idEDISpecialist, idBillingSpecialist = p.idBillingSpecialist, idCollectionSpecialist = p.idCollectionSpecialist, AuditorPortal = p.AuditorPortal, AuditorURL = p.AuditorURL, AuditorUserName = p.AuditorUserName, AuditorPassword = p.AuditorPassword, EDITargetGoLive = p.EDITargetGoLive, EDICurrentGoLive = p.EDICurrentGoLive, EDIActualGoLive = p.EDIActualGoLive, idEDIOnboardingPhase = p.idEDIOnboardingPhase, ActiveFlag = p.ActiveFlag, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                 .Select(p => new dtotblDiscoveryRequest() { idRequest = p.idRequest, isNewRequest = p.isNewRequest, SalesRepName = p.SalesRepName, SalesRepEmail = p.SalesRepEmail, idOnboardingPhase = p.idOnboardingPhase, District = p.District, CustomerName = p.CustomerName, Address = p.Address, City = p.City, State = p.State, Zipcode = p.Zipcode, Country = p.Country, Commodity = p.Commodity, ProjectedRevenue = p.ProjectedRevenue, CurrentSolution = p.CurrentSolution, ProposedCustoms = p.ProposedCustoms, CallDate1 = p.CallDate1, CallDate2 = p.CallDate2, CallDate3 = p.CallDate3, SalesComments = p.SalesComments, idITBA = p.idITBA, idShippingChannel = p.idShippingChannel, TargetGoLive = p.TargetGoLive, ActualGoLive = p.ActualGoLive, SolutionSummary = p.SolutionSummary, CustomerWebsite = p.CustomerWebsite, Branch = p.Branch, idVendor = p.idVendor, worldpakFlag = p.worldpakFlag, thirdpartyFlag = p.thirdpartyFlag, customFlag = p.customFlag, InvoiceType = p.InvoiceType, BilltoAccount = p.BilltoAccount, FTPUsername = p.FTPUsername, FTPPassword = p.FTPPassword, CustomsSupportedFlag = p.CustomsSupportedFlag, ElinkFlag = p.ElinkFlag, PARS = p.PARS, PASS = p.PASS, CustomsBroker = p.CustomsBroker, SupportUser = p.SupportUser, SupportGroup = p.SupportGroup, Office = p.Office, Group = p.Group, MigrationDate = p.MigrationDate, PreMigrationSolution = p.PreMigrationSolution, PostMigrationSolution = p.PostMigrationSolution, ControlBranch = p.ControlBranch, ContractNumber = p.ContractNumber, ContractStartDate = p.ContractStartDate, ContractEndDate = p.ContractEndDate, ContractCurrency = p.ContractCurrency, PaymentTerms = p.PaymentTerms, CloseReason = p.CloseReason, CRR = p.CRR, BrokerNumber = p.BrokerNumber, DataScrubFlag = p.DataScrubFlag, EDICustomizedFlag = p.EDICustomizedFlag, StrategicFlag = p.StrategicFlag, ReturnsAcctNbr = p.ReturnsAcctNbr, ReturnsAddress = p.ReturnsAddress, ReturnsCity = p.ReturnsCity, ReturnsState = p.ReturnsState, ReturnsZip = p.ReturnsZip, ReturnsCountry = p.ReturnsCountry, ReturnsDestroyFlag = p.ReturnsDestroyFlag, ReturnsCreateLabelFlag = p.ReturnsCreateLabelFlag, WPKSandboxUsername = p.WPKSandboxUsername, WPKSandboxPwd = p.WPKSandboxPwd, WPKProdUsername = p.WPKProdUsername, WPKProdPwd = p.WPKProdPwd, WPKCustomExportFlag = p.WPKCustomExportFlag, WPKGhostScanFlag = p.WPKGhostScanFlag, WPKEastWestSplitFlag = p.WPKEastWestSplitFlag, WPKAddressUploadFlag = p.WPKAddressUploadFlag, WPKProductUploadFlag = p.WPKProductUploadFlag, WPKDataEntryMethod = p.WPKDataEntryMethod, WPKEquipmentFlag = p.WPKEquipmentFlag, EWSelectBy = p.EWSelectBy, EWSortCodeFlag = p.EWSortCodeFlag, EWEastSortCode = p.EWEastSortCode, EWWestSortCode = p.EWWestSortCode, EWSepCloseoutFlag = p.EWSepCloseoutFlag, EWSepPUFlag = p.EWSepPUFlag, EWSortDetails = p.EWSortDetails, EWMissortDetails = p.EWMissortDetails, CurrentGoLive = p.CurrentGoLive, PhaseChangeDate = p.PhaseChangeDate, idRequestType = p.idRequestType, CurrentlyShippingFlag = p.CurrentlyShippingFlag, idShippingVendor = p.idShippingVendor, OtherVendorName = p.OtherVendorName, idBroker = p.idBroker, OtherBrokerName = p.OtherBrokerName, idVendorType = p.idVendorType, Route = p.Route, idSolutionType = p.idSolutionType, FreightAuditor = p.FreightAuditor, EDIDetails = p.EDIDetails.Remove(10), idEDISpecialist = p.idEDISpecialist, idBillingSpecialist = p.idBillingSpecialist, idCollectionSpecialist = p.idCollectionSpecialist, AuditorPortal = p.AuditorPortal, AuditorURL = p.AuditorURL, AuditorUserName = p.AuditorUserName, AuditorPassword = p.AuditorPassword, EDITargetGoLive = p.EDITargetGoLive, EDICurrentGoLive = p.EDICurrentGoLive, EDIActualGoLive = p.EDIActualGoLive, idEDIOnboardingPhase = p.idEDIOnboardingPhase, ActiveFlag = p.ActiveFlag, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn, CreatedBy = p.CreatedBy,CreatedOn = p.CreatedOn })
                  .OrderByDescending(p=>p.idRequest)
                  .ToList();
             }
@@ -643,6 +894,29 @@ namespace PuroFusionLib
             return qEDIRecipReqs;
         }
         #endregion
+        #region tblSolutionType
+        public List<dtotblSolutionType> GetSolutionTypes()
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            List<dtotblSolutionType> qSolutionTypes = o.tblSolutionType
+                    .Where(p => p.ActiveFlag == true)
+                    .Select(p => new dtotblSolutionType() { idSolutionType = p.idSolutionType, SolutionType = p.SolutionType, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                    .ToList();
+
+            return qSolutionTypes;
+        }
+        public dtotblSolutionType GetSolutionType(int idSolutionType)
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            dtotblSolutionType qSolutionType = o.tblSolutionType
+                    .Where(p => p.ActiveFlag == true && p.idSolutionType == idSolutionType)
+                    .Select(p => new dtotblSolutionType() { idSolutionType = p.idSolutionType, SolutionType = p.SolutionType, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                    .FirstOrDefault();
+
+            return qSolutionType;
+        }
+        #endregion
+
         #region tblFileType
         public List<ClsFileType> GetFileTypes()
         {
