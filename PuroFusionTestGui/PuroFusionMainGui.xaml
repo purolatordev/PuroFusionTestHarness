@@ -212,7 +212,7 @@
                             <Button Name="btnTestingLoad"  Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" Click="btnTestingLoad_Click"  >Load
                             </Button>
                             <Label Content="Reports:"  />
-                            <ComboBox Height="23" Name="comboBoxTestingReportNames" Width="Auto" >
+                            <ComboBox Height="23" Name="comboBoxTestingReportNames" SelectedIndex="0" Width="Auto" >
                                 <ComboBoxItem>tblDiscoveryRequest</ComboBoxItem>
                                 <ComboBoxItem>Error Logs</ComboBoxItem>
                             </ComboBox>
@@ -289,14 +289,15 @@
                                             <ColumnDefinition Width="75"/>
                                             <ColumnDefinition Width="125"/>
                                             <ColumnDefinition Width="95"/>
-                                            <ColumnDefinition Width="105"/>
+                                            <ColumnDefinition Width="135"/>
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Column="0" Name="lblCarrAddress1">Address 1</Label>
                                         <TextBox Grid.Column="1" Name="txtBxTestingAddress1" Width="100" Padding="0,2,0,0" Style="{StaticResource TextBxRounded1}" HorizontalAlignment="Left">
                                         </TextBox>
                                         <Label Grid.Column="2" Name="lblCarrAddress2">Revenue</Label>
-                                        <telerik:RadMaskedNumericInput Grid.Column="3" Name="numTextingRevenue"  Culture="en-US"  ></telerik:RadMaskedNumericInput>
-                                        <!--<TextBox Grid.Column="3" Name="txtBxCarrAddress2" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0" HorizontalAlignment="Left" ></TextBox>-->
+                                        <telerik:RadMaskedCurrencyInput Grid.Column="3" Name="numTextingRevenue"  Culture="en-US" Mask="#9.2" 
+                                                                       AutoFillNumberGroupSeparators="True" AllowSkipPlaceholders="True" AutoFillZeros="False" SelectionOnFocus="Unchanged" IsClearButtonVisible="True" SpinMode="None" TextMode="MaskedText"
+                                                                       UpdateValueEvent="PropertyChanged"></telerik:RadMaskedCurrencyInput>
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5">
