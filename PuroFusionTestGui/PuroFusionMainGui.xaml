@@ -239,6 +239,8 @@
                             <Label Name="lblTestingSolutionType"  Content="Solution Type" ></Label>
                             <ComboBox Height="23" Width="Auto" Name="comboBoxTestingSolutionType" ItemsSource="{Binding Path=SolutionType}" DisplayMemberPath="SolutionType" SelectedValue="{Binding Path=idSolutionType}" Margin="0,0,0,0" SelectionChanged="comboBoxTestingSolutionType_SelectionChanged"  >
                             </ComboBox>
+                            <Button Name="btnTestingCreateInsert" Content="Create Insert"  Margin="15,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" Click="btnTestingCreateInsert_Click" >
+                            </Button>
                         </StackPanel>
                         <Border Grid.Row="4" Margin="3,3,1,1" Style="{StaticResource myBorderStyle2}" Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}">
                             <Grid >
@@ -289,7 +291,9 @@
                                             <ColumnDefinition Width="75"/>
                                             <ColumnDefinition Width="125"/>
                                             <ColumnDefinition Width="95"/>
-                                            <ColumnDefinition Width="135"/>
+                                            <ColumnDefinition Width="125"/>
+                                            <ColumnDefinition Width="75"/>
+                                            <ColumnDefinition Width="450"/>
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Column="0" Name="lblCarrAddress1">Address 1</Label>
                                         <TextBox Grid.Column="1" Name="txtBxTestingAddress1" Width="100" Padding="0,2,0,0" Style="{StaticResource TextBxRounded1}" HorizontalAlignment="Left">
@@ -298,6 +302,8 @@
                                         <telerik:RadMaskedCurrencyInput Grid.Column="3" Name="numTextingRevenue"  Culture="en-US" Mask="#9.2" 
                                                                        AutoFillNumberGroupSeparators="True" AllowSkipPlaceholders="True" AutoFillZeros="False" SelectionOnFocus="Unchanged" IsClearButtonVisible="True" SpinMode="None" TextMode="MaskedText"
                                                                        UpdateValueEvent="PropertyChanged"></telerik:RadMaskedCurrencyInput>
+                                        <Label Grid.Column="4" Name="lblCarrStateAbbrev2" HorizontalAlignment="Right">Value</Label>
+                                        <TextBox Grid.Column="5" Name="txtBxTestingInsertSql" Style="{StaticResource TextBxRounded1}" Width="450" Padding="0,2,0,0"></TextBox>
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5">
