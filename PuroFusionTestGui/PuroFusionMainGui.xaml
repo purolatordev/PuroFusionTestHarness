@@ -537,7 +537,7 @@
                                 </StackPanel>
                                 <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5">
                                     <Label>Value</Label>
-                                    <TextBox x:Name="txtBoxTestingValue2" MaxLines="5" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Width="1050"></TextBox>
+                                    <TextBox x:Name="txtBoxTestingValue2" MaxLines="20" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Width="1050"></TextBox>
                                 </StackPanel>
                             </Grid>
                         </Border>
