@@ -126,133 +126,13 @@ namespace PuroFusionTestGui
             comboBoxTestingTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal);
             comboBoxTestingTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal2);
             comboBoxTestingTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal3);
-            
+
+            DiscoveryReqUpdates insert = new DiscoveryReqUpdates(){ FirstName = "Pinky", LastName = "Jones", idRequestType = 2, dt1 = DateTime.Now };
+            string sql = GetStringToInsertIntoDb2(insert);
+            int er = 0;
+            er++;
             //string sql = @"INSERT[dbo].[tblDiscoveryRequest]( [isNewRequest], [SalesRepName], [SalesRepEmail], [idOnboardingPhase], [District], [CustomerName], [Address], [City], [State], [Zipcode], [Country], [Commodity], [ProjectedRevenue], [CurrentSolution], [ProposedCustoms], [CallDate1], [CallDate2], [CallDate3], [UpdatedBy], [UpdatedOn], [CreatedBy], [CreatedOn], [ActiveFlag], [SalesComments], [idITBA], [idShippingChannel], [TargetGoLive], [ActualGoLive], [SolutionSummary], [CustomerWebsite], [Branch], [idVendor], [worldpakFlag], [thirdpartyFlag], [customFlag], [InvoiceType], [BilltoAccount], [FTPUsername], [FTPPassword], [CustomsSupportedFlag], [ElinkFlag], [PARS], [PASS], [CustomsBroker], [SupportUser], [SupportGroup], [Office], [Group], [MigrationDate], [PreMigrationSolution], [PostMigrationSolution], [ControlBranch], [ContractNumber], [ContractStartDate], [ContractEndDate], [ContractCurrency], [PaymentTerms], [CloseReason], [CRR], [BrokerNumber], [DataScrubFlag], [EDICustomizedFlag], [StrategicFlag], [ReturnsAcctNbr], [ReturnsAddress], [ReturnsCity], [ReturnsState], [ReturnsZip], [ReturnsCountry], [ReturnsDestroyFlag], [ReturnsCreateLabelFlag], [WPKSandboxUsername], [WPKSandboxPwd], [WPKProdUsername], [WPKProdPwd], [WPKCustomExportFlag], [WPKGhostScanFlag], [WPKEastWestSplitFlag], [WPKAddressUploadFlag], [WPKProductUploadFlag], [WPKDataEntryMethod], [WPKEquipmentFlag], [EWSelectBy], [EWSortCodeFlag], [EWEastSortCode], [EWWestSortCode], [EWSepCloseoutFlag], [EWSepPUFlag], [EWSortDetails], [EWMissortDetails], [CurrentGoLive], [PhaseChangeDate], [idRequestType], [CurrentlyShippingFlag], [idShippingVendor], [OtherVendorName], [idBroker], [OtherBrokerName], [idVendorType], [Route], [idSolutionType], [FreightAuditor], [EDIDetails], [idEDISpecialist], [idBillingSpecialist], [idCollectionSpecialist], [AuditorPortal], [AuditorURL], [AuditorUserName], [AuditorPassword], [EDITargetGoLive], [EDICurrentGoLive], [EDIActualGoLive], [idEDIOnboardingPhase]) " +
             //                "VALUES(1, N'Joe Murphy', N'Joe.Murphy@purolator.com', 8, N'EASTERN', N'Both Test 2', N'Both Address 2', N'BAY SHORE', N'NY', N'12 street', N'United States', N'Cheese', 9999.2200, N'sadgfagv', N'PARS & PASS', NULL, NULL, NULL, N'scott.cardinale', CAST(N'2021-06-04T15:15:28.137' AS DateTime), N'scott.cardinale', CAST(N'2021-06-04T15:15:28.137' AS DateTime), 1, N'aswdefw', NULL, NULL, NULL, NULL, N'', N'', N'BUF', NULL, 0, 0, 0, N'', N'', N'', N'', 1, 0, N'                         ', N'                         ', N'                                                                                                                                                                                                                                                               ', N'', N'', N'', N'', NULL, N'', N'', N'', N'', NULL, NULL, N'', N'', NULL, N'', N'', 0, 0, 1, N'', N'', N'', N'', N'', N'', 0, 0, N'', N'', N'', N'', 0, 0, 0, 0, 0, N'', 0, N'', 0, N'', N'', 0, 0, N'', N'', NULL, CAST(N'2021-04-23T15:04:57.723' AS DateTime), 3, 1, NULL, N'', 4, N'', NULL, N'', 3, 1, N'', NULL, NULL, NULL, 0, N'', N'', N'', NULL, NULL, NULL, 0)";
-
-            //PuroTouchServiceClass o = new PuroTouchServiceClass(PuroTouchServiceClass.ConnString.FullPatientLocal);
-            //dtotblDiscoveryRequest rec = o.GetDiscoveryRequestByID(7024);
-            //IList<Props> pList = new List<Props>();
-            //bool bFirstField = true;
-            //foreach (PropertyInfo prop in rec.GetType().GetProperties())
-            //{
-            //    string strValue = prop.GetValue(rec, null) != null ? prop.GetValue(rec, null).ToString():"null";
-            //    string s = prop.Name;
-            //    string strPropType = prop.PropertyType.FullName;
-            //    Props pp = new Props() { Name = prop.Name, PropName1 = prop.PropertyType.Name, Value = strValue };
-            //    if (bFirstField)
-            //    {
-            //        bFirstField = false;
-            //        pp.Show = false;
-            //    }
-            //    else if (strPropType.Contains("Nullable`1"))
-            //    {
-            //        pp.IsNull = true;
-            //        pp.PropName1 = "Nullable";
-            //        if (strPropType.Contains("Boolean"))
-            //            pp.PropName2 = "Boolean";
-            //        else if (strPropType.Contains("Int32"))
-            //            pp.PropName2 = "Int32";
-            //        else if (strPropType.Contains("Decimal"))
-            //            pp.PropName2 = "Decimal";
-            //        else if (strPropType.Contains("DateTime"))
-            //        {
-            //            if (!strValue.Contains("null"))
-            //            {
-            //                DateTime tm = (DateTime)prop.GetValue(rec, null);
-            //                string format = "yyyy-MM-ddTHH:mm:ss.fff";
-            //                pp.Value = tm.ToString(format);
-            //                int er1 = 0;
-            //                er1++;
-            //                //pp.Value = prop.GetValue(rec, null).ToString("yyyy-MM-dd HH:mm:ss");
-            //            }
-            //            pp.PropName2 = "DateTime";
-            //        }
-            //        else
-            //        {
-            //            pp.PropName2 = strPropType;
-            //        }
-            //    }
-            //    else if (strPropType.Contains("Boolean"))
-            //        pp.PropName1 = "Boolean";
-            //    else if (strPropType.Contains("String"))
-            //        pp.PropName1 = "String";
-            //    else if (strPropType.Contains("Int32"))
-            //        pp.PropName1 = "Int32";
-            //    else if (strPropType.Contains("Decimal"))
-            //        pp.PropName1 = "Decimal";
-            //    else if (strPropType.Contains("DateTime"))
-            //        pp.PropName1 = "DateTime";
-            //    else
-            //    {
-            //        pp.PropName1 = strPropType;
-            //    }
-                
-            //    pList.Add(pp);
-            //}
-            //StringBuilder sbFields = new StringBuilder();
-            //StringBuilder sbValue = new StringBuilder();
-            //int iCount = 1;
-            //foreach (Props p in pList)
-            //{
-            //    if (p.Show && iCount < pList.Count)
-            //        sbFields.Append("[" + p.Name + "],");
-            //    else if(p.Show)
-            //        sbFields.Append("[" + p.Name + "]");
-
-            //    if(p.Show)
-            //    {
-            //        if(p.PropName1.Contains("Nullable"))
-            //        {
-            //            if (p.PropName2.Contains("Boolean"))
-            //            {
-            //                if (!p.Value.Contains("null"))
-            //                {
-            //                    bool bVal = false;
-            //                    Boolean.TryParse(p.Value, out bVal);
-            //                    sbValue.Append(Convert.ToInt32(bVal).ToString() + ",");
-            //                }
-            //                else
-            //                    sbValue.Append(p.Value + ",");
-            //            }
-            //            else if (p.PropName2.Contains("Int32"))
-            //                sbValue.Append(p.Value + ",");
-            //            else if (p.PropName2.Contains("Decimal"))
-            //                sbValue.Append(p.Value + ",");
-            //            else if (p.PropName2.Contains("String"))
-            //                sbValue.Append("N'"+ p.Value + "',");
-            //            else if (p.PropName2.Contains("DateTime"))
-            //            {
-            //                if (!p.Value.Contains("null"))
-            //                    sbValue.Append("CAST(N'" + p.Value + "' AS DateTime),");
-            //                else
-            //                    sbValue.Append(p.Value + ",");
-            //            }
-            //            else
-            //                sbValue.Append(p.Value + ",");
-            //        }
-            //        else
-            //        {
-            //            if (p.PropName1.Contains("Boolean"))
-            //            {
-            //                bool bVal = false;
-            //                Boolean.TryParse(p.Value, out bVal);
-            //                sbValue.Append(Convert.ToInt32(bVal).ToString() + ",");
-            //            }
-            //            else if (p.PropName1.Contains("DateTime"))
-            //                sbValue.Append("CAST(N'" + p.Value + "' AS DateTime),");
-            //            else if (p.PropName1.Contains("String"))
-            //                sbValue.Append("N'" + p.Value + "',");
-            //            else
-            //                sbValue.Append(p.Value + ",");
-            //        }
-            //    }
-            //    iCount++;
-            //}
-            //string newValues = sbValue.ToString().Remove(sbValue.Length - 1, 1);
-            //string strFullSql = @"INSERT [dbo].[tblDiscoveryRequest] (" + sbFields.ToString() + ") VALUES (" + newValues + ")"; 
-            //int er = 0;
-            //er++;
 
             //o.strConn = PuroTouchServiceClass.ConnString.PatientLocal;
             //PuroTouchServiceClass o = new PuroTouchServiceClass(PuroTouchServiceClass.ConnString.PatientLocal);
@@ -261,6 +141,28 @@ namespace PuroFusionTestGui
             //string strConn = GetdbLocation(comboBoxMainDB);
             //PuroReportingServiceClass o2 = new PuroReportingServiceClass(PuroReportingServiceClass.ConnString.FullPatientLocal);
             //o2.TestConn();
+        }
+        public class DiscoveryReqUpdates
+        {
+            private string format1 = "yyyy-MM-ddTHH:mm:ss.fff";
+            public int idRequestType { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public DateTime dt1 { get; set; }
+
+            //public string Value { get; set; }
+            public string GetUserFirstLastPeriod() 
+            {
+                return FirstName + "." + LastName;
+            }
+            public string GetUserFirstLastSpace()
+            {
+                return FirstName + " " + LastName;
+            }
+            public string GetDate1()
+            {
+                return"CAST(N'" + dt1.ToString(format1) + "' AS DateTime)";
+            }
         }
         public class Props
         {
@@ -949,6 +851,22 @@ namespace PuroFusionTestGui
             string strFullSql = @"INSERT [dbo].[tblDiscoveryRequest] (" + sbFields.ToString() + ") VALUES (" + newValues + ")";
             return strFullSql;
         }
+        private string GetStringToInsertIntoDb2(DiscoveryReqUpdates insert)
+        {
+            string sql = @"INSERT[dbo].[tblDiscoveryRequest]([isNewRequest],[SalesRepName],[SalesRepEmail],[idOnboardingPhase],[District],[CustomerName],[Address],[City],[State],[Zipcode],[Country],[Commodity],[ProjectedRevenue],[CurrentSolution],[ProposedCustoms],[CallDate1],[CallDate2],[CallDate3],[UpdatedBy],[UpdatedOn],[CreatedBy],[CreatedOn],[ActiveFlag],[SalesComments],[idITBA],[idShippingChannel],[TargetGoLive],[ActualGoLive],[SolutionSummary],[CustomerWebsite],[Branch],[idVendor],[worldpakFlag],[thirdpartyFlag],[customFlag],[InvoiceType],[BilltoAccount],[FTPUsername],[FTPPassword],[CustomsSupportedFlag],[ElinkFlag],[PARS],[PASS],[CustomsBroker],[SupportUser],[SupportGroup],[Office],[Group],[MigrationDate],[PreMigrationSolution],[PostMigrationSolution],[ControlBranch],[ContractNumber],[ContractStartDate],[ContractEndDate],[ContractCurrency],[PaymentTerms],[CloseReason],[CRR],[BrokerNumber],[DataScrubFlag],[EDICustomizedFlag],[StrategicFlag],[ReturnsAcctNbr],[ReturnsAddress],[ReturnsCity],[ReturnsState],[ReturnsZip],[ReturnsCountry],[ReturnsDestroyFlag],[ReturnsCreateLabelFlag],[WPKSandboxUsername],[WPKSandboxPwd],[WPKProdUsername],[WPKProdPwd],[WPKCustomExportFlag],[WPKGhostScanFlag],[WPKEastWestSplitFlag],[WPKAddressUploadFlag],[WPKProductUploadFlag],[WPKDataEntryMethod],[WPKEquipmentFlag],[EWSelectBy],[EWSortCodeFlag],[EWEastSortCode],[EWWestSortCode],[EWSepCloseoutFlag],[EWSepPUFlag],[EWSortDetails],[EWMissortDetails],[CurrentGoLive],[PhaseChangeDate],[idRequestType],[CurrentlyShippingFlag],[idShippingVendor],[OtherVendorName],[idBroker],[OtherBrokerName],[idVendorType],[Route],[idSolutionType],[FreightAuditor],[EDIDetails],[idEDISpecialist],[idBillingSpecialist],[idCollectionSpecialist],[AuditorPortal],[AuditorURL],[AuditorUserName],[AuditorPassword],[EDITargetGoLive],[EDICurrentGoLive],[EDIActualGoLive],[idEDIOnboardingPhase])" +
+                " VALUES(1," +
+                " N'" + insert.GetUserFirstLastSpace() + "', N'" + insert.GetUserFirstLastPeriod() + "@purolator.com'," +
+                " 5, N'EASTERN', N'Both Test 5', N'Address Both Test 5', N'BAY SHORE', N'NY', N'11706', N'US', N'Cheese', 1929.2900, N'A', N'TBD', null, null, null, N'Scott.Cardinale'," +
+                insert.GetDate1() +
+                ", N'" + insert.GetUserFirstLastPeriod() + "'," +
+                insert.GetDate1() + "," +
+                " 1, N'', 7, 5, null, null, N'Customer is shipping courier out of florida.', N'www.cheese.com', N'EWR', null, 0, 0, 0, N'', N'', N'', N'', 1, 0, N' ', N'  ', N' ', N'', N'', N'', N'', null, N'', N'', N'', N'', null, null, N'', N'', N'null', N'', N'', 0, 0, 0, N'', N'', N'', N'', N'', N'', 0, 0, N'', N'', N'', N'', 0, 0, 0, 0, 0, N'', 0, N'', 0, N'', N'', 0, 0, N'', N'', CAST(N'2021-04-15T00:00:00.000' AS DateTime), CAST(N'2021-03-29T15:11:42.843' AS DateTime)," +
+                insert.idRequestType.ToString() +
+                ", 1, null, N'', null, N'', 3, N'Via EWR', 3, 1, N'Just anoth', 1, 2, 2, 1, N'url 1', N'user name 1', N'Password 1', CAST(N'2021-03-01T00:00:00.000' AS DateTime), CAST(N'2021-03-26T00:00:00.000' AS DateTime), CAST(N'2021-03-25T00:00:00.000' AS DateTime), 1)";
+
+            return sql;
+        }
+
     }
 
     // https://stackoverflow.com/questions/5175629/how-to-style-grid-columndefinitions-in-wpf
