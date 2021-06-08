@@ -235,9 +235,9 @@
                         </Grid>
                         <StackPanel Grid.Row="3" Orientation="Horizontal" >
                             <Label Name="lblTestingCustomerName"  Content="Customer Name" ></Label>
-                            <TextBox Name="txtBxTestingCustomerName" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0"></TextBox>
+                            <TextBox Name="txtBxTestingCustomerName" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0"></TextBox>
                             <Label Name="lblTestingSolutionType"  Content="Solution Type" ></Label>
-                            <ComboBox Height="23" Width="Auto" Name="comboBoxTestingSolutionType" ItemsSource="{Binding Path=SolutionType}" DisplayMemberPath="SolutionType" SelectedValue="{Binding Path=idSolutionType}" Margin="0,0,0,0" SelectionChanged="comboBoxTestingSolutionType_SelectionChanged"  >
+                            <ComboBox Height="23" Width="Auto" Name="comboBoxTestingSolutionType" ItemsSource="{Binding Path=SolutionType}" DisplayMemberPath="SolutionType" SelectedValue="{Binding Path=idSolutionType}"  Margin="0,0,0,0" SelectionChanged="comboBoxTestingSolutionType_SelectionChanged"  >
                             </ComboBox>
                             <Button Name="btnTestingCreateInsert" Content="Create Insert"  Margin="15,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" Click="btnTestingCreateInsert_Click" >
                             </Button>
@@ -295,13 +295,11 @@
                                             <ColumnDefinition Width="75"/>
                                             <ColumnDefinition Width="450"/>
                                         </Grid.ColumnDefinitions>
-                                        <Label Grid.Column="0" Name="lblCarrAddress1">Address 1</Label>
+                                        <Label Grid.Column="0" Name="lblCarrAddress1">Old</Label>
                                         <TextBox Grid.Column="1" Name="txtBxTestingAddress1" Width="100" Padding="0,2,0,0" Style="{StaticResource TextBxRounded1}" HorizontalAlignment="Left">
                                         </TextBox>
-                                        <Label Grid.Column="2" Name="lblCarrAddress2">Revenue</Label>
-                                        <telerik:RadMaskedCurrencyInput Grid.Column="3" Name="numTextingRevenue"  Culture="en-US" Mask="#9.2" 
-                                                                       AutoFillNumberGroupSeparators="True" AllowSkipPlaceholders="True" AutoFillZeros="False" SelectionOnFocus="Unchanged" IsClearButtonVisible="True" SpinMode="None" TextMode="MaskedText"
-                                                                       UpdateValueEvent="PropertyChanged"></telerik:RadMaskedCurrencyInput>
+                                        <Label Grid.Column="2" Name="lblCarrAddress2">Old</Label>
+                                        <telerik:RadMaskedCurrencyInput Grid.Column="3" Name="numTextingRevenue22"></telerik:RadMaskedCurrencyInput>
                                         <Label Grid.Column="4" Name="lblCarrStateAbbrev2" HorizontalAlignment="Right">Value</Label>
                                         <TextBox Grid.Column="5" Name="txtBxTestingInsertSql" Style="{StaticResource TextBxRounded1}" Width="450" Padding="0,2,0,0"></TextBox>
                                     </Grid>
@@ -358,23 +356,26 @@
                                 </Grid.RowDefinitions>
                                 <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
                                     <Grid local:GridHelpers.ColumnCount="8" local:GridHelpers.StarColumns="{StaticResource grid7Cols}">
-                                        <Label Grid.Column="0"  Name="lblLoginContractBegin">Contract Begin</Label>
-                                        <TextBox Grid.Column="1" Name="txtBxLoginContractBegin" Style="{StaticResource TextBxRounded1}"  Width="150" Padding="0,2,0,0">
-                                        </TextBox>
-                                        <Label Grid.Column="2" Name="lblLoginContractExpire">Contract Expire</Label>
-                                        <TextBox Grid.Column="3" Name="txtBxLoginContractExpire" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>
-                                        <Label Grid.Column="4" Name="lblLoginContractNum">Contract Num</Label>
-                                        <TextBox Grid.Column="5" Name="txtBxLoginContractNum" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0"></TextBox>
-                                        <CheckBox Grid.Column="6" x:Name="chBxLoginMultiYear" Margin="8,5,0,0" Content="Multi-Year"></CheckBox>
+                                        <Label Grid.Column="0"  Name="lblTestingCreated">Created</Label>
+                                        <telerik:RadDateTimePicker Grid.Column="1" Name="radDateTimeTestingCreated"  Width="150" Padding="0,2,0,0">
+                                        </telerik:RadDateTimePicker>
+                                        <Label Grid.Column="2" Name="lblLoginContractExpire">Updated</Label>
+                                        <telerik:RadDateTimePicker Grid.Column="3" Name="radDateTimeTestingUpdated" Width="150" Padding="0,2,0,0" ></telerik:RadDateTimePicker>
+                                        <CheckBox Grid.Column="4" x:Name="chBxTestingNow" Margin="8,5,0,0" Content="Now" IsChecked="True"></CheckBox>
+                                        <Label Grid.Column="5" Name="lblLoginContractNum">Contract Num</Label>
+                                        <TextBox Grid.Column="6" Name="txtBxLoginContractNum" Style="{StaticResource TextBxRounded1}" Width="100" Padding="0,2,0,0"></TextBox>
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
                                     <Grid local:GridHelpers.ColumnCount="6" local:GridHelpers.StarColumns="{StaticResource grid7Cols}">
-                                        <Label Grid.Column="0"  Name="lblLoginCurrency">Currency</Label>
-                                        <TextBox Grid.Column="1" Name="txtBxLoginCurrency" Style="{StaticResource TextBxRounded1}"  Width="150" Padding="0,2,0,0">
+                                        <Label Grid.Column="0"  Name="lblLoginCurrency">Address</Label>
+                                        <TextBox Grid.Column="1" Name="txtBxTestingAddress2" Style="{StaticResource TextBxRounded1}"  Width="150" Padding="0,2,0,0">
                                         </TextBox>
-                                        <Label Grid.Column="2" Name="lblLoginProgramType">ProgramType</Label>
-                                        <TextBox Grid.Column="3" Name="txtBxLoginProgramType" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>
+                                        <Label Grid.Column="2" Name="lblLoginProgramType">Revenue</Label>
+                                        <!--<TextBox Grid.Column="3" Name="txtBxLoginProgramType" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>-->
+                                        <telerik:RadMaskedCurrencyInput Grid.Column="3" Name="numTextingRevenue" Width="150" Culture="en-US" Mask="#9.2" 
+                                                                       AutoFillNumberGroupSeparators="True" AllowSkipPlaceholders="True" AutoFillZeros="False" SelectionOnFocus="Unchanged" IsClearButtonVisible="True" SpinMode="None" TextMode="MaskedText"
+                                                                       UpdateValueEvent="PropertyChanged"></telerik:RadMaskedCurrencyInput>
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
@@ -535,15 +536,8 @@
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5">
-                                    <Grid local:GridHelpers.ColumnCount="6" local:GridHelpers.StarColumns="{StaticResource grid7BCols}" >
-                                        <Label Grid.Column="0"  Name="lblLoginInvoiceType">Invoice Type</Label>
-                                        <TextBox Grid.Column="1" Name="txtBxLoginInvoiceType" ToolTip="car.Service.idBillingOption" Style="{StaticResource TextBxRounded1}"  Width="100" Padding="0,2,0,0">
-                                        </TextBox>
-                                        <Label Grid.Column="2" Name="lblLoginAPContactEmail">AP Contact Email</Label>
-                                        <TextBox Grid.Column="3" Name="txtBxLoginAPContactEmail" ToolTip="car.Service.APEmail"  Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>
-                                        <!--<Label Grid.Column="4" Name="lblLoginCompletedBy" HorizontalAlignment="Right">Price Completed By</Label>
-                                        <TextBox Grid.Column="5" Name="txtBxLoginPriceCompletedBy" Style="{StaticResource TextBxRounded1}" Width="150" Padding="0,2,0,0" ></TextBox>-->
-                                    </Grid>
+                                    <Label>Value</Label>
+                                    <TextBox x:Name="txtBoxTestingValue2" MaxLines="5" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Width="1050"></TextBox>
                                 </StackPanel>
                             </Grid>
                         </Border>

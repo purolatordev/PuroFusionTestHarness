@@ -29,6 +29,7 @@ namespace PuroFusionTestGui
             public ICollectionView _AppRules;
             public ICollectionView _AppUserRules;
             public ICollectionView _SolutionType;
+            public string _selectedItem;
             public ICollectionView _Employee;
             public ICollectionView _Applications;
             public ICollectionView _Users;
@@ -57,6 +58,15 @@ namespace PuroFusionTestGui
                 {
                     _SolutionType = value;
                     OnPropertyChanged("SolutionType");
+                }
+            }
+            public string SelectedItem
+            {
+                get { return _selectedItem; }
+                set
+                {
+                    _selectedItem = value;
+                    OnPropertyChanged("SelectedItem");
                 }
             }
             public ICollectionView Employee
@@ -720,6 +730,7 @@ namespace PuroFusionTestGui
                         lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
 
                         mainGridData.SolutionType = CollectionViewSource.GetDefaultView(o.GetSolutionTypes());
+                        mainGridData.SelectedItem = "Both Ship Sys & EDI";
                         DataContext = mainGridData;
                     }
                     else if ("Error Logs" == strReportItem)
@@ -742,11 +753,13 @@ namespace PuroFusionTestGui
                 if (strConn != "na")
                 {
                     //PuroTouchServiceClass o = new PuroTouchServiceClass(strConn);
-                    comboBoxTestingSolutionType.SelectedIndex = rec.idSolutionType.Value-1;
+                    //dtotblSolutionType sol = o.GetSolutionType(rec.idSolutionType.Value);
+                    comboBoxTestingSolutionType.SelectedIndex = rec.idSolutionType.Value - 1;
                     txtBxTestingCustomerName.Text = rec.CustomerName;
-                    txtBxTestingAddress1.Text = rec.Address;
-                    //numTextingRevenue.Text = rec.ProjectedRevenue.Value.ToString("c4");
+                    txtBxTestingAddress2.Text = rec.Address;
                     numTextingRevenue.Value = rec.ProjectedRevenue.Value;
+                    radDateTimeTestingCreated.DateTimeText = rec.CreatedOn.ToString();
+                    radDateTimeTestingUpdated.DateTimeText = rec.UpdatedOn.ToString();
                 }
             }
         }
@@ -761,10 +774,11 @@ namespace PuroFusionTestGui
                 {
                     dtotblSolutionType SolutionType = (dtotblSolutionType)comboBoxTestingSolutionType.SelectedItem;
                     rec.CustomerName = txtBxTestingCustomerName.Text;
-                    rec.Address = txtBxTestingAddress1.Text;
+                    rec.Address = txtBxTestingAddress2.Text;
                     rec.idSolutionType = SolutionType.idSolutionType;
                     rec.ProjectedRevenue = System.Convert.ToDecimal(numTextingRevenue.Value);
                     rec.idRequest = 0;
+                    rec.CreatedOn = radDateTimeTestingCreated.SelectedValue;
                     PuroTouchServiceClass o = new PuroTouchServiceClass(strConn);
                     o.InsertDiscoveryRequest(rec);
                 }
@@ -789,13 +803,22 @@ namespace PuroFusionTestGui
                 //string strConn = GetdbLocation(comboBoxTestingTouchDB);
                 dtotblSolutionType SolutionType = (dtotblSolutionType)comboBoxTestingSolutionType.SelectedItem;
                 rec.CustomerName = txtBxTestingCustomerName.Text;
-                rec.Address = txtBxTestingAddress1.Text;
+                rec.Address = txtBxTestingAddress2.Text;
                 rec.idSolutionType = SolutionType.idSolutionType;
                 rec.ProjectedRevenue = System.Convert.ToDecimal(numTextingRevenue.Value);
                 rec.idRequest = 0;
-                rec.CreatedOn = DateTime.Now;
-                rec.UpdatedOn = DateTime.Now;
+                if( chBxTestingNow.IsChecked.Value)
+                {
+                    rec.CreatedOn = DateTime.Now;
+                    rec.UpdatedOn = DateTime.Now;
+                }
+                else
+                {
+                    rec.CreatedOn = radDateTimeTestingCreated.SelectedValue;
+                    rec.UpdatedOn = radDateTimeTestingUpdated.SelectedValue;
+                }
                 string strFullSql = GetStringToInsertIntoDb(rec);
+                txtBoxTestingValue2.Text = strFullSql;
                 txtBxTestingInsertSql.Text = strFullSql;
                 //PuroTouchServiceClass o = new PuroTouchServiceClass(strConn);
                 //o.InsertTestDiscoveryRequestRecord(strFullSql);
