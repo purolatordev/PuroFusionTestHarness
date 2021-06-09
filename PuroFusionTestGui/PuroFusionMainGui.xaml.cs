@@ -626,7 +626,7 @@ namespace PuroFusionTestGui
                     String strReportItem = ReportItem.Content.ToString();
                     if ("tblDiscoveryRequest" == strReportItem)
                     {
-                        IList<dtotblDiscoveryRequest> qDiscoveryRequest = o.GettblDiscoveryRequestDesc();
+                        IList<dtotblDiscoveryRequest> qDiscoveryRequest = o.GettblDiscoveryRequestDesc2();
                         ObservableCollection<dtotblDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtotblDiscoveryRequest>();
                         grid.ItemsSource = ocWmsGroup.Concat<dtotblDiscoveryRequest>(qDiscoveryRequest);
                         lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
