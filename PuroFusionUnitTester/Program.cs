@@ -35,14 +35,10 @@ namespace ConsoleApp1
                 idRequestType = 1,
                 dt1 = DateTime.Now,
             };
-            string sql = GetStringToInsertIntoDb2(insert);
-            PuroTouchServiceClass o = new PuroTouchServiceClass(PuroTouchServiceClass.ConnString.PatientLocal3);
-            o.InsertTestDiscoveryRequestRecord(sql);
+            //string sql = GetStringToInsertIntoDb2(insert);
+            //PuroTouchServiceClass o = new PuroTouchServiceClass(PuroTouchServiceClass.ConnString.PatientLocal3);
+            //o.InsertTestDiscoveryRequestRecord(sql);
 
-            //Guru99Demo g = new Guru99Demo();
-            //g.startBrowser();
-            //g.test();
-            //FirstExample();
             driver = new ChromeDriver(@"C:\Software\Selenium");
             SalesShipping(insert);
             driver.Quit();
