@@ -20,26 +20,17 @@ namespace ConsoleApp1
         const int SOLUTION_TYPE_SHIPPING = 1;
         const int SOLUTION_TYPE_EDI = 2;
         const int SOLUTION_TYPE_BOTH = 3;
-        static IList<string> TestNames = new List<string>() { "Sales Shipping Test 1", "Sales Shipping Test 2", "Sales Shipping Test 3", "Sales Shipping Test 4", "Sales Shipping Test 5", "Sales Shipping Test 7" };
-        public enum TestOrder:int  {SalesShippingTest1=0, SalesShippingTest2, SalesShippingTest3, SalesShippingTest4, SalesShippingTest5, SalesShippingTest7 };
-        //public enum AllTabs  { "Customer Info" = 0, "Contact Info", SalesShippingTest3, SalesShippingTest4, SalesShippingTest5, SalesShippingTest7 };
 
         static void Main(string[] args)
         {
-            //int iOrd = 0;
-            //IList<Tabs> tab5 = new List<Tabs>() {
-            //            new Tabs(AllTabs.CustomerInfo,iOrd++)     { Enabled = true },
-            //            new Tabs(AllTabs.ContactInfo,iOrd++)      { Enabled = true },
-            //            new Tabs(AllTabs.CurrentSolution,iOrd++)  { Enabled = true, Selected = true},
-            //            new Tabs(AllTabs.ShippingServices,iOrd++) { Enabled = true }
-            //        };
-            IList<TestParams> ToTest = new List<TestParams>() { 
-                new TestParams() {Name = TestNames[(int)TestOrder.SalesShippingTest1], Enabled = false, Step = 1.0},
-                new TestParams() {Name = TestNames[(int)TestOrder.SalesShippingTest2], Enabled = false, Step = 2.0},
-                new TestParams() {Name = TestNames[(int)TestOrder.SalesShippingTest3], Enabled = false, Step = 3.0},
-                new TestParams() {Name = TestNames[(int)TestOrder.SalesShippingTest4], Enabled = false, Step = 4.0},
-                new TestParams() {Name = TestNames[(int)TestOrder.SalesShippingTest5], Enabled = false, Step = 5.0},
-                new TestParams() {Name = TestNames[(int)TestOrder.SalesShippingTest7], Enabled = true, Step = 7.0}
+            IList<TestParams> ToTest = new List<TestParams>() {
+                new TestParams( AllTest.SalesShippingTest1) { Enabled = false,  Step = 1.0},
+                new TestParams( AllTest.SalesShippingTest2) { Enabled = false,  Step = 2.0},
+                new TestParams( AllTest.SalesShippingTest3) { Enabled = false, Step = 3.0},
+                new TestParams( AllTest.SalesShippingTest4) { Enabled = false, Step = 4.0},
+                new TestParams( AllTest.SalesShippingTest5) { Enabled = false,  Step = 5.0},
+                new TestParams( AllTest.SalesShippingTest7) { Enabled = false,  Step = 7.0},
+                new TestParams( AllTest.SalesEDITest1)      { Enabled = true,  Step = 1.0}
             };
             DiscoveryReqUpdates insert = new DiscoveryReqUpdates()
             {
@@ -62,131 +53,78 @@ namespace ConsoleApp1
             driver = new ChromeDriver(@"C:\Software\Selenium");
 
             bool bLoggedIn = false;
-            TestOrder CurrentTest = TestOrder.SalesShippingTest1;
-
-            #region Sales Shipping Test 1
-            if (ToTest[(int)CurrentTest].Enabled)
+            bool bTesting = false;
+            AllTest CurrentTest = AllTest.SalesShippingTest1;
+            foreach (TestParams t in ToTest)
             {
-                //Console.WriteLine("Press Space Bar to start " + ToTest[(int)CurrentTest].Name);
-                //Console.ReadKey();
-                if (SalesShippingTest1(insert, ToTest[(int)CurrentTest].Step))
+                if(t.Enabled)
                 {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passedl!");
-                    bLoggedIn = true;
+                    bool bPass = false;
+                    switch(t.Tests)
+                    {
+                        case AllTest.SalesShippingTest1:
+                            if (!bTesting)
+                                bPass = SalesShippingTest1(insert, ToTest[(int)CurrentTest].Step);
+                            else
+                                bPass = true;
+                            break;
+                        case AllTest.SalesShippingTest2:
+                            if (!bTesting)
+                                bPass = SalesShippingTest2(insert, bLoggedIn, ToTest[(int)CurrentTest].Step);
+                            else
+                                bPass = true;
+                            break;
+                        case AllTest.SalesShippingTest3:
+                            if (!bTesting)
+                                bPass = SalesShippingTest3(insert, bLoggedIn, ToTest[(int)CurrentTest].Step);
+                            else
+                                bPass = true;
+                            break;
+                        case AllTest.SalesShippingTest4:
+                            if (!bTesting)
+                                bPass = SalesShippingTest4(insert, bLoggedIn, ToTest[(int)CurrentTest].Step);
+                            else
+                                bPass = true;
+                            break;
+                        case AllTest.SalesShippingTest5:
+                            if (!bTesting)
+                                bPass = SalesShippingTest5(insert, bLoggedIn, ToTest[(int)CurrentTest].Step);
+                            else
+                                bPass = true;
+                            break;
+                        case AllTest.SalesShippingTest7:
+                            if (!bTesting)
+                                bPass = SalesShippingTest7(insert, bLoggedIn, ToTest[(int)CurrentTest].Step);
+                            else
+                                bPass = true;
+                            break;
+                        case AllTest.SalesEDITest1:
+                            if (!bTesting)
+                                bPass = SalesEDITest1(insert, bLoggedIn, ToTest[(int)CurrentTest].Step);
+                            else
+                                bPass = true;
+                            break;
+                        default:
+                            break;
+                    }
+                    //Console.WriteLine("Press Space Bar to start " + ToTest[(int)CurrentTest].Name);
+                    //Console.ReadKey();
+                    if (bPass)
+                    {
+                        Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passedl!");
+                        bLoggedIn = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine(ToTest[(int)CurrentTest].Name + " Failed!");
+                    }
+                    //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
+                    //Console.ReadKey();
                 }
-                else
-                {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " Failed!");
-                }
-                //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
-                //Console.ReadKey();
+                CurrentTest = CurrentTest.Next();
+                //curTest = curTest.Next();
             }
-            #endregion
-
-            CurrentTest = CurrentTest.Next();
-
-            #region Sales Shipping Test 2
-            if (ToTest[(int)CurrentTest].Enabled)
-            {
-                //Console.WriteLine("Press Space Bar to start " + ToTest[(int)CurrentTest].Name);
-                //Console.ReadKey();
-                if ( SalesShippingTest2(insert, bLoggedIn, ToTest[(int)CurrentTest].Step) )
-                {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
-                }
-                else
-                {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " failed!");
-                }
-                bLoggedIn = true;
-                //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
-                //Console.ReadKey();
-            }
-            #endregion
-
-            CurrentTest = CurrentTest.Next();
-
-            #region Sales Shipping Test 3
-            if (ToTest[(int)CurrentTest].Enabled)
-            {
-                //Console.WriteLine("Press Space Bar to start " + ToTest[(int)CurrentTest].Name);
-                //Console.ReadKey();
-                if (SalesShippingTest3(insert, bLoggedIn, ToTest[(int)CurrentTest].Step))
-                {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
-                }
-                else
-                {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " failed!");
-                }
-                bLoggedIn = true;
-                //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
-                //Console.ReadKey();
-            }
-            #endregion
-
-            CurrentTest = CurrentTest.Next();
-
-            #region Sales Shipping Test 4
-            if (ToTest[(int)CurrentTest].Enabled)
-            {
-                //Console.WriteLine("Press Space Bar to start " + ToTest[(int)CurrentTest].Name);
-                //Console.ReadKey();
-                if (SalesShippingTest4(insert, bLoggedIn, ToTest[(int)CurrentTest].Step))
-                {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
-                }
-                else
-                {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " failed!");
-                }
-                bLoggedIn = true;
-                //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
-                //Console.ReadKey();
-            }
-            #endregion
-
-            CurrentTest = CurrentTest.Next();
-
-            #region Sales Shipping Test 5
-            if (ToTest[(int)CurrentTest].Enabled)
-            {
-                //Console.WriteLine("Press Space Bar to start " + ToTest[(int)CurrentTest].Name);
-                //Console.ReadKey();
-                if (SalesShippingTest5(insert, bLoggedIn, ToTest[(int)CurrentTest].Step))
-                {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
-                }
-                else
-                {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " failed!");
-                }
-                bLoggedIn = true;
-                //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
-                //Console.ReadKey();
-            }
-            #endregion
-
-            CurrentTest = CurrentTest.Next();
-
-            #region Sales Shipping Test 7
-            if (ToTest[(int)CurrentTest].Enabled)
-            {
-                //Console.WriteLine("Press Space Bar to start " + ToTest[(int)CurrentTest].Name);
-                //Console.ReadKey();
-                if (SalesShippingTest7(insert, bLoggedIn, ToTest[(int)CurrentTest].Step))
-                {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
-                }
-                else
-                {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " failed!");
-                }
-                bLoggedIn = true;
-                //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
-                //Console.ReadKey();
-            }
-            #endregion
+  
 
             driver.Quit();
             Environment.Exit(0);
@@ -1154,6 +1092,202 @@ namespace ConsoleApp1
             }
             return bRetVal;
         }
+        static bool SalesEDITest1(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
+        {
+            bool bRetVal = false;
+            string strCurrentStep = String.Format("Step {0:0.0#}", Step);
+            try
+            {
+                if (!bLoggedIn)
+                {
+                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+                    driver.Navigate().GoToUrl("http://localhost/PuroFusion/");
+
+                    //Check we don't have other windows open already
+                    Assert.AreEqual(driver.WindowHandles.Count, 1);
+
+                    var q = driver.FindElement(By.TagName("input"));
+                    var inputUserName = driver.FindElement(By.Id("ctl00_MainContentLogin_txtUser"));
+                    var UserName = inputUserName.GetAttribute("value");
+
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_txtPasswrd")).SendKeys("your value");
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_btnSubmit_input")).Click();
+
+                    string strLogInType = driver.FindElement(By.Id("LoginStatus1_lblRole")).Text;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_btnNewRequest_input")).Click();
+                
+                SelectDropdown("ctl00_MainContent_rddlDistrict");
+                Thread.Sleep(5000);
+                SelectDropdown("ctl00_MainContent_rddlBranch");
+                Thread.Sleep(4000);
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+                SelectDropdown("ctl00_MainContent_rddlSolutionType", SOLUTION_TYPE_EDI-1);
+                Thread.Sleep(4000);
+
+                // Check tab strip for the tabs that are available
+                string strRadTabID = "ctl00_MainContent_RadTabStrip1";
+                IList<Tabs> tab2 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)  }
+                };
+                if (GetRadTabStrip(strRadTabID, tab2))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                SelectDropdown("ctl00_MainContent_rddlRequestType");
+                Thread.Sleep(4000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerName")).SendKeys(insert.CustomerName);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerAddress")).SendKeys(insert.Address1);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerZip")).SendKeys(insert.Zip);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerCity")).SendKeys(insert.City);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerState")).SendKeys(insert.State);
+                driver.FindElement(By.Id("ctl00_MainContent_txtRevenue")).SendKeys(insert.Revenue.ToString());
+                driver.FindElement(By.Id("ctl00_MainContent_txtCommodity")).SendKeys("Shoes");
+
+                // Click the Next Button Step 1.1
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
+
+                IList<Tabs> tab = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                };
+                if (GetRadTabStrip(strRadTabID, tab))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
+                SelectDropdown("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_radListContactType");
+                Thread.Sleep(5000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactName2")).SendKeys("Contact Test Name");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactTitle2")).SendKeys("Test Title");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactEmail2")).SendKeys("test.person@test.com");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactPhone2")).SendKeys("516 725-8956");
+
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                Thread.Sleep(5000);
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
+                Thread.Sleep(5000);
+
+                //Step 1.2
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Displayed)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Click();
+                Thread.Sleep(5000);
+
+                // Step 1.3
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                IList<Tabs> tab3 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                };
+                if (GetRadTabStrip(strRadTabID, tab3))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab3")).Click();
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+                IList<Tabs> tab4 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)    , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices),Enabled = true, Selected = true }
+                };
+                // Step 1.4
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (GetRadTabStrip(strRadTabID, tab4))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                driver.FindElement(By.Id("ctl00_MainContent_gridShipmentMethods_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
+                Thread.Sleep(3000);   
+                SelectDropdown("ctl00_MainContent_gridShipmentMethods_ctl00_ctl02_ctl03_radListEDIShipMethod");
+                Thread.Sleep(3000);
+                driver.FindElement(By.Id("ctl00_MainContent_gridShipmentMethods_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
+                Thread.Sleep(3000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_gridEDITransactions_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
+                Thread.Sleep(3000);
+                SelectDropdown("ctl00_MainContent_gridEDITransactions_ctl00_ctl02_ctl03_radListEDITransList");
+                Thread.Sleep(3000);
+                driver.FindElement(By.Id("ctl00_MainContent_gridEDITransactions_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
+                Thread.Sleep(3000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_btnSubmitEDIServices_input")).Click();
+                Thread.Sleep(5000);
+
+                // Step 1.5
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (driver.FindElement(By.ClassName("rwPopupButton")).Displayed)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.ClassName("rwPopupButton")).Click();
+            }
+            catch (NoSuchElementException ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return bRetVal;
+        }
 
         private static bool GetRadTabStrip(string strRadTabID, IList<Tabs> tab)
         {
@@ -1218,7 +1352,16 @@ namespace ConsoleApp1
             Thread.Sleep(2000);
             AllRequestTypes.ElementAt(1).Click();
         }
-
+        private static void SelectDropdown(string ID, int iMenuItem)
+        {
+            var ParentRequestType = driver.FindElement(By.Id(ID));
+            IWebElement ReqTypeItem = ParentRequestType.FindElement(By.ClassName("rddlInner"));
+            IReadOnlyCollection<IWebElement> AllRequestTypes = ParentRequestType.FindElements(By.ClassName("rddlItem"));
+            ReqTypeItem.Click();
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            Thread.Sleep(2000);
+            AllRequestTypes.ElementAt(iMenuItem).Click();
+        }
         static void PuroFusion2()
         {
             try
@@ -1443,6 +1586,12 @@ namespace ConsoleApp1
         public string Name { get; set; }
         public bool Enabled { get; set; }
         public double Step { get; set; }
+        public AllTest Tests { get; set; }
+        public TestParams( AllTest test)
+        {
+            Tests = test;
+            Name = StringEnum.GetStringValue(test);
+        }
     }
     #region Enumerations
     public class StringValue : System.Attribute
@@ -1457,17 +1606,6 @@ namespace ConsoleApp1
             get { return _value; }
         }
     }
-    //public enum ColorsDesc
-    //{
-    //    [StringValue("Default")]
-    //    Default = 0,
-    //    [StringValue("Red")]
-    //    Red = 1,
-    //    [StringValue("Yellow")]
-    //    Yellow = 2,
-    //    [StringValue("Green")]
-    //    Green = 3
-    //}
     public enum AllTabs
     {
         [StringValue("Customer Info")]
@@ -1520,21 +1658,62 @@ namespace ConsoleApp1
             return retTab;
         }
     }
-    //public static class GetColorType
-    //{
-    //    public static ColorsDesc Get(string strColor)
-    //    {
-    //        ColorsDesc retColor = ColorsDesc.Default;
+    public enum AllTest
+    {
+        [StringValue("Sales Shipping Test 1")]
+        SalesShippingTest1 = 0,
+        [StringValue("Sales Shipping Test 2")]
+        SalesShippingTest2 = 1,
+        [StringValue("Sales Shipping Test 3")]
+        SalesShippingTest3 = 2,
+        [StringValue("Sales Shipping Test 4")]
+        SalesShippingTest4 = 3,
+        [StringValue("Sales Shipping Test 5")]
+        SalesShippingTest5 = 4,
+        [StringValue("Sales Shipping Test 7")]
+        SalesShippingTest7 = 5,
+        [StringValue("Sales EDI Test 1")]
+        SalesEDITest1 = 6,
+        [StringValue("Sales EDI Test 2")]
+        SalesEDITest2 = 7,
+        [StringValue("Sales EDI Test 3")]
+        SalesEDITest3 = 8
+        //,[StringValue("Non-Courier EDI")]
+        //NonCourierEDI = 7,
+        //[StringValue("Add'l Notes")]
+        //AddlNotes = 8,
+        //[StringValue("File Uploads")]
+        //FileUploads = 9
+    }
+    public static class GetTheTest
+    {
+        public static AllTest Get(string strTab)
+        {
+            AllTest retTab = AllTest.SalesShippingTest1;
 
-    //        if (strColor == StringEnum.GetStringValue(ColorsDesc.Red))
-    //            retColor = ColorsDesc.Red;
-    //        else if (strColor == StringEnum.GetStringValue(ColorsDesc.Green))
-    //            retColor = ColorsDesc.Green;
-    //        else if (strColor == StringEnum.GetStringValue(ColorsDesc.Yellow))
-    //            retColor = ColorsDesc.Yellow;
-    //        return retColor;
-    //    }
-    //}
+            if (strTab == StringEnum.GetStringValue(AllTest.SalesShippingTest1))
+                retTab = AllTest.SalesShippingTest1;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesShippingTest2))
+                retTab = AllTest.SalesShippingTest2;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesShippingTest3))
+                retTab = AllTest.SalesShippingTest3;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesShippingTest4))
+                retTab = AllTest.SalesShippingTest4;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesShippingTest5))
+                retTab = AllTest.SalesShippingTest5;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesShippingTest7))
+                retTab = AllTest.SalesShippingTest7;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest1))
+                retTab = AllTest.SalesEDITest1;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest2))
+                retTab = AllTest.SalesEDITest2;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest3))
+                retTab = AllTest.SalesEDITest3;
+            //else if (strTab == StringEnum.GetStringValue(AllTest.FileUploads))
+            //    retTab = AllTest.FileUploads;
+            return retTab;
+        }
+    }
     public static class StringEnum
     {
         public static string GetStringValue(Enum value)
@@ -1553,3 +1732,126 @@ namespace ConsoleApp1
     }
     #endregion
 }
+//#region Sales Shipping Test 1
+//if (ToTest[(int)CurrentTest].Enabled)
+//{
+//    //Console.WriteLine("Press Space Bar to start " + ToTest[(int)CurrentTest].Name);
+//    //Console.ReadKey();
+//    if (SalesShippingTest1(insert, ToTest[(int)CurrentTest].Step))
+//    {
+//        Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passedl!");
+//        bLoggedIn = true;
+//    }
+//    else
+//    {
+//        Console.WriteLine(ToTest[(int)CurrentTest].Name + " Failed!");
+//    }
+//    //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
+//    //Console.ReadKey();
+//}
+//#endregion
+
+//CurrentTest = CurrentTest.Next();
+
+//#region Sales Shipping Test 2
+//if (ToTest[(int)CurrentTest].Enabled)
+//{
+//    //Console.WriteLine("Press Space Bar to start " + ToTest[(int)CurrentTest].Name);
+//    //Console.ReadKey();
+//    if ( SalesShippingTest2(insert, bLoggedIn, ToTest[(int)CurrentTest].Step) )
+//    {
+//        Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
+//    }
+//    else
+//    {
+//        Console.WriteLine(ToTest[(int)CurrentTest].Name + " failed!");
+//    }
+//    bLoggedIn = true;
+//    //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
+//    //Console.ReadKey();
+//}
+//#endregion
+
+//CurrentTest = CurrentTest.Next();
+
+//#region Sales Shipping Test 3
+//if (ToTest[(int)CurrentTest].Enabled)
+//{
+//    //Console.WriteLine("Press Space Bar to start " + ToTest[(int)CurrentTest].Name);
+//    //Console.ReadKey();
+//    if (SalesShippingTest3(insert, bLoggedIn, ToTest[(int)CurrentTest].Step))
+//    {
+//        Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
+//    }
+//    else
+//    {
+//        Console.WriteLine(ToTest[(int)CurrentTest].Name + " failed!");
+//    }
+//    bLoggedIn = true;
+//    //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
+//    //Console.ReadKey();
+//}
+//#endregion
+
+//CurrentTest = CurrentTest.Next();
+
+//#region Sales Shipping Test 4
+//if (ToTest[(int)CurrentTest].Enabled)
+//{
+//    //Console.WriteLine("Press Space Bar to start " + ToTest[(int)CurrentTest].Name);
+//    //Console.ReadKey();
+//    if (SalesShippingTest4(insert, bLoggedIn, ToTest[(int)CurrentTest].Step))
+//    {
+//        Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
+//    }
+//    else
+//    {
+//        Console.WriteLine(ToTest[(int)CurrentTest].Name + " failed!");
+//    }
+//    bLoggedIn = true;
+//    //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
+//    //Console.ReadKey();
+//}
+//#endregion
+
+//CurrentTest = CurrentTest.Next();
+
+//#region Sales Shipping Test 5
+//if (ToTest[(int)CurrentTest].Enabled)
+//{
+//    //Console.WriteLine("Press Space Bar to start " + ToTest[(int)CurrentTest].Name);
+//    //Console.ReadKey();
+//    if (SalesShippingTest5(insert, bLoggedIn, ToTest[(int)CurrentTest].Step))
+//    {
+//        Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
+//    }
+//    else
+//    {
+//        Console.WriteLine(ToTest[(int)CurrentTest].Name + " failed!");
+//    }
+//    bLoggedIn = true;
+//    //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
+//    //Console.ReadKey();
+//}
+//#endregion
+
+//CurrentTest = CurrentTest.Next();
+
+//#region Sales Shipping Test 7
+//if (ToTest[(int)CurrentTest].Enabled)
+//{
+//    //Console.WriteLine("Press Space Bar to start " + ToTest[(int)CurrentTest].Name);
+//    //Console.ReadKey();
+//    if (SalesShippingTest7(insert, bLoggedIn, ToTest[(int)CurrentTest].Step))
+//    {
+//        Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
+//    }
+//    else
+//    {
+//        Console.WriteLine(ToTest[(int)CurrentTest].Name + " failed!");
+//    }
+//    bLoggedIn = true;
+//    //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
+//    //Console.ReadKey();
+//}
+//#endregion
