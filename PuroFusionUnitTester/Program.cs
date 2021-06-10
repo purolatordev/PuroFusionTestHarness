@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,17 +20,26 @@ namespace ConsoleApp1
         const int SOLUTION_TYPE_SHIPPING = 1;
         const int SOLUTION_TYPE_EDI = 2;
         const int SOLUTION_TYPE_BOTH = 3;
-        static IList<string> Tests = new List<string>() { "Sales Shipping Test 1", "Sales Shipping Test 2", "Sales Shipping Test 3", "Sales Shipping Test 4", "Sales Shipping Test 5" };
-        public enum TheTests:int  {SalesShippingTest1=0, SalesShippingTest2, SalesShippingTest3, SalesShippingTest4, SalesShippingTest5 };
+        static IList<string> TestNames = new List<string>() { "Sales Shipping Test 1", "Sales Shipping Test 2", "Sales Shipping Test 3", "Sales Shipping Test 4", "Sales Shipping Test 5", "Sales Shipping Test 7" };
+        public enum TestOrder:int  {SalesShippingTest1=0, SalesShippingTest2, SalesShippingTest3, SalesShippingTest4, SalesShippingTest5, SalesShippingTest7 };
+        //public enum AllTabs  { "Customer Info" = 0, "Contact Info", SalesShippingTest3, SalesShippingTest4, SalesShippingTest5, SalesShippingTest7 };
 
         static void Main(string[] args)
         {
-            IList<WhatToTest> ToTest = new List<WhatToTest>() { 
-                new WhatToTest() {Name = Tests[(int)TheTests.SalesShippingTest1], Enabled = true, Step = 1.0},
-                new WhatToTest() {Name = Tests[(int)TheTests.SalesShippingTest2], Enabled = true, Step = 2.0},
-                new WhatToTest() {Name = Tests[(int)TheTests.SalesShippingTest3], Enabled = true, Step = 3.0},
-                new WhatToTest() {Name = Tests[(int)TheTests.SalesShippingTest4], Enabled = true, Step = 4.0},
-                new WhatToTest() {Name = Tests[(int)TheTests.SalesShippingTest5], Enabled = true, Step = 5.0}
+            //int iOrd = 0;
+            //IList<Tabs> tab5 = new List<Tabs>() {
+            //            new Tabs(AllTabs.CustomerInfo,iOrd++)     { Enabled = true },
+            //            new Tabs(AllTabs.ContactInfo,iOrd++)      { Enabled = true },
+            //            new Tabs(AllTabs.CurrentSolution,iOrd++)  { Enabled = true, Selected = true},
+            //            new Tabs(AllTabs.ShippingServices,iOrd++) { Enabled = true }
+            //        };
+            IList<TestParams> ToTest = new List<TestParams>() { 
+                new TestParams() {Name = TestNames[(int)TestOrder.SalesShippingTest1], Enabled = false, Step = 1.0},
+                new TestParams() {Name = TestNames[(int)TestOrder.SalesShippingTest2], Enabled = false, Step = 2.0},
+                new TestParams() {Name = TestNames[(int)TestOrder.SalesShippingTest3], Enabled = false, Step = 3.0},
+                new TestParams() {Name = TestNames[(int)TestOrder.SalesShippingTest4], Enabled = false, Step = 4.0},
+                new TestParams() {Name = TestNames[(int)TestOrder.SalesShippingTest5], Enabled = false, Step = 5.0},
+                new TestParams() {Name = TestNames[(int)TestOrder.SalesShippingTest7], Enabled = true, Step = 7.0}
             };
             DiscoveryReqUpdates insert = new DiscoveryReqUpdates()
             {
@@ -52,7 +62,7 @@ namespace ConsoleApp1
             driver = new ChromeDriver(@"C:\Software\Selenium");
 
             bool bLoggedIn = false;
-            TheTests CurrentTest = TheTests.SalesShippingTest1;
+            TestOrder CurrentTest = TestOrder.SalesShippingTest1;
 
             #region Sales Shipping Test 1
             if (ToTest[(int)CurrentTest].Enabled)
@@ -82,7 +92,7 @@ namespace ConsoleApp1
                 //Console.ReadKey();
                 if ( SalesShippingTest2(insert, bLoggedIn, ToTest[(int)CurrentTest].Step) )
                 {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " was successful!");
+                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
                 }
                 else
                 {
@@ -103,7 +113,7 @@ namespace ConsoleApp1
                 //Console.ReadKey();
                 if (SalesShippingTest3(insert, bLoggedIn, ToTest[(int)CurrentTest].Step))
                 {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " was successful!");
+                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
                 }
                 else
                 {
@@ -124,7 +134,7 @@ namespace ConsoleApp1
                 //Console.ReadKey();
                 if (SalesShippingTest4(insert, bLoggedIn, ToTest[(int)CurrentTest].Step))
                 {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " was successful!");
+                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
                 }
                 else
                 {
@@ -145,7 +155,7 @@ namespace ConsoleApp1
                 //Console.ReadKey();
                 if (SalesShippingTest5(insert, bLoggedIn, ToTest[(int)CurrentTest].Step))
                 {
-                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " was successful!");
+                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
                 }
                 else
                 {
@@ -156,10 +166,265 @@ namespace ConsoleApp1
                 //Console.ReadKey();
             }
             #endregion
+
+            CurrentTest = CurrentTest.Next();
+
+            #region Sales Shipping Test 7
+            if (ToTest[(int)CurrentTest].Enabled)
+            {
+                //Console.WriteLine("Press Space Bar to start " + ToTest[(int)CurrentTest].Name);
+                //Console.ReadKey();
+                if (SalesShippingTest7(insert, bLoggedIn, ToTest[(int)CurrentTest].Step))
+                {
+                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passed!");
+                }
+                else
+                {
+                    Console.WriteLine(ToTest[(int)CurrentTest].Name + " failed!");
+                }
+                bLoggedIn = true;
+                //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
+                //Console.ReadKey();
+            }
+            #endregion
+
             driver.Quit();
             Environment.Exit(0);
             return;
         }
+        static bool SalesShippingTest7(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
+        {
+            bool bRetVal = false;
+            string strCurrentStep = String.Format("Step {0:0.0#}", Step);
+            try
+            {
+                if (!bLoggedIn)
+                {
+                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+                    driver.Navigate().GoToUrl("http://localhost/PuroFusion/");
+
+                    //Check we don't have other windows open already
+                    Assert.AreEqual(driver.WindowHandles.Count, 1);
+
+                    var q = driver.FindElement(By.TagName("input"));
+                    var inputUserName = driver.FindElement(By.Id("ctl00_MainContentLogin_txtUser"));
+                    var UserName = inputUserName.GetAttribute("value");
+
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_txtPasswrd")).SendKeys("your value");
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_btnSubmit_input")).Click();
+
+                    string strLogInType = driver.FindElement(By.Id("LoginStatus1_lblRole")).Text;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_btnNewRequest_input")).Click();
+
+                // Check tab strip for the tabs that are available
+                string strRadTabID = "ctl00_MainContent_RadTabStrip1";
+                IList<Tabs> tab2 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices)  }
+                };
+                if (GetRadTabStrip(strRadTabID, tab2))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                SelectDropdown("ctl00_MainContent_rddlDistrict");
+                Thread.Sleep(5000);
+                SelectDropdown("ctl00_MainContent_rddlBranch");
+                Thread.Sleep(4000);
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+                SelectDropdown("ctl00_MainContent_rddlRequestType");
+                Thread.Sleep(4000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerName")).SendKeys(insert.CustomerName);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerAddress")).SendKeys(insert.Address1);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerZip")).SendKeys(insert.Zip);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerCity")).SendKeys(insert.City);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerState")).SendKeys(insert.State);
+                driver.FindElement(By.Id("ctl00_MainContent_txtRevenue")).SendKeys(insert.Revenue.ToString());
+                driver.FindElement(By.Id("ctl00_MainContent_txtCommodity")).SendKeys("Shoes");
+
+                // Click the Next Button Step 7.1
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
+
+                IList<Tabs> tab = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices) }
+                };
+                if (GetRadTabStrip(strRadTabID, tab))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
+                SelectDropdown("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_radListContactType");
+                Thread.Sleep(5000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactName2")).SendKeys("Contact Test Name");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactTitle2")).SendKeys("Test Title");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactEmail2")).SendKeys("test.person@test.com");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactPhone2")).SendKeys("516 725-8956");
+
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                Thread.Sleep(5000);
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
+                Thread.Sleep(5000);
+
+                //Step 7.2
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Displayed)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Click();
+                Thread.Sleep(5000);
+
+                // Step 7.3
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                IList<Tabs> tab3 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices) }
+                };
+                if (GetRadTabStrip(strRadTabID, tab3))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab3")).Click();
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+                IList<Tabs> tab4 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)    , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices),Enabled = true, Selected = true }
+                };
+                // Step 7.4
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (GetRadTabStrip(strRadTabID, tab4))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                SelectDropdown("ctl00_MainContent_rddlService");
+                Thread.Sleep(5000);
+                driver.FindElement(By.Id("ctl00_MainContent_txtVolume")).SendKeys("2");
+                Thread.Sleep(5000);
+                driver.FindElement(By.Id("ctl00_MainContent_btnAddSvc_input")).Click();
+                Thread.Sleep(5000);
+                SelectDropdown("ctl00_MainContent_rddlCustomsList");
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                SelectDropdown("ctl00_MainContent_rddlCustomsBroker");
+                Thread.Sleep(5000);
+
+                // Step 7.5
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                Console.WriteLine(strCurrentStep + " Passed");
+
+                // Step 7.6
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                int iOrd = 0;
+                IList<Tabs> tab5 = new List<Tabs>() {
+                        new Tabs(AllTabs.CustomerInfo,iOrd++)     { Enabled = true },
+                        new Tabs(AllTabs.ContactInfo,iOrd++)      { Enabled = true },
+                        new Tabs(AllTabs.CurrentSolution,iOrd++)  { Enabled = true, Selected = true},
+                        new Tabs(AllTabs.ShippingServices,iOrd++) { Enabled = true }
+                    };
+                Tabs CurrentSolutionTab = tab5.Where(f => f.Selected == true).FirstOrDefault();
+                SelectTabFromStrip(strRadTabID, CurrentSolutionTab.iOrdinalValue); 
+
+                if (GetRadTabStrip(strRadTabID, tab5))
+                {
+                    driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).Clear();
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                // Step 7.7
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iOrd = 0;
+                IList<Tabs> tab6 = new List<Tabs>() {
+                        new Tabs(AllTabs.CustomerInfo,iOrd++)     { Enabled = true },
+                        new Tabs(AllTabs.ContactInfo,iOrd++)      { Enabled = true },
+                        new Tabs(AllTabs.CurrentSolution,iOrd++)  { Enabled = true },
+                        new Tabs(AllTabs.ShippingServices,iOrd++) { Enabled = true, Selected = true }
+                    };
+                Tabs ShippingServicesTab = tab6.Where(f => f.Selected == true).FirstOrDefault();
+                SelectTabFromStrip(strRadTabID, ShippingServicesTab.iOrdinalValue);
+
+                if (GetRadTabStrip(strRadTabID, tab6))
+                {
+                    driver.FindElement(By.Id("ctl00_MainContent_btnSubmit_input")).Click();
+                    Thread.Sleep(2000);
+
+                    if (driver.FindElement(By.Id("MainContent_CustomValidatorNew")).Displayed)
+                    {
+                        Console.WriteLine(strCurrentStep + " Passed");
+                        bRetVal = true;
+                        driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+            }
+            catch (NoSuchElementException ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return bRetVal;
+        }
+
         static bool SalesShippingTest5(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
         {
             bool bRetVal = false;
@@ -188,10 +453,10 @@ namespace ConsoleApp1
                 // Check tab strip for the tabs that are available
                 string strRadTabID = "ctl00_MainContent_RadTabStrip1";
                 IList<Tabs> tab2 = new List<Tabs>() {
-                    new Tabs() { Name = "Customer Info", Enabled = true, Selected = true },
-                    new Tabs() { Name = "Contact Info" },
-                    new Tabs() { Name = "Current Solution" },
-                    new Tabs() { Name = "Shipping Services" }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices)  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
                 {
@@ -225,10 +490,10 @@ namespace ConsoleApp1
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
 
                 IList<Tabs> tab = new List<Tabs>() {
-                    new Tabs() { Name = "Customer Info", Enabled = true },
-                    new Tabs() { Name = "Contact Info" , Enabled = true, Selected = true},
-                    new Tabs() { Name = "Current Solution" },
-                    new Tabs() { Name = "Shipping Services" }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices) }
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
                 {
@@ -274,10 +539,10 @@ namespace ConsoleApp1
                 Step += 0.1;
                 strCurrentStep = String.Format("Step {0:0.0#}", Step);
                 IList<Tabs> tab3 = new List<Tabs>() {
-                    new Tabs() { Name = "Customer Info", Enabled = true },
-                    new Tabs() { Name = "Contact Info" , Enabled = true},
-                    new Tabs() { Name = "Current Solution", Enabled = true, Selected = true },
-                    new Tabs() { Name = "Shipping Services" }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices) }
                 };
                 if (GetRadTabStrip(strRadTabID, tab3))
                 {
@@ -295,10 +560,10 @@ namespace ConsoleApp1
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 
                 IList<Tabs> tab4 = new List<Tabs>() {
-                    new Tabs() { Name = "Customer Info", Enabled = true },
-                    new Tabs() { Name = "Contact Info" , Enabled = true},
-                    new Tabs() { Name = "Current Solution", Enabled = true},
-                    new Tabs() { Name = "Shipping Services",Enabled = true, Selected = true }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)    , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices),Enabled = true, Selected = true }
                 };
                 // Step 5.4
                 Step += 0.1;
@@ -338,7 +603,6 @@ namespace ConsoleApp1
             }
             return bRetVal;
         }
-
         static bool SalesShippingTest4(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
         {
             bool bRetVal = false;
@@ -367,10 +631,10 @@ namespace ConsoleApp1
                 // Check tab strip for the tabs that are available
                 string strRadTabID = "ctl00_MainContent_RadTabStrip1";
                 IList<Tabs> tab2 = new List<Tabs>() {
-                    new Tabs() { Name = "Customer Info", Enabled = true, Selected = true },
-                    new Tabs() { Name = "Contact Info" },
-                    new Tabs() { Name = "Current Solution" },
-                    new Tabs() { Name = "Shipping Services" }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices)  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
                 {
@@ -404,10 +668,10 @@ namespace ConsoleApp1
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
 
                 IList<Tabs> tab = new List<Tabs>() {
-                    new Tabs() { Name = "Customer Info", Enabled = true },
-                    new Tabs() { Name = "Contact Info" , Enabled = true, Selected = true},
-                    new Tabs() { Name = "Current Solution" },
-                    new Tabs() { Name = "Shipping Services" }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices) }
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
                 {
@@ -453,10 +717,10 @@ namespace ConsoleApp1
                 Step += 0.1;
                 strCurrentStep = String.Format("Step {0:0.0#}", Step);
                 IList<Tabs> tab3 = new List<Tabs>() {
-                    new Tabs() { Name = "Customer Info", Enabled = true },
-                    new Tabs() { Name = "Contact Info" , Enabled = true},
-                    new Tabs() { Name = "Current Solution", Enabled = true, Selected = true },
-                    new Tabs() { Name = "Shipping Services" }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices) }
                 };
                 if (GetRadTabStrip(strRadTabID, tab3))
                 {
@@ -526,10 +790,10 @@ namespace ConsoleApp1
                 // Check tab strip for the tabs that are available
                 string strRadTabID = "ctl00_MainContent_RadTabStrip1";
                 IList<Tabs> tab2 = new List<Tabs>() {
-                    new Tabs() { Name = "Customer Info", Enabled = true, Selected = true },
-                    new Tabs() { Name = "Contact Info" },
-                    new Tabs() { Name = "Current Solution" },
-                    new Tabs() { Name = "Shipping Services" }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices)  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
                 {
@@ -562,10 +826,10 @@ namespace ConsoleApp1
                 strCurrentStep = String.Format("Step {0:0.0#}", Step);
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
                 IList<Tabs> tab = new List<Tabs>() {
-                    new Tabs() { Name = "Customer Info", Enabled = true },
-                    new Tabs() { Name = "Contact Info" , Enabled = true, Selected = true},
-                    new Tabs() { Name = "Current Solution" },
-                    new Tabs() { Name = "Shipping Services" }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices) }
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
                 {
@@ -655,10 +919,10 @@ namespace ConsoleApp1
                 // Check tab strip for the tabs that are available
                 string strRadTabID = "ctl00_MainContent_RadTabStrip1";
                 IList<Tabs> tab2 = new List<Tabs>() {
-                    new Tabs() { Name = "Customer Info", Enabled = true, Selected = true },
-                    new Tabs() { Name = "Contact Info" },
-                    new Tabs() { Name = "Current Solution" },
-                    new Tabs() { Name = "Shipping Services" }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices)  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
                 {
@@ -731,10 +995,10 @@ namespace ConsoleApp1
                 // Check tab strip for the tabs that are available
                 string strRadTabID = "ctl00_MainContent_RadTabStrip1";
                 IList<Tabs> tab2 = new List<Tabs>() {
-                    new Tabs() { Name = "Customer Info", Enabled = true, Selected = true },
-                    new Tabs() { Name = "Contact Info" },
-                    new Tabs() { Name = "Current Solution" },
-                    new Tabs() { Name = "Shipping Services" }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices)  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
                 {
@@ -768,10 +1032,10 @@ namespace ConsoleApp1
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
 
                 IList<Tabs> tab = new List<Tabs>() { 
-                    new Tabs() { Name = "Customer Info", Enabled = true }, 
-                    new Tabs() { Name = "Contact Info" , Enabled = true, Selected = true},
-                    new Tabs() { Name = "Current Solution" },
-                    new Tabs() { Name = "Shipping Services" } 
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true }, 
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices) } 
                 };
                 if( GetRadTabStrip(strRadTabID,tab) )
                 {
@@ -817,10 +1081,10 @@ namespace ConsoleApp1
                 Step += 0.1;
                 strCurrentStep = String.Format("Step {0:0.0#}", Step);
                 IList<Tabs> tab3 = new List<Tabs>() {
-                    new Tabs() { Name = "Customer Info", Enabled = true },
-                    new Tabs() { Name = "Contact Info" , Enabled = true},
-                    new Tabs() { Name = "Current Solution", Enabled = true, Selected = true },
-                    new Tabs() { Name = "Shipping Services" }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices) }
                 };
                 if (GetRadTabStrip(strRadTabID, tab3))
                 {
@@ -838,10 +1102,10 @@ namespace ConsoleApp1
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 
                 IList<Tabs> tab4 = new List<Tabs>() {
-                    new Tabs() { Name = "Customer Info", Enabled = true },
-                    new Tabs() { Name = "Contact Info" , Enabled = true},
-                    new Tabs() { Name = "Current Solution", Enabled = true},
-                    new Tabs() { Name = "Shipping Services",Enabled = true, Selected = true }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)    , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices),Enabled = true, Selected = true }
                 };
                 // Step 1.4
                 Step += 0.1;
@@ -926,7 +1190,24 @@ namespace ConsoleApp1
             }
             return bRetVal;
         }
-
+        private static bool SelectTabFromStrip(string strRadTabID, AllTabs tab)
+        {
+            bool bRetVal = false;
+            var ParentElement = driver.FindElement(By.Id(strRadTabID));
+            IReadOnlyCollection<IWebElement> children = ParentElement.FindElements(By.XPath(".//*"));
+            IReadOnlyCollection<IWebElement> AllTheTabs = children.Where(f => f.TagName == "li").ToList();
+            AllTheTabs.ElementAt((int)tab).Click();
+            return bRetVal;
+        }
+        private static bool SelectTabFromStrip(string strRadTabID, int tab)
+        {
+            bool bRetVal = false;
+            var ParentElement = driver.FindElement(By.Id(strRadTabID));
+            IReadOnlyCollection<IWebElement> children = ParentElement.FindElements(By.XPath(".//*"));
+            IReadOnlyCollection<IWebElement> AllTheTabs = children.Where(f => f.TagName == "li").ToList();
+            AllTheTabs.ElementAt(tab).Click();
+            return bRetVal;
+        }
         private static void SelectDropdown(string ID)
         {
             var ParentRequestType = driver.FindElement(By.Id(ID));
@@ -1071,6 +1352,16 @@ namespace ConsoleApp1
 
             return sql;
         }
+        static int GetOrdValueFromTabs(IList<Tabs> tabList)
+        {
+            int iRetVal = 0;
+            //IList<bool>
+            foreach(Tabs t in tabList)
+            {
+
+            }
+            return iRetVal;
+        }
     }
     public static class Extensions
     {
@@ -1114,19 +1405,151 @@ namespace ConsoleApp1
     }
     public class Tabs
     {
+        public static int iCount { get; set; }
         public string Name { get; set; }
         public bool Selected { get; set; }
         public bool Enabled { get; set; }
+        public  int iOrdinalValue { get; set; }
+        public AllTabs localTab { get; set; }
         public Tabs()
         {
             Selected = false;
             Enabled = false;
+            iOrdinalValue = iCount;
+            iCount++;
+        }
+        public Tabs(AllTabs val)
+        {
+            localTab = val;
+            Name = StringEnum.GetStringValue(val);
+            Selected = false;
+            Enabled = false;
+            iOrdinalValue = iCount;
+            iCount++;
+        }
+        public Tabs(AllTabs val, int iOrd)
+        {
+            localTab = val;
+            Name = StringEnum.GetStringValue(val);
+            Selected = false;
+            Enabled = false;
+            iOrdinalValue = iOrd;
+            //iCount++;
         }
     }
-    public class WhatToTest
+    
+    public class TestParams
     {
         public string Name { get; set; }
         public bool Enabled { get; set; }
         public double Step { get; set; }
     }
+    #region Enumerations
+    public class StringValue : System.Attribute
+    {
+        private string _value;
+        public StringValue(string value)
+        {
+            _value = value;
+        }
+        public string Value
+        {
+            get { return _value; }
+        }
+    }
+    //public enum ColorsDesc
+    //{
+    //    [StringValue("Default")]
+    //    Default = 0,
+    //    [StringValue("Red")]
+    //    Red = 1,
+    //    [StringValue("Yellow")]
+    //    Yellow = 2,
+    //    [StringValue("Green")]
+    //    Green = 3
+    //}
+    public enum AllTabs
+    {
+        [StringValue("Customer Info")]
+        CustomerInfo = 0,
+        [StringValue("Contact Info")]
+        ContactInfo = 1,
+        [StringValue("Current Solution")]
+        CurrentSolution = 2,
+        [StringValue("EDI Services")]
+        EDIServices = 3,
+        [StringValue("Shipping Services")]
+        ShippingServices = 4,
+        [StringValue("Profile")]
+        Profile = 5,
+        [StringValue("Courier EDI")]
+        CourierEDI = 6,
+        [StringValue("Non-Courier EDI")]
+        NonCourierEDI = 7,
+        [StringValue("Add'l Notes")]
+        AddlNotes = 8,
+        [StringValue("File Uploads")]
+        FileUploads = 9
+    }
+    public static class GetTheTab
+    {
+        public static AllTabs Get(string strTab)
+        {
+            AllTabs retTab = AllTabs.CustomerInfo;
+
+            if (strTab == StringEnum.GetStringValue(AllTabs.CustomerInfo))
+                retTab = AllTabs.CustomerInfo;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.ContactInfo))
+                retTab = AllTabs.ContactInfo;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.CurrentSolution))
+                retTab = AllTabs.CurrentSolution;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.EDIServices))
+                retTab = AllTabs.EDIServices;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.ShippingServices))
+                retTab = AllTabs.ShippingServices;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.Profile))
+                retTab = AllTabs.Profile;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.CourierEDI))
+                retTab = AllTabs.CourierEDI;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.NonCourierEDI))
+                retTab = AllTabs.NonCourierEDI;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.AddlNotes))
+                retTab = AllTabs.AddlNotes;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.FileUploads))
+                retTab = AllTabs.FileUploads;
+            return retTab;
+        }
+    }
+    //public static class GetColorType
+    //{
+    //    public static ColorsDesc Get(string strColor)
+    //    {
+    //        ColorsDesc retColor = ColorsDesc.Default;
+
+    //        if (strColor == StringEnum.GetStringValue(ColorsDesc.Red))
+    //            retColor = ColorsDesc.Red;
+    //        else if (strColor == StringEnum.GetStringValue(ColorsDesc.Green))
+    //            retColor = ColorsDesc.Green;
+    //        else if (strColor == StringEnum.GetStringValue(ColorsDesc.Yellow))
+    //            retColor = ColorsDesc.Yellow;
+    //        return retColor;
+    //    }
+    //}
+    public static class StringEnum
+    {
+        public static string GetStringValue(Enum value)
+        {
+            string output = null;
+            Type type = value.GetType();
+
+            FieldInfo fi = type.GetField(value.ToString());
+            StringValue[] attrs = fi.GetCustomAttributes(typeof(StringValue), false) as StringValue[];
+            if (attrs.Length > 0)
+            {
+                output = attrs[0].Value;
+            }
+            return output;
+        }
+    }
+    #endregion
 }
