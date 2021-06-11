@@ -26,11 +26,17 @@ namespace ConsoleApp1
             IList<TestParams> ToTest = new List<TestParams>() {
                 new TestParams( AllTest.SalesShippingTest1) { Enabled = false,  Step = 1.0},
                 new TestParams( AllTest.SalesShippingTest2) { Enabled = false,  Step = 2.0},
-                new TestParams( AllTest.SalesShippingTest3) { Enabled = false, Step = 3.0},
-                new TestParams( AllTest.SalesShippingTest4) { Enabled = false, Step = 4.0},
+                new TestParams( AllTest.SalesShippingTest3) { Enabled = false,  Step = 3.0},
+                new TestParams( AllTest.SalesShippingTest4) { Enabled = false,  Step = 4.0},
                 new TestParams( AllTest.SalesShippingTest5) { Enabled = false,  Step = 5.0},
                 new TestParams( AllTest.SalesShippingTest7) { Enabled = false,  Step = 7.0},
-                new TestParams( AllTest.SalesEDITest1)      { Enabled = true,  Step = 1.0}
+                new TestParams( AllTest.SalesEDITest1)      { Enabled = false,  Step = 1.0},
+                new TestParams( AllTest.SalesEDITest2)      { Enabled = false,  Step = 2.0},
+                new TestParams( AllTest.SalesEDITest3)      { Enabled = false,  Step = 3.0},
+                new TestParams( AllTest.SalesEDITest4)      { Enabled = false,  Step = 4.0},
+                new TestParams( AllTest.SalesEDITest5)      { Enabled = false,  Step = 5.0},
+                new TestParams( AllTest.SalesEDITest6)      { Enabled = false,   Step = 6.0},
+                new TestParams( AllTest.SalesEDITest7)      { Enabled = true,   Step = 7.0}
             };
             DiscoveryReqUpdates insert = new DiscoveryReqUpdates()
             {
@@ -54,7 +60,7 @@ namespace ConsoleApp1
 
             bool bLoggedIn = false;
             bool bTesting = false;
-            AllTest CurrentTest = AllTest.SalesShippingTest1;
+            //AllTest CurrentTest = AllTest.SalesShippingTest1;
             foreach (TestParams t in ToTest)
             {
                 if(t.Enabled)
@@ -64,43 +70,79 @@ namespace ConsoleApp1
                     {
                         case AllTest.SalesShippingTest1:
                             if (!bTesting)
-                                bPass = SalesShippingTest1(insert, ToTest[(int)CurrentTest].Step);
+                                bPass = SalesShippingTest1(insert, t.Step);
                             else
                                 bPass = true;
                             break;
                         case AllTest.SalesShippingTest2:
                             if (!bTesting)
-                                bPass = SalesShippingTest2(insert, bLoggedIn, ToTest[(int)CurrentTest].Step);
+                                bPass = SalesShippingTest2(insert, bLoggedIn, t.Step);
                             else
                                 bPass = true;
                             break;
                         case AllTest.SalesShippingTest3:
                             if (!bTesting)
-                                bPass = SalesShippingTest3(insert, bLoggedIn, ToTest[(int)CurrentTest].Step);
+                                bPass = SalesShippingTest3(insert, bLoggedIn, t.Step);
                             else
                                 bPass = true;
                             break;
                         case AllTest.SalesShippingTest4:
                             if (!bTesting)
-                                bPass = SalesShippingTest4(insert, bLoggedIn, ToTest[(int)CurrentTest].Step);
+                                bPass = SalesShippingTest4(insert, bLoggedIn, t.Step);
                             else
                                 bPass = true;
                             break;
                         case AllTest.SalesShippingTest5:
                             if (!bTesting)
-                                bPass = SalesShippingTest5(insert, bLoggedIn, ToTest[(int)CurrentTest].Step);
+                                bPass = SalesShippingTest5(insert, bLoggedIn, t.Step);
                             else
                                 bPass = true;
                             break;
                         case AllTest.SalesShippingTest7:
                             if (!bTesting)
-                                bPass = SalesShippingTest7(insert, bLoggedIn, ToTest[(int)CurrentTest].Step);
+                                bPass = SalesShippingTest7(insert, bLoggedIn, t.Step);
                             else
                                 bPass = true;
                             break;
                         case AllTest.SalesEDITest1:
                             if (!bTesting)
-                                bPass = SalesEDITest1(insert, bLoggedIn, ToTest[(int)CurrentTest].Step);
+                                bPass = SalesEDITest1(insert, bLoggedIn, t.Step);
+                            else
+                                bPass = true;
+                            break;
+                        case AllTest.SalesEDITest2:
+                            if (!bTesting)
+                                bPass = SalesEDITest2(insert, bLoggedIn, t.Step);
+                            else
+                                bPass = true;
+                            break;
+                        case AllTest.SalesEDITest3:
+                            if (!bTesting)
+                                bPass = SalesEDITest3(insert, bLoggedIn, t.Step);
+                            else
+                                bPass = true;
+                            break;
+                        case AllTest.SalesEDITest4:
+                            if (!bTesting)
+                                bPass = SalesEDITest4(insert, bLoggedIn, t.Step);
+                            else
+                                bPass = true;
+                            break;
+                        case AllTest.SalesEDITest5:
+                            if (!bTesting)
+                                bPass = SalesEDITest5(insert, bLoggedIn, t.Step);
+                            else
+                                bPass = true;
+                            break;
+                        case AllTest.SalesEDITest6:
+                            if (!bTesting)
+                                bPass = SalesEDITest6(insert, bLoggedIn, t.Step);
+                            else
+                                bPass = true;
+                            break;
+                        case AllTest.SalesEDITest7:
+                            if (!bTesting)
+                                bPass = SalesEDITest7(insert, bLoggedIn, t.Step);
                             else
                                 bPass = true;
                             break;
@@ -111,18 +153,17 @@ namespace ConsoleApp1
                     //Console.ReadKey();
                     if (bPass)
                     {
-                        Console.WriteLine(ToTest[(int)CurrentTest].Name + " Passedl!");
+                        Console.WriteLine(t.Name + " Passedl!");
                         bLoggedIn = true;
                     }
                     else
                     {
-                        Console.WriteLine(ToTest[(int)CurrentTest].Name + " Failed!");
+                        Console.WriteLine(t.Name + " Failed!");
                     }
                     //Console.WriteLine(ToTest[(int)CurrentTest].Name + " finished press Space Bar to continue.");
                     //Console.ReadKey();
                 }
-                CurrentTest = CurrentTest.Next();
-                //curTest = curTest.Next();
+                //CurrentTest = CurrentTest.Next();
             }
   
 
@@ -130,6 +171,7 @@ namespace ConsoleApp1
             Environment.Exit(0);
             return;
         }
+        #region Sales Shipping Tests
         static bool SalesShippingTest7(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
         {
             bool bRetVal = false;
@@ -362,7 +404,6 @@ namespace ConsoleApp1
             }
             return bRetVal;
         }
-
         static bool SalesShippingTest5(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
         {
             bool bRetVal = false;
@@ -1092,6 +1133,8 @@ namespace ConsoleApp1
             }
             return bRetVal;
         }
+        #endregion
+        #region Sales EDI Tests
         static bool SalesEDITest1(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
         {
             bool bRetVal = false;
@@ -1288,7 +1331,1088 @@ namespace ConsoleApp1
             }
             return bRetVal;
         }
+        static bool SalesEDITest2(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
+        {
+            bool bRetVal = false;
+            string strCurrentStep = String.Format("Step {0:0.0#}", Step);
+            try
+            {
+                if (!bLoggedIn)
+                {
+                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+                    driver.Navigate().GoToUrl("http://localhost/PuroFusion/");
 
+                    //Check we don't have other windows open already
+                    Assert.AreEqual(driver.WindowHandles.Count, 1);
+
+                    var q = driver.FindElement(By.TagName("input"));
+                    var inputUserName = driver.FindElement(By.Id("ctl00_MainContentLogin_txtUser"));
+                    var UserName = inputUserName.GetAttribute("value");
+
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_txtPasswrd")).SendKeys("your value");
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_btnSubmit_input")).Click();
+
+                    string strLogInType = driver.FindElement(By.Id("LoginStatus1_lblRole")).Text;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_btnNewRequest_input")).Click();
+
+                SelectDropdown("ctl00_MainContent_rddlDistrict");
+                Thread.Sleep(5000);
+                SelectDropdown("ctl00_MainContent_rddlBranch");
+                Thread.Sleep(4000);
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+                SelectDropdown("ctl00_MainContent_rddlSolutionType", SOLUTION_TYPE_EDI - 1);
+                Thread.Sleep(4000);
+
+                // Check tab strip for the tabs that are available
+                string strRadTabID = "ctl00_MainContent_RadTabStrip1";
+                IList<Tabs> tab2 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)  }
+                };
+                if (GetRadTabStrip(strRadTabID, tab2))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                SelectDropdown("ctl00_MainContent_rddlRequestType");
+                Thread.Sleep(4000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerName")).SendKeys(insert.CustomerName);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerAddress")).SendKeys(insert.Address1);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerZip")).SendKeys(insert.Zip);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerCity")).SendKeys(insert.City);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerState")).SendKeys(insert.State);
+                driver.FindElement(By.Id("ctl00_MainContent_txtRevenue")).SendKeys(insert.Revenue.ToString());
+                driver.FindElement(By.Id("ctl00_MainContent_txtCommodity")).SendKeys("Shoes");
+
+                // Click the Next Button Step 1.1
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
+
+                int iOrd = 0;
+                IList<Tabs> tab = new List<Tabs>() {
+                    new Tabs(AllTabs.CustomerInfo,iOrd++   )  { Enabled = true },
+                    new Tabs(AllTabs.ContactInfo,iOrd++    )  { Enabled = true, Selected = true},
+                    new Tabs(AllTabs.CurrentSolution,iOrd++)  { },
+                    new Tabs(AllTabs.EDIServices,iOrd++    )  { }
+                };
+                if (GetRadTabStrip(strRadTabID, tab))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                // Press the previous Tab
+                Tabs CurrentSolutionTab = tab.Where(f => f.Enabled == true).FirstOrDefault();
+                SelectTabFromStrip(strRadTabID, CurrentSolutionTab.iOrdinalValue);
+
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerName")).Clear();
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerAddress")).Clear();
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerZip")).Clear();
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerCity")).Clear();
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerState")).Clear();
+                driver.FindElement(By.Id("ctl00_MainContent_txtRevenue")).Clear();
+                driver.FindElement(By.Id("ctl00_MainContent_txtCommodity")).Clear();
+
+                IList<Tabs> tab3 = new List<Tabs>() {
+                    new Tabs(AllTabs.CustomerInfo,iOrd++   ) {  Enabled = true, Selected = true },
+                    new Tabs(AllTabs.ContactInfo,iOrd++    ) {  Enabled = false},
+                    new Tabs(AllTabs.CurrentSolution,iOrd++) {  },
+                    new Tabs(AllTabs.EDIServices,iOrd++    ) {  }
+                };
+                //Step 2.2
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (GetRadTabStrip(strRadTabID, tab))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+            }
+            catch (NoSuchElementException ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return bRetVal;
+        }
+        static bool SalesEDITest3(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
+        {
+            bool bRetVal = false;
+            string strCurrentStep = String.Format("Step {0:0.0#}", Step);
+            try
+            {
+                if (!bLoggedIn)
+                {
+                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+                    driver.Navigate().GoToUrl("http://localhost/PuroFusion/");
+
+                    //Check we don't have other windows open already
+                    Assert.AreEqual(driver.WindowHandles.Count, 1);
+
+                    var q = driver.FindElement(By.TagName("input"));
+                    var inputUserName = driver.FindElement(By.Id("ctl00_MainContentLogin_txtUser"));
+                    var UserName = inputUserName.GetAttribute("value");
+
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_txtPasswrd")).SendKeys("your value");
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_btnSubmit_input")).Click();
+
+                    string strLogInType = driver.FindElement(By.Id("LoginStatus1_lblRole")).Text;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_btnNewRequest_input")).Click();
+
+                SelectDropdown("ctl00_MainContent_rddlDistrict");
+                Thread.Sleep(5000);
+                SelectDropdown("ctl00_MainContent_rddlBranch");
+                Thread.Sleep(4000);
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+                SelectDropdown("ctl00_MainContent_rddlSolutionType", SOLUTION_TYPE_EDI - 1);
+                Thread.Sleep(4000);
+
+                // Check tab strip for the tabs that are available
+                string strRadTabID = "ctl00_MainContent_RadTabStrip1";
+                IList<Tabs> tab2 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)  }
+                };
+                if (GetRadTabStrip(strRadTabID, tab2))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                SelectDropdown("ctl00_MainContent_rddlRequestType");
+                Thread.Sleep(4000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerName")).SendKeys(insert.CustomerName);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerAddress")).SendKeys(insert.Address1);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerZip")).SendKeys(insert.Zip);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerCity")).SendKeys(insert.City);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerState")).SendKeys(insert.State);
+                driver.FindElement(By.Id("ctl00_MainContent_txtRevenue")).SendKeys(insert.Revenue.ToString());
+                driver.FindElement(By.Id("ctl00_MainContent_txtCommodity")).SendKeys("Shoes");
+
+                // Click the Next Button Step 3.1
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
+
+                IList<Tabs> tab = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                };
+                if (GetRadTabStrip(strRadTabID, tab))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
+                SelectDropdown("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_radListContactType");
+                Thread.Sleep(5000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactName2")).SendKeys("Contact Test Name");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactTitle2")).SendKeys("Test Title");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactEmail2")).SendKeys("test.person@test.com");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactPhone2")).SendKeys("516 725-8956");
+
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                Thread.Sleep(5000);
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
+                Thread.Sleep(5000);
+
+                //Step 3.2
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Displayed)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                // Step 3.3
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                // deleted the contact
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl04_gbcDeleteLink")).Click();
+                Thread.Sleep(2000);
+
+                if (!driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Enabled)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                    driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+            }
+            catch (NoSuchElementException ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return bRetVal;
+        }
+        static bool SalesEDITest4(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
+        {
+            bool bRetVal = false;
+            string strCurrentStep = String.Format("Step {0:0.0#}", Step);
+            try
+            {
+                if (!bLoggedIn)
+                {
+                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+                    driver.Navigate().GoToUrl("http://localhost/PuroFusion/");
+
+                    //Check we don't have other windows open already
+                    Assert.AreEqual(driver.WindowHandles.Count, 1);
+
+                    var q = driver.FindElement(By.TagName("input"));
+                    var inputUserName = driver.FindElement(By.Id("ctl00_MainContentLogin_txtUser"));
+                    var UserName = inputUserName.GetAttribute("value");
+
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_txtPasswrd")).SendKeys("your value");
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_btnSubmit_input")).Click();
+
+                    string strLogInType = driver.FindElement(By.Id("LoginStatus1_lblRole")).Text;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_btnNewRequest_input")).Click();
+
+                SelectDropdown("ctl00_MainContent_rddlDistrict");
+                Thread.Sleep(5000);
+                SelectDropdown("ctl00_MainContent_rddlBranch");
+                Thread.Sleep(4000);
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+                SelectDropdown("ctl00_MainContent_rddlSolutionType", SOLUTION_TYPE_EDI - 1);
+                Thread.Sleep(4000);
+
+                // Check tab strip for the tabs that are available
+                string strRadTabID = "ctl00_MainContent_RadTabStrip1";
+                IList<Tabs> tab2 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)  }
+                };
+                if (GetRadTabStrip(strRadTabID, tab2))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                SelectDropdown("ctl00_MainContent_rddlRequestType");
+                Thread.Sleep(4000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerName")).SendKeys(insert.CustomerName);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerAddress")).SendKeys(insert.Address1);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerZip")).SendKeys(insert.Zip);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerCity")).SendKeys(insert.City);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerState")).SendKeys(insert.State);
+                driver.FindElement(By.Id("ctl00_MainContent_txtRevenue")).SendKeys(insert.Revenue.ToString());
+                driver.FindElement(By.Id("ctl00_MainContent_txtCommodity")).SendKeys("Shoes");
+
+                // Click the Next Button Step 4.1
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
+
+                IList<Tabs> tab = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                };
+                if (GetRadTabStrip(strRadTabID, tab))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
+                SelectDropdown("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_radListContactType");
+                Thread.Sleep(5000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactName2")).SendKeys("Contact Test Name");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactTitle2")).SendKeys("Test Title");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactEmail2")).SendKeys("test.person@test.com");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactPhone2")).SendKeys("516 725-8956");
+
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                Thread.Sleep(5000);
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
+                Thread.Sleep(5000);
+
+                //Step 4.2
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Displayed)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Click();
+                Thread.Sleep(5000);
+
+                // Step 4.3
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                IList<Tabs> tab3 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                };
+                if (GetRadTabStrip(strRadTabID, tab3))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab3")).Click();
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+                IList<Tabs> tab4 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)    , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices),Enabled = true, Selected = true }
+                };
+                // Step 4.4
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (GetRadTabStrip(strRadTabID, tab4))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                //driver.FindElement(By.Id("ctl00_MainContent_gridShipmentMethods_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
+                //Thread.Sleep(3000);
+                //SelectDropdown("ctl00_MainContent_gridShipmentMethods_ctl00_ctl02_ctl03_radListEDIShipMethod");
+                //Thread.Sleep(3000);
+                //driver.FindElement(By.Id("ctl00_MainContent_gridShipmentMethods_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
+                //Thread.Sleep(3000);
+
+                //driver.FindElement(By.Id("ctl00_MainContent_gridEDITransactions_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
+                //Thread.Sleep(3000);
+                //SelectDropdown("ctl00_MainContent_gridEDITransactions_ctl00_ctl02_ctl03_radListEDITransList");
+                //Thread.Sleep(3000);
+                //driver.FindElement(By.Id("ctl00_MainContent_gridEDITransactions_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
+                //Thread.Sleep(3000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_btnSubmitEDIServices_input")).Click();
+                Thread.Sleep(5000);
+
+                // Step 4.5
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (driver.FindElement(By.Id("MainContent_CustomValidator")).Displayed)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                    driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+            }
+            catch (NoSuchElementException ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return bRetVal;
+        }
+        static bool SalesEDITest5(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
+        {
+            bool bRetVal = false;
+            string strCurrentStep = String.Format("Step {0:0.0#}", Step);
+            try
+            {
+                if (!bLoggedIn)
+                {
+                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+                    driver.Navigate().GoToUrl("http://localhost/PuroFusion/");
+
+                    //Check we don't have other windows open already
+                    Assert.AreEqual(driver.WindowHandles.Count, 1);
+
+                    var q = driver.FindElement(By.TagName("input"));
+                    var inputUserName = driver.FindElement(By.Id("ctl00_MainContentLogin_txtUser"));
+                    var UserName = inputUserName.GetAttribute("value");
+
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_txtPasswrd")).SendKeys("your value");
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_btnSubmit_input")).Click();
+
+                    string strLogInType = driver.FindElement(By.Id("LoginStatus1_lblRole")).Text;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_btnNewRequest_input")).Click();
+
+                SelectDropdown("ctl00_MainContent_rddlDistrict");
+                Thread.Sleep(5000);
+                SelectDropdown("ctl00_MainContent_rddlBranch");
+                Thread.Sleep(4000);
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+                SelectDropdown("ctl00_MainContent_rddlSolutionType", SOLUTION_TYPE_EDI - 1);
+                Thread.Sleep(4000);
+
+                // Check tab strip for the tabs that are available
+                string strRadTabID = "ctl00_MainContent_RadTabStrip1";
+                IList<Tabs> tab2 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)  }
+                };
+                if (GetRadTabStrip(strRadTabID, tab2))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                SelectDropdown("ctl00_MainContent_rddlRequestType");
+                Thread.Sleep(4000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerName")).SendKeys(insert.CustomerName);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerAddress")).SendKeys(insert.Address1);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerZip")).SendKeys(insert.Zip);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerCity")).SendKeys(insert.City);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerState")).SendKeys(insert.State);
+                driver.FindElement(By.Id("ctl00_MainContent_txtRevenue")).SendKeys(insert.Revenue.ToString());
+                driver.FindElement(By.Id("ctl00_MainContent_txtCommodity")).SendKeys("Shoes");
+
+                // Click the Next Button Step 5.1
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
+
+                IList<Tabs> tab = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                };
+                if (GetRadTabStrip(strRadTabID, tab))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
+                SelectDropdown("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_radListContactType");
+                Thread.Sleep(5000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactName2")).SendKeys("Contact Test Name");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactTitle2")).SendKeys("Test Title");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactEmail2")).SendKeys("test.person@test.com");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactPhone2")).SendKeys("516 725-8956");
+
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                Thread.Sleep(5000);
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
+                Thread.Sleep(5000);
+
+                //Step 5.2
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Displayed)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Click();
+                Thread.Sleep(5000);
+
+                // Step 5.3
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                IList<Tabs> tab3 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                };
+                if (GetRadTabStrip(strRadTabID, tab3))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab3")).Click();
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+                IList<Tabs> tab4 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)    , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices),Enabled = true, Selected = true }
+                };
+                // Step 5.4
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (GetRadTabStrip(strRadTabID, tab4))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                int iOrd = 0; 
+                IList<Tabs> tab5 = new List<Tabs>() {
+                        new Tabs(AllTabs.CustomerInfo,iOrd++)     { Enabled = true },
+                        new Tabs(AllTabs.ContactInfo,iOrd++)      { Enabled = true },
+                        new Tabs(AllTabs.CurrentSolution,iOrd++)  { Enabled = true, Selected = true},
+                        new Tabs(AllTabs.EDIServices,iOrd++)      { Enabled = true }
+                    };
+
+                Tabs CurrentSolutionTab = tab5.Where(f => f.Selected == true).FirstOrDefault();
+                SelectTabFromStrip(strRadTabID, CurrentSolutionTab.iOrdinalValue);
+
+                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).Clear();
+
+                // Step 5.5
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (driver.FindElement(By.Id("MainContent_ctl05")).Displayed)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                    driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+            }
+            catch (NoSuchElementException ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return bRetVal;
+        }
+        static bool SalesEDITest6(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
+        {
+            bool bRetVal = false;
+            string strCurrentStep = String.Format("Step {0:0.0#}", Step);
+            try
+            {
+                if (!bLoggedIn)
+                {
+                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+                    driver.Navigate().GoToUrl("http://localhost/PuroFusion/");
+
+                    //Check we don't have other windows open already
+                    Assert.AreEqual(driver.WindowHandles.Count, 1);
+
+                    var q = driver.FindElement(By.TagName("input"));
+                    var inputUserName = driver.FindElement(By.Id("ctl00_MainContentLogin_txtUser"));
+                    var UserName = inputUserName.GetAttribute("value");
+
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_txtPasswrd")).SendKeys("your value");
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_btnSubmit_input")).Click();
+
+                    string strLogInType = driver.FindElement(By.Id("LoginStatus1_lblRole")).Text;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_btnNewRequest_input")).Click();
+
+                SelectDropdown("ctl00_MainContent_rddlDistrict");
+                Thread.Sleep(5000);
+                SelectDropdown("ctl00_MainContent_rddlBranch");
+                Thread.Sleep(4000);
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+                SelectDropdown("ctl00_MainContent_rddlSolutionType", SOLUTION_TYPE_EDI - 1);
+                Thread.Sleep(4000);
+
+                // Check tab strip for the tabs that are available
+                string strRadTabID = "ctl00_MainContent_RadTabStrip1";
+                IList<Tabs> tab2 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)  }
+                };
+                if (GetRadTabStrip(strRadTabID, tab2))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                SelectDropdown("ctl00_MainContent_rddlRequestType");
+                Thread.Sleep(4000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerName")).SendKeys(insert.CustomerName);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerAddress")).SendKeys(insert.Address1);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerZip")).SendKeys(insert.Zip);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerCity")).SendKeys(insert.City);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerState")).SendKeys(insert.State);
+                driver.FindElement(By.Id("ctl00_MainContent_txtRevenue")).SendKeys(insert.Revenue.ToString());
+                driver.FindElement(By.Id("ctl00_MainContent_txtCommodity")).SendKeys("Shoes");
+
+                // Click the Next Button Step 6.1
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
+
+                IList<Tabs> tab = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                };
+                if (GetRadTabStrip(strRadTabID, tab))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
+                SelectDropdown("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_radListContactType");
+                Thread.Sleep(5000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactName2")).SendKeys("Contact Test Name");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactTitle2")).SendKeys("Test Title");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactEmail2")).SendKeys("test.person@test.com");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactPhone2")).SendKeys("516 725-8956");
+
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                Thread.Sleep(5000);
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
+                Thread.Sleep(5000);
+
+                //Step 6.2
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Displayed)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Click();
+                Thread.Sleep(5000);
+
+                // Step 6.3
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                IList<Tabs> tab3 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                };
+                if (GetRadTabStrip(strRadTabID, tab3))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab3")).Click();
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+                IList<Tabs> tab4 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)    , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices),Enabled = true, Selected = true }
+                };
+                // Step 6.4
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (GetRadTabStrip(strRadTabID, tab4))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                int iOrd = 0;
+                IList<Tabs> tab5 = new List<Tabs>() {
+                        new Tabs(AllTabs.CustomerInfo,iOrd++)     { Enabled = true },
+                        new Tabs(AllTabs.ContactInfo,iOrd++)      { Enabled = true },
+                        new Tabs(AllTabs.CurrentSolution,iOrd++)  { Enabled = true, Selected = true},
+                        new Tabs(AllTabs.EDIServices,iOrd++)      { Enabled = true }
+                    };
+
+                Tabs CurrentSolutionTab = tab5.Where(f => f.Selected == true).FirstOrDefault();
+                SelectTabFromStrip(strRadTabID, CurrentSolutionTab.iOrdinalValue);
+
+                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).Clear();
+
+                // Step 6.5
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (driver.FindElement(By.Id("MainContent_ctl05")).Displayed)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                // Step 6.6
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
+                if (!driver.FindElement(By.Id("MainContent_ctl05")).Displayed)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                    driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+            }
+            catch (NoSuchElementException ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return bRetVal;
+        }
+        static bool SalesEDITest7(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
+        {
+            bool bRetVal = false;
+            string strCurrentStep = String.Format("Step {0:0.0#}", Step);
+            try
+            {
+                if (!bLoggedIn)
+                {
+                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+                    driver.Navigate().GoToUrl("http://localhost/PuroFusion/");
+
+                    //Check we don't have other windows open already
+                    Assert.AreEqual(driver.WindowHandles.Count, 1);
+
+                    var q = driver.FindElement(By.TagName("input"));
+                    var inputUserName = driver.FindElement(By.Id("ctl00_MainContentLogin_txtUser"));
+                    var UserName = inputUserName.GetAttribute("value");
+
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_txtPasswrd")).SendKeys("your value");
+                    driver.FindElement(By.Id("ctl00_MainContentLogin_btnSubmit_input")).Click();
+
+                    string strLogInType = driver.FindElement(By.Id("LoginStatus1_lblRole")).Text;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_btnNewRequest_input")).Click();
+
+                SelectDropdown("ctl00_MainContent_rddlDistrict");
+                Thread.Sleep(5000);
+                SelectDropdown("ctl00_MainContent_rddlBranch");
+                Thread.Sleep(4000);
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+                SelectDropdown("ctl00_MainContent_rddlSolutionType", SOLUTION_TYPE_EDI - 1);
+                Thread.Sleep(4000);
+
+                // Check tab strip for the tabs that are available
+                string strRadTabID = "ctl00_MainContent_RadTabStrip1";
+                IList<Tabs> tab2 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)  }
+                };
+                if (GetRadTabStrip(strRadTabID, tab2))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                SelectDropdown("ctl00_MainContent_rddlRequestType");
+                Thread.Sleep(4000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerName")).SendKeys(insert.CustomerName);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerAddress")).SendKeys(insert.Address1);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerZip")).SendKeys(insert.Zip);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerCity")).SendKeys(insert.City);
+                driver.FindElement(By.Id("ctl00_MainContent_txtCustomerState")).SendKeys(insert.State);
+                driver.FindElement(By.Id("ctl00_MainContent_txtRevenue")).SendKeys(insert.Revenue.ToString());
+                driver.FindElement(By.Id("ctl00_MainContent_txtCommodity")).SendKeys("Shoes");
+
+                // Click the Next Button Step 7.1
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
+
+                IList<Tabs> tab = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                };
+                if (GetRadTabStrip(strRadTabID, tab))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
+                SelectDropdown("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_radListContactType");
+                Thread.Sleep(5000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactName2")).SendKeys("Contact Test Name");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactTitle2")).SendKeys("Test Title");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactEmail2")).SendKeys("test.person@test.com");
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactPhone2")).SendKeys("516 725-8956");
+
+                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                Thread.Sleep(5000);
+                driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
+                Thread.Sleep(5000);
+
+                //Step 7.2
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Displayed)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Click();
+                Thread.Sleep(5000);
+
+                // Step 7.3
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                IList<Tabs> tab3 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                };
+                if (GetRadTabStrip(strRadTabID, tab3))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab3")).Click();
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+                IList<Tabs> tab4 = new List<Tabs>() {
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)    , Enabled = true },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices),Enabled = true, Selected = true }
+                };
+                // Step 7.4
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (GetRadTabStrip(strRadTabID, tab4))
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                driver.FindElement(By.Id("ctl00_MainContent_btnSubmitEDIServices_input")).Click();
+                Thread.Sleep(5000);
+                // Step 7.5
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (driver.FindElement(By.Id("MainContent_CustomValidator")).Displayed)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+                driver.FindElement(By.Id("ctl00_MainContent_gridShipmentMethods_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
+                Thread.Sleep(3000);
+                SelectDropdown("ctl00_MainContent_gridShipmentMethods_ctl00_ctl02_ctl03_radListEDIShipMethod");
+                Thread.Sleep(3000);
+                driver.FindElement(By.Id("ctl00_MainContent_gridShipmentMethods_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
+                Thread.Sleep(3000);
+
+                driver.FindElement(By.Id("ctl00_MainContent_gridEDITransactions_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
+                Thread.Sleep(3000);
+                SelectDropdown("ctl00_MainContent_gridEDITransactions_ctl00_ctl02_ctl03_radListEDITransList");
+                Thread.Sleep(3000);
+                driver.FindElement(By.Id("ctl00_MainContent_gridEDITransactions_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
+                Thread.Sleep(3000);
+
+                // Step 7.6
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (!driver.FindElement(By.Id("MainContent_CustomValidator")).Displayed)
+                {
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+
+                driver.FindElement(By.Id("ctl00_MainContent_btnSubmitEDIServices_input")).Click();
+                Thread.Sleep(5000);
+
+                // Step 7.7
+                Step += 0.1;
+                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                if (driver.FindElement(By.ClassName("rwPopupButton")).Enabled)
+                {
+                    driver.FindElement(By.ClassName("rwPopupButton")).Click();
+                    Console.WriteLine(strCurrentStep + " Passed");
+                    bRetVal = true;
+                }
+                else
+                {
+                    Console.WriteLine(strCurrentStep + " Failed");
+                    return false;
+                }
+            }
+            catch (NoSuchElementException ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            return bRetVal;
+        }
+
+        #endregion
         private static bool GetRadTabStrip(string strRadTabID, IList<Tabs> tab)
         {
             bool bRetVal = false;
@@ -1677,11 +2801,15 @@ namespace ConsoleApp1
         [StringValue("Sales EDI Test 2")]
         SalesEDITest2 = 7,
         [StringValue("Sales EDI Test 3")]
-        SalesEDITest3 = 8
-        //,[StringValue("Non-Courier EDI")]
-        //NonCourierEDI = 7,
-        //[StringValue("Add'l Notes")]
-        //AddlNotes = 8,
+        SalesEDITest3 = 8,
+        [StringValue("Sales EDI Test 4")]
+        SalesEDITest4 = 9,
+        [StringValue("Sales EDI Test 5")]
+        SalesEDITest5 = 10,
+        [StringValue("Sales EDI Test 6")]
+        SalesEDITest6 = 11,
+        [StringValue("Sales EDI Test 7")]
+        SalesEDITest7 = 12
         //[StringValue("File Uploads")]
         //FileUploads = 9
     }
