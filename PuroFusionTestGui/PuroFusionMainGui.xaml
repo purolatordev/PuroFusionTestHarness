@@ -192,7 +192,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Testing" IsSelected="True" >
+            <TabItem Header="Testing" IsSelected="False" >
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -704,7 +704,166 @@
                     </Grid>
                 </Grid>
             </TabItem>
-
+            <TabItem Header="Web Tester" IsSelected="True">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="4*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Label Content="Selected Tab:"  />
+                                <ComboBox Height="23" Name="cmbBoxWebTesterSelectedTab" Width="Auto" SelectionChanged="cmbBoxWebTesterSelectedTab_SelectionChanged" >
+                                </ComboBox>
+                                <Label Content="Tab State:"  />
+                                <ComboBox Height="23" Name="cmbBoxWebTesterState" Width="Auto" SelectedIndex="0"  >
+                                    <ComboBoxItem>Select</ComboBoxItem>
+                                    <ComboBoxItem>Enable</ComboBoxItem>
+                                    <ComboBoxItem>Disable</ComboBoxItem>
+                                    <ComboBoxItem>Visible</ComboBoxItem>
+                                    <ComboBoxItem>Hidden</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                <Label Content="User"  />
+                                <ComboBox Height="23" Name="cmbddBoxWebTesterUser" Width="Auto" SelectedIndex="0" >
+                                    <ComboBoxItem>sales</ComboBoxItem>
+                                    <ComboBoxItem>itadmin</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <Label Name="lblWebTesterWarningMsg" Content="Warning Message" IsEnabled="True" Foreground="Red" FontWeight="Bold" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1" >
+                            <telerik:RadTabControl Name="radTabPuroFusion">
+                                <telerik:RadTabItem Header="Customer Info" Name="CustomerInfo" >
+                                    <telerik:RadTabItem.Content>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,10" >
+                                                <Label Content="Solution Type:"/>
+                                                <ComboBox Height="23" Name="cmbBoxWebTesterCustomerInfoSolutionType" Width="Auto"  SelectionChanged="cmbBoxWebTesterCustomerInfoSolutionType_SelectionChanged" >
+                                                    <ComboBoxItem>Shipping</ComboBoxItem>
+                                                    <ComboBoxItem>EDI</ComboBoxItem>
+                                                    <ComboBoxItem>Both</ComboBoxItem>
+                                                </ComboBox>
+                                            </StackPanel>
+                                            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10" >
+                                                <Label Content="Edit Field:"/>
+                                                <TextBox Name="txtBxWebTesterCustomerInfo1" Width="100" Padding="0,2,0,0" KeyUp="txtBxWebTesterCustomerInfo1_KeyUp"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Row="2" Orientation="Horizontal" >
+                                                <Button Name="btnNextTab1" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="False" Visibility="Hidden" Click="btnNextTab1_Click" >Next</Button>
+                                            </StackPanel>
+                                        </Grid>
+                                    </telerik:RadTabItem.Content>
+                                </telerik:RadTabItem>
+                                <telerik:RadTabItem Header="Contact Info" Name="ContactInfo" >
+                                    <telerik:RadTabItem.Content>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,10" >
+                                                <Label Content="Edit Field:"/>
+                                                <TextBox Name="txtBxWebTesterContactInfo1" Width="100" Padding="0,2,0,0" KeyUp="txtBxWebTesterContactInfo1_KeyUp"></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Grid.Row="1" Orientation="Horizontal" >
+                                                <Button Name="btnNextTab2" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="False" Visibility="Hidden" Click="btnNextTab2_Click" >Next</Button>
+                                            </StackPanel>
+                                        </Grid>
+                                    </telerik:RadTabItem.Content>
+                                </telerik:RadTabItem>
+                                <telerik:RadTabItem Header="Current Solution" Name="CurrentSolution" >
+                                    <telerik:RadTabItem.Content>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,10" >
+                                                <Label Content="Edit Field:"/>
+                                                <TextBox Name="txtBxWebTesterCurrentSolution1" Width="100" Padding="0,2,0,0" KeyUp="txtBxWebTesterCurrentSolution1_KeyUp" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Grid.Row="1" Orientation="Horizontal" >
+                                                <Button Name="btnNextTab3" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="False" Visibility="Hidden" Click="btnNextTab3_Click"  >Next</Button>
+                                            </StackPanel>
+                                        </Grid>
+                                    </telerik:RadTabItem.Content>
+                                </telerik:RadTabItem>
+                                <telerik:RadTabItem Header="EDI Services" Name="EDIServices" >
+                                    <telerik:RadTabItem.Content>
+                                        <Label></Label>
+                                    </telerik:RadTabItem.Content>
+                                </telerik:RadTabItem>
+                                <telerik:RadTabItem Header="Shipping Services" Name="ShippingServices" >
+                                    <telerik:RadTabItem.Content>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,10" >
+                                                <Label Content="Edit Field:"/>
+                                                <TextBox Name="txtBxWebTesterShippingServices" Width="100" Padding="0,2,0,0" KeyUp="txtBxWebTesterCurrentSolution1_KeyUp" ></TextBox>
+                                            </StackPanel>
+                                            <StackPanel Grid.Row="1" Orientation="Horizontal" >
+                                                <Button Name="btnSubmit" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnSubmit_Click" >Submit</Button>
+                                            </StackPanel>
+                                        </Grid>
+                                    </telerik:RadTabItem.Content>
+                                </telerik:RadTabItem>
+                                <telerik:RadTabItem Header="Profile" Name="Profile" >
+                                    <telerik:RadTabItem.Content>
+                                        <Label></Label>
+                                    </telerik:RadTabItem.Content>
+                                </telerik:RadTabItem>
+                                <telerik:RadTabItem Header="Courier EDI" Name="CourierEDI" >
+                                    <telerik:RadTabItem.Content>
+                                        <Label></Label>
+                                    </telerik:RadTabItem.Content>
+                                </telerik:RadTabItem>
+                                <telerik:RadTabItem Header="Non-Courier EDI" Name="NonCourierEDI" >
+                                    <telerik:RadTabItem.Content>
+                                        <Label></Label>
+                                    </telerik:RadTabItem.Content>
+                                </telerik:RadTabItem>
+                                <telerik:RadTabItem Header="Add'l Notes" Name="AddlNotes" >
+                                    <telerik:RadTabItem.Content>
+                                        <Label></Label>
+                                    </telerik:RadTabItem.Content>
+                                </telerik:RadTabItem>
+                                <telerik:RadTabItem Header="File Uploads" Name="FileUploads" Visibility="Visible" >
+                                    <telerik:RadTabItem.Content>
+                                        <Label>File Uploads</Label>
+                                    </telerik:RadTabItem.Content>
+                                </telerik:RadTabItem>
+                            </telerik:RadTabControl>
+                        </Grid>
+                    </Grid>
+                    <!--Multi Split Center Splitter-->
+                    <GridSplitter Grid.Row="0" Grid.Column="0" Background="Green" Width="5"/>
+                    <Grid Grid.Column="1" >
+                        
+                    </Grid>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 
