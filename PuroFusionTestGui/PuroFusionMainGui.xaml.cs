@@ -108,10 +108,25 @@ namespace PuroFusionTestGui
                 }
             }
         }
+        IList<Tabs> tabShippingTest1 = new List<Tabs>() {
+            new Tabs(AllTabs.CustomerInfo    ) { Enabled = true, Selected = true },
+            new Tabs(AllTabs.ContactInfo     ) { },
+            new Tabs(AllTabs.CurrentSolution ) { },
+            new Tabs(AllTabs.ShippingServices) { },
+            new Tabs(AllTabs.EDIServices)      { Visible = false },
+            new Tabs(AllTabs.Profile)          { Visible = false },
+            new Tabs(AllTabs.CourierEDI)       { Visible = false },
+            new Tabs(AllTabs.NonCourierEDI)    { Visible = false },
+            new Tabs(AllTabs.AddlNotes)        { Visible = false },
+            new Tabs(AllTabs.FileUploads)      { Visible = false }
+        };
         public MainWindow()
         {
             InitializeComponent();
             mainGridData = new GridData1();
+
+            Tabs qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.EDIServices).FirstOrDefault();
+            qtab.Visible = true;
 
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             AssemblyName myAssemblyName = myAssembly.GetName();
@@ -127,10 +142,22 @@ namespace PuroFusionTestGui
             comboBoxTestingTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal2);
             comboBoxTestingTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal3);
 
-            DiscoveryReqUpdates insert = new DiscoveryReqUpdates(){ FirstName = "Pinky", LastName = "Jones", idRequestType = 2, dt1 = DateTime.Now };
-            string sql = GetStringToInsertIntoDb2(insert);
+            foreach(AllTabs i in Enum.GetValues(typeof(AllTabs)))
+            {
+                cmbBoxWebTesterSelectedTab.Items.Add(StringEnum.GetStringValue(i));
+            }
+            cmbBoxWebTesterSelectedTab.SelectedIndex = 0;
+            lblWebTesterWarningMsg.Visibility = Visibility.Hidden;
+            //int j= radTabPuroFusion.Items.Count;
+            //var q = radTabPuroFusion.Items;
+            //CustomerInfo.IsEnabled = true;
+            //IList<string> q2 = tabShippingTest1.Select(f => f.Name).ToList();
             int er = 0;
             er++;
+            //DiscoveryReqUpdates insert = new DiscoveryReqUpdates(){ FirstName = "Pinky", LastName = "Jones", idRequestType = 2, dt1 = DateTime.Now };
+            //string sql = GetStringToInsertIntoDb2(insert);
+            //int er = 0;
+            //er++;
             //string sql = @"INSERT[dbo].[tblDiscoveryRequest]( [isNewRequest], [SalesRepName], [SalesRepEmail], [idOnboardingPhase], [District], [CustomerName], [Address], [City], [State], [Zipcode], [Country], [Commodity], [ProjectedRevenue], [CurrentSolution], [ProposedCustoms], [CallDate1], [CallDate2], [CallDate3], [UpdatedBy], [UpdatedOn], [CreatedBy], [CreatedOn], [ActiveFlag], [SalesComments], [idITBA], [idShippingChannel], [TargetGoLive], [ActualGoLive], [SolutionSummary], [CustomerWebsite], [Branch], [idVendor], [worldpakFlag], [thirdpartyFlag], [customFlag], [InvoiceType], [BilltoAccount], [FTPUsername], [FTPPassword], [CustomsSupportedFlag], [ElinkFlag], [PARS], [PASS], [CustomsBroker], [SupportUser], [SupportGroup], [Office], [Group], [MigrationDate], [PreMigrationSolution], [PostMigrationSolution], [ControlBranch], [ContractNumber], [ContractStartDate], [ContractEndDate], [ContractCurrency], [PaymentTerms], [CloseReason], [CRR], [BrokerNumber], [DataScrubFlag], [EDICustomizedFlag], [StrategicFlag], [ReturnsAcctNbr], [ReturnsAddress], [ReturnsCity], [ReturnsState], [ReturnsZip], [ReturnsCountry], [ReturnsDestroyFlag], [ReturnsCreateLabelFlag], [WPKSandboxUsername], [WPKSandboxPwd], [WPKProdUsername], [WPKProdPwd], [WPKCustomExportFlag], [WPKGhostScanFlag], [WPKEastWestSplitFlag], [WPKAddressUploadFlag], [WPKProductUploadFlag], [WPKDataEntryMethod], [WPKEquipmentFlag], [EWSelectBy], [EWSortCodeFlag], [EWEastSortCode], [EWWestSortCode], [EWSepCloseoutFlag], [EWSepPUFlag], [EWSortDetails], [EWMissortDetails], [CurrentGoLive], [PhaseChangeDate], [idRequestType], [CurrentlyShippingFlag], [idShippingVendor], [OtherVendorName], [idBroker], [OtherBrokerName], [idVendorType], [Route], [idSolutionType], [FreightAuditor], [EDIDetails], [idEDISpecialist], [idBillingSpecialist], [idCollectionSpecialist], [AuditorPortal], [AuditorURL], [AuditorUserName], [AuditorPassword], [EDITargetGoLive], [EDICurrentGoLive], [EDIActualGoLive], [idEDIOnboardingPhase]) " +
             //                "VALUES(1, N'Joe Murphy', N'Joe.Murphy@purolator.com', 8, N'EASTERN', N'Both Test 2', N'Both Address 2', N'BAY SHORE', N'NY', N'12 street', N'United States', N'Cheese', 9999.2200, N'sadgfagv', N'PARS & PASS', NULL, NULL, NULL, N'scott.cardinale', CAST(N'2021-06-04T15:15:28.137' AS DateTime), N'scott.cardinale', CAST(N'2021-06-04T15:15:28.137' AS DateTime), 1, N'aswdefw', NULL, NULL, NULL, NULL, N'', N'', N'BUF', NULL, 0, 0, 0, N'', N'', N'', N'', 1, 0, N'                         ', N'                         ', N'                                                                                                                                                                                                                                                               ', N'', N'', N'', N'', NULL, N'', N'', N'', N'', NULL, NULL, N'', N'', NULL, N'', N'', 0, 0, 1, N'', N'', N'', N'', N'', N'', 0, 0, N'', N'', N'', N'', 0, 0, 0, 0, 0, N'', 0, N'', 0, N'', N'', 0, 0, N'', N'', NULL, CAST(N'2021-04-23T15:04:57.723' AS DateTime), 3, 1, NULL, N'', 4, N'', NULL, N'', 3, 1, N'', NULL, NULL, NULL, 0, N'', N'', N'', NULL, NULL, NULL, 0)";
 
@@ -322,7 +349,6 @@ namespace PuroFusionTestGui
                 }
             }
         }
-
         private void btnTouchDBLoadGrid_Click(object sender, RoutedEventArgs e)
         {
             string strConn = GetdbLocation(comboBoxTouchDB);
@@ -490,7 +516,6 @@ namespace PuroFusionTestGui
                 }
             }
         }
-
         private void radGridTouchDBTopLeft_Filtered(object sender, Telerik.Windows.Controls.GridView.GridViewFilteredEventArgs e)
         {
             lblTouchDBTopLeftCountFiltered.Content = "Filtered recs: " + radGridTouchDBTopLeft.Items.Count.ToString();
@@ -530,7 +555,6 @@ namespace PuroFusionTestGui
                 er++;
             }
         }
-
         private void radGridMainTopLeft_SelectionChanged(object sender, SelectionChangeEventArgs e)
         {
             if (((RadGridView)sender).SelectedItem is dtoPuroTouchUsers)
@@ -544,7 +568,6 @@ namespace PuroFusionTestGui
                 txtBxMainApplicationRole.Text = rec.idPI_ApplicationRole.ToString() + "-" + rec.RoleName;
             }
         }
-
         private void btnMainLoadPuroRoles_Click(object sender, RoutedEventArgs e)
         {
             string strConn = GetdbLocation(comboBoxMainDB);
@@ -557,7 +580,6 @@ namespace PuroFusionTestGui
                 comboBoxMainPuroRoles.SelectedIndex = 0;
             }
         }
-
         private void btnMainChangePuroRoles_Click(object sender, RoutedEventArgs e)
         {
             dtotblPI_ApplicationRoles appRole = (dtotblPI_ApplicationRoles)comboBoxMainPuroRoles.SelectedItem;
@@ -867,8 +889,394 @@ namespace PuroFusionTestGui
             return sql;
         }
 
+        private void cmbBoxWebTesterSelectedTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string tabName = (string)((ComboBox)sender).SelectedItem;
+            int indexOfTab = (int)GetTheTab.Get(tabName);
+            RadTabItem theTab = new RadTabItem();
+            foreach (RadTabItem t in radTabPuroFusion.Items)
+            {
+                string s = t.Header.ToString();
+                if(tabName.Contains(t.Header.ToString()))
+                {
+                    theTab = t;
+                    break;
+                }
+            }
+            ComboBoxItem TabState = (ComboBoxItem)cmbBoxWebTesterState.SelectedItem;
+            switch(TabState.Content.ToString())
+            {
+                case "Select":
+                    radTabPuroFusion.SelectedIndex = indexOfTab;
+                    break;
+                case "Enable":
+                    theTab.IsEnabled = true;
+                    break;
+                case "Disable":
+                    theTab.IsEnabled = false;
+                    break;
+                case "Hidden":
+                    theTab.Visibility = Visibility.Hidden;
+                    break;
+                case "Visible":
+                    theTab.Visibility = Visibility.Visible;
+                    break;
+            }
+        }
+
+        private void cmbBoxWebTesterCustomerInfoSolutionType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem tabName = (ComboBoxItem)((ComboBox)sender).SelectedItem;
+            string strtabName = tabName.Content.ToString();
+            ComboBoxItem UserType = (ComboBoxItem)cmbddBoxWebTesterUser.SelectedItem;
+            if (strtabName.Contains("Shipping"))
+                SetTabsForShippingTest1();
+            else if (strtabName.Contains("EDI"))
+                SetTabsForEDITest1();
+
+            foreach (Tabs t in tabShippingTest1)
+            {
+                RadTabItem theTab = new RadTabItem();
+                foreach (RadTabItem r in radTabPuroFusion.Items)
+                {
+                    string s = r.Header.ToString();
+                    if (t.Name == r.Header.ToString() )
+                    {
+                        theTab = r;
+                        int indexOfTab = (int)GetTheTab.Get(t.Name);
+                        if (t.Selected)
+                        {
+                            radTabPuroFusion.SelectedIndex = indexOfTab;
+                            theTab.Visibility = Visibility.Visible;
+                        }
+                        else if (!t.Visible)
+                        {
+                            theTab.Visibility = Visibility.Hidden;
+                        }
+                        else if(t.Enabled)
+                        {
+                            theTab.IsEnabled = true;
+                            theTab.Visibility = Visibility.Visible;
+                        }
+                        else if(!t.Enabled)
+                        {
+                            if (t.Visible)
+                                theTab.Visibility = Visibility.Visible;
+                            theTab.IsEnabled = false;
+                        }
+                        break;
+                    }
+                }
+                int er2 = 0;
+                er2++;
+            }
+            IList<string> q = tabShippingTest1.Select(f => f.Name).ToList();
+        }
+
+        private void txtBxWebTesterCustomerInfo1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txtBxWebTesterCustomerInfo1.Text))
+            {
+                btnNextTab1.IsEnabled = true;
+                btnNextTab1.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btnNextTab1.IsEnabled = false;
+                btnNextTab1.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void txtBxWebTesterContactInfo1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txtBxWebTesterContactInfo1.Text))
+            {
+                btnNextTab2.IsEnabled = true;
+                btnNextTab2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btnNextTab2.IsEnabled = false;
+                btnNextTab2.Visibility = Visibility.Hidden;
+            }
+        }
+        private void txtBxWebTesterCurrentSolution1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txtBxWebTesterCurrentSolution1.Text))
+            {
+                btnNextTab3.IsEnabled = true;
+                btnNextTab3.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btnNextTab3.IsEnabled = false;
+                btnNextTab3.Visibility = Visibility.Hidden;
+            }
+        }
+        private void btnNextTab1_Click(object sender, RoutedEventArgs e)
+        {
+            cmbBoxWebTesterSelectedTab.SelectedIndex = (int)AllTabs.ContactInfo;
+            btnNextTab1.Visibility = Visibility.Hidden;
+            ContactInfo.Visibility = Visibility.Visible;
+            ContactInfo.IsEnabled = true;
+            ContactInfo.IsSelected = true;
+        }
+
+        private void btnNextTab2_Click(object sender, RoutedEventArgs e)
+        {
+            cmbBoxWebTesterSelectedTab.SelectedIndex = (int)AllTabs.CurrentSolution;
+            btnNextTab2.Visibility = Visibility.Hidden;
+            CurrentSolution.IsEnabled = true;
+            CurrentSolution.IsSelected = true;
+        }
+        private void btnNextTab3_Click(object sender, RoutedEventArgs e)
+        {
+            btnNextTab3.Visibility = Visibility.Hidden;
+            ShippingServices.IsEnabled = true;
+            ShippingServices.IsSelected = true;
+        }
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtBxWebTesterShippingServices.Text) ||
+                String.IsNullOrEmpty(txtBxWebTesterCurrentSolution1.Text) ||
+                String.IsNullOrEmpty(txtBxWebTesterContactInfo1.Text) ||
+                String.IsNullOrEmpty(txtBxWebTesterCustomerInfo1.Text))
+            {
+                StringBuilder sb = new StringBuilder();
+
+                if (String.IsNullOrEmpty(txtBxWebTesterCustomerInfo1.Text))
+                    sb.Append("Customer Info missing, ");
+                if (String.IsNullOrEmpty(txtBxWebTesterContactInfo1.Text))
+                    sb.Append("Contact Info missing, ");
+                if (String.IsNullOrEmpty(txtBxWebTesterCurrentSolution1.Text))
+                    sb.Append("Current Solution missing, ");
+                if (String.IsNullOrEmpty(txtBxWebTesterShippingServices.Text))
+                    sb.Append("Shipping Services missing, ");
+
+                lblWebTesterWarningMsg.Content = sb.ToString();
+                lblWebTesterWarningMsg.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                lblWebTesterWarningMsg.Visibility = Visibility.Hidden;
+                if (MessageBox.Show("Successful", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    // Close the window  
+                    int er = 0;
+                    er++;
+                }
+                else
+                {
+                    // Do not close the window  
+                    int er = 0;
+                    er++;
+                }
+            }
+        }
+        public void SetTabsForShippingTest1()
+        {
+            Tabs qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.CustomerInfo).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = true;
+            qtab.Selected = true;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.ContactInfo).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.CurrentSolution).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.ShippingServices).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.EDIServices).FirstOrDefault();
+            qtab.Visible = false;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.Profile).FirstOrDefault();
+            qtab.Visible = false;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.CourierEDI).FirstOrDefault();
+            qtab.Visible = false;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.NonCourierEDI).FirstOrDefault();
+            qtab.Visible = false;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.AddlNotes).FirstOrDefault();
+            qtab.Visible = false;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.FileUploads).FirstOrDefault();
+            qtab.Visible = false;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+        }
+        public void SetTabsForEDITest1()
+        {
+            Tabs qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.CustomerInfo).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = true;
+            qtab.Selected = true;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.ContactInfo).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.CurrentSolution).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.ShippingServices).FirstOrDefault();
+            qtab.Visible = false;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.EDIServices).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.Profile).FirstOrDefault();
+            qtab.Visible = false;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.CourierEDI).FirstOrDefault();
+            qtab.Visible = false;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.NonCourierEDI).FirstOrDefault();
+            qtab.Visible = false;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.AddlNotes).FirstOrDefault();
+            qtab.Visible = false;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.FileUploads).FirstOrDefault();
+            qtab.Visible = false;
+            qtab.Enabled = false;
+            qtab.Selected = false;
+        }
+    }
+    public class Tabs
+    {
+        public static int iCount { get; set; }
+        public string Name { get; set; }
+        public bool Selected { get; set; }
+        public bool Enabled { get; set; }
+        public bool Visible { get; set; }
+        public int iOrdinalValue { get; set; }
+        public AllTabs localTab { get; set; }
+        public Tabs()
+        {
+            Selected = false;
+            Enabled = false;
+            iOrdinalValue = iCount;
+            iCount++;
+        }
+        public Tabs(AllTabs val)
+        {
+            localTab = val;
+            Name = StringEnum.GetStringValue(val);
+            Selected = false;
+            Enabled = false;
+            Visible = true;
+            iOrdinalValue = (int)val;
+        }
+        public Tabs(AllTabs val, int iOrd)
+        {
+            localTab = val;
+            Name = StringEnum.GetStringValue(val);
+            Selected = false;
+            Enabled = false;
+            iOrdinalValue = iOrd;
+        }
     }
 
+    #region Enumerations
+    public enum AllTabs
+    {
+        [StringValue("Customer Info")]
+        CustomerInfo = 0,
+        [StringValue("Contact Info")]
+        ContactInfo = 1,
+        [StringValue("Current Solution")]
+        CurrentSolution = 2,
+        [StringValue("EDI Services")]
+        EDIServices = 3,
+        [StringValue("Shipping Services")]
+        ShippingServices = 4,
+        [StringValue("Profile")]
+        Profile = 5,
+        [StringValue("Courier EDI")]
+        CourierEDI = 6,
+        [StringValue("Non-Courier EDI")]
+        NonCourierEDI = 7,
+        [StringValue("Add'l Notes")]
+        AddlNotes = 8,
+        [StringValue("File Uploads")]
+        FileUploads = 9
+    }
+    public static class GetTheTab
+    {
+        public static AllTabs Get(string strTab)
+        {
+            AllTabs retTab = AllTabs.CustomerInfo;
+
+            if (strTab == StringEnum.GetStringValue(AllTabs.CustomerInfo))
+                retTab = AllTabs.CustomerInfo;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.ContactInfo))
+                retTab = AllTabs.ContactInfo;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.CurrentSolution))
+                retTab = AllTabs.CurrentSolution;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.EDIServices))
+                retTab = AllTabs.EDIServices;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.ShippingServices))
+                retTab = AllTabs.ShippingServices;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.Profile))
+                retTab = AllTabs.Profile;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.CourierEDI))
+                retTab = AllTabs.CourierEDI;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.NonCourierEDI))
+                retTab = AllTabs.NonCourierEDI;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.AddlNotes))
+                retTab = AllTabs.AddlNotes;
+            else if (strTab == StringEnum.GetStringValue(AllTabs.FileUploads))
+                retTab = AllTabs.FileUploads;
+            return retTab;
+        }
+    }
+    public class StringValue : System.Attribute
+    {
+        private string _value;
+        public StringValue(string value)
+        {
+            _value = value;
+        }
+        public string Value
+        {
+            get { return _value; }
+        }
+    }
+    public static class StringEnum
+    {
+        public static string GetStringValue(Enum value)
+        {
+            string output = null;
+            Type type = value.GetType();
+
+            FieldInfo fi = type.GetField(value.ToString());
+            StringValue[] attrs = fi.GetCustomAttributes(typeof(StringValue), false) as StringValue[];
+            if (attrs.Length > 0)
+            {
+                output = attrs[0].Value;
+            }
+            return output;
+        }
+    }
+    #endregion
     // https://stackoverflow.com/questions/5175629/how-to-style-grid-columndefinitions-in-wpf
     public class GridHelpers
     {
