@@ -1182,13 +1182,12 @@ namespace ConsoleApp1
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)         ,Enabled = true, Selected = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)          },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)      },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)          ,Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices)     ,Enabled = true}
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)          },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices)     }
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
                 {
                     Console.WriteLine(strCurrentStep + " Passed");
-                    Console.WriteLine(strCurrentStep + " tab2 must change EDI Services and Shipping Services to be disabled");
                 }
                 else
                 {
@@ -1216,8 +1215,8 @@ namespace ConsoleApp1
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)          ,Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices)     ,Enabled = true}
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)      },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices) }
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
                 {
@@ -1266,8 +1265,8 @@ namespace ConsoleApp1
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)          ,Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices)     ,Enabled = true}
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)       },
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices)  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab3))
                 {
@@ -1289,7 +1288,7 @@ namespace ConsoleApp1
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)      ,Enabled = true, Selected = true },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices) ,Enabled = true    }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices)    }
                 };
                 // Step 1.4
                 Step += 0.1;
@@ -1318,7 +1317,9 @@ namespace ConsoleApp1
                 Thread.Sleep(3000);
                 driver.FindElement(By.Id("ctl00_MainContent_gridEDITransactions_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
                 Thread.Sleep(3000);
-
+                driver.FindElement(By.Id("ctl00_MainContent_btnEDIServicesNext")).Click();
+                Thread.Sleep(3000);
+                
                 // Step 1.5
                 Step += 0.1;
                 strCurrentStep = String.Format("Step {0:0.0#}", Step);
@@ -1326,9 +1327,10 @@ namespace ConsoleApp1
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)    , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)      ,Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices), Enabled = true, Selected = true }
                 };
-                if (GetRadTabStrip(strRadTabID, tab4))
+                if (GetRadTabStrip(strRadTabID, tab5))
                 {
                     Console.WriteLine(strCurrentStep + " Passed");
                     bRetVal = true;
@@ -1338,10 +1340,20 @@ namespace ConsoleApp1
                     Console.WriteLine(strCurrentStep + " Failed");
                     return false;
                 }
-                driver.FindElement(By.Id("ctl00_MainContent_btnSubmitEDIServices_input")).Click();
+                SelectDropdown("ctl00_MainContent_rddlService");
                 Thread.Sleep(5000);
+                driver.FindElement(By.Id("ctl00_MainContent_txtVolume")).SendKeys("2");
+                Thread.Sleep(5000);
+                driver.FindElement(By.Id("ctl00_MainContent_btnAddSvc_input")).Click();
+                Thread.Sleep(5000);
+                SelectDropdown("ctl00_MainContent_rddlCustomsList");
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+                SelectDropdown("ctl00_MainContent_rddlCustomsBroker");
+                Thread.Sleep(5000);
+                driver.FindElement(By.Id("ctl00_MainContent_btnSubmit_input")).Click();
+                 Thread.Sleep(5000);
 
-                // Step 1.5
+                // Step 1.6
                 Step += 0.1;
                 strCurrentStep = String.Format("Step {0:0.0#}", Step);
                 if (driver.FindElement(By.ClassName("rwPopupButton")).Displayed)
