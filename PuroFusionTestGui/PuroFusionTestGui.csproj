@@ -149,12 +149,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="TechSupport.ico" />
+    <Resource Include="TechSupport.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="purofusion.ico" />
     <Resource Include="divider2.ico" />
     <Resource Include="Purolator-Icon-5.ico" />
+    <Resource Include="Delete.ico" />
+    <Resource Include="OK.ico" />
+    <Resource Include="CodeBreakpoint.ico" />
     <Content Include="Telerik\HtmlAgilityPack.dll" />
     <Content Include="Telerik\Telerik.Windows.Controls.Data.dll" />
     <Content Include="Telerik\Telerik.Windows.Controls.dll" />

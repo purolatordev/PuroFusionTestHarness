@@ -121,35 +121,6 @@ namespace PuroFusionTestGui
             new Tabs(AllTabs.AddlNotes)        { Visible = false },
             new Tabs(AllTabs.FileUploads)      { Visible = false }
         };
-        public MainWindow()
-        {
-            InitializeComponent();
-            mainGridData = new GridData1();
-
-          //  IList<ConsoleApp1.TestParams> ToTest = new List<ConsoleApp1.TestParams>() {
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesShippingTest1) { Enabled = false,  Step = 1.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesShippingTest2) { Enabled = false,  Step = 2.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesShippingTest3) { Enabled = false,  Step = 3.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesShippingTest4) { Enabled = false,  Step = 4.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesShippingTest5) { Enabled = false,  Step = 5.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesShippingTest7) { Enabled = false,  Step = 7.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesEDITest1)      { Enabled = false,  Step = 1.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesEDITest2)      { Enabled = false,  Step = 2.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesEDITest3)      { Enabled = false,  Step = 3.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesEDITest4)      { Enabled = false,  Step = 4.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesEDITest5)      { Enabled = false,  Step = 5.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesEDITest6)      { Enabled = false,  Step = 6.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesEDITest7)      { Enabled = false,  Step = 7.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesBothTest1)     { Enabled = false,  Step = 1.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesBothTest2)     { Enabled = false,  Step = 2.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesBothTest3)     { Enabled = false,  Step = 3.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesBothTest4)     { Enabled = false,  Step = 4.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesBothTest5)     { Enabled = false,  Step = 5.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesBothTest6)     { Enabled = false,  Step = 6.0},
-          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesBothTest7)     { Enabled = true,  Step = 7.0}
-          //};
-            //AddTreeViewItems();
-           
             IList<TestParams> ToTest2 = new List<TestParams>() {
                 new TestParams( AllTest.SalesShippingTest1,5) { Enabled = false,  Step = 1.0},
                 new TestParams( AllTest.SalesShippingTest2,5) { Enabled = false,  Step = 2.0},
@@ -171,9 +142,14 @@ namespace PuroFusionTestGui
                 new TestParams( AllTest.SalesBothTest5,5)     { Enabled = false,  Step = 5.0},
                 new TestParams( AllTest.SalesBothTest6,5)     { Enabled = false,  Step = 6.0},
                 new TestParams( AllTest.SalesBothTest7,5)     { Enabled = true,  Step = 7.0}
-            };
-            AddTreeViewItems2(ToTest2);
-            AddTreeViewItems3(ToTest2);
+            };        
+        public MainWindow()
+            {
+            InitializeComponent();
+            mainGridData = new GridData1();
+           
+            //AddTreeViewItems3(ToTest2);
+            AddTreeViewItems5(ToTest2);
 
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             AssemblyName myAssemblyName = myAssembly.GetName();
@@ -1366,380 +1342,521 @@ namespace PuroFusionTestGui
         //    product111.Header = "Step 2.2";
         //    product.Items.Add(product111);
         //}
-        private void AddTreeViewItems2(IList<TestParams> ToTest)
-        {
-            RadTreeViewItem TestCategory = new RadTreeViewItem();
-            TestCategory.Header = ToTest[0].strCategoryName;
-            TestCategory.IsExpanded = true;
-            TestCategory.Foreground = new SolidColorBrush(Colors.Green);
-            TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
-            radTreeView2.Items.Add(TestCategory);
+        //private void AddTreeViewItems2(IList<TestParams> ToTest)
+        //{
+        //    RadTreeViewItem TestCategory = new RadTreeViewItem();
+        //    TestCategory.Header = ToTest[0].strCategoryName;
+        //    TestCategory.IsExpanded = true;
+        //    TestCategory.Foreground = new SolidColorBrush(Colors.Green);
+        //    TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+        //    radTreeView2.Items.Add(TestCategory);
 
-            // Adding child items 
-            RadTreeViewItem product = new RadTreeViewItem();
-            product.Header = ToTest[0].Name;
-            TestCategory.Items.Add(product);
-            // Added
-            int iIndex = 0;
-            double dStep = ToTest[iIndex].Step;
-            for (int i=0;i< ToTest[0].iTotalSteps;i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
+        //    // Adding child items 
+        //    RadTreeViewItem product = new RadTreeViewItem();
+        //    product.Header = ToTest[0].Name;
+        //    TestCategory.Items.Add(product);
+        //    // Added
+        //    int iIndex = 0;
+        //    double dStep = ToTest[iIndex].Step;
+        //    for (int i=0;i< ToTest[0].iTotalSteps;i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
 
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
 
-            iIndex++; 
-            TestCategory = new RadTreeViewItem();
-            TestCategory.Header = ToTest[iIndex].strCategoryName;
-            TestCategory.IsExpanded = true;
-            TestCategory.Foreground = new SolidColorBrush(Colors.Blue);
-            TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
-            radTreeView2.Items.Add(TestCategory);
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            TestCategory = new RadTreeViewItem();
-            TestCategory.Header = ToTest[iIndex].strCategoryName;
-            TestCategory.IsExpanded = true;
-            TestCategory.Foreground = new SolidColorBrush(Colors.Red);
-            TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
-            radTreeView2.Items.Add(TestCategory);
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            iIndex++;
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-        }
-        private void AddTreeViewItems3(IList<TestParams> ToTest)
+        //    iIndex++; 
+        //    TestCategory = new RadTreeViewItem();
+        //    TestCategory.Header = ToTest[iIndex].strCategoryName;
+        //    TestCategory.IsExpanded = true;
+        //    TestCategory.Foreground = new SolidColorBrush(Colors.Blue);
+        //    TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+        //    radTreeView2.Items.Add(TestCategory);
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    TestCategory = new RadTreeViewItem();
+        //    TestCategory.Header = ToTest[iIndex].strCategoryName;
+        //    TestCategory.IsExpanded = true;
+        //    TestCategory.Foreground = new SolidColorBrush(Colors.Red);
+        //    TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+        //    radTreeView2.Items.Add(TestCategory);
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    iIndex++;
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //}
+        //private void AddTreeViewItems3(IList<TestParams> ToTest)
+        //{
+        //    RadTreeView radTreeView = radTreeView3;
+        //    RadTreeViewItem TestCategory;
+        //    int iIndex = 0;
+        //    double dStep = 0;
+
+        //    TestCategory = new RadTreeViewItem();
+        //    TestCategory.Header = ToTest[0].strCategoryName;
+        //    TestCategory.IsExpanded = true;
+        //    TestCategory.Foreground = new SolidColorBrush(Colors.Green);
+        //    TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+        //    radTreeView.Items.Add(TestCategory);
+
+        //    RadTreeViewItem product = new RadTreeViewItem();
+        //    product.Header = ToTest[0].Name;
+        //    TestCategory.Items.Add(product);
+        //    dStep = ToTest[iIndex].Step;
+        //    for (int i = 0; i < ToTest[0].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    for (int j = 0; j < 5; j++)
+        //    {
+        //        iIndex = CreateIndivTests(ToTest, TestCategory, iIndex, out dStep, out product);
+        //    }
+
+        //    iIndex++;
+        //    TestCategory = new RadTreeViewItem();
+        //    TestCategory.Header = ToTest[iIndex].strCategoryName;
+        //    TestCategory.IsExpanded = true;
+        //    TestCategory.Foreground = new SolidColorBrush(Colors.Blue);
+        //    TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+        //    radTreeView.Items.Add(TestCategory);
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    for (int j = 0; j < 6; j++)
+        //    {
+        //        iIndex = CreateIndivTests(ToTest, TestCategory, iIndex, out dStep, out product);
+        //    }
+            
+        //    iIndex++;
+        //    TestCategory = new RadTreeViewItem();
+        //    TestCategory.Header = ToTest[iIndex].strCategoryName;
+        //    TestCategory.IsExpanded = true;
+        //    TestCategory.Foreground = new SolidColorBrush(Colors.Red);
+        //    TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+        //    radTreeView.Items.Add(TestCategory);
+        //    dStep = ToTest[iIndex].Step;
+        //    product = new RadTreeViewItem();
+        //    product.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(product);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        product.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    for (int j = 0; j < 6; j++)
+        //    {
+        //        iIndex = CreateIndivTests(ToTest, TestCategory, iIndex, out dStep, out product);
+        //    }
+        //}
+        //private void AddTreeViewItems4(IList<TestParams> ToTest)
+        //{
+        //    RadTreeView radTreeView = radTreeView3;
+        //    RadTreeViewItem TestCategory;
+        //    RadTreeViewItem SpecificTest;
+        //    int iIndex = -1;
+        //    double dStep = 0;
+
+        //    iIndex++; 
+        //    TestCategory = new RadTreeViewItem();
+        //    TestCategory.Header = ToTest[iIndex].strCategoryName;
+        //    TestCategory.IsExpanded = true;
+        //    TestCategory.Foreground = new SolidColorBrush(Colors.Green);
+        //    TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+        //    radTreeView.Items.Add(TestCategory);
+
+        //    dStep = ToTest[iIndex].Step;
+        //    SpecificTest = new RadTreeViewItem();
+        //    SpecificTest.Header = ToTest[0].Name;
+        //    TestCategory.Items.Add(SpecificTest);
+        //    for (int i = 0; i < ToTest[0].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        SpecificTest.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    var qCatSteps = ToTest.Where(f => f.strCategoryName == StringEnum.GetStringValue(AllTestCategory.SalesShippingTests)).ToList();
+        //    int iCatSteps = qCatSteps.Count-1;
+        //    for (int j = 0; j < iCatSteps; j++)
+        //    {
+        //        iIndex = CreateIndivTests(ToTest, TestCategory, iIndex, out dStep, out SpecificTest);
+        //    }
+
+        //    iIndex++;
+        //    TestCategory = new RadTreeViewItem();
+        //    TestCategory.Header = ToTest[iIndex].strCategoryName;
+        //    TestCategory.IsExpanded = true;
+        //    TestCategory.Foreground = new SolidColorBrush(Colors.Blue);
+        //    TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+        //    radTreeView.Items.Add(TestCategory);
+
+        //    dStep = ToTest[iIndex].Step;
+        //    SpecificTest = new RadTreeViewItem();
+        //    SpecificTest.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(SpecificTest);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        SpecificTest.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    qCatSteps = ToTest.Where(f => f.strCategoryName == StringEnum.GetStringValue(AllTestCategory.SalesEDITests)).ToList();
+        //    iCatSteps = qCatSteps.Count - 1;
+        //    for (int j = 0; j < iCatSteps; j++)
+        //    {
+        //        iIndex = CreateIndivTests(ToTest, TestCategory, iIndex, out dStep, out SpecificTest);
+        //    }
+
+        //    iIndex++;
+        //    TestCategory = new RadTreeViewItem();
+        //    TestCategory.Header = ToTest[iIndex].strCategoryName;
+        //    TestCategory.IsExpanded = true;
+        //    TestCategory.Foreground = new SolidColorBrush(Colors.Red);
+        //    TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+        //    radTreeView.Items.Add(TestCategory);
+        //    dStep = ToTest[iIndex].Step;
+        //    SpecificTest = new RadTreeViewItem();
+        //    SpecificTest.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(SpecificTest);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        SpecificTest.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    qCatSteps = ToTest.Where(f => f.strCategoryName == StringEnum.GetStringValue(AllTestCategory.SalesBothTests)).ToList();
+        //    iCatSteps = qCatSteps.Count - 1;
+        //    for (int j = 0; j < iCatSteps; j++)
+        //    {
+        //        iIndex = CreateIndivTests(ToTest, TestCategory, iIndex, out dStep, out SpecificTest);
+        //    }
+        //}
+        private void AddTreeViewItems5(IList<TestParams> ToTest)
         {
             RadTreeView radTreeView = radTreeView3;
-            RadTreeViewItem TestCategory;
-            int iIndex = 0;
-            double dStep = 0;
+            int iIndex = -1;
 
-            TestCategory = new RadTreeViewItem();
-            TestCategory.Header = ToTest[0].strCategoryName;
-            TestCategory.IsExpanded = true;
-            TestCategory.Foreground = new SolidColorBrush(Colors.Green);
-            TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
-            radTreeView.Items.Add(TestCategory);
+            iIndex = CreateEntireCategory2(ToTest, radTreeView, iIndex, AllTestCategory.SalesShippingTests, Colors.Green);
+            iIndex = CreateEntireCategory2(ToTest, radTreeView, iIndex, AllTestCategory.SalesEDITests, Colors.Blue);
+            iIndex = CreateEntireCategory2(ToTest, radTreeView, iIndex, AllTestCategory.SalesBothTests, Colors.Red);
+        }
 
-            RadTreeViewItem product = new RadTreeViewItem();
-            product.Header = ToTest[0].Name;
-            TestCategory.Items.Add(product);
-            dStep = ToTest[iIndex].Step;
-            for (int i = 0; i < ToTest[0].iTotalSteps; i++)
-            {
-                RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
-                dStep += 0.1;
-            }
-            for (int j = 0; j < 5; j++)
-            {
-                iIndex++;
-                dStep = ToTest[iIndex].Step;
-                product = new RadTreeViewItem();
-                product.Header = ToTest[iIndex].Name;
-                TestCategory.Items.Add(product);
-                for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-                {
-                    RadTreeViewItem StepItem = new RadTreeViewItem();
-                    StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                    product.Items.Add(StepItem);
-                    dStep += 0.1;
-                }
-            }
+        //private static int CreateEntireCategory(IList<TestParams> ToTest, RadTreeView radTreeView, out RadTreeViewItem TestCategory, out RadTreeViewItem SpecificTest, int iIndex, out double dStep, out List<TestParams> qCatSteps, AllTestCategory TestCat)
+        //{
+        //    iIndex++;
+        //    TestCategory = new RadTreeViewItem();
+        //    TestCategory.Header = ToTest[iIndex].strCategoryName;
+        //    TestCategory.IsExpanded = true;
+        //    TestCategory.Foreground = new SolidColorBrush(Colors.Green);
+        //    TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+        //    radTreeView.Items.Add(TestCategory);
 
+        //    dStep = ToTest[iIndex].Step;
+        //    SpecificTest = new RadTreeViewItem();
+        //    SpecificTest.Header = ToTest[iIndex].Name;
+        //    TestCategory.Items.Add(SpecificTest);
+        //    for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+        //    {
+        //        RadTreeViewItem StepItem = new RadTreeViewItem();
+        //        StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+        //        SpecificTest.Items.Add(StepItem);
+        //        dStep += 0.1;
+        //    }
+        //    qCatSteps = ToTest.Where(f => f.strCategoryName == StringEnum.GetStringValue(TestCat)).ToList();
+        //    int iCatSteps = qCatSteps.Count - 1;
+        //    for (int j = 0; j < iCatSteps; j++)
+        //    {
+        //        iIndex = CreateIndivTests(ToTest, TestCategory, iIndex, out dStep, out SpecificTest);
+        //    }
+
+        //    return iIndex;
+        //}
+        private static int CreateEntireCategory2(IList<TestParams> ToTest, RadTreeView radTreeView, int iIndex, AllTestCategory TestCat, Color c)
+        {
             iIndex++;
-            TestCategory = new RadTreeViewItem();
+            RadTreeViewItem TestCategory = new RadTreeViewItem();
             TestCategory.Header = ToTest[iIndex].strCategoryName;
-            TestCategory.IsExpanded = true;
-            TestCategory.Foreground = new SolidColorBrush(Colors.Blue);
-            TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+            //TestCategory.IsExpanded = true;
+            TestCategory.Foreground = new SolidColorBrush(c);
+            //TestCategory.CheckState = System.Windows.Automation.ToggleState.Off;
             radTreeView.Items.Add(TestCategory);
-            dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
+
+            double dStep = ToTest[iIndex].Step;
+            RadTreeViewItem SpecificTest = new RadTreeViewItem();
+            SpecificTest.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(SpecificTest);
             for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
             {
                 RadTreeViewItem StepItem = new RadTreeViewItem();
                 StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
+                StepItem.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\CodeBreakpoint.ico";
+                SpecificTest.Items.Add(StepItem);
                 dStep += 0.1;
             }
-            for (int j = 0; j < 6; j++)
+            List<TestParams> qCatSteps = ToTest.Where(f => f.strCategoryName == StringEnum.GetStringValue(TestCat)).ToList();
+            int iCatSteps = qCatSteps.Count - 1;
+            for (int j = 0; j < iCatSteps; j++)
             {
-                iIndex++;
-                dStep = ToTest[iIndex].Step;
-                product = new RadTreeViewItem();
-                product.Header = ToTest[iIndex].Name;
-                TestCategory.Items.Add(product);
-                for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-                {
-                    RadTreeViewItem StepItem = new RadTreeViewItem();
-                    StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                    product.Items.Add(StepItem);
-                    dStep += 0.1;
-                }
+                iIndex = CreateIndivTests(ToTest, TestCategory, iIndex, out dStep, out SpecificTest);
             }
-            
+
+            return iIndex;
+        }
+        private static int CreateIndivTests(IList<TestParams> ToTest, RadTreeViewItem TestCategory, int iIndex, out double dStep, out RadTreeViewItem SpecificTest)
+        {
             iIndex++;
-            TestCategory = new RadTreeViewItem();
-            TestCategory.Header = ToTest[iIndex].strCategoryName;
-            TestCategory.IsExpanded = true;
-            TestCategory.Foreground = new SolidColorBrush(Colors.Red);
-            TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
-            radTreeView.Items.Add(TestCategory);
             dStep = ToTest[iIndex].Step;
-            product = new RadTreeViewItem();
-            product.Header = ToTest[iIndex].Name;
-            TestCategory.Items.Add(product);
+            SpecificTest = new RadTreeViewItem();
+            SpecificTest.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(SpecificTest);
             for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
             {
                 RadTreeViewItem StepItem = new RadTreeViewItem();
                 StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                product.Items.Add(StepItem);
+                StepItem.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\CodeBreakpoint.ico";
+                SpecificTest.Items.Add(StepItem);
                 dStep += 0.1;
             }
-            for (int j = 0; j < 6; j++)
-            {
-                iIndex++;
-                dStep = ToTest[iIndex].Step;
-                product = new RadTreeViewItem();
-                product.Header = ToTest[iIndex].Name;
-                TestCategory.Items.Add(product);
-                for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
-                {
-                    RadTreeViewItem StepItem = new RadTreeViewItem();
-                    StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                    product.Items.Add(StepItem);
-                    dStep += 0.1;
-                }
-            }
+
+            return iIndex;
         }
 
         private void radTreeView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1767,17 +1884,132 @@ namespace PuroFusionTestGui
         private void radTreeView_Checked(object sender, Telerik.Windows.RadRoutedEventArgs e)
         {
             RadTreeViewItem item = e.Source as RadTreeViewItem;
-            item.Foreground = new SolidColorBrush(Colors.Red);
-            int er = 0;
-            er++;
+            if ( item.Header.ToString() == StringEnum.GetStringValue(AllTestCategory.SalesShippingTests))
+            {
+                var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesShippingTests))).ToList();
+                foreach (RadTreeViewItem i in allTreeContainers[0].Items)
+                {
+                    //string str = i.Header.ToString();
+                    i.CheckState = System.Windows.Automation.ToggleState.On;
+                    i.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\CodeBreakpointRun.ico";
+                }
+            }
+            else if(item.Header.ToString() == StringEnum.GetStringValue(AllTestCategory.SalesEDITests))
+            {
+                var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesEDITests))).ToList();
+                foreach (RadTreeViewItem i in allTreeContainers[0].Items)
+                {
+                    i.CheckState = System.Windows.Automation.ToggleState.On;
+                    i.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+                }
+            }
+            else if (item.Header.ToString() == StringEnum.GetStringValue(AllTestCategory.SalesBothTests))
+            {
+                var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesBothTests))).ToList();
+                foreach (RadTreeViewItem i in allTreeContainers[0].Items)
+                {
+                    i.CheckState = System.Windows.Automation.ToggleState.On;
+                    i.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\Delete.ico";
+                }
+            }
         }
-
+        private Collection<RadTreeViewItem> GetAllItemContainers(System.Windows.Controls.ItemsControl itemsControl)
+        {
+            Collection<RadTreeViewItem> allItems = new Collection<RadTreeViewItem>();
+            for (int i = 0; i < itemsControl.Items.Count; i++)
+            {
+                // try to get the item Container   
+                RadTreeViewItem childItemContainer = itemsControl.ItemContainerGenerator.ContainerFromIndex(i) as RadTreeViewItem;
+                // the item container maybe null if it is still not generated from the runtime   
+                if (childItemContainer != null)
+                {
+                    allItems.Add(childItemContainer);
+                    Collection<RadTreeViewItem> childItems = GetAllItemContainers(childItemContainer);
+                    foreach (RadTreeViewItem childItem in childItems)
+                    {
+                        allItems.Add(childItem);
+                    }
+                }
+            }
+            return allItems;
+        }
         private void radTreeView_Unchecked(object sender, Telerik.Windows.RadRoutedEventArgs e)
         {
             RadTreeViewItem item = e.Source as RadTreeViewItem;
-            item.Foreground = new SolidColorBrush(Colors.Green);
+            if (item.Header.ToString() == StringEnum.GetStringValue(AllTestCategory.SalesShippingTests))
+            {
+                var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesShippingTests))).ToList();
+                foreach (RadTreeViewItem i in allTreeContainers[0].Items)
+                {
+                    //string str = i.Header.ToString();
+                    i.CheckState = System.Windows.Automation.ToggleState.Off;
+                }
+            }
+            else if (item.Header.ToString() == StringEnum.GetStringValue(AllTestCategory.SalesEDITests))
+            {
+                var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesEDITests))).ToList();
+                foreach (RadTreeViewItem i in allTreeContainers[0].Items)
+                {
+                    i.CheckState = System.Windows.Automation.ToggleState.Off;
+                }
+            }
+            else if (item.Header.ToString() == StringEnum.GetStringValue(AllTestCategory.SalesBothTests))
+            {
+                var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesBothTests))).ToList();
+                foreach (RadTreeViewItem i in allTreeContainers[0].Items)
+                {
+                    i.CheckState = System.Windows.Automation.ToggleState.Off;
+                }
+            }
+        }
+
+        private void btnWebTesterRunTreeSim_Click(object sender, RoutedEventArgs e)
+        {
+            var allTreeContainers = GetAllItemContainers(radTreeView3);
             int er = 0;
-            er++;
+            foreach(TestParams t in ToTest2)
+            {
+                //var q;
+                switch (t.Category)
+                {
+                    case AllTestCategory.SalesShippingTests:
+                        var q = allTreeContainers.Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesShippingTests))).ToList();
+                        foreach (RadTreeViewItem node in q[0].Items)
+                        {
+                            //string str = node.Header.ToString();
+                            foreach (RadTreeViewItem step in node.Items)
+                            {
+                                step.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+                            }
+                            //node.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+                        }
+                        break;
+                    case AllTestCategory.SalesEDITests:
+                        var q2 = allTreeContainers.Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesEDITests))).ToList();
+                        foreach (RadTreeViewItem node in q2[0].Items)
+                        {
+                            //string str = node.Header.ToString();
+                            foreach (RadTreeViewItem step in node.Items)
+                            {
+                                step.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+                            }
+                            //node.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+                        }
+                        break;
+                    case AllTestCategory.SalesBothTests:
+                        var q3 = allTreeContainers.Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesBothTests))).ToList();
+                        foreach (RadTreeViewItem node in q3[0].Items)
+                        {
+                            //string str = node.Header.ToString();
+                            foreach (RadTreeViewItem step in node.Items)
+                            {
+                                step.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+                            }
+                            //node.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+                        }
+                        break;
+                }
+            }
         }
     }
     public class Tabs
