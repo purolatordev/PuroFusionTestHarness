@@ -576,13 +576,13 @@
                                     <ComboBoxItem>tblContactGroup</ComboBoxItem>
                                     <ComboBoxItem>tblEDITranscationType</ComboBoxItem>
                                     <ComboBoxItem>tblEDITranscations</ComboBoxItem>
-                                    <ComboBoxItem>tblFileType</ComboBoxItem> 
+                                    <ComboBoxItem>tblFileType</ComboBoxItem>
                                     <ComboBoxItem>tblCommunicationMethod</ComboBoxItem>
                                     <ComboBoxItem>tblTriggerMechanism</ComboBoxItem>
                                     <ComboBoxItem>vw_ITBA</ComboBoxItem>
                                     <ComboBoxItem>PartialDiscoveryRequest</ComboBoxItem>
                                     <ComboBoxItem>DiscoveryRequestBusContacts</ComboBoxItem>
-                                    <ComboBoxItem>DiscoveryRequestITContacts</ComboBoxItem> 
+                                    <ComboBoxItem>DiscoveryRequestITContacts</ComboBoxItem>
                                     <ComboBoxItem>CompareDiscReq-ToReq</ComboBoxItem>
                                 </ComboBox>
                                 <Label Name="lblTouchDBChooseReportTypeErrorMsg" Foreground="Red" Visibility="Collapsed">Must select a Report Type</Label>
@@ -704,7 +704,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Web Tester" IsSelected="True">
+            <TabItem Header="Web Tester" IsSelected="False" HorizontalAlignment="Right" Margin="-2,-2,-0.333,-2" Width="73">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"/>
@@ -869,10 +869,35 @@
             <TabItem Header="Unit Tester" IsSelected="True">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <telerik:RadTreeView Grid.Row="0" IsDragDropEnabled="True">
+                            <telerik:RadTreeViewItem Header="Sport Categories" IsExpanded="True">
+                                <telerik:RadTreeViewItem Header="Football" IsExpanded="True">
+                                    <telerik:RadTreeViewItem Header="Futsal"/>
+                                    <telerik:RadTreeViewItem Header="Soccer"/>
+                                </telerik:RadTreeViewItem>
+                                <telerik:RadTreeViewItem Header="Tennis"/>
+                                <telerik:RadTreeViewItem Header="Cycling"/>
+                            </telerik:RadTreeViewItem>
+                        </telerik:RadTreeView>
+                        <telerik:RadTreeView x:Name="radTreeView" Grid.Row="1" IsOptionElementsEnabled="True" Margin="8" SelectionChanged="radTreeView_SelectionChanged" Checked="radTreeView_Checked" Unchecked="radTreeView_Unchecked">
+                            <telerik:RadTreeView.Background>
+                                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
+                            </telerik:RadTreeView.Background>
+                        </telerik:RadTreeView>
+                        <telerik:RadTreeView x:Name="radTreeView2" Grid.Row="2" IsOptionElementsEnabled="True" Margin="8">
+                            <telerik:RadTreeView.Background>
+                                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
+                            </telerik:RadTreeView.Background>
+                        </telerik:RadTreeView>
                     </Grid>
                     <!--Multi Split Center Splitter-->
                     <GridSplitter Grid.Row="0" Grid.Column="0" Background="Green" Width="5"/>

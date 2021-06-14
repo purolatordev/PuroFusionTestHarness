@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.IO;
 using PuroFusionLib;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace PuroFusionTestGui
 {
@@ -124,9 +125,10 @@ namespace PuroFusionTestGui
         {
             InitializeComponent();
             mainGridData = new GridData1();
-
-            Tabs qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.EDIServices).FirstOrDefault();
-            qtab.Visible = true;
+            AddTreeViewItems();
+            AddTreeViewItems2();
+            //Tabs qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.EDIServices).FirstOrDefault();
+            //qtab.Visible = true;
 
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             AssemblyName myAssemblyName = myAssembly.GetName();
@@ -1275,8 +1277,160 @@ namespace PuroFusionTestGui
             qtab.Enabled = false;
             qtab.Selected = false;
         }
+        private void AddTreeViewItems()
+        {
+            RadTreeViewItem TestCategory = new RadTreeViewItem();
+            TestCategory.Header = "Sales Shipping Tests";
+            TestCategory.IsExpanded = true;
+            TestCategory.Foreground = new SolidColorBrush(Colors.Green);
+            TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+            radTreeView.Items.Add(TestCategory);
 
+            // Adding child items 
+            RadTreeViewItem product = new RadTreeViewItem();
+            product.Header = "Test 1";
+            TestCategory.Items.Add(product);
+            // Added
+            RadTreeViewItem product111 = new RadTreeViewItem();
+            product111.Header = "Step 1.0";
+            product.Items.Add(product111);
+            product111 = new RadTreeViewItem();
+            product111.Header = "Step 1.1";
+            product.Items.Add(product111);
+            // from web page
+            product = new RadTreeViewItem();
+            product.Header = "Test 2";
+            TestCategory.Items.Add(product);
+            // Added
+            product111 = new RadTreeViewItem();
+            product111.Header = "Step 2.0";
+            product.Items.Add(product111);
+            product111 = new RadTreeViewItem();
+            product111.Header = "Step 2.1";
+            product.Items.Add(product111);
 
+            TestCategory = new RadTreeViewItem();
+            TestCategory.Header = "Sales EDI Tests";
+            TestCategory.IsExpanded = true;
+            TestCategory.Foreground = new SolidColorBrush(Colors.Purple);
+            radTreeView.Items.Add(TestCategory);
+
+            // Adding child items 
+            product = new RadTreeViewItem();
+            product.Header = "Test 1";
+            TestCategory.Items.Add(product);
+            product111 = new RadTreeViewItem();
+            product111.Header = "Step 1.0";
+            product.Items.Add(product111);
+            product = new RadTreeViewItem();
+            product.Header = "Test 2";
+            TestCategory.Items.Add(product);
+            product111 = new RadTreeViewItem();
+            product111.Header = "Step 2.0";
+            product.Items.Add(product111);
+            product111 = new RadTreeViewItem();
+            product111.Header = "Step 2.1";
+            product.Items.Add(product111);
+            product111 = new RadTreeViewItem();
+            product111.Header = "Step 2.2";
+            product.Items.Add(product111);
+        }
+        private void AddTreeViewItems2()
+        {
+            RadTreeViewItem TestCategory = new RadTreeViewItem();
+            TestCategory.Header = "Sales Shipping Tests";
+            TestCategory.IsExpanded = true;
+            TestCategory.Foreground = new SolidColorBrush(Colors.Green);
+            TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+            radTreeView2.Items.Add(TestCategory);
+
+            // Adding child items 
+            RadTreeViewItem product = new RadTreeViewItem();
+            product.Header = "Test 1";
+            TestCategory.Items.Add(product);
+            // Added
+            RadTreeViewItem product111 = new RadTreeViewItem();
+            product111.Header = "Step 1.0";
+            product.Items.Add(product111);
+            product111 = new RadTreeViewItem();
+            product111.Header = "Step 1.1";
+            product.Items.Add(product111);
+            // from web page
+            product = new RadTreeViewItem();
+            product.Header = "Test 2";
+            TestCategory.Items.Add(product);
+            // Added
+            product111 = new RadTreeViewItem();
+            product111.Header = "Step 2.0";
+            product.Items.Add(product111);
+            product111 = new RadTreeViewItem();
+            product111.Header = "Step 2.1";
+            product.Items.Add(product111);
+
+            TestCategory = new RadTreeViewItem();
+            TestCategory.Header = "Sales EDI Tests";
+            TestCategory.IsExpanded = true;
+            TestCategory.Foreground = new SolidColorBrush(Colors.Purple);
+            radTreeView2.Items.Add(TestCategory);
+
+            // Adding child items 
+            product = new RadTreeViewItem();
+            product.Header = "Test 1";
+            TestCategory.Items.Add(product);
+            product111 = new RadTreeViewItem();
+            product111.Header = "Step 1.0";
+            product.Items.Add(product111);
+            product = new RadTreeViewItem();
+            product.Header = "Test 2";
+            TestCategory.Items.Add(product);
+            product111 = new RadTreeViewItem();
+            product111.Header = "Step 2.0";
+            product.Items.Add(product111);
+            product111 = new RadTreeViewItem();
+            product111.Header = "Step 2.1";
+            product.Items.Add(product111);
+            product111 = new RadTreeViewItem();
+            product111.Header = "Step 2.2";
+            product.Items.Add(product111);
+        }
+
+        private void radTreeView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Get a reference to the treeview 
+            RadTreeView treeView = sender as RadTreeView;
+            // Get the currently selected items 
+            ObservableCollection<Object> selectedItems = treeView.SelectedItems;
+            RadTreeViewItem item = selectedItems[0] as RadTreeViewItem;
+            // Get the previous item and the previous sibling item 
+            RadTreeViewItem previousItem = item.PreviousItem;
+            RadTreeViewItem previousSiblingItem = item.PreviousSiblingItem;
+
+            // Get the next item and the next sibling item 
+            RadTreeViewItem nextItem = item.NextItem;
+            RadTreeViewItem nextSiblingItem = item.NextSiblingItem;
+
+            // Get the parent item and the root item 
+            RadTreeViewItem parentItem = item.ParentItem;
+            RadTreeViewItem rootItem = item.RootItem;
+            int er = 0;
+            er++;
+        }
+
+        private void radTreeView_Checked(object sender, Telerik.Windows.RadRoutedEventArgs e)
+        {
+            RadTreeViewItem item = e.Source as RadTreeViewItem;
+            item.Foreground = new SolidColorBrush(Colors.Red);
+            int er = 0;
+            er++;
+        }
+
+        private void radTreeView_Unchecked(object sender, Telerik.Windows.RadRoutedEventArgs e)
+        {
+            RadTreeViewItem item = e.Source as RadTreeViewItem;
+            item.Foreground = new SolidColorBrush(Colors.Green);
+            int er = 0;
+            er++;
+        }
     }
     public class Tabs
     {
