@@ -704,7 +704,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Web Tester" IsSelected="False">
+            <TabItem Header="Web Tester" IsSelected="True">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"/>
@@ -740,6 +740,8 @@
                                     <ComboBoxItem>sales</ComboBoxItem>
                                     <ComboBoxItem>itadmin</ComboBoxItem>
                                 </ComboBox>
+                                <Label Content="Reset Test"  />
+                                <Button Name="btnWebTesterResetTest" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterResetTest_Click">Reset</Button>
                             </StackPanel>
                             <StackPanel Grid.Row="2" Orientation="Horizontal">
                                 <Label Name="lblWebTesterWarningMsg" Content="Warning Message" IsEnabled="True" Foreground="Red" FontWeight="Bold" />
@@ -757,18 +759,18 @@
                                             </Grid.RowDefinitions>
                                             <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,10" >
                                                 <Label Content="Solution Type:"/>
-                                                <ComboBox Height="23" Name="cmbBoxWebTesterCustomerInfoSolutionType" Width="Auto"  SelectionChanged="cmbBoxWebTesterCustomerInfoSolutionType_SelectionChanged" >
+                                                <ComboBox Height="23" Name="rddlSolutionType" Width="Auto"  SelectionChanged="cmbBoxWebTesterCustomerInfoSolutionType_SelectionChanged" >
                                                     <ComboBoxItem>Shipping</ComboBoxItem>
                                                     <ComboBoxItem>EDI</ComboBoxItem>
                                                     <ComboBoxItem>Both</ComboBoxItem>
                                                 </ComboBox>
                                             </StackPanel>
                                             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10" >
-                                                <Label Content="Edit Field:"/>
+                                                <Label Content="Anualized Revenue:"/>
                                                 <TextBox Name="txtBxWebTesterCustomerInfo1" Width="100" Padding="0,2,0,0" KeyUp="txtBxWebTesterCustomerInfo1_KeyUp"/>
                                             </StackPanel>
                                             <StackPanel Grid.Row="2" Orientation="Horizontal" >
-                                                <Button Name="btnNextTab1" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="False" Visibility="Hidden" Click="btnNextTab1_Click" >Next</Button>
+                                                <Button Name="btnNextTab1" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnNextTab1_Click" >Next</Button>
                                             </StackPanel>
                                         </Grid>
                                     </telerik:RadTabItem.Content>
@@ -781,11 +783,11 @@
                                                 <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
                                             <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,10" >
-                                                <Label Content="Edit Field:"/>
+                                                <Label Content="Add new contact:"/>
                                                 <TextBox Name="txtBxWebTesterContactInfo1" Width="100" Padding="0,2,0,0" KeyUp="txtBxWebTesterContactInfo1_KeyUp"></TextBox>
                                             </StackPanel>
                                             <StackPanel Grid.Row="1" Orientation="Horizontal" >
-                                                <Button Name="btnNextTab2" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="False" Visibility="Hidden" Click="btnNextTab2_Click" >Next</Button>
+                                                <Button Name="btnNextTab2" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnNextTab2_Click" >Next</Button>
                                             </StackPanel>
                                         </Grid>
                                     </telerik:RadTabItem.Content>
@@ -798,11 +800,11 @@
                                                 <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
                                             <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,10" >
-                                                <Label Content="Edit Field:"/>
-                                                <TextBox Name="txtBxWebTesterCurrentSolution1" Width="100" Padding="0,2,0,0" KeyUp="txtBxWebTesterCurrentSolution1_KeyUp" ></TextBox>
+                                                <Label Content="Current Shipping Solution:"/>
+                                                <TextBox Name="txtareaCurrentSolution" Width="100" Padding="0,2,0,0" KeyUp="txtBxWebTesterCurrentSolution1_KeyUp" ></TextBox>
                                             </StackPanel>
                                             <StackPanel Grid.Row="1" Orientation="Horizontal" >
-                                                <Button Name="btnNextTab3" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="False" Visibility="Hidden" Click="btnNextTab3_Click"  >Next</Button>
+                                                <Button Name="btnNextTab3" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnNextTab3_Click"  >Next</Button>
                                             </StackPanel>
                                         </Grid>
                                     </telerik:RadTabItem.Content>
@@ -860,6 +862,7 @@
                     <!--Multi Split Center Splitter-->
                     <GridSplitter Grid.Row="0" Grid.Column="0" Background="Green" Width="5"/>
                     <Grid Grid.Column="1" >
+
                     </Grid>
                 </Grid>
             </TabItem>

@@ -19,7 +19,7 @@ namespace PuroFusionTestGui
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window 
+    public partial class MainWindow : Window
     {
         private GridData1 mainGridData;
         public class GridData1 : INotifyPropertyChanged
@@ -142,7 +142,7 @@ namespace PuroFusionTestGui
             comboBoxTestingTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal2);
             comboBoxTestingTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal3);
 
-            foreach(AllTabs i in Enum.GetValues(typeof(AllTabs)))
+            foreach (AllTabs i in Enum.GetValues(typeof(AllTabs)))
             {
                 cmbBoxWebTesterSelectedTab.Items.Add(StringEnum.GetStringValue(i));
             }
@@ -178,7 +178,7 @@ namespace PuroFusionTestGui
             public DateTime dt1 { get; set; }
 
             //public string Value { get; set; }
-            public string GetUserFirstLastPeriod() 
+            public string GetUserFirstLastPeriod()
             {
                 return FirstName + "." + LastName;
             }
@@ -188,7 +188,7 @@ namespace PuroFusionTestGui
             }
             public string GetDate1()
             {
-                return"CAST(N'" + dt1.ToString(format1) + "' AS DateTime)";
+                return "CAST(N'" + dt1.ToString(format1) + "' AS DateTime)";
             }
         }
         public class Props
@@ -508,7 +508,7 @@ namespace PuroFusionTestGui
                     else if ("CompareDiscReqToReq-" == strReportItem)
                     {
                         o.strConn = comboBoxTouchDB.SelectedItem.ToString();
-                        IList<dtoTableCompare> qTableCompare = o.GetDiscoveryDiff1("tblDiscoveryRequest","tblDiscoveryRequest_");
+                        IList<dtoTableCompare> qTableCompare = o.GetDiscoveryDiff1("tblDiscoveryRequest", "tblDiscoveryRequest_");
                         ObservableCollection<dtoTableCompare> ocWmsGroup = new ObservableCollection<dtoTableCompare>();
                         grid.ItemsSource = ocWmsGroup.Concat<dtoTableCompare>(qTableCompare);
                         lbl.Content = strReportItem + " count: " + qTableCompare.Count();
@@ -731,7 +731,7 @@ namespace PuroFusionTestGui
                 rec.idSolutionType = SolutionType.idSolutionType;
                 rec.ProjectedRevenue = System.Convert.ToDecimal(numTextingRevenue.Value);
                 rec.idRequest = 0;
-                if( chBxTestingNow.IsChecked.Value)
+                if (chBxTestingNow.IsChecked.Value)
                 {
                     rec.CreatedOn = DateTime.Now;
                     rec.UpdatedOn = DateTime.Now;
@@ -897,14 +897,14 @@ namespace PuroFusionTestGui
             foreach (RadTabItem t in radTabPuroFusion.Items)
             {
                 string s = t.Header.ToString();
-                if(tabName.Contains(t.Header.ToString()))
+                if (tabName.Contains(t.Header.ToString()))
                 {
                     theTab = t;
                     break;
                 }
             }
             ComboBoxItem TabState = (ComboBoxItem)cmbBoxWebTesterState.SelectedItem;
-            switch(TabState.Content.ToString())
+            switch (TabState.Content.ToString())
             {
                 case "Select":
                     radTabPuroFusion.SelectedIndex = indexOfTab;
@@ -940,7 +940,7 @@ namespace PuroFusionTestGui
                 foreach (RadTabItem r in radTabPuroFusion.Items)
                 {
                     string s = r.Header.ToString();
-                    if (t.Name == r.Header.ToString() )
+                    if (t.Name == r.Header.ToString())
                     {
                         theTab = r;
                         int indexOfTab = (int)GetTheTab.Get(t.Name);
@@ -953,12 +953,12 @@ namespace PuroFusionTestGui
                         {
                             theTab.Visibility = Visibility.Hidden;
                         }
-                        else if(t.Enabled)
+                        else if (t.Enabled)
                         {
                             theTab.IsEnabled = true;
                             theTab.Visibility = Visibility.Visible;
                         }
-                        else if(!t.Enabled)
+                        else if (!t.Enabled)
                         {
                             if (t.Visible)
                                 theTab.Visibility = Visibility.Visible;
@@ -977,68 +977,96 @@ namespace PuroFusionTestGui
         {
             if (!String.IsNullOrEmpty(txtBxWebTesterCustomerInfo1.Text))
             {
-                btnNextTab1.IsEnabled = true;
-                btnNextTab1.Visibility = Visibility.Visible;
+                lblWebTesterWarningMsg.Visibility = Visibility.Hidden;
             }
             else
             {
-                btnNextTab1.IsEnabled = false;
-                btnNextTab1.Visibility = Visibility.Hidden;
+                lblWebTesterWarningMsg.Visibility = Visibility.Visible;
             }
         }
-
+        // Add a new contact from Contact Info Tab
         private void txtBxWebTesterContactInfo1_KeyUp(object sender, KeyEventArgs e)
         {
             if (!String.IsNullOrEmpty(txtBxWebTesterContactInfo1.Text))
             {
-                btnNextTab2.IsEnabled = true;
+                // contactGrid_ItemCommand
                 btnNextTab2.Visibility = Visibility.Visible;
+                btnNextTab2.IsEnabled = true;
             }
             else
             {
+                //  contactGrid_DeleteCommand
+                btnNextTab2.Visibility = Visibility.Visible;
                 btnNextTab2.IsEnabled = false;
-                btnNextTab2.Visibility = Visibility.Hidden;
             }
         }
         private void txtBxWebTesterCurrentSolution1_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!String.IsNullOrEmpty(txtBxWebTesterCurrentSolution1.Text))
+            if (!String.IsNullOrEmpty(txtareaCurrentSolution.Text))
             {
-                btnNextTab3.IsEnabled = true;
-                btnNextTab3.Visibility = Visibility.Visible;
+                lblWebTesterWarningMsg.Visibility = Visibility.Hidden;
             }
             else
             {
-                btnNextTab3.IsEnabled = false;
-                btnNextTab3.Visibility = Visibility.Hidden;
+                lblWebTesterWarningMsg.Visibility = Visibility.Visible;
             }
         }
         private void btnNextTab1_Click(object sender, RoutedEventArgs e)
         {
-            cmbBoxWebTesterSelectedTab.SelectedIndex = (int)AllTabs.ContactInfo;
-            btnNextTab1.Visibility = Visibility.Hidden;
-            ContactInfo.Visibility = Visibility.Visible;
             ContactInfo.IsEnabled = true;
             ContactInfo.IsSelected = true;
+            ContactInfo.Visibility = Visibility.Visible;
+            btnNextTab1.Visibility = Visibility.Hidden;
+
+            if (String.IsNullOrEmpty(txtBxWebTesterContactInfo1.Text))
+                btnNextTab2.Visibility = Visibility.Hidden;
         }
 
         private void btnNextTab2_Click(object sender, RoutedEventArgs e)
         {
-            cmbBoxWebTesterSelectedTab.SelectedIndex = (int)AllTabs.CurrentSolution;
-            btnNextTab2.Visibility = Visibility.Hidden;
-            CurrentSolution.IsEnabled = true;
-            CurrentSolution.IsSelected = true;
+            //ComboBoxItem SolutionTypeItem = (ComboBoxItem)rddlSolutionType.SelectedItem;
+            //string strSolutionTypeItem = SolutionTypeItem.Content.ToString();
+            if (String.IsNullOrEmpty(txtareaCurrentSolution.Text))
+            {
+                CurrentSolution.IsEnabled = true;
+                CurrentSolution.IsSelected = true;
+                CurrentSolution.Visibility = Visibility.Visible;
+                btnNextTab2.Visibility = Visibility.Hidden;
+            }
+            else if (rddlSolutionType.SelectedIndex == 1)
+            {
+
+            }
+            else if (rddlSolutionType.SelectedIndex == 0)
+            {
+                ShippingServices.IsEnabled = true;
+                ShippingServices.IsSelected = true;
+                ShippingServices.Visibility = Visibility.Visible;
+            }
+
         }
         private void btnNextTab3_Click(object sender, RoutedEventArgs e)
         {
-            btnNextTab3.Visibility = Visibility.Hidden;
-            ShippingServices.IsEnabled = true;
-            ShippingServices.IsSelected = true;
+            if (rddlSolutionType.SelectedIndex == 1)
+            {
+                EDIServices.IsEnabled = true;
+                EDIServices.IsSelected = true;
+                EDIServices.Visibility = Visibility.Visible;
+                btnSubmit.Visibility = Visibility.Visible;
+                btnNextTab3.Visibility = Visibility.Hidden;
+            }
+            else if (rddlSolutionType.SelectedIndex == 0)
+            {
+                ShippingServices.IsEnabled = true;
+                ShippingServices.IsSelected = true;
+                ShippingServices.Visibility = Visibility.Visible;
+                btnSubmit.Visibility = Visibility.Visible;
+            }
         }
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrEmpty(txtBxWebTesterShippingServices.Text) ||
-                String.IsNullOrEmpty(txtBxWebTesterCurrentSolution1.Text) ||
+                String.IsNullOrEmpty(txtareaCurrentSolution.Text) ||
                 String.IsNullOrEmpty(txtBxWebTesterContactInfo1.Text) ||
                 String.IsNullOrEmpty(txtBxWebTesterCustomerInfo1.Text))
             {
@@ -1048,7 +1076,7 @@ namespace PuroFusionTestGui
                     sb.Append("Customer Info missing, ");
                 if (String.IsNullOrEmpty(txtBxWebTesterContactInfo1.Text))
                     sb.Append("Contact Info missing, ");
-                if (String.IsNullOrEmpty(txtBxWebTesterCurrentSolution1.Text))
+                if (String.IsNullOrEmpty(txtareaCurrentSolution.Text))
                     sb.Append("Current Solution missing, ");
                 if (String.IsNullOrEmpty(txtBxWebTesterShippingServices.Text))
                     sb.Append("Shipping Services missing, ");
@@ -1073,6 +1101,94 @@ namespace PuroFusionTestGui
                 }
             }
         }
+        private void btnWebTesterResetTest_Click(object sender, RoutedEventArgs e)
+        {
+            ReSetTabs();
+            foreach (Tabs t in tabShippingTest1)
+            {
+                RadTabItem theTab = new RadTabItem();
+                foreach (RadTabItem r in radTabPuroFusion.Items)
+                {
+                    string s = r.Header.ToString();
+                    if (t.Name == r.Header.ToString())
+                    {
+                        theTab = r;
+                        int indexOfTab = (int)GetTheTab.Get(t.Name);
+                        if (t.Selected)
+                        {
+                            radTabPuroFusion.SelectedIndex = indexOfTab;
+                            theTab.Visibility = Visibility.Visible;
+                        }
+                        else if (!t.Visible)
+                        {
+                            theTab.Visibility = Visibility.Hidden;
+                        }
+                        else if (t.Enabled)
+                        {
+                            theTab.IsEnabled = true;
+                            theTab.Visibility = Visibility.Visible;
+                        }
+                        else if (!t.Enabled)
+                        {
+                            if (t.Visible)
+                                theTab.Visibility = Visibility.Visible;
+                            theTab.IsEnabled = false;
+                        }
+                        break;
+                    }
+                }
+            }
+            btnNextTab1.IsEnabled = true;
+            btnNextTab1.Visibility = Visibility.Visible;
+            txtBxWebTesterCustomerInfo1.Text = "";
+            txtBxWebTesterContactInfo1.Text = "";
+            txtareaCurrentSolution.Text = "";
+            txtBxWebTesterShippingServices.Text = "";
+        }
+        public void ReSetTabs()
+        {
+            Tabs qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.CustomerInfo).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = true;
+            qtab.Selected = true;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.ContactInfo).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = true;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.CurrentSolution).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = true;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.ShippingServices).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = true;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.EDIServices).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = true;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.Profile).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = true;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.CourierEDI).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = true;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.NonCourierEDI).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = true;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.AddlNotes).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = true;
+            qtab.Selected = false;
+            qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.FileUploads).FirstOrDefault();
+            qtab.Visible = true;
+            qtab.Enabled = true;
+            qtab.Selected = false;
+        }
+
         public void SetTabsForShippingTest1()
         {
             Tabs qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.CustomerInfo).FirstOrDefault();
@@ -1159,6 +1275,8 @@ namespace PuroFusionTestGui
             qtab.Enabled = false;
             qtab.Selected = false;
         }
+
+
     }
     public class Tabs
     {
@@ -1471,6 +1589,6 @@ namespace PuroFusionTestGui
             Mouse.OverrideCursor = _previousCursor;
         }
     }
-    
+
 }
 
