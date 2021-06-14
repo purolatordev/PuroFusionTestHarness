@@ -704,7 +704,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Web Tester" IsSelected="True">
+            <TabItem Header="Web Tester" IsSelected="False">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"/>
@@ -860,7 +860,20 @@
                     <!--Multi Split Center Splitter-->
                     <GridSplitter Grid.Row="0" Grid.Column="0" Background="Green" Width="5"/>
                     <Grid Grid.Column="1" >
-                        
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Unit Tester" IsSelected="True">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                    </Grid>
+                    <!--Multi Split Center Splitter-->
+                    <GridSplitter Grid.Row="0" Grid.Column="0" Background="Green" Width="5"/>
+                    <Grid Grid.Column="1" >
                     </Grid>
                 </Grid>
             </TabItem>
