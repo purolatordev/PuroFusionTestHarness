@@ -888,12 +888,17 @@
                                 <telerik:RadTreeViewItem Header="Cycling"/>
                             </telerik:RadTreeViewItem>
                         </telerik:RadTreeView>
-                        <telerik:RadTreeView x:Name="radTreeView" Grid.Row="1" IsOptionElementsEnabled="True" Margin="8" SelectionChanged="radTreeView_SelectionChanged" Checked="radTreeView_Checked" Unchecked="radTreeView_Unchecked">
+                        <!--<telerik:RadTreeView x:Name="radTreeView" Grid.Row="1" IsOptionElementsEnabled="True" Margin="8" SelectionChanged="radTreeView_SelectionChanged" Checked="radTreeView_Checked" Unchecked="radTreeView_Unchecked">
+                            <telerik:RadTreeView.Background>
+                                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
+                            </telerik:RadTreeView.Background>
+                        </telerik:RadTreeView>-->
+                        <telerik:RadTreeView x:Name="radTreeView2" Grid.Row="1" IsOptionElementsEnabled="True" Margin="8">
                             <telerik:RadTreeView.Background>
                                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
                             </telerik:RadTreeView.Background>
                         </telerik:RadTreeView>
-                        <telerik:RadTreeView x:Name="radTreeView2" Grid.Row="2" IsOptionElementsEnabled="True" Margin="8">
+                        <telerik:RadTreeView x:Name="radTreeView3" Grid.Row="2" IsOptionElementsEnabled="True" Margin="8">
                             <telerik:RadTreeView.Background>
                                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
                             </telerik:RadTreeView.Background>

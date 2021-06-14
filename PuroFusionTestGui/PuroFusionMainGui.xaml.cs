@@ -125,10 +125,55 @@ namespace PuroFusionTestGui
         {
             InitializeComponent();
             mainGridData = new GridData1();
-            AddTreeViewItems();
-            AddTreeViewItems2();
-            //Tabs qtab = tabShippingTest1.Where(f => f.iOrdinalValue == (int)AllTabs.EDIServices).FirstOrDefault();
-            //qtab.Visible = true;
+
+          //  IList<ConsoleApp1.TestParams> ToTest = new List<ConsoleApp1.TestParams>() {
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesShippingTest1) { Enabled = false,  Step = 1.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesShippingTest2) { Enabled = false,  Step = 2.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesShippingTest3) { Enabled = false,  Step = 3.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesShippingTest4) { Enabled = false,  Step = 4.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesShippingTest5) { Enabled = false,  Step = 5.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesShippingTest7) { Enabled = false,  Step = 7.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesEDITest1)      { Enabled = false,  Step = 1.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesEDITest2)      { Enabled = false,  Step = 2.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesEDITest3)      { Enabled = false,  Step = 3.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesEDITest4)      { Enabled = false,  Step = 4.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesEDITest5)      { Enabled = false,  Step = 5.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesEDITest6)      { Enabled = false,  Step = 6.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesEDITest7)      { Enabled = false,  Step = 7.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesBothTest1)     { Enabled = false,  Step = 1.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesBothTest2)     { Enabled = false,  Step = 2.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesBothTest3)     { Enabled = false,  Step = 3.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesBothTest4)     { Enabled = false,  Step = 4.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesBothTest5)     { Enabled = false,  Step = 5.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesBothTest6)     { Enabled = false,  Step = 6.0},
+          //      new ConsoleApp1.TestParams( ConsoleApp1.AllTest.SalesBothTest7)     { Enabled = true,  Step = 7.0}
+          //};
+            //AddTreeViewItems();
+           
+            IList<TestParams> ToTest2 = new List<TestParams>() {
+                new TestParams( AllTest.SalesShippingTest1,5) { Enabled = false,  Step = 1.0},
+                new TestParams( AllTest.SalesShippingTest2,5) { Enabled = false,  Step = 2.0},
+                new TestParams( AllTest.SalesShippingTest3,5) { Enabled = false,  Step = 3.0},
+                new TestParams( AllTest.SalesShippingTest4,5) { Enabled = false,  Step = 4.0},
+                new TestParams( AllTest.SalesShippingTest5,5) { Enabled = false,  Step = 5.0},
+                new TestParams( AllTest.SalesShippingTest7,5) { Enabled = false,  Step = 7.0},
+                new TestParams( AllTest.SalesEDITest1,5)      { Enabled = false,  Step = 1.0},
+                new TestParams( AllTest.SalesEDITest2,5)      { Enabled = false,  Step = 2.0},
+                new TestParams( AllTest.SalesEDITest3,5)      { Enabled = false,  Step = 3.0},
+                new TestParams( AllTest.SalesEDITest4,5)      { Enabled = false,  Step = 4.0},
+                new TestParams( AllTest.SalesEDITest5,5)      { Enabled = false,  Step = 5.0},
+                new TestParams( AllTest.SalesEDITest6,5)      { Enabled = false,  Step = 6.0},
+                new TestParams( AllTest.SalesEDITest7,5)      { Enabled = false,  Step = 7.0},
+                new TestParams( AllTest.SalesBothTest1,5)     { Enabled = false,  Step = 1.0},
+                new TestParams( AllTest.SalesBothTest2,5)     { Enabled = false,  Step = 2.0},
+                new TestParams( AllTest.SalesBothTest3,5)     { Enabled = false,  Step = 3.0},
+                new TestParams( AllTest.SalesBothTest4,5)     { Enabled = false,  Step = 4.0},
+                new TestParams( AllTest.SalesBothTest5,5)     { Enabled = false,  Step = 5.0},
+                new TestParams( AllTest.SalesBothTest6,5)     { Enabled = false,  Step = 6.0},
+                new TestParams( AllTest.SalesBothTest7,5)     { Enabled = true,  Step = 7.0}
+            };
+            AddTreeViewItems2(ToTest2);
+            AddTreeViewItems3(ToTest2);
 
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             AssemblyName myAssemblyName = myAssembly.GetName();
@@ -150,22 +195,8 @@ namespace PuroFusionTestGui
             }
             cmbBoxWebTesterSelectedTab.SelectedIndex = 0;
             lblWebTesterWarningMsg.Visibility = Visibility.Hidden;
-            //int j= radTabPuroFusion.Items.Count;
-            //var q = radTabPuroFusion.Items;
-            //CustomerInfo.IsEnabled = true;
-            //IList<string> q2 = tabShippingTest1.Select(f => f.Name).ToList();
             int er = 0;
             er++;
-            //DiscoveryReqUpdates insert = new DiscoveryReqUpdates(){ FirstName = "Pinky", LastName = "Jones", idRequestType = 2, dt1 = DateTime.Now };
-            //string sql = GetStringToInsertIntoDb2(insert);
-            //int er = 0;
-            //er++;
-            //string sql = @"INSERT[dbo].[tblDiscoveryRequest]( [isNewRequest], [SalesRepName], [SalesRepEmail], [idOnboardingPhase], [District], [CustomerName], [Address], [City], [State], [Zipcode], [Country], [Commodity], [ProjectedRevenue], [CurrentSolution], [ProposedCustoms], [CallDate1], [CallDate2], [CallDate3], [UpdatedBy], [UpdatedOn], [CreatedBy], [CreatedOn], [ActiveFlag], [SalesComments], [idITBA], [idShippingChannel], [TargetGoLive], [ActualGoLive], [SolutionSummary], [CustomerWebsite], [Branch], [idVendor], [worldpakFlag], [thirdpartyFlag], [customFlag], [InvoiceType], [BilltoAccount], [FTPUsername], [FTPPassword], [CustomsSupportedFlag], [ElinkFlag], [PARS], [PASS], [CustomsBroker], [SupportUser], [SupportGroup], [Office], [Group], [MigrationDate], [PreMigrationSolution], [PostMigrationSolution], [ControlBranch], [ContractNumber], [ContractStartDate], [ContractEndDate], [ContractCurrency], [PaymentTerms], [CloseReason], [CRR], [BrokerNumber], [DataScrubFlag], [EDICustomizedFlag], [StrategicFlag], [ReturnsAcctNbr], [ReturnsAddress], [ReturnsCity], [ReturnsState], [ReturnsZip], [ReturnsCountry], [ReturnsDestroyFlag], [ReturnsCreateLabelFlag], [WPKSandboxUsername], [WPKSandboxPwd], [WPKProdUsername], [WPKProdPwd], [WPKCustomExportFlag], [WPKGhostScanFlag], [WPKEastWestSplitFlag], [WPKAddressUploadFlag], [WPKProductUploadFlag], [WPKDataEntryMethod], [WPKEquipmentFlag], [EWSelectBy], [EWSortCodeFlag], [EWEastSortCode], [EWWestSortCode], [EWSepCloseoutFlag], [EWSepPUFlag], [EWSortDetails], [EWMissortDetails], [CurrentGoLive], [PhaseChangeDate], [idRequestType], [CurrentlyShippingFlag], [idShippingVendor], [OtherVendorName], [idBroker], [OtherBrokerName], [idVendorType], [Route], [idSolutionType], [FreightAuditor], [EDIDetails], [idEDISpecialist], [idBillingSpecialist], [idCollectionSpecialist], [AuditorPortal], [AuditorURL], [AuditorUserName], [AuditorPassword], [EDITargetGoLive], [EDICurrentGoLive], [EDIActualGoLive], [idEDIOnboardingPhase]) " +
-            //                "VALUES(1, N'Joe Murphy', N'Joe.Murphy@purolator.com', 8, N'EASTERN', N'Both Test 2', N'Both Address 2', N'BAY SHORE', N'NY', N'12 street', N'United States', N'Cheese', 9999.2200, N'sadgfagv', N'PARS & PASS', NULL, NULL, NULL, N'scott.cardinale', CAST(N'2021-06-04T15:15:28.137' AS DateTime), N'scott.cardinale', CAST(N'2021-06-04T15:15:28.137' AS DateTime), 1, N'aswdefw', NULL, NULL, NULL, NULL, N'', N'', N'BUF', NULL, 0, 0, 0, N'', N'', N'', N'', 1, 0, N'                         ', N'                         ', N'                                                                                                                                                                                                                                                               ', N'', N'', N'', N'', NULL, N'', N'', N'', N'', NULL, NULL, N'', N'', NULL, N'', N'', 0, 0, 1, N'', N'', N'', N'', N'', N'', 0, 0, N'', N'', N'', N'', 0, 0, 0, 0, 0, N'', 0, N'', 0, N'', N'', 0, 0, N'', N'', NULL, CAST(N'2021-04-23T15:04:57.723' AS DateTime), 3, 1, NULL, N'', 4, N'', NULL, N'', 3, 1, N'', NULL, NULL, NULL, 0, N'', N'', N'', NULL, NULL, NULL, 0)";
-
-            //o.strConn = PuroTouchServiceClass.ConnString.PatientLocal;
-            //PuroTouchServiceClass o = new PuroTouchServiceClass(PuroTouchServiceClass.ConnString.PatientLocal);
-            //o.InsertTestDiscoveryRequestRecord(strFullSql);
 
             //string strConn = GetdbLocation(comboBoxMainDB);
             //PuroReportingServiceClass o2 = new PuroReportingServiceClass(PuroReportingServiceClass.ConnString.FullPatientLocal);
@@ -1277,121 +1308,438 @@ namespace PuroFusionTestGui
             qtab.Enabled = false;
             qtab.Selected = false;
         }
-        private void AddTreeViewItems()
+        //private void AddTreeViewItems()
+        //{
+        //    RadTreeViewItem TestCategory = new RadTreeViewItem();
+        //    TestCategory.Header = "Sales Shipping Tests";
+        //    TestCategory.IsExpanded = true;
+        //    TestCategory.Foreground = new SolidColorBrush(Colors.Green);
+        //    TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+        //    radTreeView.Items.Add(TestCategory);
+
+        //    // Adding child items 
+        //    RadTreeViewItem product = new RadTreeViewItem();
+        //    product.Header = "Test 1";
+        //    TestCategory.Items.Add(product);
+        //    // Added
+        //    RadTreeViewItem product111 = new RadTreeViewItem();
+        //    product111.Header = "Step 1.0";
+        //    product.Items.Add(product111);
+        //    product111 = new RadTreeViewItem();
+        //    product111.Header = "Step 1.1";
+        //    product.Items.Add(product111);
+        //    // from web page
+        //    product = new RadTreeViewItem();
+        //    product.Header = "Test 2";
+        //    TestCategory.Items.Add(product);
+        //    // Added
+        //    product111 = new RadTreeViewItem();
+        //    product111.Header = "Step 2.0";
+        //    product.Items.Add(product111);
+        //    product111 = new RadTreeViewItem();
+        //    product111.Header = "Step 2.1";
+        //    product.Items.Add(product111);
+
+        //    TestCategory = new RadTreeViewItem();
+        //    TestCategory.Header = "Sales EDI Tests";
+        //    TestCategory.IsExpanded = true;
+        //    TestCategory.Foreground = new SolidColorBrush(Colors.Purple);
+        //    radTreeView.Items.Add(TestCategory);
+
+        //    // Adding child items 
+        //    product = new RadTreeViewItem();
+        //    product.Header = "Test 1";
+        //    TestCategory.Items.Add(product);
+        //    product111 = new RadTreeViewItem();
+        //    product111.Header = "Step 1.0";
+        //    product.Items.Add(product111);
+        //    product = new RadTreeViewItem();
+        //    product.Header = "Test 2";
+        //    TestCategory.Items.Add(product);
+        //    product111 = new RadTreeViewItem();
+        //    product111.Header = "Step 2.0";
+        //    product.Items.Add(product111);
+        //    product111 = new RadTreeViewItem();
+        //    product111.Header = "Step 2.1";
+        //    product.Items.Add(product111);
+        //    product111 = new RadTreeViewItem();
+        //    product111.Header = "Step 2.2";
+        //    product.Items.Add(product111);
+        //}
+        private void AddTreeViewItems2(IList<TestParams> ToTest)
         {
             RadTreeViewItem TestCategory = new RadTreeViewItem();
-            TestCategory.Header = "Sales Shipping Tests";
+            TestCategory.Header = ToTest[0].strCategoryName;
             TestCategory.IsExpanded = true;
             TestCategory.Foreground = new SolidColorBrush(Colors.Green);
             TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
-            radTreeView.Items.Add(TestCategory);
+            radTreeView2.Items.Add(TestCategory);
 
             // Adding child items 
             RadTreeViewItem product = new RadTreeViewItem();
-            product.Header = "Test 1";
+            product.Header = ToTest[0].Name;
             TestCategory.Items.Add(product);
             // Added
-            RadTreeViewItem product111 = new RadTreeViewItem();
-            product111.Header = "Step 1.0";
-            product.Items.Add(product111);
-            product111 = new RadTreeViewItem();
-            product111.Header = "Step 1.1";
-            product.Items.Add(product111);
-            // from web page
+            int iIndex = 0;
+            double dStep = ToTest[iIndex].Step;
+            for (int i=0;i< ToTest[0].iTotalSteps;i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
             product = new RadTreeViewItem();
-            product.Header = "Test 2";
+            product.Header = ToTest[iIndex].Name;
             TestCategory.Items.Add(product);
-            // Added
-            product111 = new RadTreeViewItem();
-            product111.Header = "Step 2.0";
-            product.Items.Add(product111);
-            product111 = new RadTreeViewItem();
-            product111.Header = "Step 2.1";
-            product.Items.Add(product111);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
 
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+
+            iIndex++; 
             TestCategory = new RadTreeViewItem();
-            TestCategory.Header = "Sales EDI Tests";
+            TestCategory.Header = ToTest[iIndex].strCategoryName;
             TestCategory.IsExpanded = true;
-            TestCategory.Foreground = new SolidColorBrush(Colors.Purple);
-            radTreeView.Items.Add(TestCategory);
-
-            // Adding child items 
+            TestCategory.Foreground = new SolidColorBrush(Colors.Blue);
+            TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+            radTreeView2.Items.Add(TestCategory);
+            dStep = ToTest[iIndex].Step;
             product = new RadTreeViewItem();
-            product.Header = "Test 1";
+            product.Header = ToTest[iIndex].Name;
             TestCategory.Items.Add(product);
-            product111 = new RadTreeViewItem();
-            product111.Header = "Step 1.0";
-            product.Items.Add(product111);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
             product = new RadTreeViewItem();
-            product.Header = "Test 2";
+            product.Header = ToTest[iIndex].Name;
             TestCategory.Items.Add(product);
-            product111 = new RadTreeViewItem();
-            product111.Header = "Step 2.0";
-            product.Items.Add(product111);
-            product111 = new RadTreeViewItem();
-            product111.Header = "Step 2.1";
-            product.Items.Add(product111);
-            product111 = new RadTreeViewItem();
-            product111.Header = "Step 2.2";
-            product.Items.Add(product111);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            TestCategory = new RadTreeViewItem();
+            TestCategory.Header = ToTest[iIndex].strCategoryName;
+            TestCategory.IsExpanded = true;
+            TestCategory.Foreground = new SolidColorBrush(Colors.Red);
+            TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+            radTreeView2.Items.Add(TestCategory);
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            iIndex++;
+            dStep = ToTest[iIndex].Step;
+            product = new RadTreeViewItem();
+            product.Header = ToTest[iIndex].Name;
+            TestCategory.Items.Add(product);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
         }
-        private void AddTreeViewItems2()
+        private void AddTreeViewItems3(IList<TestParams> ToTest)
         {
-            RadTreeViewItem TestCategory = new RadTreeViewItem();
-            TestCategory.Header = "Sales Shipping Tests";
+            RadTreeView radTreeView = radTreeView3;
+            RadTreeViewItem TestCategory;
+            int iIndex = 0;
+            double dStep = 0;
+
+            TestCategory = new RadTreeViewItem();
+            TestCategory.Header = ToTest[0].strCategoryName;
             TestCategory.IsExpanded = true;
             TestCategory.Foreground = new SolidColorBrush(Colors.Green);
             TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
-            radTreeView2.Items.Add(TestCategory);
+            radTreeView.Items.Add(TestCategory);
 
-            // Adding child items 
             RadTreeViewItem product = new RadTreeViewItem();
-            product.Header = "Test 1";
+            product.Header = ToTest[0].Name;
             TestCategory.Items.Add(product);
-            // Added
-            RadTreeViewItem product111 = new RadTreeViewItem();
-            product111.Header = "Step 1.0";
-            product.Items.Add(product111);
-            product111 = new RadTreeViewItem();
-            product111.Header = "Step 1.1";
-            product.Items.Add(product111);
-            // from web page
-            product = new RadTreeViewItem();
-            product.Header = "Test 2";
-            TestCategory.Items.Add(product);
-            // Added
-            product111 = new RadTreeViewItem();
-            product111.Header = "Step 2.0";
-            product.Items.Add(product111);
-            product111 = new RadTreeViewItem();
-            product111.Header = "Step 2.1";
-            product.Items.Add(product111);
+            dStep = ToTest[iIndex].Step;
+            for (int i = 0; i < ToTest[0].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            for (int j = 0; j < 5; j++)
+            {
+                iIndex++;
+                dStep = ToTest[iIndex].Step;
+                product = new RadTreeViewItem();
+                product.Header = ToTest[iIndex].Name;
+                TestCategory.Items.Add(product);
+                for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+                {
+                    RadTreeViewItem StepItem = new RadTreeViewItem();
+                    StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                    product.Items.Add(StepItem);
+                    dStep += 0.1;
+                }
+            }
 
+            iIndex++;
             TestCategory = new RadTreeViewItem();
-            TestCategory.Header = "Sales EDI Tests";
+            TestCategory.Header = ToTest[iIndex].strCategoryName;
             TestCategory.IsExpanded = true;
-            TestCategory.Foreground = new SolidColorBrush(Colors.Purple);
-            radTreeView2.Items.Add(TestCategory);
-
-            // Adding child items 
+            TestCategory.Foreground = new SolidColorBrush(Colors.Blue);
+            TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+            radTreeView.Items.Add(TestCategory);
+            dStep = ToTest[iIndex].Step;
             product = new RadTreeViewItem();
-            product.Header = "Test 1";
+            product.Header = ToTest[iIndex].Name;
             TestCategory.Items.Add(product);
-            product111 = new RadTreeViewItem();
-            product111.Header = "Step 1.0";
-            product.Items.Add(product111);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            for (int j = 0; j < 6; j++)
+            {
+                iIndex++;
+                dStep = ToTest[iIndex].Step;
+                product = new RadTreeViewItem();
+                product.Header = ToTest[iIndex].Name;
+                TestCategory.Items.Add(product);
+                for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+                {
+                    RadTreeViewItem StepItem = new RadTreeViewItem();
+                    StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                    product.Items.Add(StepItem);
+                    dStep += 0.1;
+                }
+            }
+            
+            iIndex++;
+            TestCategory = new RadTreeViewItem();
+            TestCategory.Header = ToTest[iIndex].strCategoryName;
+            TestCategory.IsExpanded = true;
+            TestCategory.Foreground = new SolidColorBrush(Colors.Red);
+            TestCategory.CheckState = System.Windows.Automation.ToggleState.On;
+            radTreeView.Items.Add(TestCategory);
+            dStep = ToTest[iIndex].Step;
             product = new RadTreeViewItem();
-            product.Header = "Test 2";
+            product.Header = ToTest[iIndex].Name;
             TestCategory.Items.Add(product);
-            product111 = new RadTreeViewItem();
-            product111.Header = "Step 2.0";
-            product.Items.Add(product111);
-            product111 = new RadTreeViewItem();
-            product111.Header = "Step 2.1";
-            product.Items.Add(product111);
-            product111 = new RadTreeViewItem();
-            product111.Header = "Step 2.2";
-            product.Items.Add(product111);
+            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            {
+                RadTreeViewItem StepItem = new RadTreeViewItem();
+                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                product.Items.Add(StepItem);
+                dStep += 0.1;
+            }
+            for (int j = 0; j < 6; j++)
+            {
+                iIndex++;
+                dStep = ToTest[iIndex].Step;
+                product = new RadTreeViewItem();
+                product.Header = ToTest[iIndex].Name;
+                TestCategory.Items.Add(product);
+                for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+                {
+                    RadTreeViewItem StepItem = new RadTreeViewItem();
+                    StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                    product.Items.Add(StepItem);
+                    dStep += 0.1;
+                }
+            }
         }
 
         private void radTreeView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1518,6 +1866,161 @@ namespace PuroFusionTestGui
             else if (strTab == StringEnum.GetStringValue(AllTabs.FileUploads))
                 retTab = AllTabs.FileUploads;
             return retTab;
+        }
+    }
+    public enum AllTestCategory
+    {
+        [StringValue("Sales Shipping")]
+        SalesShippingTests = 0,
+        
+        [StringValue("Sales EDI")]
+        SalesEDITests = 1,
+       
+        [StringValue("Sales Both")]
+        SalesBothTests = 2
+    }
+    public static class GetTheCategory
+    {
+        public static AllTestCategory Get(string strTab)
+        {
+            AllTestCategory retCategory = AllTestCategory.SalesShippingTests;
+
+            if (strTab == StringEnum.GetStringValue(AllTestCategory.SalesShippingTests))
+                retCategory = AllTestCategory.SalesShippingTests;
+            else if (strTab == StringEnum.GetStringValue(AllTestCategory.SalesEDITests))
+                retCategory = AllTestCategory.SalesEDITests;
+            else if (strTab == StringEnum.GetStringValue(AllTestCategory.SalesBothTests))
+                retCategory = AllTestCategory.SalesBothTests;
+            return retCategory;
+        }
+    }
+    public enum AllTest
+    {
+        [StringValue("Sales Shipping Test 1")]
+        SalesShippingTest1 = 0,
+        [StringValue("Sales Shipping Test 2")]
+        SalesShippingTest2 = 1,
+        [StringValue("Sales Shipping Test 3")]
+        SalesShippingTest3 = 2,
+        [StringValue("Sales Shipping Test 4")]
+        SalesShippingTest4 = 3,
+        [StringValue("Sales Shipping Test 5")]
+        SalesShippingTest5 = 4,
+        [StringValue("Sales Shipping Test 7")]
+        SalesShippingTest7 = 5,
+        [StringValue("Sales EDI Test 1")]
+        SalesEDITest1 = 6,
+        [StringValue("Sales EDI Test 2")]
+        SalesEDITest2 = 7,
+        [StringValue("Sales EDI Test 3")]
+        SalesEDITest3 = 8,
+        [StringValue("Sales EDI Test 4")]
+        SalesEDITest4 = 9,
+        [StringValue("Sales EDI Test 5")]
+        SalesEDITest5 = 10,
+        [StringValue("Sales EDI Test 6")]
+        SalesEDITest6 = 11,
+        [StringValue("Sales EDI Test 7")]
+        SalesEDITest7 = 12,
+        [StringValue("Sales Both Test 1")]
+        SalesBothTest1 = 13,
+        [StringValue("Sales Both Test 2")]
+        SalesBothTest2 = 14,
+        [StringValue("Sales Both Test 3")]
+        SalesBothTest3 = 15,
+        [StringValue("Sales Both Test 4")]
+        SalesBothTest4 = 16,
+        [StringValue("Sales Both Test 5")]
+        SalesBothTest5 = 17,
+        [StringValue("Sales Both Test 6")]
+        SalesBothTest6 = 18,
+        [StringValue("Sales Both Test 7")]
+        SalesBothTest7 = 19
+    }
+    public static class GetTheTest
+    {
+        public static AllTest Get(string strTab)
+        {
+            AllTest retTab = AllTest.SalesShippingTest1;
+
+            if (strTab == StringEnum.GetStringValue(AllTest.SalesShippingTest1))
+                retTab = AllTest.SalesShippingTest1;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesShippingTest2))
+                retTab = AllTest.SalesShippingTest2;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesShippingTest3))
+                retTab = AllTest.SalesShippingTest3;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesShippingTest4))
+                retTab = AllTest.SalesShippingTest4;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesShippingTest5))
+                retTab = AllTest.SalesShippingTest5;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesShippingTest7))
+                retTab = AllTest.SalesShippingTest7;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest1))
+                retTab = AllTest.SalesEDITest1;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest2))
+                retTab = AllTest.SalesEDITest2;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest3))
+                retTab = AllTest.SalesEDITest3;
+            //else if (strTab == StringEnum.GetStringValue(AllTest.FileUploads))
+            //    retTab = AllTest.FileUploads;
+            return retTab;
+        }
+    }
+    public class TestParams
+    {
+        public string Name { get; set; }
+        public bool Enabled { get; set; }
+        public double Step { get; set; }
+        public int iTotalSteps { get; set; }
+        public AllTest Tests { get; set; }
+        public AllTestCategory Category { get; set; }
+        public string strCategoryName { get; set; }
+        public TestParams(AllTest test, int itotalsteps)
+        {
+            Tests = test;
+            Name = StringEnum.GetStringValue(test);
+            iTotalSteps = itotalsteps;
+
+            switch (test)
+            {
+                case AllTest.SalesShippingTest1:
+                case AllTest.SalesShippingTest2:
+                case AllTest.SalesShippingTest3:
+                case AllTest.SalesShippingTest4:
+                case AllTest.SalesShippingTest5:
+                case AllTest.SalesShippingTest7:
+                    Category = AllTestCategory.SalesShippingTests;
+                    strCategoryName = StringEnum.GetStringValue(Category);
+                    break;
+                case AllTest.SalesEDITest1:
+                case AllTest.SalesEDITest2:
+                case AllTest.SalesEDITest3:
+                case AllTest.SalesEDITest4:
+                case AllTest.SalesEDITest5:
+                case AllTest.SalesEDITest6:
+                case AllTest.SalesEDITest7:
+                    Category = AllTestCategory.SalesEDITests;
+                    strCategoryName = StringEnum.GetStringValue(Category);
+                    break;
+                case AllTest.SalesBothTest1:
+                case AllTest.SalesBothTest2:
+                case AllTest.SalesBothTest3:
+                case AllTest.SalesBothTest4:
+                case AllTest.SalesBothTest5:
+                case AllTest.SalesBothTest6:
+                case AllTest.SalesBothTest7:
+                    Category = AllTestCategory.SalesBothTests;
+                    strCategoryName = StringEnum.GetStringValue(Category);
+                    break;
+            }
+        }
+        public string GetCurrentStep()
+        {
+            return String.Format("Step {0:0.0#}", Step);
+        }
+        public string GetCurrentStep(double step)
+        {
+            return String.Format("Step {0:0.0#}", step);
         }
     }
     public class StringValue : System.Attribute
