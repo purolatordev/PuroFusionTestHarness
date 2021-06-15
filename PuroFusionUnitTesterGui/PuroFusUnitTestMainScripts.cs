@@ -910,8 +910,9 @@ namespace PuroFusionTestGui
             }
             return bRetVal;
         }
-        static bool SalesShippingTest2(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
+        bool SalesShippingTest2(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
         {
+            ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
             bool bRetVal = false;
             string strCurrentStep = String.Format("Step {0:0.0#}", Step);
             try
@@ -949,11 +950,11 @@ namespace PuroFusionTestGui
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
                     return false;
                 }
 
@@ -974,13 +975,13 @@ namespace PuroFusionTestGui
                 if (bctl01 && bctl02 && bctl03)
                 {
                     bRetVal = true;
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
                     driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
                     Thread.Sleep(1000);
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
                     return false;
                 }
             }
@@ -993,7 +994,6 @@ namespace PuroFusionTestGui
         bool SalesShippingTest1(DiscoveryReqUpdates insert, double Step)
         {
             ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
-            this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, " Passed");
 
             bool bRetVal = false;
             string strCurrentStep = String.Format("Step {0:0.0#}", Step);

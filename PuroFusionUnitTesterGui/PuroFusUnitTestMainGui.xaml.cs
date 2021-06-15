@@ -128,18 +128,18 @@ namespace PuroFusionTestGui
             new Tabs(AllTabs.FileUploads)      { Visible = false }
         };
         IList<TestParams> ToTest2 = new List<TestParams>() {
-            new TestParams( AllTest.SalesShippingTest1,5) { Enabled = true,  Step = 1.0},
+            new TestParams( AllTest.SalesShippingTest1,5) { Enabled = false,  Step = 1.0},
             new TestParams( AllTest.SalesShippingTest2,5) { Enabled = true,  Step = 2.0},
-            new TestParams( AllTest.SalesShippingTest3,5) { Enabled = true,  Step = 3.0},
-            new TestParams( AllTest.SalesShippingTest4,5) { Enabled = true,  Step = 4.0},
-            new TestParams( AllTest.SalesShippingTest5,5) { Enabled = true,  Step = 5.0},
-            new TestParams( AllTest.SalesShippingTest7,5) { Enabled = true,  Step = 7.0},
-            new TestParams( AllTest.SalesEDITest1,5)      { Enabled = true,  Step = 1.0},
-            new TestParams( AllTest.SalesEDITest2,5)      { Enabled = true,  Step = 2.0},
-            new TestParams( AllTest.SalesEDITest3,5)      { Enabled = true,  Step = 3.0},
-            new TestParams( AllTest.SalesEDITest4,5)      { Enabled = true,  Step = 4.0},
-            new TestParams( AllTest.SalesEDITest5,5)      { Enabled = true,  Step = 5.0},
-            new TestParams( AllTest.SalesEDITest6,5)      { Enabled = true,  Step = 6.0},
+            new TestParams( AllTest.SalesShippingTest3,5) { Enabled = false,  Step = 3.0},
+            new TestParams( AllTest.SalesShippingTest4,5) { Enabled = false,  Step = 4.0},
+            new TestParams( AllTest.SalesShippingTest5,5) { Enabled = false,  Step = 5.0},
+            new TestParams( AllTest.SalesShippingTest7,5) { Enabled = false,  Step = 7.0},
+            new TestParams( AllTest.SalesEDITest1,5)      { Enabled = false,  Step = 1.0},
+            new TestParams( AllTest.SalesEDITest2,5)      { Enabled = false,  Step = 2.0},
+            new TestParams( AllTest.SalesEDITest3,5)      { Enabled = false,  Step = 3.0},
+            new TestParams( AllTest.SalesEDITest4,5)      { Enabled = false,  Step = 4.0},
+            new TestParams( AllTest.SalesEDITest5,5)      { Enabled = false,  Step = 5.0},
+            new TestParams( AllTest.SalesEDITest6,5)      { Enabled = false,  Step = 6.0},
             new TestParams( AllTest.SalesEDITest7,5)      { Enabled = false,  Step = 7.0},
             new TestParams( AllTest.SalesBothTest1,5)     { Enabled = false,  Step = 1.0},
             new TestParams( AllTest.SalesBothTest2,5)     { Enabled = false,  Step = 2.0},
@@ -154,9 +154,9 @@ namespace PuroFusionTestGui
         public delegate void ShowMessageDelegate(int iFunct, string strIn);
         public delegate void ShowMessageDelegate2(string strIn);
 
-        const string OK_ICON = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
-        const string CODEBREAK_ICON = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\CodeBreakpoint.ico";
-        const string DELETE_ICON = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\Delete.ico";
+        const string OK_ICON = @"C:\Src\images\OK.ico";
+        const string CODEBREAK_ICON = @"C:\Src\images\CodeBreakpoint.ico";
+        const string DELETE_ICON = @"C:\Src\images\Delete.ico";
         const int SOLUTION_TYPE_SHIPPING = 1;
         const int SOLUTION_TYPE_EDI = 2;
         const int SOLUTION_TYPE_BOTH = 3;
@@ -1659,7 +1659,8 @@ namespace PuroFusionTestGui
 
         private void btnWebTesterRunScript_Click(object sender, RoutedEventArgs e)
         {
-            RunTestScript(true);
+            StartAsyncFileTrans(false,"test 1");
+            //RunTestScript(false);
         }
     }
     public class Tabs
