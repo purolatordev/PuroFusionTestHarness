@@ -899,19 +899,8 @@
                                 <ComboBoxItem>Delete</ComboBoxItem>
                             </ComboBox>
                             <Button Name="btnWebTesterTreeTimer" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterTreeTimer_Click"  >Timer</Button>
+                            <Button Name="btnWebTesterTreeStopTimer" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterTreeStopTimer_Click"  >Stop Timer</Button>
                         </StackPanel>
-                        <!--
-                        ImagesBaseDir="F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\"
-                        <telerik:RadTreeView x:Name="radTreeView" Grid.Row="1" IsOptionElementsEnabled="True" Margin="8" SelectionChanged="radTreeView_SelectionChanged" Checked="radTreeView_Checked" Unchecked="radTreeView_Unchecked">
-                            <telerik:RadTreeView.Background>
-                                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
-                            </telerik:RadTreeView.Background>
-                        </telerik:RadTreeView>-->
-                        <!--<telerik:RadTreeView x:Name="radTreeView2" Grid.Row="1" IsOptionElementsEnabled="True" Margin="8">
-                            <telerik:RadTreeView.Background>
-                                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
-                            </telerik:RadTreeView.Background>
-                        </telerik:RadTreeView>-->
                         <telerik:RadTreeView x:Name="radTreeView3" Grid.Row="2" IsOptionElementsEnabled="True" Margin="8" Checked="radTreeView_Checked" Unchecked="radTreeView_Unchecked">
                             <telerik:RadTreeView.Background>
                                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
@@ -921,6 +910,18 @@
                     <!--Multi Split Center Splitter-->
                     <GridSplitter Grid.Row="0" Grid.Column="0" Background="Green" Width="5"/>
                     <Grid Grid.Column="1" >
+                        <Grid Grid.Column="1" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <ListBox Grid.Row="0" HorizontalAlignment="Center" Margin="0,10,0,0" Name="listBox1" Height="300" Width="510"></ListBox>
+                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                <Button Name="btnWebTesterClear" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterClear_Click" >Clear</Button>
+                                <Button Name="btnWebTesterRunScript" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterRunScript_Click" >Run Script</Button>
+                            </StackPanel>
+                        </Grid>
                     </Grid>
                 </Grid>
             </TabItem>
