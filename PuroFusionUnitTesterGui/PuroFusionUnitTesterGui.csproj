@@ -115,6 +115,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PuroFusUnitTestMainScripts.cs" />
     <Page Include="MainDict.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

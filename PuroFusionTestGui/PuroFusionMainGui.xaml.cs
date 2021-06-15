@@ -147,6 +147,7 @@ namespace PuroFusionTestGui
         Step curStep;
         static bool bTimeTimer;
         public delegate void ShowMessageDelegate(int iFunct, string strIn);
+        public delegate void ShowMessageDelegate2(string strIn);
 
         const string OK_ICON = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
         const string CODEBREAK_ICON = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\CodeBreakpoint.ico";
@@ -2026,6 +2027,7 @@ namespace PuroFusionTestGui
         }
         public void SetSteps(string strIconLocation)
         {
+            ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
             bool bNextTest = false;
             var allTreeContainers = GetAllItemContainers(radTreeView3);
             var q = allTreeContainers.Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(curStep.Category))).ToList();
@@ -2034,6 +2036,7 @@ namespace PuroFusionTestGui
             {
                 if (node.Header.ToString().Contains(StringEnum.GetStringValue(curStep.Test)))
                 {
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, node.Header.ToString());
                     foreach (RadTreeViewItem step in node.Items)
                     {
                         if (curStep.strCurStep.Contains(step.Header.ToString()))
@@ -2041,6 +2044,7 @@ namespace PuroFusionTestGui
                             step.DefaultImageSrc = strIconLocation;
                             curStep.dCurStep += 0.1;
                             curStep.strCurStep = String.Format("Step {0:0.0#}", curStep.dCurStep);
+                            this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, curStep.strCurStep);
                             curStep.iCurStep++;
                             if (curStep.iCurStep >= curStep.iTotalSteps)
                             {
@@ -2072,6 +2076,8 @@ namespace PuroFusionTestGui
                 int er = 0;
                 er++;
             }
+            else
+                ((DispatcherTimer)sender).Stop();
         }
 
         private void btnWebTesterTreeClear_Click(object sender, RoutedEventArgs e)
@@ -2106,7 +2112,10 @@ namespace PuroFusionTestGui
             //if (strIn.Contains("xx001"))
             //    strIn = strIn.Substring(5, strIn.Length - 5);
         }
-
+        public void ShowMessage(string strIn)
+        {
+                this.listBox1.Items.Insert(0, strIn);
+        }
         private void btnWebTesterTreeTimer_Click(object sender, RoutedEventArgs e)
         {
             bTimeTimer = true;
@@ -2116,6 +2125,16 @@ namespace PuroFusionTestGui
             //dispatcherTimer.Interval = new TimeSpan(0, 0, 0,250);
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100); 
             dispatcherTimer.Start();
+        }
+
+        private void btnWebTesterTreeStopTimer_Click(object sender, RoutedEventArgs e)
+        {
+            bTimeTimer = false;
+        }
+
+        private void btnWebTesterClear_Click(object sender, RoutedEventArgs e)
+        {
+            this.listBox1.Items.Clear();
         }
     }
     public class Tabs
