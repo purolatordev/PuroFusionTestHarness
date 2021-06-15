@@ -878,7 +878,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <telerik:RadTreeView Grid.Row="0" IsDragDropEnabled="True" ImagesBaseDir="F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\" >
+                        <telerik:RadTreeView Grid.Row="0" IsDragDropEnabled="True" >
                             <telerik:RadTreeViewItem Header="Sport Categories" IsExpanded="True" DefaultImageSrc="TechSupport.ico">
                                 <telerik:RadTreeViewItem Header="Football" IsExpanded="True">
                                     <telerik:RadTreeViewItem Header="Futsal"/>

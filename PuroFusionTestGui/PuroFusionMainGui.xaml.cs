@@ -149,9 +149,9 @@ namespace PuroFusionTestGui
         public delegate void ShowMessageDelegate(int iFunct, string strIn);
         public delegate void ShowMessageDelegate2(string strIn);
 
-        const string OK_ICON = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
-        const string CODEBREAK_ICON = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\CodeBreakpoint.ico";
-        const string DELETE_ICON = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\Delete.ico";
+        const string OK_ICON = @"C:\Src\images\OK.ico";
+        const string CODEBREAK_ICON = @"C:\Src\images\CodeBreakpoint.ico";
+        const string DELETE_ICON = @"C:\Src\images\Delete.ico";
 
 
         public MainWindow()
