@@ -14,6 +14,9 @@ using System.IO;
 using PuroFusionLib;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Threading;
+using System.Runtime.Remoting.Messaging;
+
 using System.Windows.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -25,6 +28,30 @@ namespace PuroFusionTestGui
 {
     public partial class MainWindow : Window
     {
+        public delegate void TransferDel(bool bTesting, string strIn);
+        private void StartAsyncFileTrans(bool bTesting, string strIn)
+        {
+            TransferDel del = new TransferDel(TransferFile);
+            TestParams tp = new TestParams(AllTest.SalesShippingTest1, 5);
+            IAsyncResult iar = del.BeginInvoke(bTesting, strIn, new AsyncCallback(FileTransDone), tp);
+        }
+        void FileTransDone(IAsyncResult iar)
+        {
+            AsyncResult ar = (AsyncResult)iar;
+            TransferDel del = (TransferDel)ar.AsyncDelegate;
+            //    bool result = del.EndInvoke(iar);
+            //    if (result)
+            //    {
+            //        GateDataPull gatePull = (GateDataPull)iar.AsyncState;
+            //        updateGUI("File Transfer Done From: " + gatePull.transObj.strFrom + " To: " + gatePull.transObj.strTo);
+            //        StartAsyncLoadTable(gatePull);
+            //    }
+        }
+        public void TransferFile(bool bTesting, string strIn)
+        {
+            RunTestScript(bTesting);
+            return;
+        }
         public void RunTestScript(bool bTesting)
         {
             ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
@@ -966,6 +993,8 @@ namespace PuroFusionTestGui
         bool SalesShippingTest1(DiscoveryReqUpdates insert, double Step)
         {
             ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
+            this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, " Passed");
+
             bool bRetVal = false;
             string strCurrentStep = String.Format("Step {0:0.0#}", Step);
             try
