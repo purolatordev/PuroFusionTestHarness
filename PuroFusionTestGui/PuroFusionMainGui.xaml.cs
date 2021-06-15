@@ -14,6 +14,7 @@ using System.IO;
 using PuroFusionLib;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace PuroFusionTestGui
 {
@@ -121,35 +122,40 @@ namespace PuroFusionTestGui
             new Tabs(AllTabs.AddlNotes)        { Visible = false },
             new Tabs(AllTabs.FileUploads)      { Visible = false }
         };
-            IList<TestParams> ToTest2 = new List<TestParams>() {
-                new TestParams( AllTest.SalesShippingTest1,5) { Enabled = false,  Step = 1.0},
-                new TestParams( AllTest.SalesShippingTest2,5) { Enabled = false,  Step = 2.0},
-                new TestParams( AllTest.SalesShippingTest3,5) { Enabled = false,  Step = 3.0},
-                new TestParams( AllTest.SalesShippingTest4,5) { Enabled = false,  Step = 4.0},
-                new TestParams( AllTest.SalesShippingTest5,5) { Enabled = false,  Step = 5.0},
-                new TestParams( AllTest.SalesShippingTest7,5) { Enabled = false,  Step = 7.0},
-                new TestParams( AllTest.SalesEDITest1,5)      { Enabled = false,  Step = 1.0},
-                new TestParams( AllTest.SalesEDITest2,5)      { Enabled = false,  Step = 2.0},
-                new TestParams( AllTest.SalesEDITest3,5)      { Enabled = false,  Step = 3.0},
-                new TestParams( AllTest.SalesEDITest4,5)      { Enabled = false,  Step = 4.0},
-                new TestParams( AllTest.SalesEDITest5,5)      { Enabled = false,  Step = 5.0},
-                new TestParams( AllTest.SalesEDITest6,5)      { Enabled = false,  Step = 6.0},
-                new TestParams( AllTest.SalesEDITest7,5)      { Enabled = false,  Step = 7.0},
-                new TestParams( AllTest.SalesBothTest1,5)     { Enabled = false,  Step = 1.0},
-                new TestParams( AllTest.SalesBothTest2,5)     { Enabled = false,  Step = 2.0},
-                new TestParams( AllTest.SalesBothTest3,5)     { Enabled = false,  Step = 3.0},
-                new TestParams( AllTest.SalesBothTest4,5)     { Enabled = false,  Step = 4.0},
-                new TestParams( AllTest.SalesBothTest5,5)     { Enabled = false,  Step = 5.0},
-                new TestParams( AllTest.SalesBothTest6,5)     { Enabled = false,  Step = 6.0},
-                new TestParams( AllTest.SalesBothTest7,5)     { Enabled = true,  Step = 7.0}
-            };        
+        IList<TestParams> ToTest2 = new List<TestParams>() {
+            new TestParams( AllTest.SalesShippingTest1,5) { Enabled = false,  Step = 1.0},
+            new TestParams( AllTest.SalesShippingTest2,5) { Enabled = false,  Step = 2.0},
+            new TestParams( AllTest.SalesShippingTest3,5) { Enabled = false,  Step = 3.0},
+            new TestParams( AllTest.SalesShippingTest4,5) { Enabled = false,  Step = 4.0},
+            new TestParams( AllTest.SalesShippingTest5,5) { Enabled = false,  Step = 5.0},
+            new TestParams( AllTest.SalesShippingTest7,5) { Enabled = false,  Step = 7.0},
+            new TestParams( AllTest.SalesEDITest1,5)      { Enabled = false,  Step = 1.0},
+            new TestParams( AllTest.SalesEDITest2,5)      { Enabled = false,  Step = 2.0},
+            new TestParams( AllTest.SalesEDITest3,5)      { Enabled = false,  Step = 3.0},
+            new TestParams( AllTest.SalesEDITest4,5)      { Enabled = false,  Step = 4.0},
+            new TestParams( AllTest.SalesEDITest5,5)      { Enabled = false,  Step = 5.0},
+            new TestParams( AllTest.SalesEDITest6,5)      { Enabled = false,  Step = 6.0},
+            new TestParams( AllTest.SalesEDITest7,5)      { Enabled = false,  Step = 7.0},
+            new TestParams( AllTest.SalesBothTest1,5)     { Enabled = false,  Step = 1.0},
+            new TestParams( AllTest.SalesBothTest2,5)     { Enabled = false,  Step = 2.0},
+            new TestParams( AllTest.SalesBothTest3,5)     { Enabled = false,  Step = 3.0},
+            new TestParams( AllTest.SalesBothTest4,5)     { Enabled = false,  Step = 4.0},
+            new TestParams( AllTest.SalesBothTest5,5)     { Enabled = false,  Step = 5.0},
+            new TestParams( AllTest.SalesBothTest6,5)     { Enabled = false,  Step = 6.0},
+            new TestParams( AllTest.SalesBothTest7,5)     { Enabled = true,  Step = 7.0}
+        };
+        Step curStep;
+        static bool bTimeTimer;
+        public delegate void ShowMessageDelegate(int iFunct, string strIn);
+
+        const string OK_ICON = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+        const string CODEBREAK_ICON = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\CodeBreakpoint.ico";
+        const string DELETE_ICON = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\Delete.ico";
         public MainWindow()
-            {
+        {
             InitializeComponent();
             mainGridData = new GridData1();
            
-            //AddTreeViewItems3(ToTest2);
-            AddTreeViewItems5(ToTest2);
 
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             AssemblyName myAssemblyName = myAssembly.GetName();
@@ -171,13 +177,18 @@ namespace PuroFusionTestGui
             }
             cmbBoxWebTesterSelectedTab.SelectedIndex = 0;
             lblWebTesterWarningMsg.Visibility = Visibility.Hidden;
+
+            AddTreeViewItems5(ToTest2);
+            curStep = new Step(ToTest2[0], 1);
+            bTimeTimer = true;
+            System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(timerForTime_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            //dispatcherTimer.Start();
+
             int er = 0;
             er++;
-
-            //string strConn = GetdbLocation(comboBoxMainDB);
-            //PuroReportingServiceClass o2 = new PuroReportingServiceClass(PuroReportingServiceClass.ConnString.FullPatientLocal);
-            //o2.TestConn();
-        }
+       }
         public class DiscoveryReqUpdates
         {
             private string format1 = "yyyy-MM-ddTHH:mm:ss.fff";
@@ -1827,7 +1838,7 @@ namespace PuroFusionTestGui
             {
                 RadTreeViewItem StepItem = new RadTreeViewItem();
                 StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                StepItem.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\CodeBreakpoint.ico";
+                StepItem.DefaultImageSrc = CODEBREAK_ICON;
                 SpecificTest.Items.Add(StepItem);
                 dStep += 0.1;
             }
@@ -1851,7 +1862,7 @@ namespace PuroFusionTestGui
             {
                 RadTreeViewItem StepItem = new RadTreeViewItem();
                 StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
-                StepItem.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\CodeBreakpoint.ico";
+                StepItem.DefaultImageSrc = CODEBREAK_ICON;
                 SpecificTest.Items.Add(StepItem);
                 dStep += 0.1;
             }
@@ -1891,7 +1902,7 @@ namespace PuroFusionTestGui
                 {
                     //string str = i.Header.ToString();
                     i.CheckState = System.Windows.Automation.ToggleState.On;
-                    i.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\CodeBreakpointRun.ico";
+                    i.DefaultImageSrc = CODEBREAK_ICON;
                 }
             }
             else if(item.Header.ToString() == StringEnum.GetStringValue(AllTestCategory.SalesEDITests))
@@ -1900,7 +1911,7 @@ namespace PuroFusionTestGui
                 foreach (RadTreeViewItem i in allTreeContainers[0].Items)
                 {
                     i.CheckState = System.Windows.Automation.ToggleState.On;
-                    i.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+                    i.DefaultImageSrc = OK_ICON;
                 }
             }
             else if (item.Header.ToString() == StringEnum.GetStringValue(AllTestCategory.SalesBothTests))
@@ -1909,7 +1920,7 @@ namespace PuroFusionTestGui
                 foreach (RadTreeViewItem i in allTreeContainers[0].Items)
                 {
                     i.CheckState = System.Windows.Automation.ToggleState.On;
-                    i.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\Delete.ico";
+                    i.DefaultImageSrc = DELETE_ICON;
                 }
             }
         }
@@ -1966,7 +1977,7 @@ namespace PuroFusionTestGui
         private void btnWebTesterRunTreeSim_Click(object sender, RoutedEventArgs e)
         {
             var allTreeContainers = GetAllItemContainers(radTreeView3);
-            int er = 0;
+            //int er = 0;
             foreach(TestParams t in ToTest2)
             {
                 //var q;
@@ -1979,9 +1990,9 @@ namespace PuroFusionTestGui
                             //string str = node.Header.ToString();
                             foreach (RadTreeViewItem step in node.Items)
                             {
-                                step.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+                                step.DefaultImageSrc = OK_ICON;
                             }
-                            //node.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+                            //node.DefaultImageSrc = OK_ICON;
                         }
                         break;
                     case AllTestCategory.SalesEDITests:
@@ -1991,9 +2002,9 @@ namespace PuroFusionTestGui
                             //string str = node.Header.ToString();
                             foreach (RadTreeViewItem step in node.Items)
                             {
-                                step.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+                                step.DefaultImageSrc = OK_ICON;
                             }
-                            //node.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+                            //node.DefaultImageSrc = OK_ICON;
                         }
                         break;
                     case AllTestCategory.SalesBothTests:
@@ -2003,13 +2014,106 @@ namespace PuroFusionTestGui
                             //string str = node.Header.ToString();
                             foreach (RadTreeViewItem step in node.Items)
                             {
-                                step.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+                                step.DefaultImageSrc = OK_ICON;
                             }
-                            //node.DefaultImageSrc = @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\OK.ico";
+                            //node.DefaultImageSrc = OK_ICON;
                         }
                         break;
                 }
             }
+        }
+        public void SetSteps(string strIconLocation)
+        {
+            bool bNextTest = false;
+            var allTreeContainers = GetAllItemContainers(radTreeView3);
+            var q = allTreeContainers.Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(curStep.Category))).ToList();
+
+            foreach (RadTreeViewItem node in q[0].Items)
+            {
+                if (node.Header.ToString().Contains(StringEnum.GetStringValue(curStep.Test)))
+                {
+                    foreach (RadTreeViewItem step in node.Items)
+                    {
+                        if (curStep.strCurStep.Contains(step.Header.ToString()))
+                        {
+                            step.DefaultImageSrc = strIconLocation;
+                            curStep.dCurStep += 0.1;
+                            curStep.strCurStep = String.Format("Step {0:0.0#}", curStep.dCurStep);
+                            curStep.iCurStep++;
+                            if (curStep.iCurStep >= curStep.iTotalSteps)
+                            {
+                                AllTest NextTest = curStep.Test.Next();
+                                curStep = new Step(ToTest2[(int)NextTest], ToTest2[(int)NextTest].Step);
+                                bNextTest = true;
+                            }
+                            break;
+                        }
+
+                    }
+                }
+                if (bNextTest)
+                    break;
+            }
+            return;
+        }
+        private void btnWebTesterTreeNext_Click(object sender, RoutedEventArgs e)
+        {
+            SetSteps(OK_ICON);
+        }
+        private void timerForTime_Tick(object sender, EventArgs e)
+        {
+            if (bTimeTimer == true)
+            {
+                ShowMessageDelegate del = new ShowMessageDelegate(ShowMessage);
+                this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, 0, "test");
+                Step curStep2 = curStep;
+                int er = 0;
+                er++;
+            }
+        }
+
+        private void btnWebTesterTreeClear_Click(object sender, RoutedEventArgs e)
+        {
+            curStep = new Step(ToTest2[0], 1);
+            string strIcon = OK_ICON;
+            ComboBoxItem comboBoxItem = (ComboBoxItem)cmbBoxWebTesterIcon.SelectedItem;
+            switch(comboBoxItem.Content.ToString() )
+            {
+                case "OK":
+                    strIcon = OK_ICON;
+                    break;
+                case "Stop":
+                    strIcon = CODEBREAK_ICON;
+                    break;
+                case "Delete":
+                    strIcon = DELETE_ICON;
+                    break;
+            }
+            foreach (TestParams t in ToTest2)
+            {
+                for (int i = 0; i < t.iTotalSteps; i++)
+                {
+                    SetSteps(strIcon);
+                }
+            }
+        }
+        public void ShowMessage(int iFunct, string strIn)
+        {
+            if (0 == iFunct)
+                SetSteps(OK_ICON); 
+            //if (strIn.Contains("xx001"))
+            //    strIn = strIn.Substring(5, strIn.Length - 5);
+        }
+
+        private void btnWebTesterTreeTimer_Click(object sender, RoutedEventArgs e)
+        {
+            bTimeTimer = true;
+            System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(timerForTime_Tick);
+            TimeSpan.FromMilliseconds(250);
+            //dispatcherTimer.Interval = new TimeSpan(0, 0, 0,250);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100); 
+            dispatcherTimer.Start();
         }
     }
     public class Tabs
@@ -2046,7 +2150,143 @@ namespace PuroFusionTestGui
             iOrdinalValue = iOrd;
         }
     }
+    public class TestParams
+    {
+        public string Name { get; set; }
+        public bool Enabled { get; set; }
+        public double Step { get; set; }
+        public int iTotalSteps { get; set; }
+        public AllTest Tests { get; set; }
+        public AllTestCategory Category { get; set; }
+        public string strCategoryName { get; set; }
+        public TestParams(AllTest test, int itotalsteps)
+        {
+            Tests = test;
+            Name = StringEnum.GetStringValue(test);
+            iTotalSteps = itotalsteps;
+            //GetCategoryFromTest get = new GetCategoryFromTest(test);
+            //strCategoryName = get.ToString();
+            switch (test)
+            {
+                case AllTest.SalesShippingTest1:
+                case AllTest.SalesShippingTest2:
+                case AllTest.SalesShippingTest3:
+                case AllTest.SalesShippingTest4:
+                case AllTest.SalesShippingTest5:
+                case AllTest.SalesShippingTest7:
+                    Category = AllTestCategory.SalesShippingTests;
+                    strCategoryName = StringEnum.GetStringValue(Category);
+                    break;
+                case AllTest.SalesEDITest1:
+                case AllTest.SalesEDITest2:
+                case AllTest.SalesEDITest3:
+                case AllTest.SalesEDITest4:
+                case AllTest.SalesEDITest5:
+                case AllTest.SalesEDITest6:
+                case AllTest.SalesEDITest7:
+                    Category = AllTestCategory.SalesEDITests;
+                    strCategoryName = StringEnum.GetStringValue(Category);
+                    break;
+                case AllTest.SalesBothTest1:
+                case AllTest.SalesBothTest2:
+                case AllTest.SalesBothTest3:
+                case AllTest.SalesBothTest4:
+                case AllTest.SalesBothTest5:
+                case AllTest.SalesBothTest6:
+                case AllTest.SalesBothTest7:
+                    Category = AllTestCategory.SalesBothTests;
+                    strCategoryName = StringEnum.GetStringValue(Category);
+                    break;
+            }
+        }
+        public string GetCurrentStep()
+        {
+            return String.Format("Step {0:0.0#}", Step);
+        }
+        public string GetCurrentStep(double step)
+        {
+            return String.Format("Step {0:0.0#}", step);
+        }
+    }
+    //public class GetCategoryFromTest
+    //{
+    //    public AllTest Tests { get; set; }
+    //    public AllTestCategory Category { get; set; }
+    //    public string strCategoryName { get; set; }
+    //    public GetCategoryFromTest(AllTest test)
+    //    {
+    //        this.Tests = test;
+    //    }
+    //    public override string ToString()
+    //    {
+    //        switch (Tests)
+    //        {
+    //            case AllTest.SalesShippingTest1:
+    //            case AllTest.SalesShippingTest2:
+    //            case AllTest.SalesShippingTest3:
+    //            case AllTest.SalesShippingTest4:
+    //            case AllTest.SalesShippingTest5:
+    //            case AllTest.SalesShippingTest7:
+    //                Category = AllTestCategory.SalesShippingTests;
+    //                strCategoryName = StringEnum.GetStringValue(Category);
+    //                break;
+    //            case AllTest.SalesEDITest1:
+    //            case AllTest.SalesEDITest2:
+    //            case AllTest.SalesEDITest3:
+    //            case AllTest.SalesEDITest4:
+    //            case AllTest.SalesEDITest5:
+    //            case AllTest.SalesEDITest6:
+    //            case AllTest.SalesEDITest7:
+    //                Category = AllTestCategory.SalesEDITests;
+    //                strCategoryName = StringEnum.GetStringValue(Category);
+    //                break;
+    //            case AllTest.SalesBothTest1:
+    //            case AllTest.SalesBothTest2:
+    //            case AllTest.SalesBothTest3:
+    //            case AllTest.SalesBothTest4:
+    //            case AllTest.SalesBothTest5:
+    //            case AllTest.SalesBothTest6:
+    //            case AllTest.SalesBothTest7:
+    //                Category = AllTestCategory.SalesBothTests;
+    //                strCategoryName = StringEnum.GetStringValue(Category);
+    //                break;
+    //        }
+    //        return strCategoryName;
+    //    }
+    //}
+    public class Step
+    {
+        public double dCurStep { get; set; }
+        public double iCurStep { get; set; }
+        public string strCurStep { get; set; }
+        public int iTotalSteps { get; set; }
+        public bool Enabled { get; set; }
+        public string Name { get; set; }
+        public AllTest Test { get; set; }
+        public AllTestCategory Category { get; set; }
 
+        public Step(TestParams param, double dStep)
+        {
+            this.Test = param.Tests;
+            this.Name = param.Name;
+            this.Category = param.Category;
+            this.iTotalSteps = param.iTotalSteps;
+            this.Enabled = param.Enabled;
+            this.dCurStep = dStep;
+            this.strCurStep = String.Format("Step {0:0.0#}", dStep);
+        }
+    }
+    public static class Extensions
+    {
+        public static T Next<T>(this T src) where T : struct
+        {
+            if (!typeof(T).IsEnum) throw new ArgumentException(String.Format("Argument {0} is not an Enum", typeof(T).FullName));
+
+            T[] Arr = (T[])Enum.GetValues(src.GetType());
+            int j = Array.IndexOf<T>(Arr, src) + 1;
+            return (Arr.Length == j) ? Arr[0] : Arr[j];
+        }
+    }
     #region Enumerations
     public enum AllTabs
     {
@@ -2196,63 +2436,6 @@ namespace PuroFusionTestGui
             //else if (strTab == StringEnum.GetStringValue(AllTest.FileUploads))
             //    retTab = AllTest.FileUploads;
             return retTab;
-        }
-    }
-    public class TestParams
-    {
-        public string Name { get; set; }
-        public bool Enabled { get; set; }
-        public double Step { get; set; }
-        public int iTotalSteps { get; set; }
-        public AllTest Tests { get; set; }
-        public AllTestCategory Category { get; set; }
-        public string strCategoryName { get; set; }
-        public TestParams(AllTest test, int itotalsteps)
-        {
-            Tests = test;
-            Name = StringEnum.GetStringValue(test);
-            iTotalSteps = itotalsteps;
-
-            switch (test)
-            {
-                case AllTest.SalesShippingTest1:
-                case AllTest.SalesShippingTest2:
-                case AllTest.SalesShippingTest3:
-                case AllTest.SalesShippingTest4:
-                case AllTest.SalesShippingTest5:
-                case AllTest.SalesShippingTest7:
-                    Category = AllTestCategory.SalesShippingTests;
-                    strCategoryName = StringEnum.GetStringValue(Category);
-                    break;
-                case AllTest.SalesEDITest1:
-                case AllTest.SalesEDITest2:
-                case AllTest.SalesEDITest3:
-                case AllTest.SalesEDITest4:
-                case AllTest.SalesEDITest5:
-                case AllTest.SalesEDITest6:
-                case AllTest.SalesEDITest7:
-                    Category = AllTestCategory.SalesEDITests;
-                    strCategoryName = StringEnum.GetStringValue(Category);
-                    break;
-                case AllTest.SalesBothTest1:
-                case AllTest.SalesBothTest2:
-                case AllTest.SalesBothTest3:
-                case AllTest.SalesBothTest4:
-                case AllTest.SalesBothTest5:
-                case AllTest.SalesBothTest6:
-                case AllTest.SalesBothTest7:
-                    Category = AllTestCategory.SalesBothTests;
-                    strCategoryName = StringEnum.GetStringValue(Category);
-                    break;
-            }
-        }
-        public string GetCurrentStep()
-        {
-            return String.Format("Step {0:0.0#}", Step);
-        }
-        public string GetCurrentStep(double step)
-        {
-            return String.Format("Step {0:0.0#}", step);
         }
     }
     public class StringValue : System.Attribute

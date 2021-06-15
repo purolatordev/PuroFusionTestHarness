@@ -704,7 +704,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Web Tester" IsSelected="False" HorizontalAlignment="Right" Margin="-2,-2,-0.333,-2" Width="73">
+            <TabItem Header="Web Tester" IsSelected="False" HorizontalAlignment="Right" Margin="0,-2,-0.667,-2" Width="73" Height="24" VerticalAlignment="Top">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"/>
@@ -890,9 +890,17 @@
                         </telerik:RadTreeView>
                         <StackPanel Grid.Row="1" Orientation="Horizontal">
                             <Button Name="btnWebTesterRunTreeSim" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterRunTreeSim_Click" >Run</Button>
-
+                            <Button Name="btnWebTesterTreeNext" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterTreeNext_Click" >Next Step</Button>
+                            <Button Name="btnWebTesterTreeClear" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterTreeClear_Click"  >Clear Tree</Button>
+                            <Label Content="Icon:"  />
+                            <ComboBox Height="23" Name="cmbBoxWebTesterIcon" Width="Auto" SelectedIndex="0"  >
+                                <ComboBoxItem>OK</ComboBoxItem>
+                                <ComboBoxItem>Stop</ComboBoxItem>
+                                <ComboBoxItem>Delete</ComboBoxItem>
+                            </ComboBox>
+                            <Button Name="btnWebTesterTreeTimer" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterTreeTimer_Click"  >Timer</Button>
                         </StackPanel>
-                            <!--
+                        <!--
                         ImagesBaseDir="F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionTestGui\"
                         <telerik:RadTreeView x:Name="radTreeView" Grid.Row="1" IsOptionElementsEnabled="True" Margin="8" SelectionChanged="radTreeView_SelectionChanged" Checked="radTreeView_Checked" Unchecked="radTreeView_Unchecked">
                             <telerik:RadTreeView.Background>
