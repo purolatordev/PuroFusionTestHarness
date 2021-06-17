@@ -1154,12 +1154,14 @@ namespace PuroFusionTestGui
                 {
                     Console.WriteLine(strCurrentStep + " Passed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
                     Console.WriteLine(strCurrentStep + " Failed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
@@ -1183,12 +1185,14 @@ namespace PuroFusionTestGui
                 {
                     Console.WriteLine(strCurrentStep + " Passed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
                     Console.WriteLine(strCurrentStep + " Failed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Click();
@@ -1207,12 +1211,14 @@ namespace PuroFusionTestGui
                 {
                     Console.WriteLine(strCurrentStep + " Passed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
                     Console.WriteLine(strCurrentStep + " Failed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
@@ -1233,12 +1239,14 @@ namespace PuroFusionTestGui
                 {
                     Console.WriteLine(strCurrentStep + " Passed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
                     Console.WriteLine(strCurrentStep + " Failed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 SelectDropdown("ctl00_MainContent_rddlService");
@@ -1261,12 +1269,14 @@ namespace PuroFusionTestGui
                 {
                     Console.WriteLine(strCurrentStep + " Passed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
                     Console.WriteLine(strCurrentStep + " Failed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 driver.FindElement(By.ClassName("rwPopupButton")).Click();
