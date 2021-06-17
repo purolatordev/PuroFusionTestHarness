@@ -39,7 +39,7 @@ namespace PuroFusionTestGui
             public string _selectedItem;
             public ICollectionView _Employee;
             public ICollectionView _Applications;
-            public ICollectionView _Users;
+            public ICollectionView _Tests;
             public ICollectionView AppRules
             {
                 get { return _AppRules; }
@@ -94,13 +94,13 @@ namespace PuroFusionTestGui
                     OnPropertyChanged("Applications");
                 }
             }
-            public ICollectionView Users
+            public ICollectionView Tests
             {
-                get { return _Users; }
+                get { return _Tests; }
                 set
                 {
-                    _Users = value;
-                    OnPropertyChanged("Users");
+                    _Tests = value;
+                    OnPropertyChanged("Tests");
                 }
             }
             public GridData1() { }
@@ -175,6 +175,9 @@ namespace PuroFusionTestGui
             bTimeTimer = true;
             ObservableCollection<TestParams> ocWmsGroup = new ObservableCollection<TestParams>();
             radGridWebTester.ItemsSource = ocWmsGroup.Concat<TestParams>(ToTest2);
+            mainGridData.Tests = CollectionViewSource.GetDefaultView(ToTest2);
+            DataContext = mainGridData;
+
             for (AllTestCategory a = AllTestCategory.SalesShippingTests; (int)a <= (int)AllTestCategory.SalesBothTests; a++)
             {
                 cmbBoxWebTesterCategories.Items.Add(StringEnum.GetStringValue(a));
@@ -1769,6 +1772,7 @@ namespace PuroFusionTestGui
         public string Name { get; set; }
         public bool Enabled { get; set; }
         public double Step { get; set; }
+        public IList<Step> ListSteps { get; set; }
         public int iTotalSteps { get; set; }
         public AllTest Tests { get; set; }
         public AllTestCategory Category { get; set; }
@@ -1778,8 +1782,59 @@ namespace PuroFusionTestGui
             Tests = test;
             Name = StringEnum.GetStringValue(test);
             iTotalSteps = itotalsteps;
-            //GetCategoryFromTest get = new GetCategoryFromTest(test);
-            //strCategoryName = get.ToString();
+            ListSteps = new List<Step>();
+            double dstep = 1.0;
+            for(int i=0;i< iTotalSteps;i++)
+            {
+                dstep +=.1;
+                ListSteps.Add(new Step( GetCurrentStep(dstep)));
+            }
+            switch (test)
+            {
+                case AllTest.SalesShippingTest1:
+                case AllTest.SalesShippingTest2:
+                case AllTest.SalesShippingTest3:
+                case AllTest.SalesShippingTest4:
+                case AllTest.SalesShippingTest5:
+                case AllTest.SalesShippingTest7:
+                    Category = AllTestCategory.SalesShippingTests;
+                    strCategoryName = StringEnum.GetStringValue(Category);
+                    break;
+                case AllTest.SalesEDITest1:
+                case AllTest.SalesEDITest2:
+                case AllTest.SalesEDITest3:
+                case AllTest.SalesEDITest4:
+                case AllTest.SalesEDITest5:
+                case AllTest.SalesEDITest6:
+                case AllTest.SalesEDITest7:
+                    Category = AllTestCategory.SalesEDITests;
+                    strCategoryName = StringEnum.GetStringValue(Category);
+                    break;
+                case AllTest.SalesBothTest1:
+                case AllTest.SalesBothTest2:
+                case AllTest.SalesBothTest3:
+                case AllTest.SalesBothTest4:
+                case AllTest.SalesBothTest5:
+                case AllTest.SalesBothTest6:
+                case AllTest.SalesBothTest7:
+                    Category = AllTestCategory.SalesBothTests;
+                    strCategoryName = StringEnum.GetStringValue(Category);
+                    break;
+            }
+        }
+        public TestParams(AllTest test, int itotalsteps, double dStep)
+        {
+            Tests = test;
+            Name = StringEnum.GetStringValue(test);
+            iTotalSteps = itotalsteps;
+            ListSteps = new List<Step>();
+            this.Step = dStep;
+            double dstep = dStep;
+            for (int i = 0; i < iTotalSteps; i++)
+            {
+                ListSteps.Add(new Step(GetCurrentStep(dstep)));
+                dstep += .1;
+            }
             switch (test)
             {
                 case AllTest.SalesShippingTest1:
@@ -1830,9 +1885,14 @@ namespace PuroFusionTestGui
         public int iTotalSteps { get; set; }
         public bool Enabled { get; set; }
         public string Name { get; set; }
+        public string Status { get; set; }
         public AllTest Test { get; set; }
         public AllTestCategory Category { get; set; }
-
+        public Step(string strName)
+        {
+            this.Name = strName;
+            this.Status = "stale";
+        }
         public Step(TestParams param, double dStep)
         {
             this.Test = param.Tests;

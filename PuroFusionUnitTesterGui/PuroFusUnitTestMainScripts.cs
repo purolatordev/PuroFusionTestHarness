@@ -29,28 +29,27 @@ namespace PuroFusionTestGui
     public partial class MainWindow : Window
     {
         IList<TestParams> ToTest2 = new List<TestParams>() {
-            new TestParams( AllTest.SalesShippingTest1,5) { Enabled = true,  Step = 1.0},
-            new TestParams( AllTest.SalesShippingTest2,5) { Enabled = true,  Step = 2.0},
-            new TestParams( AllTest.SalesShippingTest3,5) { Enabled = true,  Step = 3.0},
-            new TestParams( AllTest.SalesShippingTest4,5) { Enabled = true,  Step = 4.0},
-            new TestParams( AllTest.SalesShippingTest5,5) { Enabled = true,  Step = 5.0},
-            new TestParams( AllTest.SalesShippingTest7,5) { Enabled = true,  Step = 7.0},
-            new TestParams( AllTest.SalesEDITest1,5)      { Enabled = true,  Step = 1.0},
-            new TestParams( AllTest.SalesEDITest2,5)      { Enabled = true,  Step = 2.0},
-            new TestParams( AllTest.SalesEDITest3,5)      { Enabled = true,  Step = 3.0},
-            new TestParams( AllTest.SalesEDITest4,5)      { Enabled = true,  Step = 4.0},
-            new TestParams( AllTest.SalesEDITest5,5)      { Enabled = true,  Step = 5.0},
-            new TestParams( AllTest.SalesEDITest6,5)      { Enabled = true,  Step = 6.0},
-            new TestParams( AllTest.SalesEDITest7,5)      { Enabled = true,  Step = 7.0},
-            new TestParams( AllTest.SalesBothTest1,5)     { Enabled = true,  Step = 1.0},
-            new TestParams( AllTest.SalesBothTest2,5)     { Enabled = true,  Step = 2.0},
-            new TestParams( AllTest.SalesBothTest3,5)     { Enabled = true,  Step = 3.0},
-            new TestParams( AllTest.SalesBothTest4,5)     { Enabled = true,  Step = 4.0},
-            new TestParams( AllTest.SalesBothTest5,5)     { Enabled = true,  Step = 5.0},
-            new TestParams( AllTest.SalesBothTest6,5)     { Enabled = true,  Step = 6.0},
-            new TestParams( AllTest.SalesBothTest7,5)     { Enabled = true,  Step = 7.0}
+            new TestParams( AllTest.SalesShippingTest1,5, 1.0) { Enabled = true},
+            new TestParams( AllTest.SalesShippingTest2,5, 2.0) { Enabled = true},
+            new TestParams( AllTest.SalesShippingTest3,5, 3.0) { Enabled = true},
+            new TestParams( AllTest.SalesShippingTest4,5, 4.0) { Enabled = true},
+            new TestParams( AllTest.SalesShippingTest5,5, 5.0) { Enabled = true},
+            new TestParams( AllTest.SalesShippingTest7,5, 7.0) { Enabled = true},
+            new TestParams( AllTest.SalesEDITest1,5, 1.0)      { Enabled = true},
+            new TestParams( AllTest.SalesEDITest2,5, 2.0)      { Enabled = true},
+            new TestParams( AllTest.SalesEDITest3,5, 3.0)      { Enabled = true},
+            new TestParams( AllTest.SalesEDITest4,5, 4.0)      { Enabled = true},
+            new TestParams( AllTest.SalesEDITest5,5, 5.0)      { Enabled = true},
+            new TestParams( AllTest.SalesEDITest6,5, 6.0)      { Enabled = true},
+            new TestParams( AllTest.SalesEDITest7,5, 7.0)      { Enabled = true},
+            new TestParams( AllTest.SalesBothTest1,5, 1.0)     { Enabled = true},
+            new TestParams( AllTest.SalesBothTest2,5, 2.0)     { Enabled = true},
+            new TestParams( AllTest.SalesBothTest3,5, 3.0)     { Enabled = true},
+            new TestParams( AllTest.SalesBothTest4,5, 4.0)     { Enabled = true},
+            new TestParams( AllTest.SalesBothTest5,5, 5.0)     { Enabled = true},
+            new TestParams( AllTest.SalesBothTest6,5, 6.0)     { Enabled = true},
+            new TestParams( AllTest.SalesBothTest7,5, 7.0)     { Enabled = true}
         };
-
         #region Async / Threading
         public delegate void TransferDel(bool bTesting, string strIn);
         private void StartAsyncFileTrans(bool bTesting, string strIn)
@@ -82,7 +81,7 @@ namespace PuroFusionTestGui
             ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
             bool bLoggedIn = false;
             //bool bTesting = false;
-            if(!bTesting)
+            if (!bTesting)
                 driver = new ChromeDriver(@"C:\Software\Selenium");
 
             DiscoveryReqUpdates insert = new DiscoveryReqUpdates()
