@@ -110,7 +110,7 @@ namespace PuroFusionTestGui
                     {
                         case AllTest.SalesShippingTest1:
                             if (!bTesting)
-                                bPass = SalesShippingTest1(t,insert, t.Step);
+                                bPass = SalesShippingTest1(t,insert);
                             else
                                 bPass = true;
                             break;
@@ -1074,12 +1074,14 @@ namespace PuroFusionTestGui
             }
             return bRetVal;
         }
-        bool SalesShippingTest1(TestParams t,DiscoveryReqUpdates insert, double Step)
+        bool SalesShippingTest1(TestParams t,DiscoveryReqUpdates insert)
         {
             ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
             ShowDelegateUpdateTree del2 = new ShowDelegateUpdateTree(SelectTreeNode);
             bool bRetVal = false;
-            string strCurrentStep = String.Format("Step {0:0.0#}", Step);
+            //string strCurrentStep = String.Format("Step {0:0.0#}", t.Step);
+            int iCurStep = 0;
+            string strCurrentStep =  t.ListSteps[iCurStep].Name;
             try
             {
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
@@ -1140,8 +1142,8 @@ namespace PuroFusionTestGui
                 driver.FindElement(By.Id("ctl00_MainContent_txtCommodity")).SendKeys("Shoes");
 
                 // Click the Next Button Step 1.1
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
 
                 IList<Tabs> tab = new List<Tabs>() {
@@ -1179,8 +1181,8 @@ namespace PuroFusionTestGui
                 Thread.Sleep(5000);
 
                 //Step 1.2
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 if (driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Displayed)
                 {
                     Console.WriteLine(strCurrentStep + " Passed");
@@ -1199,8 +1201,8 @@ namespace PuroFusionTestGui
                 Thread.Sleep(5000);
 
                 // Step 1.3
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 IList<Tabs> tab3 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
@@ -1233,8 +1235,8 @@ namespace PuroFusionTestGui
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices),Enabled = true, Selected = true }
                 };
                 // Step 1.4
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 if (GetRadTabStrip(strRadTabID, tab4))
                 {
                     Console.WriteLine(strCurrentStep + " Passed");
@@ -1262,9 +1264,8 @@ namespace PuroFusionTestGui
                 driver.FindElement(By.Id("ctl00_MainContent_btnSubmit_input")).Click();
 
                 Thread.Sleep(5000);
-                // Step 1.5
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 if (driver.FindElement(By.ClassName("rwPopupButton")).Displayed)
                 {
                     Console.WriteLine(strCurrentStep + " Passed");
