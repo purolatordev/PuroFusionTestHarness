@@ -6,7 +6,7 @@
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         xmlns:local="clr-namespace:PuroFusionTestGui"
         mc:Ignorable="d"
-        Title="MainWindow"  Height="950" Width="1850" WindowState="Maximized" Icon="Purolator-Icon-5.ico" >
+        Title="MainWindow"  Height="950" Width="1850" WindowState="Maximized" Icon="Purolator-Icon-5.ico" Loaded="Window_Loaded" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -870,7 +870,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <Grid.RowDefinitions>
@@ -878,7 +878,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <telerik:RadTreeView Grid.Row="0" IsDragDropEnabled="True" >
+                        <!--<telerik:RadTreeView Grid.Row="0" IsDragDropEnabled="True" >
                             <telerik:RadTreeViewItem Header="Sport Categories" IsExpanded="True" DefaultImageSrc="TechSupport.ico">
                                 <telerik:RadTreeViewItem Header="Football" IsExpanded="True">
                                     <telerik:RadTreeViewItem Header="Futsal"/>
@@ -887,19 +887,34 @@
                                 <telerik:RadTreeViewItem Header="Tennis"/>
                                 <telerik:RadTreeViewItem Header="Cycling"/>
                             </telerik:RadTreeViewItem>
-                        </telerik:RadTreeView>
-                        <StackPanel Grid.Row="1" Orientation="Horizontal">
-                            <Button Name="btnWebTesterRunTreeSim" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterRunTreeSim_Click" >Run</Button>
-                            <Button Name="btnWebTesterTreeNext" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterTreeNext_Click" >Next Step</Button>
-                            <Button Name="btnWebTesterTreeClear" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterTreeClear_Click"  >Clear Tree</Button>
+                        </telerik:RadTreeView>-->
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <Button Name="btnWebTesterRunTreeSim" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="False" Click="btnWebTesterRunTreeSim_Click" >Run</Button>
+                            <Button Name="btnWebTesterTreeNext" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="False" Click="btnWebTesterTreeNext_Click" >Next Step</Button>
+                            <Button Name="btnWebTesterTreeClear" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="False" Click="btnWebTesterTreeClear_Click"  >Clear Tree</Button>
                             <Label Content="Icon:"  />
-                            <ComboBox Height="23" Name="cmbBoxWebTesterIcon" Width="Auto" SelectedIndex="0"  >
+                            <ComboBox Height="23" Name="cmbBoxWebTesterIcon" Width="Auto" SelectedIndex="0" IsEnabled="False"  >
                                 <ComboBoxItem>OK</ComboBoxItem>
                                 <ComboBoxItem>Stop</ComboBoxItem>
                                 <ComboBoxItem>Delete</ComboBoxItem>
                             </ComboBox>
-                            <Button Name="btnWebTesterTreeTimer" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterTreeTimer_Click"  >Timer</Button>
-                            <Button Name="btnWebTesterTreeStopTimer" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterTreeStopTimer_Click"  >Stop Timer</Button>
+                            <Button Name="btnWebTesterTreeTimer" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="False" Click="btnWebTesterTreeTimer_Click"  >Timer</Button>
+                            <Button Name="btnWebTesterTreeStopTimer" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="False" Click="btnWebTesterTreeStopTimer_Click"  >Stop Timer</Button>
+                            <Button Name="btnWebTesterLoadTree" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="False" Click="btnWebTesterLoadTree_Click"  >Load Tree</Button>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                            <Label Content="Categories:"  />
+                            <ComboBox Height="23" Name="cmbBoxWebTesterCategories" Width="Auto" SelectedIndex="0" SelectionChanged="cmbBoxWebTesterCategories_SelectionChanged" >
+                            </ComboBox>
+                            <Label Content="Tests:"  />
+                            <ComboBox Height="23" Name="cmbBoxWebTesterTests" Width="Auto" SelectedIndex="0" >
+                            </ComboBox>
+                            <Button Name="btnWebTesterRunTest" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterRunTest_Click" >Run Test</Button>
+                            <Label Content="On/Off:"  />
+                            <ComboBox Height="23" Name="cmbBoxWebTesterCheckStatus" Width="Auto" SelectedIndex="0" >
+                                <ComboBoxItem>ON</ComboBoxItem>
+                                <ComboBoxItem>OFF</ComboBoxItem>
+                            </ComboBox>
                         </StackPanel>
                         <telerik:RadTreeView x:Name="radTreeView3" Grid.Row="2" IsOptionElementsEnabled="True" Margin="8" Checked="radTreeView_Checked" Unchecked="radTreeView_Unchecked">
                             <telerik:RadTreeView.Background>
@@ -921,6 +936,8 @@
                                 <Button Name="btnWebTesterClear" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterClear_Click" >Clear</Button>
                                 <Button Name="btnWebTesterRunScript" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterRunScript_Click" >Run Script</Button>
                             </StackPanel>
+                            <telerik:RadGridView x:Name="radGridWebTester" ToolTip="" Grid.Row="2" RowHeight="20"  ShowGroupPanel="True" >
+                            </telerik:RadGridView>
                         </Grid>
                     </Grid>
                 </Grid>

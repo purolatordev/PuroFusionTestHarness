@@ -127,28 +127,7 @@ namespace PuroFusionTestGui
             new Tabs(AllTabs.AddlNotes)        { Visible = false },
             new Tabs(AllTabs.FileUploads)      { Visible = false }
         };
-        IList<TestParams> ToTest2 = new List<TestParams>() {
-            new TestParams( AllTest.SalesShippingTest1,5) { Enabled = false,  Step = 1.0},
-            new TestParams( AllTest.SalesShippingTest2,5) { Enabled = true,  Step = 2.0},
-            new TestParams( AllTest.SalesShippingTest3,5) { Enabled = false,  Step = 3.0},
-            new TestParams( AllTest.SalesShippingTest4,5) { Enabled = false,  Step = 4.0},
-            new TestParams( AllTest.SalesShippingTest5,5) { Enabled = false,  Step = 5.0},
-            new TestParams( AllTest.SalesShippingTest7,5) { Enabled = false,  Step = 7.0},
-            new TestParams( AllTest.SalesEDITest1,5)      { Enabled = false,  Step = 1.0},
-            new TestParams( AllTest.SalesEDITest2,5)      { Enabled = false,  Step = 2.0},
-            new TestParams( AllTest.SalesEDITest3,5)      { Enabled = false,  Step = 3.0},
-            new TestParams( AllTest.SalesEDITest4,5)      { Enabled = false,  Step = 4.0},
-            new TestParams( AllTest.SalesEDITest5,5)      { Enabled = false,  Step = 5.0},
-            new TestParams( AllTest.SalesEDITest6,5)      { Enabled = false,  Step = 6.0},
-            new TestParams( AllTest.SalesEDITest7,5)      { Enabled = false,  Step = 7.0},
-            new TestParams( AllTest.SalesBothTest1,5)     { Enabled = false,  Step = 1.0},
-            new TestParams( AllTest.SalesBothTest2,5)     { Enabled = false,  Step = 2.0},
-            new TestParams( AllTest.SalesBothTest3,5)     { Enabled = false,  Step = 3.0},
-            new TestParams( AllTest.SalesBothTest4,5)     { Enabled = false,  Step = 4.0},
-            new TestParams( AllTest.SalesBothTest5,5)     { Enabled = false,  Step = 5.0},
-            new TestParams( AllTest.SalesBothTest6,5)     { Enabled = false,  Step = 6.0},
-            new TestParams( AllTest.SalesBothTest7,5)     { Enabled = true,  Step = 7.0}
-        };
+        bool bUseTreeCheck = false;
         Step curStep;
         static bool bTimeTimer;
         public delegate void ShowMessageDelegate(int iFunct, string strIn);
@@ -156,11 +135,13 @@ namespace PuroFusionTestGui
 
         const string OK_ICON = @"C:\Src\images\OK.ico";
         const string CODEBREAK_ICON = @"C:\Src\images\CodeBreakpoint.ico";
+        const string STOP_ICON = @"C:\Src\images\CodeBreakpoint.ico";
         const string DELETE_ICON = @"C:\Src\images\Delete.ico";
+        const string READY_ICON = @"C:\Src\images\CodeBreakpointRun.ico";
+
         const int SOLUTION_TYPE_SHIPPING = 1;
         const int SOLUTION_TYPE_EDI = 2;
         const int SOLUTION_TYPE_BOTH = 3;
-
 
         static IWebDriver driver;
         public MainWindow()
@@ -192,15 +173,24 @@ namespace PuroFusionTestGui
             AddTreeViewItems5(ToTest2);
             curStep = new Step(ToTest2[0], 1);
             bTimeTimer = true;
+            ObservableCollection<TestParams> ocWmsGroup = new ObservableCollection<TestParams>();
+            radGridWebTester.ItemsSource = ocWmsGroup.Concat<TestParams>(ToTest2);
+            for (AllTestCategory a = AllTestCategory.SalesShippingTests; (int)a <= (int)AllTestCategory.SalesBothTests; a++)
+            {
+                cmbBoxWebTesterCategories.Items.Add(StringEnum.GetStringValue(a));
+            }
             System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(timerForTime_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             //dispatcherTimer.Start();
-            //RunTestScript();
+            
             int er = 0;
             er++;
        }
-       
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadTree();
+        }
         public class DiscoveryReqUpdates2
         {
             private string format1 = "yyyy-MM-ddTHH:mm:ss.fff";
@@ -1420,34 +1410,42 @@ namespace PuroFusionTestGui
 
         private void radTreeView_Checked(object sender, Telerik.Windows.RadRoutedEventArgs e)
         {
-            RadTreeViewItem item = e.Source as RadTreeViewItem;
-            if ( item.Header.ToString() == StringEnum.GetStringValue(AllTestCategory.SalesShippingTests))
+            if (bUseTreeCheck)
             {
-                var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesShippingTests))).ToList();
-                foreach (RadTreeViewItem i in allTreeContainers[0].Items)
+                RadTreeViewItem item = e.Source as RadTreeViewItem;
+                bool bFound = false;
+                for (AllTestCategory a = AllTestCategory.SalesShippingTests; (int)a <= (int)AllTestCategory.SalesBothTests; a++)
                 {
-                    //string str = i.Header.ToString();
-                    i.CheckState = System.Windows.Automation.ToggleState.On;
-                    i.DefaultImageSrc = CODEBREAK_ICON;
+                    if (item.Header.ToString() == StringEnum.GetStringValue(a))
+                    {
+                        bFound = true;
+                        var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(a))).ToList();
+                        foreach (RadTreeViewItem i in allTreeContainers[0].Items)
+                        {
+                            //string str = i.Header.ToString();
+                            i.CheckState = System.Windows.Automation.ToggleState.On;
+                        }
+                        allTreeContainers[0].DefaultImageSrc = READY_ICON;
+                        break;
+                    }
                 }
-            }
-            else if(item.Header.ToString() == StringEnum.GetStringValue(AllTestCategory.SalesEDITests))
-            {
-                var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesEDITests))).ToList();
-                foreach (RadTreeViewItem i in allTreeContainers[0].Items)
+                if (!bFound)
                 {
-                    i.CheckState = System.Windows.Automation.ToggleState.On;
-                    i.DefaultImageSrc = OK_ICON;
+                    for (AllTest a = AllTest.SalesShippingTest1; (int)a <= (int)AllTest.SalesBothTest7; a++)
+                    {
+                        if (item.Header.ToString() == StringEnum.GetStringValue(a))
+                        {
+                            bFound = true;
+                            var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(a))).FirstOrDefault();
+                            ((RadTreeViewItem)allTreeContainers).DefaultImageSrc = READY_ICON;
+                            TestParams qTurnOffTest = ToTest2.Where(f => f.Tests == a).FirstOrDefault();
+                            qTurnOffTest.Enabled = true;
+                            break;
+                        }
+                    }
                 }
-            }
-            else if (item.Header.ToString() == StringEnum.GetStringValue(AllTestCategory.SalesBothTests))
-            {
-                var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesBothTests))).ToList();
-                foreach (RadTreeViewItem i in allTreeContainers[0].Items)
-                {
-                    i.CheckState = System.Windows.Automation.ToggleState.On;
-                    i.DefaultImageSrc = DELETE_ICON;
-                }
+                ObservableCollection<TestParams> ocWmsGroup = new ObservableCollection<TestParams>();
+                radGridWebTester.ItemsSource = ocWmsGroup.Concat<TestParams>(ToTest2);
             }
         }
         private Collection<RadTreeViewItem> GetAllItemContainers(System.Windows.Controls.ItemsControl itemsControl)
@@ -1472,38 +1470,48 @@ namespace PuroFusionTestGui
         }
         private void radTreeView_Unchecked(object sender, Telerik.Windows.RadRoutedEventArgs e)
         {
-            RadTreeViewItem item = e.Source as RadTreeViewItem;
-            if (item.Header.ToString() == StringEnum.GetStringValue(AllTestCategory.SalesShippingTests))
+            if (bUseTreeCheck)
             {
-                var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesShippingTests))).ToList();
-                foreach (RadTreeViewItem i in allTreeContainers[0].Items)
+                RadTreeViewItem item = e.Source as RadTreeViewItem;
+                bool bFound = false;
+                for(AllTestCategory a = AllTestCategory.SalesShippingTests; (int)a <= (int)AllTestCategory.SalesBothTests; a++ )
                 {
-                    //string str = i.Header.ToString();
-                    i.CheckState = System.Windows.Automation.ToggleState.Off;
+                    if (item.Header.ToString() == StringEnum.GetStringValue(a) )
+                    {
+                        bFound = true;
+                        var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(a))).ToList();
+                        foreach (RadTreeViewItem i in allTreeContainers[0].Items)
+                        {
+                            //string str = i.Header.ToString();
+                            i.CheckState = System.Windows.Automation.ToggleState.Off;
+                        }
+                        allTreeContainers[0].DefaultImageSrc = STOP_ICON;
+                        break;
+                    }
                 }
-            }
-            else if (item.Header.ToString() == StringEnum.GetStringValue(AllTestCategory.SalesEDITests))
-            {
-                var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesEDITests))).ToList();
-                foreach (RadTreeViewItem i in allTreeContainers[0].Items)
+                if(!bFound)
                 {
-                    i.CheckState = System.Windows.Automation.ToggleState.Off;
+                    for (AllTest a = AllTest.SalesShippingTest1; (int)a <= (int)AllTest.SalesBothTest7; a++)
+                    {
+                        if (item.Header.ToString() == StringEnum.GetStringValue(a))
+                        {
+                            bFound = true;
+                            var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(a))).FirstOrDefault();
+                            ((RadTreeViewItem)allTreeContainers).DefaultImageSrc = STOP_ICON;
+                            TestParams qTurnOffTest = ToTest2.Where(f => f.Tests == a).FirstOrDefault();
+                            qTurnOffTest.Enabled = false;
+                            break;
+                        }
+                    }
                 }
-            }
-            else if (item.Header.ToString() == StringEnum.GetStringValue(AllTestCategory.SalesBothTests))
-            {
-                var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(AllTestCategory.SalesBothTests))).ToList();
-                foreach (RadTreeViewItem i in allTreeContainers[0].Items)
-                {
-                    i.CheckState = System.Windows.Automation.ToggleState.Off;
-                }
+                ObservableCollection<TestParams> ocWmsGroup = new ObservableCollection<TestParams>();
+                radGridWebTester.ItemsSource = ocWmsGroup.Concat<TestParams>(ToTest2);
             }
         }
 
         private void btnWebTesterRunTreeSim_Click(object sender, RoutedEventArgs e)
         {
             var allTreeContainers = GetAllItemContainers(radTreeView3);
-            //int er = 0;
             foreach(TestParams t in ToTest2)
             {
                 //var q;
@@ -1578,6 +1586,26 @@ namespace PuroFusionTestGui
                         }
 
                     }
+                }
+                if (bNextTest)
+                    break;
+            }
+            return;
+        }
+        public void SelectTreeNode(TestParams param, string strIconLocation, System.Windows.Automation.ToggleState ToggleVal)
+        {
+            ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
+            bool bNextTest = false;
+            var allTreeContainers = GetAllItemContainers(radTreeView3);
+            var q = allTreeContainers.Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(param.Category))).ToList();
+
+            foreach (RadTreeViewItem node in q[0].Items)
+            {
+                if (node.Header.ToString().Contains(StringEnum.GetStringValue(param.Tests)))
+                {
+                    node.DefaultImageSrc = strIconLocation;
+                    //node.CheckState = System.Windows.Automation.ToggleState.On;
+                    node.CheckState = ToggleVal;
                 }
                 if (bNextTest)
                     break;
@@ -1661,6 +1689,45 @@ namespace PuroFusionTestGui
         {
             StartAsyncFileTrans(false,"test 1");
             //RunTestScript(false);
+        }
+
+        private void btnWebTesterLoadTree_Click(object sender, RoutedEventArgs e)
+        {
+            LoadTree();
+        }
+
+        private void cmbBoxWebTesterCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           string strCategory = (string)cmbBoxWebTesterCategories.SelectedItem;
+            cmbBoxWebTesterTests.Items.Clear();
+            List<string> qTurnOffTest = ToTest2.Where(f => f.strCategoryName == strCategory).Select(f=>f.Name).ToList();
+            foreach(string s in qTurnOffTest)
+            {
+                cmbBoxWebTesterTests.Items.Add(s);
+            }
+            cmbBoxWebTesterTests.SelectedIndex = 0;
+            int er = 0;
+            er++;
+        }
+
+        private void btnWebTesterRunTest_Click(object sender, RoutedEventArgs e)
+        {
+            string strCategory = (string)cmbBoxWebTesterCategories.SelectedItem;
+            string strTest = (string)cmbBoxWebTesterTests.SelectedItem;
+            TestParams qTurnOffTest = ToTest2.Where(f => f.Name == strTest).FirstOrDefault();
+            string strCheckStatus = ((ComboBoxItem)cmbBoxWebTesterCheckStatus.SelectedItem).Content.ToString();
+            System.Windows.Automation.ToggleState ToggleVal = System.Windows.Automation.ToggleState.On;
+            if (strCheckStatus.Contains("OFF"))
+            {
+                ToggleVal = System.Windows.Automation.ToggleState.Off;
+                qTurnOffTest.Enabled = false;
+            }
+            else
+                qTurnOffTest.Enabled = true;
+
+            SelectTreeNode(qTurnOffTest, OK_ICON, ToggleVal);
+            int er = 0;
+            er++;
         }
     }
     public class Tabs

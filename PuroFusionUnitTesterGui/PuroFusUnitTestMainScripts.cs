@@ -28,6 +28,30 @@ namespace PuroFusionTestGui
 {
     public partial class MainWindow : Window
     {
+        IList<TestParams> ToTest2 = new List<TestParams>() {
+            new TestParams( AllTest.SalesShippingTest1,5) { Enabled = true,  Step = 1.0},
+            new TestParams( AllTest.SalesShippingTest2,5) { Enabled = true,  Step = 2.0},
+            new TestParams( AllTest.SalesShippingTest3,5) { Enabled = true,  Step = 3.0},
+            new TestParams( AllTest.SalesShippingTest4,5) { Enabled = true,  Step = 4.0},
+            new TestParams( AllTest.SalesShippingTest5,5) { Enabled = true,  Step = 5.0},
+            new TestParams( AllTest.SalesShippingTest7,5) { Enabled = true,  Step = 7.0},
+            new TestParams( AllTest.SalesEDITest1,5)      { Enabled = true,  Step = 1.0},
+            new TestParams( AllTest.SalesEDITest2,5)      { Enabled = true,  Step = 2.0},
+            new TestParams( AllTest.SalesEDITest3,5)      { Enabled = true,  Step = 3.0},
+            new TestParams( AllTest.SalesEDITest4,5)      { Enabled = true,  Step = 4.0},
+            new TestParams( AllTest.SalesEDITest5,5)      { Enabled = true,  Step = 5.0},
+            new TestParams( AllTest.SalesEDITest6,5)      { Enabled = true,  Step = 6.0},
+            new TestParams( AllTest.SalesEDITest7,5)      { Enabled = true,  Step = 7.0},
+            new TestParams( AllTest.SalesBothTest1,5)     { Enabled = true,  Step = 1.0},
+            new TestParams( AllTest.SalesBothTest2,5)     { Enabled = true,  Step = 2.0},
+            new TestParams( AllTest.SalesBothTest3,5)     { Enabled = true,  Step = 3.0},
+            new TestParams( AllTest.SalesBothTest4,5)     { Enabled = true,  Step = 4.0},
+            new TestParams( AllTest.SalesBothTest5,5)     { Enabled = true,  Step = 5.0},
+            new TestParams( AllTest.SalesBothTest6,5)     { Enabled = true,  Step = 6.0},
+            new TestParams( AllTest.SalesBothTest7,5)     { Enabled = true,  Step = 7.0}
+        };
+
+        #region Async / Threading
         public delegate void TransferDel(bool bTesting, string strIn);
         private void StartAsyncFileTrans(bool bTesting, string strIn)
         {
@@ -52,6 +76,7 @@ namespace PuroFusionTestGui
             RunTestScript(bTesting);
             return;
         }
+        #endregion
         public void RunTestScript(bool bTesting)
         {
             ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
@@ -208,7 +233,65 @@ namespace PuroFusionTestGui
                 }
                 //CurrentTest = CurrentTest.Next();
             }
-
+        }
+        public void LoadTree()
+        {
+            foreach (TestParams param in ToTest2)
+            {
+                if (param.Enabled)
+                {
+                    SelectTreeNode(param, READY_ICON, System.Windows.Automation.ToggleState.On);
+                    //bool bPass = false;
+                    //this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, StringEnum.GetStringValue(t.Tests));
+                    //switch (param.Tests)
+                    //{
+                    //    case AllTest.SalesShippingTest1:
+                    //        SelectTreeNode(param, CODEBREAK_ICON);
+                    //        break;
+                    //    case AllTest.SalesShippingTest2:
+                    //        break;
+                    //    case AllTest.SalesShippingTest3:
+                    //        break;
+                    //    case AllTest.SalesShippingTest4:
+                    //        break;
+                    //    case AllTest.SalesShippingTest5:
+                    //        break;
+                    //    case AllTest.SalesShippingTest7:
+                    //        break;
+                    //    case AllTest.SalesEDITest1:
+                    //        break;
+                    //    case AllTest.SalesEDITest2:
+                    //        break;
+                    //    case AllTest.SalesEDITest3:
+                    //        break;
+                    //    case AllTest.SalesEDITest4:
+                    //        break;
+                    //    case AllTest.SalesEDITest5:
+                    //        break;
+                    //    case AllTest.SalesEDITest6:
+                    //        break;
+                    //    case AllTest.SalesEDITest7:
+                    //        break;
+                    //    case AllTest.SalesBothTest1:
+                    //        break;
+                    //    case AllTest.SalesBothTest2:
+                    //        break;
+                    //    case AllTest.SalesBothTest3:
+                    //        break;
+                    //    case AllTest.SalesBothTest4:
+                    //        break;
+                    //    case AllTest.SalesBothTest5:
+                    //        break;
+                    //    case AllTest.SalesBothTest6:
+                    //        break;
+                    //    case AllTest.SalesBothTest7:
+                    //        break;
+                    //    default:
+                    //        break;
+                    //}
+                }
+            }
+            bUseTreeCheck = true;
         }
         #region Sales Shipping Tests
         static bool SalesShippingTest7(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
