@@ -23,6 +23,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using NUnit.Framework;
+using System.Windows.Automation;
 
 namespace PuroFusionTestGui
 {
@@ -109,7 +110,7 @@ namespace PuroFusionTestGui
                     {
                         case AllTest.SalesShippingTest1:
                             if (!bTesting)
-                                bPass = SalesShippingTest1(insert, t.Step);
+                                bPass = SalesShippingTest1(t,insert, t.Step);
                             else
                                 bPass = true;
                             break;
@@ -239,7 +240,7 @@ namespace PuroFusionTestGui
             {
                 if (param.Enabled)
                 {
-                    SelectTreeNode(param, READY_ICON, System.Windows.Automation.ToggleState.On);
+                    //SelectTreeNode(param, READY_ICON, System.Windows.Automation.ToggleState.On);
                     //bool bPass = false;
                     //this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, StringEnum.GetStringValue(t.Tests));
                     //switch (param.Tests)
@@ -1073,10 +1074,10 @@ namespace PuroFusionTestGui
             }
             return bRetVal;
         }
-        bool SalesShippingTest1(DiscoveryReqUpdates insert, double Step)
+        bool SalesShippingTest1(TestParams t,DiscoveryReqUpdates insert, double Step)
         {
             ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
-
+            ShowDelegateUpdateTree del2 = new ShowDelegateUpdateTree(SelectTreeNode);
             bool bRetVal = false;
             string strCurrentStep = String.Format("Step {0:0.0#}", Step);
             try
@@ -1113,6 +1114,7 @@ namespace PuroFusionTestGui
                 {
                     Console.WriteLine(strCurrentStep + " Passed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2,t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                 }
                 else
                 {

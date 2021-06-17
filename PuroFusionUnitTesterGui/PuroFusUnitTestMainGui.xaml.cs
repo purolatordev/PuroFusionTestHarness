@@ -15,6 +15,7 @@ using PuroFusionLib;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using System.Windows.Automation;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -38,7 +39,7 @@ namespace PuroFusionTestGui
             public ICollectionView _SolutionType;
             public string _selectedItem;
             public ICollectionView _Employee;
-            public ICollectionView _Applications;
+            public ICollectionView _ListSteps;
             public ICollectionView _Tests;
             public ICollectionView AppRules
             {
@@ -85,13 +86,13 @@ namespace PuroFusionTestGui
                     OnPropertyChanged("Employee");
                 }
             }
-            public ICollectionView Applications
+            public ICollectionView ListSteps
             {
-                get { return _Applications; }
+                get { return _ListSteps; }
                 set
                 {
-                    _Applications = value;
-                    OnPropertyChanged("Applications");
+                    _ListSteps = value;
+                    OnPropertyChanged("ListSteps");
                 }
             }
             public ICollectionView Tests
@@ -132,6 +133,7 @@ namespace PuroFusionTestGui
         static bool bTimeTimer;
         public delegate void ShowMessageDelegate(int iFunct, string strIn);
         public delegate void ShowMessageDelegate2(string strIn);
+        public delegate void ShowDelegateUpdateTree(TestParams param, string strIconLocation, ToggleState ToggleVal, string strStep, string strStepStatusIcon);
 
         const string OK_ICON = @"C:\Src\images\OK.ico";
         const string CODEBREAK_ICON = @"C:\Src\images\CodeBreakpoint.ico";
@@ -175,8 +177,7 @@ namespace PuroFusionTestGui
             bTimeTimer = true;
             ObservableCollection<TestParams> ocWmsGroup = new ObservableCollection<TestParams>();
             radGridWebTester.ItemsSource = ocWmsGroup.Concat<TestParams>(ToTest2);
-            mainGridData.Tests = CollectionViewSource.GetDefaultView(ToTest2);
-            DataContext = mainGridData;
+            radGridWebTester2.ItemsSource = ocWmsGroup.Concat<TestParams>(ToTest2);
 
             for (AllTestCategory a = AllTestCategory.SalesShippingTests; (int)a <= (int)AllTestCategory.SalesBothTests; a++)
             {
@@ -357,16 +358,6 @@ namespace PuroFusionTestGui
                         ObservableCollection<dtoPuroTouchUsers> ocWmsGroup = new ObservableCollection<dtoPuroTouchUsers>();
                         grid.ItemsSource = ocWmsGroup.Concat<dtoPuroTouchUsers>(qPI_ApplicationUser);
                         lbl.Content = strReportItem + " count: " + qPI_ApplicationUser.Count();
-                    }
-                    else if ("tblPI_ApplicationsGroup" == strReportItem)
-                    {
-                        IList<dtotblPI_Applications> qtblPI_Applications = o.GetPI_ApplicationsGroupByName();
-                        ObservableCollection<dtotblPI_Applications> ocWmsGroup = new ObservableCollection<dtotblPI_Applications>();
-                        grid.ItemsSource = ocWmsGroup.Concat<dtotblPI_Applications>(qtblPI_Applications);
-                        lbl.Content = strReportItem + " count: " + qtblPI_Applications.Count();
-                        mainGridData.Applications = CollectionViewSource.GetDefaultView(qtblPI_Applications);
-                        DataContext = mainGridData;
-                        comboBoxApplications.SelectedIndex = 15;
                     }
                     else if ("tblEmployee" == strReportItem)
                     {
@@ -1426,7 +1417,7 @@ namespace PuroFusionTestGui
                         foreach (RadTreeViewItem i in allTreeContainers[0].Items)
                         {
                             //string str = i.Header.ToString();
-                            i.CheckState = System.Windows.Automation.ToggleState.On;
+                            i.CheckState = ToggleState.On;
                         }
                         allTreeContainers[0].DefaultImageSrc = READY_ICON;
                         break;
@@ -1440,9 +1431,12 @@ namespace PuroFusionTestGui
                         {
                             bFound = true;
                             var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(a))).FirstOrDefault();
-                            ((RadTreeViewItem)allTreeContainers).DefaultImageSrc = READY_ICON;
-                            TestParams qTurnOffTest = ToTest2.Where(f => f.Tests == a).FirstOrDefault();
-                            qTurnOffTest.Enabled = true;
+                            if (allTreeContainers != null)
+                            {
+                                ((RadTreeViewItem)allTreeContainers).DefaultImageSrc = READY_ICON;
+                                TestParams qTurnOffTest = ToTest2.Where(f => f.Tests == a).FirstOrDefault();
+                                qTurnOffTest.Enabled = true;
+                            }
                             break;
                         }
                     }
@@ -1486,7 +1480,7 @@ namespace PuroFusionTestGui
                         foreach (RadTreeViewItem i in allTreeContainers[0].Items)
                         {
                             //string str = i.Header.ToString();
-                            i.CheckState = System.Windows.Automation.ToggleState.Off;
+                            i.CheckState = ToggleState.Off;
                         }
                         allTreeContainers[0].DefaultImageSrc = STOP_ICON;
                         break;
@@ -1500,10 +1494,13 @@ namespace PuroFusionTestGui
                         {
                             bFound = true;
                             var allTreeContainers = GetAllItemContainers(radTreeView3).Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(a))).FirstOrDefault();
-                            ((RadTreeViewItem)allTreeContainers).DefaultImageSrc = STOP_ICON;
-                            TestParams qTurnOffTest = ToTest2.Where(f => f.Tests == a).FirstOrDefault();
-                            qTurnOffTest.Enabled = false;
-                            break;
+                            if (allTreeContainers != null)
+                            {
+                                ((RadTreeViewItem)allTreeContainers).DefaultImageSrc = STOP_ICON;
+                                TestParams qTurnOffTest = ToTest2.Where(f => f.Tests == a).FirstOrDefault();
+                                qTurnOffTest.Enabled = false;
+                                break;
+                            }
                         }
                     }
                 }
@@ -1595,7 +1592,7 @@ namespace PuroFusionTestGui
             }
             return;
         }
-        public void SelectTreeNode(TestParams param, string strIconLocation, System.Windows.Automation.ToggleState ToggleVal)
+        public void SelectTreeNode(TestParams param, string strIconLocation, ToggleState ToggleVal, string strStep, string strStepStatusIcon)
         {
             ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
             bool bNextTest = false;
@@ -1607,8 +1604,15 @@ namespace PuroFusionTestGui
                 if (node.Header.ToString().Contains(StringEnum.GetStringValue(param.Tests)))
                 {
                     node.DefaultImageSrc = strIconLocation;
-                    //node.CheckState = System.Windows.Automation.ToggleState.On;
                     node.CheckState = ToggleVal;
+                    foreach (RadTreeViewItem step in node.Items)
+                    {
+                        if (step.Header.ToString().Contains(strStep))
+                        {
+                            step.DefaultImageSrc = strStepStatusIcon;
+                            break;
+                        }
+                    }
                 }
                 if (bNextTest)
                     break;
@@ -1701,36 +1705,67 @@ namespace PuroFusionTestGui
 
         private void cmbBoxWebTesterCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           string strCategory = (string)cmbBoxWebTesterCategories.SelectedItem;
-            cmbBoxWebTesterTests.Items.Clear();
-            List<string> qTurnOffTest = ToTest2.Where(f => f.strCategoryName == strCategory).Select(f=>f.Name).ToList();
-            foreach(string s in qTurnOffTest)
+            string strCategory = (string)cmbBoxWebTesterCategories.SelectedItem;
+            if (!String.IsNullOrEmpty(strCategory))
             {
-                cmbBoxWebTesterTests.Items.Add(s);
+                cmbBoxWebTesterTests.Items.Clear();
+                List<TestParams> qTurnOffTest = ToTest2.Where(f => f.strCategoryName == strCategory).ToList();
+                foreach (TestParams s in qTurnOffTest)
+                {
+                    cmbBoxWebTesterTests.Items.Add(s.Name);
+                }
+                cmbBoxWebTesterTests.SelectedIndex = 0;
+                int er = 0;
+                er++;
             }
-            cmbBoxWebTesterTests.SelectedIndex = 0;
-            int er = 0;
-            er++;
         }
-
+        private void cmbBoxWebTesterTests_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string strTests = (string)cmbBoxWebTesterTests.SelectedItem;
+            if (!String.IsNullOrEmpty(strTests))
+            {
+                cmbBoxWebTesterSteps.Items.Clear();
+                TestParams qTurnOffTest = ToTest2.Where(f => f.Name == strTests).FirstOrDefault();
+                foreach (Step s in qTurnOffTest.ListSteps)
+                {
+                    cmbBoxWebTesterSteps.Items.Add(s.Name);
+                }
+                cmbBoxWebTesterSteps.SelectedIndex = 0;
+            }
+        }
         private void btnWebTesterRunTest_Click(object sender, RoutedEventArgs e)
         {
             string strCategory = (string)cmbBoxWebTesterCategories.SelectedItem;
             string strTest = (string)cmbBoxWebTesterTests.SelectedItem;
+            string strStep = (string)cmbBoxWebTesterSteps.SelectedItem;
+
             TestParams qTurnOffTest = ToTest2.Where(f => f.Name == strTest).FirstOrDefault();
+            Step qStep = qTurnOffTest.ListSteps.Where(f => f.Name == strStep).FirstOrDefault();
             string strCheckStatus = ((ComboBoxItem)cmbBoxWebTesterCheckStatus.SelectedItem).Content.ToString();
-            System.Windows.Automation.ToggleState ToggleVal = System.Windows.Automation.ToggleState.On;
+            string strCheckStatusIcon = OK_ICON;
+            ToggleState ToggleVal = ToggleState.On;
             if (strCheckStatus.Contains("OFF"))
             {
-                ToggleVal = System.Windows.Automation.ToggleState.Off;
+                ToggleVal = ToggleState.Off;
                 qTurnOffTest.Enabled = false;
+                strCheckStatusIcon = CODEBREAK_ICON;
             }
             else
+            {
                 qTurnOffTest.Enabled = true;
+                strCheckStatusIcon = READY_ICON;
+            }
 
-            SelectTreeNode(qTurnOffTest, OK_ICON, ToggleVal);
-            int er = 0;
-            er++;
+            string strStepStatus = ((ComboBoxItem)cmbBoxWebTesterStepStatus.SelectedItem).Content.ToString();
+            string strStepStatusIcon = OK_ICON;
+            if (strStepStatus.Contains("Failed"))
+                strStepStatusIcon = DELETE_ICON;
+            qStep.Status = strStepStatus;
+
+            ObservableCollection<TestParams> ocWmsGroup = new ObservableCollection<TestParams>();
+            radGridWebTester2.ItemsSource = ocWmsGroup.Concat<TestParams>(ToTest2);
+
+            SelectTreeNode(qTurnOffTest, strCheckStatusIcon, ToggleVal, strStep, strStepStatusIcon);
         }
     }
     public class Tabs

@@ -41,7 +41,6 @@
                                 <ComboBox Height="23" Name="comboBoxMainReportNames" Width="Auto" >
                                     <ComboBoxItem>PuroFusion Users</ComboBoxItem>
                                     <ComboBoxItem>tblPI_Applications</ComboBoxItem>
-                                    <ComboBoxItem>tblPI_ApplicationsGroup</ComboBoxItem>
                                     <ComboBoxItem>tblEmployee</ComboBoxItem>
                                     <ComboBoxItem>tblPI_ApplicationUser</ComboBoxItem>
                                     <ComboBoxItem>tblPI_ApplicationUserRole</ComboBoxItem>
@@ -876,6 +875,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <!--<telerik:RadTreeView Grid.Row="0" IsDragDropEnabled="True" >
@@ -902,12 +902,12 @@
                             <Button Name="btnWebTesterTreeStopTimer" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="False" Click="btnWebTesterTreeStopTimer_Click"  >Stop Timer</Button>
                             <Button Name="btnWebTesterLoadTree" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="False" Click="btnWebTesterLoadTree_Click"  >Load Tree</Button>
                         </StackPanel>
-                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,5">
                             <Label Content="Categories:"  />
                             <ComboBox Height="23" Name="cmbBoxWebTesterCategories" Width="Auto" SelectedIndex="0" SelectionChanged="cmbBoxWebTesterCategories_SelectionChanged" >
                             </ComboBox>
                             <Label Content="Tests:"  />
-                            <ComboBox Height="23" Name="cmbBoxWebTesterTests" Width="Auto" SelectedIndex="0" >
+                            <ComboBox Height="23" Name="cmbBoxWebTesterTests" Width="Auto" SelectedIndex="0" SelectionChanged="cmbBoxWebTesterTests_SelectionChanged" >
                             </ComboBox>
                             <Button Name="btnWebTesterRunTest" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterRunTest_Click" >Run Test</Button>
                             <Label Content="On/Off:"  />
@@ -915,13 +915,19 @@
                                 <ComboBoxItem>ON</ComboBoxItem>
                                 <ComboBoxItem>OFF</ComboBoxItem>
                             </ComboBox>
+                            
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,5">
+                            <Label Content="Step2:"  />
+                            <ComboBox Height="23" Name="cmbBoxWebTesterSteps" Width="Auto" SelectedIndex="0" >
+                            </ComboBox>
                             <Label Content="Step status:"  />
                             <ComboBox Height="23" Name="cmbBoxWebTesterStepStatus" Width="Auto" SelectedIndex="0" >
                                 <ComboBoxItem>Pass</ComboBoxItem>
                                 <ComboBoxItem>Failed</ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
-                        <telerik:RadTreeView x:Name="radTreeView3" Grid.Row="2" IsOptionElementsEnabled="True" Margin="8" Checked="radTreeView_Checked" Unchecked="radTreeView_Unchecked">
+                        <telerik:RadTreeView x:Name="radTreeView3" Grid.Row="3" IsOptionElementsEnabled="True" Margin="8" Checked="radTreeView_Checked" Unchecked="radTreeView_Unchecked">
                             <telerik:RadTreeView.Background>
                                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
                             </telerik:RadTreeView.Background>
