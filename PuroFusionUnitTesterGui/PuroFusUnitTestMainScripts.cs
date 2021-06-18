@@ -42,13 +42,13 @@ namespace PuroFusionTestGui
             new TestParams( AllTest.SalesEDITest4,5, 4.0)      { Enabled = true},
             new TestParams( AllTest.SalesEDITest5,5, 5.0)      { Enabled = true},
             new TestParams( AllTest.SalesEDITest6,6, 6.0)      { Enabled = true},
-            new TestParams( AllTest.SalesEDITest7,5, 7.0)      { Enabled = true},
+            new TestParams( AllTest.SalesEDITest7,7, 7.0)      { Enabled = true},
             new TestParams( AllTest.SalesBothTest1,6, 1.0)     { Enabled = true},
             new TestParams( AllTest.SalesBothTest2,1, 2.0)     { Enabled = true},
-            new TestParams( AllTest.SalesBothTest3,3, 3.0)     { Enabled = true},
+            new TestParams( AllTest.SalesBothTest3,4, 3.0)     { Enabled = true},
             new TestParams( AllTest.SalesBothTest4,4, 4.0)     { Enabled = true},
             new TestParams( AllTest.SalesBothTest5,5, 5.0)     { Enabled = true},
-            new TestParams( AllTest.SalesBothTest6,5, 6.0)     { Enabled = true},
+            new TestParams( AllTest.SalesBothTest6,6, 6.0)     { Enabled = true},
             new TestParams( AllTest.SalesBothTest7,6, 7.0)     { Enabled = true}
         };
         #region Async / Threading
@@ -2446,6 +2446,8 @@ namespace PuroFusionTestGui
                 strCurrentStep = t.ListSteps[iCurStep].Name;
                 driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
                 Thread.Sleep(2000);
+                SelectTabFromStrip(strRadTabID,3);
+                Thread.Sleep(1000);
                 if (!driver.FindElement(By.Id("MainContent_ctl05")).Displayed)
                 {
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
