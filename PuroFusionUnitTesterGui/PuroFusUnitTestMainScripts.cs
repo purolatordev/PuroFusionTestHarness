@@ -140,7 +140,7 @@ namespace PuroFusionTestGui
                             break;
                         case AllTest.SalesShippingTest7:
                             if (!bTesting)
-                                bPass = SalesShippingTest7(insert, bLoggedIn, t.Step);
+                                bPass = SalesShippingTest7(t, insert, bLoggedIn);
                             else
                                 bPass = true;
                             break;
