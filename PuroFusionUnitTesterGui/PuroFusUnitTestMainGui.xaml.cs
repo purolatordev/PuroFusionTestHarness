@@ -1335,7 +1335,7 @@ namespace PuroFusionTestGui
             iIndex++;
             RadTreeViewItem TestCategory = new RadTreeViewItem();
             TestCategory.Header = ToTest[iIndex].strCategoryName;
-            //TestCategory.IsExpanded = true;
+            TestCategory.IsExpanded = true;
             TestCategory.Foreground = new SolidColorBrush(c);
             //TestCategory.CheckState = System.Windows.Automation.ToggleState.Off;
             radTreeView.Items.Add(TestCategory);
@@ -1344,13 +1344,12 @@ namespace PuroFusionTestGui
             RadTreeViewItem SpecificTest = new RadTreeViewItem();
             SpecificTest.Header = ToTest[iIndex].Name;
             TestCategory.Items.Add(SpecificTest);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            foreach(Step s in ToTest[iIndex].ListSteps)
             {
                 RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                StepItem.Header = s.Name;
                 StepItem.DefaultImageSrc = CODEBREAK_ICON;
                 SpecificTest.Items.Add(StepItem);
-                dStep += 0.1;
             }
             List<TestParams> qCatSteps = ToTest.Where(f => f.strCategoryName == StringEnum.GetStringValue(TestCat)).ToList();
             int iCatSteps = qCatSteps.Count - 1;
@@ -1368,15 +1367,13 @@ namespace PuroFusionTestGui
             SpecificTest = new RadTreeViewItem();
             SpecificTest.Header = ToTest[iIndex].Name;
             TestCategory.Items.Add(SpecificTest);
-            for (int i = 0; i < ToTest[iIndex].iTotalSteps; i++)
+            foreach (Step s in ToTest[iIndex].ListSteps)
             {
                 RadTreeViewItem StepItem = new RadTreeViewItem();
-                StepItem.Header = ToTest[iIndex].GetCurrentStep(dStep);
+                StepItem.Header = s.Name;
                 StepItem.DefaultImageSrc = CODEBREAK_ICON;
                 SpecificTest.Items.Add(StepItem);
-                dStep += 0.1;
             }
-
             return iIndex;
         }
 

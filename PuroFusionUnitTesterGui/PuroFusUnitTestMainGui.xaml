@@ -927,7 +927,7 @@
                                 <ComboBoxItem>Failed</ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
-                        <telerik:RadTreeView x:Name="radTreeView3" Grid.Row="3" IsOptionElementsEnabled="True" Margin="8" Checked="radTreeView_Checked" Unchecked="radTreeView_Unchecked">
+                        <telerik:RadTreeView x:Name="radTreeView3" Grid.Row="3" IsOptionElementsEnabled="True" Margin="8" Checked="radTreeView_Checked" Unchecked="radTreeView_Unchecked" >
                             <telerik:RadTreeView.Background>
                                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
                             </telerik:RadTreeView.Background>
