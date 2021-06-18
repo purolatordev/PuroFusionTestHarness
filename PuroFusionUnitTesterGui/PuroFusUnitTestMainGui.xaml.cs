@@ -1865,7 +1865,7 @@ namespace PuroFusionTestGui
             ListSteps = new List<Step>();
             this.Step = dStep;
             double dstep = dStep;
-            for (int i = 0; i < iTotalSteps; i++)
+            for (int i = 0; i <= iTotalSteps; i++)
             {
                 ListSteps.Add(new Step(GetCurrentStep(dstep)));
                 dstep += .1;
