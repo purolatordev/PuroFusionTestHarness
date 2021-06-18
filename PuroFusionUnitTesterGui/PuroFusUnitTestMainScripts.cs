@@ -116,25 +116,25 @@ namespace PuroFusionTestGui
                             break;
                         case AllTest.SalesShippingTest2:
                             if (!bTesting)
-                                bPass = SalesShippingTest2(insert, bLoggedIn, t.Step);
+                                bPass = SalesShippingTest2(t, insert, bLoggedIn);
                             else
                                 bPass = true;
                             break;
                         case AllTest.SalesShippingTest3:
                             if (!bTesting)
-                                bPass = SalesShippingTest3(insert, bLoggedIn, t.Step);
+                                bPass = SalesShippingTest3(t, insert, bLoggedIn);
                             else
                                 bPass = true;
                             break;
                         case AllTest.SalesShippingTest4:
                             if (!bTesting)
-                                bPass = SalesShippingTest4(insert, bLoggedIn, t.Step);
+                                bPass = SalesShippingTest4(t, insert, bLoggedIn);
                             else
                                 bPass = true;
                             break;
                         case AllTest.SalesShippingTest5:
                             if (!bTesting)
-                                bPass = SalesShippingTest5(insert, bLoggedIn, t.Step);
+                                bPass = SalesShippingTest5(t, insert, bLoggedIn);
                             else
                                 bPass = true;
                             break;
@@ -294,10 +294,13 @@ namespace PuroFusionTestGui
             bUseTreeCheck = true;
         }
         #region Sales Shipping Tests
-        static bool SalesShippingTest7(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
+        bool SalesShippingTest7(TestParams t, DiscoveryReqUpdates insert, bool bLoggedIn)
         {
+            ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
+            ShowDelegateUpdateTree del2 = new ShowDelegateUpdateTree(SelectTreeNode);
             bool bRetVal = false;
-            string strCurrentStep = String.Format("Step {0:0.0#}", Step);
+            int iCurStep = 0;
+            string strCurrentStep = t.ListSteps[iCurStep].Name;
             try
             {
                 if (!bLoggedIn)
@@ -329,7 +332,8 @@ namespace PuroFusionTestGui
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                 }
                 else
                 {
@@ -366,12 +370,14 @@ namespace PuroFusionTestGui
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
                     return false;
                 }
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
@@ -389,24 +395,26 @@ namespace PuroFusionTestGui
                 Thread.Sleep(5000);
 
                 //Step 7.2
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 if (driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Displayed)
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
                     return false;
                 }
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Click();
                 Thread.Sleep(5000);
 
                 // Step 7.3
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 IList<Tabs> tab3 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
@@ -415,12 +423,14 @@ namespace PuroFusionTestGui
                 };
                 if (GetRadTabStrip(strRadTabID, tab3))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
                     return false;
                 }
                 driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
@@ -435,16 +445,18 @@ namespace PuroFusionTestGui
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices),Enabled = true, Selected = true }
                 };
                 // Step 7.4
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 if (GetRadTabStrip(strRadTabID, tab4))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
                     return false;
                 }
 
@@ -460,13 +472,14 @@ namespace PuroFusionTestGui
                 Thread.Sleep(5000);
 
                 // Step 7.5
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
-                Console.WriteLine(strCurrentStep + " Passed");
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
+                this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
 
                 // Step 7.6
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 int iOrd = 0;
                 IList<Tabs> tab5 = new List<Tabs>() {
                         new Tabs(AllTabs.CustomerInfo,iOrd++    )     { Enabled = true },
@@ -480,18 +493,20 @@ namespace PuroFusionTestGui
                 if (GetRadTabStrip(strRadTabID, tab5))
                 {
                     driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).Clear();
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
                     return false;
                 }
 
                 // Step 7.7
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 iOrd = 0;
                 IList<Tabs> tab6 = new List<Tabs>() {
                         new Tabs(AllTabs.CustomerInfo,iOrd++)     { Enabled = true },
@@ -509,14 +524,16 @@ namespace PuroFusionTestGui
 
                     if (driver.FindElement(By.Id("MainContent_CustomValidatorNew")).Displayed)
                     {
-                        Console.WriteLine(strCurrentStep + " Passed");
+                        this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                        this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                         bRetVal = true;
                         driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
                     }
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
                     return false;
                 }
             }
@@ -526,10 +543,13 @@ namespace PuroFusionTestGui
             }
             return bRetVal;
         }
-        static bool SalesShippingTest5(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
+        bool SalesShippingTest5(TestParams t, DiscoveryReqUpdates insert, bool bLoggedIn)
         {
+            ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
+            ShowDelegateUpdateTree del2 = new ShowDelegateUpdateTree(SelectTreeNode);
             bool bRetVal = false;
-            string strCurrentStep = String.Format("Step {0:0.0#}", Step);
+            int iCurStep = 0;
+            string strCurrentStep = t.ListSteps[iCurStep].Name;
             try
             {
                 if (!bLoggedIn)
@@ -561,11 +581,13 @@ namespace PuroFusionTestGui
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 SelectDropdown("ctl00_MainContent_rddlDistrict");
@@ -586,8 +608,8 @@ namespace PuroFusionTestGui
                 driver.FindElement(By.Id("ctl00_MainContent_txtCommodity")).SendKeys("Shoes");
 
                 // Click the Next Button Step 5.1
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
 
                 IList<Tabs> tab = new List<Tabs>() {
@@ -598,12 +620,14 @@ namespace PuroFusionTestGui
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
@@ -621,24 +645,26 @@ namespace PuroFusionTestGui
                 Thread.Sleep(5000);
 
                 //Step 5.2
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 if (driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Displayed)
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Click();
                 Thread.Sleep(5000);
 
                 // Step 5.3
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 IList<Tabs> tab3 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
@@ -647,12 +673,14 @@ namespace PuroFusionTestGui
                 };
                 if (GetRadTabStrip(strRadTabID, tab3))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
@@ -667,16 +695,18 @@ namespace PuroFusionTestGui
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ShippingServices),Enabled = true, Selected = true }
                 };
                 // Step 5.4
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 if (GetRadTabStrip(strRadTabID, tab4))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
 
@@ -684,17 +714,19 @@ namespace PuroFusionTestGui
                 Thread.Sleep(2000);
 
                 // Step 1.5
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 if (driver.FindElement(By.Id("MainContent_CustomValidatorNew")).Displayed)
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                     driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
             }
@@ -704,10 +736,13 @@ namespace PuroFusionTestGui
             }
             return bRetVal;
         }
-        static bool SalesShippingTest4(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
+        bool SalesShippingTest4(TestParams t, DiscoveryReqUpdates insert, bool bLoggedIn)
         {
+            ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
+            ShowDelegateUpdateTree del2 = new ShowDelegateUpdateTree(SelectTreeNode);
             bool bRetVal = false;
-            string strCurrentStep = String.Format("Step {0:0.0#}", Step);
+            int iCurStep = 0;
+            string strCurrentStep = t.ListSteps[iCurStep].Name;
             try
             {
                 if (!bLoggedIn)
@@ -739,11 +774,13 @@ namespace PuroFusionTestGui
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 SelectDropdown("ctl00_MainContent_rddlDistrict");
@@ -764,8 +801,8 @@ namespace PuroFusionTestGui
                 driver.FindElement(By.Id("ctl00_MainContent_txtCommodity")).SendKeys("Shoes");
 
                 // Click the Next Button Step 1.1
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
 
                 IList<Tabs> tab = new List<Tabs>() {
@@ -776,12 +813,14 @@ namespace PuroFusionTestGui
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
@@ -799,24 +838,26 @@ namespace PuroFusionTestGui
                 Thread.Sleep(5000);
 
                 //Step 4.2
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 if (driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Displayed)
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Click();
                 Thread.Sleep(5000);
 
                 // Step 4.3
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 IList<Tabs> tab3 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
@@ -825,35 +866,40 @@ namespace PuroFusionTestGui
                 };
                 if (GetRadTabStrip(strRadTabID, tab3))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
 
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab3")).Click();
                 // Step 4.4
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
-                Console.WriteLine(strCurrentStep + " Passed");
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
+                this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
 
                 Thread.Sleep(2000);
                 bool bctl05 = driver.FindElement(By.Id("MainContent_ctl05")).Displayed;
                 // Step 4.5
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 if (bctl05)
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                     driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
             }
@@ -863,10 +909,14 @@ namespace PuroFusionTestGui
             }
             return bRetVal;
         }
-        static bool SalesShippingTest3(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
+        bool SalesShippingTest3(TestParams t, DiscoveryReqUpdates insert, bool bLoggedIn)
         {
+            ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
+            ShowDelegateUpdateTree del2 = new ShowDelegateUpdateTree(SelectTreeNode);
             bool bRetVal = false;
-            string strCurrentStep = String.Format("Step {0:0.0#}", Step);
+            //string strCurrentStep = String.Format("Step {0:0.0#}", t.Step);
+            int iCurStep = 0;
+            string strCurrentStep = t.ListSteps[iCurStep].Name;
             try
             {
                 if (!bLoggedIn)
@@ -898,11 +948,13 @@ namespace PuroFusionTestGui
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 SelectDropdown("ctl00_MainContent_rddlDistrict");
@@ -923,8 +975,8 @@ namespace PuroFusionTestGui
                 driver.FindElement(By.Id("ctl00_MainContent_txtCommodity")).SendKeys("Shoes");
 
                 // Click the Next Button Step 3.1
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
                 IList<Tabs> tab = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
@@ -934,12 +986,14 @@ namespace PuroFusionTestGui
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
@@ -956,34 +1010,38 @@ namespace PuroFusionTestGui
                 Thread.Sleep(5000);
 
                 // Step 3.2
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 if (driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Displayed)
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
 
                 // Step 3.3
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 // deleted the contact
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl04_gbcDeleteLink")).Click();
                 Thread.Sleep(2000);
                 if (!driver.FindElement(By.Id("ctl00_MainContent_btnNextTab2")).Enabled)
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                     driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
             }
@@ -993,11 +1051,13 @@ namespace PuroFusionTestGui
             }
             return bRetVal;
         }
-        bool SalesShippingTest2(DiscoveryReqUpdates insert, bool bLoggedIn, double Step)
+        bool SalesShippingTest2(TestParams t, DiscoveryReqUpdates insert, bool bLoggedIn)
         {
             ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
+            ShowDelegateUpdateTree del2 = new ShowDelegateUpdateTree(SelectTreeNode);
             bool bRetVal = false;
-            string strCurrentStep = String.Format("Step {0:0.0#}", Step);
+            int iCurStep = 0;
+            string strCurrentStep = t.ListSteps[iCurStep].Name;
             try
             {
                 if (!bLoggedIn)
@@ -1034,16 +1094,18 @@ namespace PuroFusionTestGui
                 if (GetRadTabStrip(strRadTabID, tab2))
                 {
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                 }
                 else
                 {
+                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
                     return false;
                 }
 
                 // Click the Next Button Step 2.1
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
                 string firstValue = driver.FindElement(By.Id("MainContent_ctl01")).Text;
                 bool bctl01 = driver.FindElement(By.Id("MainContent_ctl01")).Displayed;
@@ -1059,12 +1121,14 @@ namespace PuroFusionTestGui
                 {
                     bRetVal = true;
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
                     Thread.Sleep(1000);
                 }
                 else
                 {
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
             }
@@ -1114,14 +1178,13 @@ namespace PuroFusionTestGui
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
                     this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2,t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
+                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
                 SelectDropdown("ctl00_MainContent_rddlDistrict");
@@ -1154,14 +1217,12 @@ namespace PuroFusionTestGui
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
                 {
-                    Console.WriteLine(strCurrentStep + " Passed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
                     this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
                     bRetVal = true;
                 }
                 else
                 {
-                    Console.WriteLine(strCurrentStep + " Failed");
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
                     this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
