@@ -358,8 +358,8 @@ namespace PuroFusionTestGui
                 driver.FindElement(By.Id("ctl00_MainContent_txtCommodity")).SendKeys("Shoes");
 
                 // Click the Next Button Step 7.1
-                Step += 0.1;
-                strCurrentStep = String.Format("Step {0:0.0#}", Step);
+                iCurStep++;
+                strCurrentStep = t.ListSteps[iCurStep].Name;
                 driver.FindElement(By.Id("ctl00_MainContent_btnNextTab1")).Click();
 
                 IList<Tabs> tab = new List<Tabs>() {
