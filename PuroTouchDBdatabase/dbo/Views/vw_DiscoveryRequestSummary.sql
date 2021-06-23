@@ -1,7 +1,8 @@
 ﻿
+
 CREATE VIEW [dbo].[vw_DiscoveryRequestSummary]
 AS
-SELECT        dbo.tblDiscoveryRequest.idRequest, dbo.tblDiscoveryRequest.isNewRequest, dbo.tblRequestTypes.RequestType, dbo.tblVendorType.VendorType, dbo.tblDiscoveryRequest.SalesRepName, 
+SELECT        dbo.tblDiscoveryRequest.idRequest, dbo.tblDiscoveryRequest.isNewRequest,tblSolutionType.SolutionType,vw_EDISpecialist.Name as EDISpecialistName, dbo.tblRequestTypes.RequestType, dbo.tblVendorType.VendorType, dbo.tblDiscoveryRequest.SalesRepName, 
                          dbo.tblDiscoveryRequest.SalesRepEmail, dbo.tblDiscoveryRequest.idOnboardingPhase, dbo.tblDiscoveryRequest.District, dbo.tblDiscoveryRequest.CustomerName, dbo.tblDiscoveryRequest.Address, 
                          dbo.tblDiscoveryRequest.City, dbo.tblDiscoveryRequest.State, dbo.tblDiscoveryRequest.Zipcode, dbo.tblDiscoveryRequest.Country, dbo.tblDiscoveryRequest.Commodity, dbo.tblDiscoveryRequest.ProjectedRevenue, 
                          dbo.tblDiscoveryRequest.CurrentSolution, 
@@ -16,9 +17,11 @@ FROM            dbo.tblDiscoveryRequest LEFT OUTER JOIN
                          dbo.vw_ITBA ON dbo.tblDiscoveryRequest.idITBA = dbo.vw_ITBA.idITBA LEFT OUTER JOIN
                          dbo.tblShippingChannel ON dbo.tblDiscoveryRequest.idShippingChannel = dbo.tblShippingChannel.idShippingChannel LEFT OUTER JOIN
                          dbo.tblRequestTypes ON dbo.tblDiscoveryRequest.idRequestType = dbo.tblRequestTypes.idRequestType LEFT OUTER JOIN
-                         dbo.tblVendorType ON dbo.tblDiscoveryRequest.idVendorType = dbo.tblVendorType.idVendorType LEFT OUTER JOIN
-                         dbo.tblThirdPartyVendor ON dbo.tblDiscoveryRequest.idVendor = dbo.tblThirdPartyVendor.idThirdPartyVendor
-GROUP BY dbo.tblDiscoveryRequest.idRequest, dbo.tblDiscoveryRequest.isNewRequest, dbo.tblRequestTypes.RequestType, dbo.tblVendorType.VendorType, dbo.tblDiscoveryRequest.SalesRepName, 
+                         dbo.tblVendorType ON dbo.tblDiscoveryRequest.idVendorType = dbo.tblVendorType.idVendorType
+						 LEFT OUTER JOIN dbo.tblThirdPartyVendor ON dbo.tblDiscoveryRequest.idVendor = dbo.tblThirdPartyVendor.idThirdPartyVendor
+						 LEFT OUTER JOIN tblSolutionType on tblDiscoveryRequest.idSolutionType = tblSolutionType.idSolutionType
+						 LEFT OUTER JOIN vw_EDISpecialist on tblDiscoveryRequest.idEDISpecialist = vw_EDISpecialist.idEDISpecialist
+GROUP BY dbo.tblDiscoveryRequest.idRequest, dbo.tblDiscoveryRequest.isNewRequest, tblSolutionType.SolutionType,vw_EDISpecialist.Name,tblDiscoveryRequest.idEDISpecialist, dbo.tblRequestTypes.RequestType, dbo.tblVendorType.VendorType, dbo.tblDiscoveryRequest.SalesRepName, 
                          dbo.tblDiscoveryRequest.SalesRepEmail, dbo.tblDiscoveryRequest.idOnboardingPhase, dbo.tblDiscoveryRequest.District, dbo.tblDiscoveryRequest.CustomerName, dbo.tblDiscoveryRequest.Address, 
                          dbo.tblDiscoveryRequest.City, dbo.tblDiscoveryRequest.State, dbo.tblDiscoveryRequest.Zipcode, dbo.tblDiscoveryRequest.Country, dbo.tblDiscoveryRequest.Commodity, dbo.tblDiscoveryRequest.ProjectedRevenue, 
                          dbo.tblDiscoveryRequest.CurrentSolution, 
