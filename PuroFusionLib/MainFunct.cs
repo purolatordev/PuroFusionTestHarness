@@ -1037,6 +1037,18 @@ namespace PuroFusionLib
             }
             return errMsg;
         }
+        public bool RemoveAllExceptionLogs()
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+
+            List<tblExceptionLogging> qErrors = o.tblExceptionLogging.ToList();
+            foreach(tblExceptionLogging e in qErrors)
+            {
+                o.tblExceptionLogging.Remove(e);
+                o.SaveChanges();
+            }
+            return true;
+        }
         #endregion
         #region Migration Strategy
         public IList<dtoTableCompare> GetDiscoveryDiff1()

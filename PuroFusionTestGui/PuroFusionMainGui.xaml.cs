@@ -422,6 +422,10 @@ namespace PuroFusionTestGui
                         grid.ItemsSource = ocWmsGroup.Concat<clsExceptionLogging>(qErrors);
                         lbl.Content = strReportItem + " count: " + qErrors.Count();
                     }
+                    else if ("Delete All Error Logs" == strReportItem)
+                    {
+                        o.RemoveAllExceptionLogs();
+                    }
                     else if ("blContactType" == strReportItem)
                     {
                         IList<dtotblContactType> qtblContactType = o.GettblContactType();

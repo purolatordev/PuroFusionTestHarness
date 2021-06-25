@@ -544,7 +544,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="TouchDB" IsSelected="False" Height="24" Margin="-2,-2,0.2,2" VerticalAlignment="Bottom" >
+            <TabItem Header="TouchDB" IsSelected="True" Height="24" Margin="-2,-2,0.2,2" VerticalAlignment="Bottom" >
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -569,6 +569,7 @@
                                 <ComboBox Height="23" Name="comboBoxTouchDBMainReportNames" Width="Auto" >
                                     <ComboBoxItem>tblDiscoveryRequest</ComboBoxItem>
                                     <ComboBoxItem>Error Logs</ComboBoxItem>
+                                    <ComboBoxItem>Delete All Error Logs</ComboBoxItem>
                                     <ComboBoxItem>blContactType</ComboBoxItem>
                                     <ComboBoxItem>tblContact</ComboBoxItem>
                                     <ComboBoxItem>tblEDIAccounts</ComboBoxItem>
@@ -592,20 +593,12 @@
                             </StackPanel>
                             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,5">
                                 <Button Name="btnTouchDBLoadGridTopLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Height="25" VerticalAlignment="Bottom"  Style="{StaticResource RoundedButton}" Click="btnTouchDBLoadGrid_Click"  >Load Grid</Button>
-                                <Label>POD Users</Label>
-                                <ComboBox Height="23" Width="Auto" Name="comboBoxPODUser" ItemsSource="{Binding Path=Users}" DisplayMemberPath="UpdatedBy" SelectedValue="{Binding Path=UpdatedBy}" SelectedIndex="0" IsSynchronizedWithCurrentItem="False" IsEnabled="False" >
-                                </ComboBox>
-                                <CheckBox x:Name="chBxCommitReadyToCommit" Margin="10,6,0,0">Ready to Submit</CheckBox>
                                 <Button x:Name="TouchDBExportTopLeft" Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0"  Width="75" Height="25"  IsEnabled="True" Style="{StaticResource RoundedButton}" Click="btnExport_Click" />
                             </StackPanel>
                             <StackPanel Grid.Row="2" Orientation="Horizontal">
                                 <Label Content="database:"/>
                                 <ComboBox Height="23" Name="comboBoxTouchDB" Width="Auto" >
                                 </ComboBox>
-                                <Label Content="Last Name:"/>
-                                <TextBox Name="txtBxCommitLastName" Width="100" Padding="0,2,0,0"></TextBox>
-                                <Button Name="btnCommitUpdateTopLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Height="25" VerticalAlignment="Bottom" Style="{StaticResource RoundedButton}" IsEnabled="False"   >Update</Button>
-                                <Button Name="btnCommitUpdateAllTopLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Height="25" VerticalAlignment="Bottom" Style="{StaticResource RoundedButton}" IsEnabled="False"  >Update All</Button>
                             </StackPanel>
                             <telerik:RadGridView x:Name="radGridTouchDBTopLeft" ToolTip="" Grid.Row="3" RowHeight="20"  ShowGroupPanel="True" Filtered="radGridTouchDBTopLeft_Filtered" SelectionChanged="radGridTouchDBTopLeft_SelectionChanged"  >
                             </telerik:RadGridView>
@@ -866,7 +859,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Unit Tester" IsSelected="True">
+            <TabItem Header="Unit Tester" IsSelected="False">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
