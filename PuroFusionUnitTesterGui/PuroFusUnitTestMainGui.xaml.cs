@@ -1440,6 +1440,7 @@ namespace PuroFusionTestGui
                 }
                 ObservableCollection<TestParams> ocWmsGroup = new ObservableCollection<TestParams>();
                 radGridWebTester.ItemsSource = ocWmsGroup.Concat<TestParams>(ToTest2);
+                LoadTree();
             }
         }
         private Collection<RadTreeViewItem> GetAllItemContainers(System.Windows.Controls.ItemsControl itemsControl)
@@ -1503,6 +1504,7 @@ namespace PuroFusionTestGui
                 }
                 ObservableCollection<TestParams> ocWmsGroup = new ObservableCollection<TestParams>();
                 radGridWebTester.ItemsSource = ocWmsGroup.Concat<TestParams>(ToTest2);
+                LoadTree();
             }
         }
 
@@ -1609,6 +1611,30 @@ namespace PuroFusionTestGui
                             step.DefaultImageSrc = strStepStatusIcon;
                             break;
                         }
+                    }
+                }
+                if (bNextTest)
+                    break;
+            }
+            return;
+        }
+        public void SetInitTreeNodes(TestParams param)
+        {
+            ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
+            bool bNextTest = false;
+            var allTreeContainers = GetAllItemContainers(radTreeView3);
+            var q = allTreeContainers.Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(param.Category))).ToList();
+
+            foreach (RadTreeViewItem node in q[0].Items)
+            {
+                if (node.Header.ToString().Contains(StringEnum.GetStringValue(param.Tests)))
+                {
+                    node.DefaultImageSrc = (param.Enabled)? READY_ICON : STOP_ICON;
+                    node.CheckState = (param.Enabled) ? ToggleState.On : ToggleState.Off;
+                    foreach (RadTreeViewItem step in node.Items)
+                    {
+                        //step.CheckState = ToggleState.Off;
+                        step.DefaultImageSrc = (param.Enabled) ? READY_ICON : STOP_ICON;
                     }
                 }
                 if (bNextTest)
@@ -1763,6 +1789,11 @@ namespace PuroFusionTestGui
             radGridWebTester2.ItemsSource = ocWmsGroup.Concat<TestParams>(ToTest2);
 
             SelectTreeNode(qTurnOffTest, strCheckStatusIcon, ToggleVal, strStep, strStepStatusIcon);
+        }
+
+        private void btnWebTesterResetTree_Click(object sender, RoutedEventArgs e)
+        {
+            LoadTree();
         }
     }
     public class Tabs

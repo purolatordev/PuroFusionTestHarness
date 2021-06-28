@@ -239,54 +239,55 @@ namespace PuroFusionTestGui
         {
             foreach (TestParams param in ToTest2)
             {
-                if (param.Enabled)
-                {
-                    switch (param.Tests)
-                    {
-                        case AllTest.SalesShippingTest1:
-                            break;
-                        case AllTest.SalesShippingTest2:
-                            break;
-                        case AllTest.SalesShippingTest3:
-                            break;
-                        case AllTest.SalesShippingTest4:
-                            break;
-                        case AllTest.SalesShippingTest5:
-                            break;
-                        case AllTest.SalesShippingTest7:
-                            break;
-                        case AllTest.SalesEDITest1:
-                            break;
-                        case AllTest.SalesEDITest2:
-                            break;
-                        case AllTest.SalesEDITest3:
-                            break;
-                        case AllTest.SalesEDITest4:
-                            break;
-                        case AllTest.SalesEDITest5:
-                            break;
-                        case AllTest.SalesEDITest6:
-                            break;
-                        case AllTest.SalesEDITest7:
-                            break;
-                        case AllTest.SalesBothTest1:
-                            break;
-                        case AllTest.SalesBothTest2:
-                            break;
-                        case AllTest.SalesBothTest3:
-                            break;
-                        case AllTest.SalesBothTest4:
-                            break;
-                        case AllTest.SalesBothTest5:
-                            break;
-                        case AllTest.SalesBothTest6:
-                            break;
-                        case AllTest.SalesBothTest7:
-                            break;
-                        default:
-                            break;
-                    }
-                }
+                SetInitTreeNodes(param);
+                //if (param.Enabled)
+                //{
+                //    switch (param.Tests)
+                //    {
+                //        case AllTest.SalesShippingTest1:
+                //            break;
+                //        case AllTest.SalesShippingTest2:
+                //            break;
+                //        case AllTest.SalesShippingTest3:
+                //            break;
+                //        case AllTest.SalesShippingTest4:
+                //            break;
+                //        case AllTest.SalesShippingTest5:
+                //            break;
+                //        case AllTest.SalesShippingTest7:
+                //            break;
+                //        case AllTest.SalesEDITest1:
+                //            break;
+                //        case AllTest.SalesEDITest2:
+                //            break;
+                //        case AllTest.SalesEDITest3:
+                //            break;
+                //        case AllTest.SalesEDITest4:
+                //            break;
+                //        case AllTest.SalesEDITest5:
+                //            break;
+                //        case AllTest.SalesEDITest6:
+                //            break;
+                //        case AllTest.SalesEDITest7:
+                //            break;
+                //        case AllTest.SalesBothTest1:
+                //            break;
+                //        case AllTest.SalesBothTest2:
+                //            break;
+                //        case AllTest.SalesBothTest3:
+                //            break;
+                //        case AllTest.SalesBothTest4:
+                //            break;
+                //        case AllTest.SalesBothTest5:
+                //            break;
+                //        case AllTest.SalesBothTest6:
+                //            break;
+                //        case AllTest.SalesBothTest7:
+                //            break;
+                //        default:
+                //            break;
+                //    }
+                //}
             }
             bUseTreeCheck = true;
         }

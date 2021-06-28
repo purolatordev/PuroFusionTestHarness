@@ -926,6 +926,7 @@
                                 <ComboBoxItem>Pass</ComboBoxItem>
                                 <ComboBoxItem>Failed</ComboBoxItem>
                             </ComboBox>
+                            <Button Name="btnWebTesterResetTree" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterResetTree_Click"  >Reset Tree</Button>
                         </StackPanel>
                         <telerik:RadTreeView x:Name="radTreeView3" Grid.Row="3" IsOptionElementsEnabled="True" Margin="8" Checked="radTreeView_Checked" Unchecked="radTreeView_Unchecked" >
                             <telerik:RadTreeView.Background>
