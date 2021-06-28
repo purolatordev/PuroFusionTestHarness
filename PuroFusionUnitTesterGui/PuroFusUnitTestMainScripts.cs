@@ -30,26 +30,26 @@ namespace PuroFusionTestGui
     public partial class MainWindow : Window
     {
         IList<TestParams> ToTest2 = new List<TestParams>() {
-            new TestParams( AllTest.SalesShippingTest1,5, 1.0) { Enabled = true},
+            new TestParams( AllTest.SalesShippingTest1,5, 1.0) { Enabled = false},
             new TestParams( AllTest.SalesShippingTest2,1, 2.0) { Enabled = true},
-            new TestParams( AllTest.SalesShippingTest3,3, 3.0) { Enabled = true},
-            new TestParams( AllTest.SalesShippingTest4,5, 4.0) { Enabled = true},
-            new TestParams( AllTest.SalesShippingTest5,6, 5.0) { Enabled = true},
-            new TestParams( AllTest.SalesShippingTest7,7, 7.0) { Enabled = true},
-            new TestParams( AllTest.SalesEDITest1,5, 1.0)      { Enabled = true},
-            new TestParams( AllTest.SalesEDITest2,2, 2.0)      { Enabled = true},
-            new TestParams( AllTest.SalesEDITest3,3, 3.0)      { Enabled = true},
-            new TestParams( AllTest.SalesEDITest4,5, 4.0)      { Enabled = true},
-            new TestParams( AllTest.SalesEDITest5,5, 5.0)      { Enabled = true},
-            new TestParams( AllTest.SalesEDITest6,6, 6.0)      { Enabled = true},
-            new TestParams( AllTest.SalesEDITest7,7, 7.0)      { Enabled = true},
-            new TestParams( AllTest.SalesBothTest1,6, 1.0)     { Enabled = true},
-            new TestParams( AllTest.SalesBothTest2,1, 2.0)     { Enabled = true},
-            new TestParams( AllTest.SalesBothTest3,4, 3.0)     { Enabled = true},
-            new TestParams( AllTest.SalesBothTest4,4, 4.0)     { Enabled = true},
-            new TestParams( AllTest.SalesBothTest5,5, 5.0)     { Enabled = true},
-            new TestParams( AllTest.SalesBothTest6,6, 6.0)     { Enabled = true},
-            new TestParams( AllTest.SalesBothTest7,6, 7.0)     { Enabled = true}
+            new TestParams( AllTest.SalesShippingTest3,3, 3.0) { Enabled = false},
+            new TestParams( AllTest.SalesShippingTest4,5, 4.0) { Enabled = false},
+            new TestParams( AllTest.SalesShippingTest5,6, 5.0) { Enabled = false},
+            new TestParams( AllTest.SalesShippingTest7,7, 7.0) { Enabled = false},
+            new TestParams( AllTest.SalesEDITest1,5, 1.0)      { Enabled = false},
+            new TestParams( AllTest.SalesEDITest2,2, 2.0)      { Enabled = false},
+            new TestParams( AllTest.SalesEDITest3,3, 3.0)      { Enabled = false},
+            new TestParams( AllTest.SalesEDITest4,5, 4.0)      { Enabled = false},
+            new TestParams( AllTest.SalesEDITest5,5, 5.0)      { Enabled = false},
+            new TestParams( AllTest.SalesEDITest6,6, 6.0)      { Enabled = false},
+            new TestParams( AllTest.SalesEDITest7,7, 7.0)      { Enabled = false},
+            new TestParams( AllTest.SalesBothTest1,6, 1.0)     { Enabled = false},
+            new TestParams( AllTest.SalesBothTest2,1, 2.0)     { Enabled = false},
+            new TestParams( AllTest.SalesBothTest3,4, 3.0)     { Enabled = false},
+            new TestParams( AllTest.SalesBothTest4,4, 4.0)     { Enabled = false},
+            new TestParams( AllTest.SalesBothTest5,5, 5.0)     { Enabled = false},
+            new TestParams( AllTest.SalesBothTest6,6, 6.0)     { Enabled = false},
+            new TestParams( AllTest.SalesBothTest7,6, 7.0)     { Enabled = false}
         };
         #region Async / Threading
         public delegate void TransferDel(bool bTesting, string strIn);
@@ -233,6 +233,7 @@ namespace PuroFusionTestGui
                 }
                 //CurrentTest = CurrentTest.Next();
             }
+            driver.Quit();
         }
         public void LoadTree()
         {
@@ -240,55 +241,51 @@ namespace PuroFusionTestGui
             {
                 if (param.Enabled)
                 {
-                    //SelectTreeNode(param, READY_ICON, System.Windows.Automation.ToggleState.On);
-                    //bool bPass = false;
-                    //this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, StringEnum.GetStringValue(t.Tests));
-                    //switch (param.Tests)
-                    //{
-                    //    case AllTest.SalesShippingTest1:
-                    //        SelectTreeNode(param, CODEBREAK_ICON);
-                    //        break;
-                    //    case AllTest.SalesShippingTest2:
-                    //        break;
-                    //    case AllTest.SalesShippingTest3:
-                    //        break;
-                    //    case AllTest.SalesShippingTest4:
-                    //        break;
-                    //    case AllTest.SalesShippingTest5:
-                    //        break;
-                    //    case AllTest.SalesShippingTest7:
-                    //        break;
-                    //    case AllTest.SalesEDITest1:
-                    //        break;
-                    //    case AllTest.SalesEDITest2:
-                    //        break;
-                    //    case AllTest.SalesEDITest3:
-                    //        break;
-                    //    case AllTest.SalesEDITest4:
-                    //        break;
-                    //    case AllTest.SalesEDITest5:
-                    //        break;
-                    //    case AllTest.SalesEDITest6:
-                    //        break;
-                    //    case AllTest.SalesEDITest7:
-                    //        break;
-                    //    case AllTest.SalesBothTest1:
-                    //        break;
-                    //    case AllTest.SalesBothTest2:
-                    //        break;
-                    //    case AllTest.SalesBothTest3:
-                    //        break;
-                    //    case AllTest.SalesBothTest4:
-                    //        break;
-                    //    case AllTest.SalesBothTest5:
-                    //        break;
-                    //    case AllTest.SalesBothTest6:
-                    //        break;
-                    //    case AllTest.SalesBothTest7:
-                    //        break;
-                    //    default:
-                    //        break;
-                    //}
+                    switch (param.Tests)
+                    {
+                        case AllTest.SalesShippingTest1:
+                            break;
+                        case AllTest.SalesShippingTest2:
+                            break;
+                        case AllTest.SalesShippingTest3:
+                            break;
+                        case AllTest.SalesShippingTest4:
+                            break;
+                        case AllTest.SalesShippingTest5:
+                            break;
+                        case AllTest.SalesShippingTest7:
+                            break;
+                        case AllTest.SalesEDITest1:
+                            break;
+                        case AllTest.SalesEDITest2:
+                            break;
+                        case AllTest.SalesEDITest3:
+                            break;
+                        case AllTest.SalesEDITest4:
+                            break;
+                        case AllTest.SalesEDITest5:
+                            break;
+                        case AllTest.SalesEDITest6:
+                            break;
+                        case AllTest.SalesEDITest7:
+                            break;
+                        case AllTest.SalesBothTest1:
+                            break;
+                        case AllTest.SalesBothTest2:
+                            break;
+                        case AllTest.SalesBothTest3:
+                            break;
+                        case AllTest.SalesBothTest4:
+                            break;
+                        case AllTest.SalesBothTest5:
+                            break;
+                        case AllTest.SalesBothTest6:
+                            break;
+                        case AllTest.SalesBothTest7:
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             bUseTreeCheck = true;
