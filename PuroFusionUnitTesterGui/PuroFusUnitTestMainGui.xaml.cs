@@ -1717,6 +1717,7 @@ namespace PuroFusionTestGui
 
         private void btnWebTesterRunScript_Click(object sender, RoutedEventArgs e)
         {
+            LoadTree(); 
             StartAsyncFileTrans(false,"test 1");
             //RunTestScript(false);
         }
