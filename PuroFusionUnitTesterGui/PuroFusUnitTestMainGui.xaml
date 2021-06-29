@@ -6,7 +6,7 @@
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         xmlns:local="clr-namespace:PuroFusionTestGui"
         mc:Ignorable="d"
-        Title="MainWindow"  Height="950" Width="1850" WindowState="Maximized" Icon="Purolator-Icon-5.ico" Loaded="Window_Loaded" >
+        Title="MainWindow"  Height="950" Width="1850" WindowState="Maximized" Icon="OK.ico" Loaded="Window_Loaded" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

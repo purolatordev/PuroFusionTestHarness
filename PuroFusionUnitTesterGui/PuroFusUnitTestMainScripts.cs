@@ -29,7 +29,7 @@ namespace PuroFusionTestGui
 {
     public partial class MainWindow : Window
     {
-        IList<TestParams> ToTest2 = new List<TestParams>() {
+        IList<TestParams> ToTest2a = new List<TestParams>() {
             new TestParams( AllTest.SalesShippingTest1,5, 1.0) { Enabled = false},
             new TestParams( AllTest.SalesShippingTest2,1, 2.0) { Enabled = true},
             new TestParams( AllTest.SalesShippingTest3,3, 3.0) { Enabled = false},

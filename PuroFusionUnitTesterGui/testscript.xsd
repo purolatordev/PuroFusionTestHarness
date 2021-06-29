@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="TestScripts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="TestParams">
+          <xs:complexType>
+            <xs:attribute name="iTotalSteps" type="xs:int" use="required"  />
+            <xs:attribute name="Test" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Sales Shipping Test 1"></xs:enumeration>
+                  <xs:enumeration value="Sales Shipping Test 2"></xs:enumeration>
+                  <xs:enumeration value="Sales Shipping Test 3"></xs:enumeration>
+                  <xs:enumeration value="Sales Shipping Test 4"></xs:enumeration>
+                  <xs:enumeration value="Sales Shipping Test 5"></xs:enumeration>
+                  <xs:enumeration value="Sales Shipping Test 7"></xs:enumeration>
+                  <xs:enumeration value="Sales EDI Test 1"></xs:enumeration>
+                  <xs:enumeration value="Sales EDI Test 2"></xs:enumeration>
+                  <xs:enumeration value="Sales EDI Test 3"></xs:enumeration>
+                  <xs:enumeration value="Sales EDI Test 4"></xs:enumeration>
+                  <xs:enumeration value="Sales EDI Test 5"></xs:enumeration> 
+                  <xs:enumeration value="Sales EDI Test 6"></xs:enumeration>
+                  <xs:enumeration value="Sales EDI Test 7"></xs:enumeration>
+                  <xs:enumeration value="Sales Both Test 1"></xs:enumeration>
+                  <xs:enumeration value="Sales Both Test 2"></xs:enumeration>
+                  <xs:enumeration value="Sales Both Test 3"></xs:enumeration>
+                  <xs:enumeration value="Sales Both Test 4"></xs:enumeration>
+                  <xs:enumeration value="Sales Both Test 5"></xs:enumeration>
+                  <xs:enumeration value="Sales Both Test 6"></xs:enumeration>
+                  <xs:enumeration value="Sales Both Test 7"></xs:enumeration>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="dStep" type="xs:double" use="required" />
+            <xs:attribute name="Enabled" type="xs:boolean" use="optional" default="false" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

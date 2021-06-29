@@ -21,6 +21,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using NUnit.Framework;
+using System.Xml;
 
 namespace PuroFusionTestGui
 {
@@ -128,6 +129,7 @@ namespace PuroFusionTestGui
             new Tabs(AllTabs.AddlNotes)        { Visible = false },
             new Tabs(AllTabs.FileUploads)      { Visible = false }
         };
+        IList<TestParams> ToTest2 = new List<TestParams>();
         bool bUseTreeCheck = false;
         Step curStep;
         static bool bTimeTimer;
@@ -172,6 +174,7 @@ namespace PuroFusionTestGui
             cmbBoxWebTesterSelectedTab.SelectedIndex = 0;
             lblWebTesterWarningMsg.Visibility = Visibility.Hidden;
 
+            LoadTestScripts();
             AddTreeViewItems5(ToTest2);
             curStep = new Step(ToTest2[0], 1);
             bTimeTimer = true;
@@ -187,10 +190,27 @@ namespace PuroFusionTestGui
             dispatcherTimer.Tick += new EventHandler(timerForTime_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             //dispatcherTimer.Start();
-            
-            int er = 0;
-            er++;
-       }
+        }
+
+        private void LoadTestScripts()
+        {
+            string strFileName = @"TestScriptsV1.xml";
+            XmlDocument doc = new XmlDocument();
+            doc.Load(strFileName);
+
+            foreach (XmlNode n in doc.GetElementsByTagName("TestParams"))
+            {
+                string strTest = n.Attributes["Test"].Value;
+                string striTotalSteps = n.Attributes["iTotalSteps"].Value;
+                string strdStep = n.Attributes["dStep"].Value;
+                string strEnabled = n.Attributes["Enabled"].Value;
+                AllTest allTest = AllTest.SalesBothTest1;
+                allTest = GetTheTest.Get(strTest);
+                TestParams tp = new TestParams(GetTheTest.Get(strTest), int.Parse(striTotalSteps), double.Parse(strdStep)) { Enabled = bool.Parse(strEnabled) };
+                ToTest2.Add(tp);
+            }
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadTree();
@@ -2154,8 +2174,28 @@ namespace PuroFusionTestGui
                 retTab = AllTest.SalesEDITest2;
             else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest3))
                 retTab = AllTest.SalesEDITest3;
-            //else if (strTab == StringEnum.GetStringValue(AllTest.FileUploads))
-            //    retTab = AllTest.FileUploads;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest4))
+                retTab = AllTest.SalesEDITest4;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest5))
+                retTab = AllTest.SalesEDITest5;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest6))
+                retTab = AllTest.SalesEDITest6;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest7))
+                retTab = AllTest.SalesEDITest7;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesBothTest1))
+                retTab = AllTest.SalesBothTest1;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesBothTest2))
+                retTab = AllTest.SalesBothTest2;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesBothTest3))
+                retTab = AllTest.SalesBothTest3;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesBothTest4))
+                retTab = AllTest.SalesBothTest4;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesBothTest5))
+                retTab = AllTest.SalesBothTest5;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesBothTest6))
+                retTab = AllTest.SalesBothTest6;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesBothTest7))
+                retTab = AllTest.SalesBothTest7;
             return retTab;
         }
     }
