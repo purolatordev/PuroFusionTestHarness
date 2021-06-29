@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="PuroTouchDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AutomatedTesting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="TestName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Step" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pass" Type="bit" Nullable="false" />
+          <Property Name="RunDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblBillingSpecialist">
           <Key>
             <PropertyRef Name="idBillingSpecialist" />
@@ -1261,6 +1272,7 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="PuroTouchDBModelStoreContainer">
+          <EntitySet Name="AutomatedTesting" EntityType="Self.AutomatedTesting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblBillingSpecialist" EntityType="Self.tblBillingSpecialist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblBrokers" EntityType="Self.tblBrokers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCloseReason" EntityType="Self.tblCloseReason" Schema="dbo" store:Type="Tables" />
@@ -2184,6 +2196,7 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             <End Role="tblEDITranscationType" EntitySet="tblEDITranscationType" />
             <End Role="tblEDITranscations" EntitySet="tblEDITranscations" />
           </AssociationSet>
+          <EntitySet Name="AutomatedTesting" EntityType="PuroTouchDBModel.AutomatedTesting" />
         </EntityContainer>
         <EntityType Name="tblContact">
           <Key>
@@ -2825,6 +2838,17 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AutomatedTesting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TestName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Step" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pass" Type="Boolean" Nullable="false" />
+          <Property Name="RunDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3959,6 +3983,18 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
                 <ScalarProperty Name="idEDITranscationType" ColumnName="idEDITranscationType" />
                 <ScalarProperty Name="idRequest" ColumnName="idRequest" />
                 <ScalarProperty Name="idEDITranscation" ColumnName="idEDITranscation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutomatedTesting">
+            <EntityTypeMapping TypeName="PuroTouchDBModel.AutomatedTesting">
+              <MappingFragment StoreEntitySet="AutomatedTesting">
+                <ScalarProperty Name="RunDate" ColumnName="RunDate" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="TestName" ColumnName="TestName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

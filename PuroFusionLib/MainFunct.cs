@@ -1050,6 +1050,42 @@ namespace PuroFusionLib
             return true;
         }
         #endregion
+        #region AutomatedTesting
+        public List<dtoAutomatedTesting> GetAutoTest()
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+
+            List<dtoAutomatedTesting> qErrors = o.AutomatedTesting
+                                    .Select(p => new dtoAutomatedTesting() { ID = p.ID, Category = p.Category, Pass = p.Pass, RunDate = p.RunDate,  Step = p.Step,  TestName = p.TestName })
+                                    .ToList();
+            return qErrors;
+        }
+        public string InsertAutoTestIntoDB(dtoAutomatedTesting data)
+        {
+            string errMsg = "";
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            try
+            {
+                AutomatedTesting oNewRow = new AutomatedTesting()
+                {
+                    Category = data.Category,
+                    Pass = data.Pass,
+                    RunDate = DateTime.Now,
+                    Step = data.Step,
+                    TestName = data.TestName
+                };
+                o.AutomatedTesting.Add(oNewRow);
+                o.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                errMsg = ex.Message.ToString();
+            }
+            return errMsg;
+        }
+        
+        #endregion
+
         #region Migration Strategy
         public IList<dtoTableCompare> GetDiscoveryDiff1()
         {

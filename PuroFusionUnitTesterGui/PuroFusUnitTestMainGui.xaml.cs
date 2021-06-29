@@ -144,6 +144,8 @@ namespace PuroFusionTestGui
         const string DELETE_ICON = @"C:\Src\images\Delete.ico";
         const string READY_ICON = @"C:\Src\images\CodeBreakpointRun.ico";
 
+        string strDBConn = "";
+
         const int SOLUTION_TYPE_SHIPPING = 1;
         const int SOLUTION_TYPE_EDI = 2;
         const int SOLUTION_TYPE_BOTH = 3;
@@ -1703,6 +1705,9 @@ namespace PuroFusionTestGui
                 if (bNextTest)
                     break;
             }
+            PuroTouchServiceClass o = new PuroTouchServiceClass(strDBConn);
+            bool bPass = (strStepStatusIcon.Contains(OK_ICON)) ? true : false;
+            o.InsertAutoTestIntoDB(new dtoAutomatedTesting() { Category = StringEnum.GetStringValue(param.Category), Pass = bPass, RunDate = DateTime.Now, Step = strStep, TestName = param.Name  });
             return;
         }
         public void SetInitTreeNodes(TestParams param)
@@ -1804,9 +1809,17 @@ namespace PuroFusionTestGui
 
         private void btnWebTesterRunScript_Click(object sender, RoutedEventArgs e)
         {
-            LoadTree(); 
-            StartAsyncFileTrans(false,"test 1");
-            //RunTestScript(false);
+            string strConn = GetdbLocation(comboBoxTouchDB);
+            if (strConn != "na")
+            {
+                lblWebTesterWarningMsg2.Visibility = Visibility.Hidden;
+                LoadTree();
+                StartAsyncFileTrans(false, strConn);
+            }
+            else
+            {
+                lblWebTesterWarningMsg2.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnWebTesterLoadTree_Click(object sender, RoutedEventArgs e)

@@ -456,5 +456,14 @@ namespace PuroFusionLib
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<bool> ActiveFlag { get; set; }
     }
+    public class dtoAutomatedTesting
+    {
+        public int ID { get; set; }
+        public string TestName { get; set; }
+        public string Category { get; set; }
+        public string Step { get; set; }
+        public bool Pass { get; set; }
+        public System.DateTime RunDate { get; set; }
+    }
 
 }

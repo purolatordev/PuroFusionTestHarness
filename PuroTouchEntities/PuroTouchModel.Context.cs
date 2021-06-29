@@ -82,5 +82,6 @@ namespace PuroTouchEntities
         public virtual DbSet<tblTriggerMechanism> tblTriggerMechanism { get; set; }
         public virtual DbSet<tblEDIRecipReqs> tblEDIRecipReqs { get; set; }
         public virtual DbSet<tblEDITranscations> tblEDITranscations { get; set; }
+        public virtual DbSet<AutomatedTesting> AutomatedTesting { get; set; }
     }
 }

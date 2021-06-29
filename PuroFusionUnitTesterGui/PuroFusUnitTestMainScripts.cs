@@ -53,11 +53,11 @@ namespace PuroFusionTestGui
         };
         #region Async / Threading
         public delegate void TransferDel(bool bTesting, string strIn);
-        private void StartAsyncFileTrans(bool bTesting, string strIn)
+        private void StartAsyncFileTrans(bool bTesting, string strConn)
         {
             TransferDel del = new TransferDel(TransferFile);
             TestParams tp = new TestParams(AllTest.SalesShippingTest1, 5);
-            IAsyncResult iar = del.BeginInvoke(bTesting, strIn, new AsyncCallback(FileTransDone), tp);
+            IAsyncResult iar = del.BeginInvoke(bTesting, strConn, new AsyncCallback(FileTransDone), tp);
         }
         void FileTransDone(IAsyncResult iar)
         {
@@ -71,13 +71,14 @@ namespace PuroFusionTestGui
             //        StartAsyncLoadTable(gatePull);
             //    }
         }
-        public void TransferFile(bool bTesting, string strIn)
+        public void TransferFile(bool bTesting, string strConn)
         {
-            RunTestScript(bTesting);
+            strDBConn = strConn;
+            RunTestScript(bTesting, strConn);
             return;
         }
         #endregion
-        public void RunTestScript(bool bTesting)
+        public void RunTestScript(bool bTesting, string strConn)
         {
             ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
             bool bLoggedIn = false;

@@ -598,9 +598,7 @@
                                 <Button x:Name="TouchDBExportTopLeft" Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0"  Width="75" Height="25"  IsEnabled="True" Style="{StaticResource RoundedButton}" Click="btnExport_Click" />
                             </StackPanel>
                             <StackPanel Grid.Row="2" Orientation="Horizontal">
-                                <Label Content="database:"/>
-                                <ComboBox Height="23" Name="comboBoxTouchDB" Width="Auto" >
-                                </ComboBox>
+                                
                                 <Label Content="Last Name:"/>
                                 <TextBox Name="txtBxCommitLastName" Width="100" Padding="0,2,0,0"></TextBox>
                                 <Button Name="btnCommitUpdateTopLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Height="25" VerticalAlignment="Bottom" Style="{StaticResource RoundedButton}" IsEnabled="False"   >Update</Button>
@@ -948,6 +946,10 @@
                             <StackPanel Grid.Row="1" Orientation="Horizontal">
                                 <Button Name="btnWebTesterClear" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterClear_Click" >Clear</Button>
                                 <Button Name="btnWebTesterRunScript" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterRunScript_Click" >Run Script</Button>
+                                <Label Name="lblWebTesterWarningMsg2" Content="Select db" Foreground="Red" Visibility="Hidden"  />
+                                <Label Content="database:"/>
+                                <ComboBox Height="23" Name="comboBoxTouchDB" Width="Auto" >
+                                </ComboBox>
                             </StackPanel>
                             <telerik:RadGridView x:Name="radGridWebTester" ToolTip="" Grid.Row="2" RowHeight="20"  ShowGroupPanel="True" >
                             </telerik:RadGridView>
