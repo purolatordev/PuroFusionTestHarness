@@ -22,6 +22,7 @@ using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using NUnit.Framework;
 using System.Xml;
+using System.Xml.Schema;
 
 namespace PuroFusionTestGui
 {
@@ -209,8 +210,74 @@ namespace PuroFusionTestGui
                 TestParams tp = new TestParams(GetTheTest.Get(strTest), int.Parse(striTotalSteps), double.Parse(strdStep)) { Enabled = bool.Parse(strEnabled) };
                 ToTest2.Add(tp);
             }
+            
         }
+        private void LoadTestScripts2()
+        {
+            XmlReaderSettings xmlsettings = new XmlReaderSettings();
+            xmlsettings.Schemas.Add("http://www.company.com/blah", @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionUnitTesterGui\testscript.xsd");
+            xmlsettings.ValidationType = ValidationType.Schema;
+            xmlsettings.ValidationEventHandler += new ValidationEventHandler(booksSettingsValidationEventHandler);
 
+            XmlReader reader = XmlReader.Create(@"TestScriptsV1.xml", xmlsettings);
+
+            while (reader.Read()) 
+            {
+                switch (reader.NodeType)
+                {
+                    case XmlNodeType.Element:
+                        Console.Write("<{0}>", reader.Name);
+                        Console.Write("<{0}>", reader.Value);
+                        for (int attInd = 0; attInd < reader.AttributeCount; attInd++)
+                        {
+                            reader.MoveToAttribute(attInd);
+                            Console.WriteLine(reader.Name);
+                            Console.WriteLine(reader.Value);
+                        }
+                        reader.MoveToElement();
+                        break;
+                    case XmlNodeType.Text:
+                        Console.Write(reader.Value);
+                        break;
+                    case XmlNodeType.CDATA:
+                        Console.Write("<![CDATA[{0}]]>", reader.Value);
+                        break;
+                    case XmlNodeType.ProcessingInstruction:
+                        Console.Write("<?{0} {1}?>", reader.Name, reader.Value);
+                        break;
+                    case XmlNodeType.Comment:
+                        Console.Write("<!--{0}-->", reader.Value);
+                        break;
+                    case XmlNodeType.XmlDeclaration:
+                        Console.Write("<?xml version='1.0'?>");
+                        break;
+                    case XmlNodeType.Document:
+                        break;
+                    case XmlNodeType.DocumentType:
+                        Console.Write("<!DOCTYPE {0} [{1}]", reader.Name, reader.Value);
+                        break;
+                    case XmlNodeType.EntityReference:
+                        Console.Write(reader.Name);
+                        break;
+                    case XmlNodeType.EndElement:
+                        Console.Write("</{0}>", reader.Name);
+                        break;
+                }
+            }
+        }
+        void booksSettingsValidationEventHandler(object sender, ValidationEventArgs e)
+        {
+            if (e.Severity == XmlSeverityType.Warning)
+            {
+                Console.Write("WARNING: ");
+                Console.WriteLine(e.Message);
+            }
+            else if (e.Severity == XmlSeverityType.Error)
+            {
+                Console.Write("ERROR: ");
+                Console.WriteLine(e.Message);
+            }
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadTree();
