@@ -458,7 +458,7 @@ namespace PuroFusionLib
     }
     public class dtoAutomatedTesting
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
         public string TestName { get; set; }
         public string Category { get; set; }
         public string Step { get; set; }
