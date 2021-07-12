@@ -1382,7 +1382,6 @@ namespace PuroFusionTestGui
                 Thread.Sleep(5000);
                 SelectDropdown("ctl00_MainContent_rddlBranch");
                 Thread.Sleep(4000);
-                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 
                 SelectDropdown("ctl00_MainContent_rddlSolutionType", SOLUTION_TYPE_EDI - 1);
                 Thread.Sleep(4000);
@@ -1392,7 +1391,6 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab2 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
@@ -1426,7 +1424,6 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
@@ -1479,8 +1476,7 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab3 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices), Enabled = true, Selected = true  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab3))
                 {
@@ -1494,32 +1490,12 @@ namespace PuroFusionTestGui
                     this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
-                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab3")).Click();
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-
-                IList<Tabs> tab4 = new List<Tabs>() {
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)    , Enabled = true },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices),Enabled = true, Selected = true }
-                };
                 // Step 1.4
                 iCurStep++;
                 strCurrentStep = t.ListSteps[iCurStep].Name;
-                if (GetRadTabStrip(strRadTabID, tab4))
-                {
-                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
-                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
-                    bRetVal = true;
-                }
-                else
-                {
-                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
-                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
-                    return false;
-                }
+                this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
+                bRetVal = true;
 
                 driver.FindElement(By.Id("ctl00_MainContent_gridShipmentMethods_ctl00_ctl02_ctl00_AddNewRecordButton")).Click();
                 Thread.Sleep(3000);
@@ -1603,7 +1579,6 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab2 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
@@ -1638,7 +1613,6 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab = new List<Tabs>() {
                     new Tabs(AllTabs.CustomerInfo,iOrd++   )  { Enabled = true },
                     new Tabs(AllTabs.ContactInfo,iOrd++    )  { Enabled = true, Selected = true},
-                    new Tabs(AllTabs.CurrentSolution,iOrd++)  { },
                     new Tabs(AllTabs.EDIServices,iOrd++    )  { }
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
@@ -1732,7 +1706,6 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab2 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
@@ -1766,7 +1739,6 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
@@ -1870,7 +1842,6 @@ namespace PuroFusionTestGui
                 Thread.Sleep(5000);
                 SelectDropdown("ctl00_MainContent_rddlBranch");
                 Thread.Sleep(4000);
-                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 
                 SelectDropdown("ctl00_MainContent_rddlSolutionType", SOLUTION_TYPE_EDI - 1);
                 Thread.Sleep(4000);
@@ -1880,7 +1851,6 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab2 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
@@ -1914,7 +1884,6 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
@@ -1938,7 +1907,6 @@ namespace PuroFusionTestGui
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactEmail2")).SendKeys("test.person@test.com");
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactPhone2")).SendKeys("516 725-8956");
 
-                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
                 Thread.Sleep(5000);
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
                 Thread.Sleep(5000);
@@ -1967,8 +1935,7 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab3 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices), Enabled = true, Selected = true  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab3))
                 {
@@ -1982,33 +1949,12 @@ namespace PuroFusionTestGui
                     this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
-                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab3")).Click();
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-
-                IList<Tabs> tab4 = new List<Tabs>() {
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)    , Enabled = true },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices),Enabled = true, Selected = true }
-                };
                 // Step 4.4
                 iCurStep++;
                 strCurrentStep = t.ListSteps[iCurStep].Name;
-                if (GetRadTabStrip(strRadTabID, tab4))
-                {
-                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
-                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
-                    bRetVal = true;
-                }
-                else
-                {
-                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
-                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
-                    return false;
-                }
-
+                this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
+                bRetVal = true;
                 driver.FindElement(By.Id("ctl00_MainContent_btnSubmitEDIServices_input")).Click();
                 Thread.Sleep(5000);
 
@@ -2067,7 +2013,6 @@ namespace PuroFusionTestGui
                 Thread.Sleep(5000);
                 SelectDropdown("ctl00_MainContent_rddlBranch");
                 Thread.Sleep(4000);
-                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 
                 SelectDropdown("ctl00_MainContent_rddlSolutionType", SOLUTION_TYPE_EDI - 1);
                 Thread.Sleep(4000);
@@ -2077,7 +2022,6 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab2 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
@@ -2111,7 +2055,6 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
@@ -2135,7 +2078,6 @@ namespace PuroFusionTestGui
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactEmail2")).SendKeys("test.person@test.com");
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactPhone2")).SendKeys("516 725-8956");
 
-                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
                 Thread.Sleep(5000);
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
                 Thread.Sleep(5000);
@@ -2164,8 +2106,7 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab3 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices), Enabled = true, Selected = true  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab3))
                 {
@@ -2179,61 +2120,21 @@ namespace PuroFusionTestGui
                     this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
-                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab3")).Click();
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 
-                IList<Tabs> tab4 = new List<Tabs>() {
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)    , Enabled = true },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices),Enabled = true, Selected = true }
-                };
                 // Step 5.4
                 iCurStep++;
                 strCurrentStep = t.ListSteps[iCurStep].Name;
-                if (GetRadTabStrip(strRadTabID, tab4))
-                {
-                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
-                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
-                    bRetVal = true;
-                }
-                else
-                {
-                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
-                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
-                    return false;
-                }
-                int iOrd = 0;
-                IList<Tabs> tab5 = new List<Tabs>() {
-                        new Tabs(AllTabs.CustomerInfo,iOrd++)     { Enabled = true },
-                        new Tabs(AllTabs.ContactInfo,iOrd++)      { Enabled = true },
-                        new Tabs(AllTabs.CurrentSolution,iOrd++)  { Enabled = true, Selected = true},
-                        new Tabs(AllTabs.EDIServices,iOrd++)      { Enabled = true }
-                    };
-
-                Tabs CurrentSolutionTab = tab5.Where(f => f.Selected == true).FirstOrDefault();
-                SelectTabFromStrip(strRadTabID, CurrentSolutionTab.iOrdinalValue);
-
-                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).Clear();
+                this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
+                bRetVal = true;
 
                 // Step 5.5
                 iCurStep++;
                 strCurrentStep = t.ListSteps[iCurStep].Name;
-                if (driver.FindElement(By.Id("MainContent_ctl05")).Displayed)
-                {
-                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
-                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
-                    bRetVal = true;
-                    driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
-                }
-                else
-                {
-                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
-                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
-                    return false;
-                }
+                this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
+                bRetVal = true;
+                driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
             }
             catch (NoSuchElementException ex)
             {
@@ -2283,7 +2184,6 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab2 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
@@ -2317,7 +2217,6 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
@@ -2341,7 +2240,6 @@ namespace PuroFusionTestGui
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactEmail2")).SendKeys("test.person@test.com");
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactPhone2")).SendKeys("516 725-8956");
 
-                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
                 Thread.Sleep(5000);
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
                 Thread.Sleep(5000);
@@ -2370,8 +2268,7 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab3 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices), Enabled = true, Selected = true  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab3))
                 {
@@ -2385,21 +2282,11 @@ namespace PuroFusionTestGui
                     this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
-                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab3")).Click();
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 
-                IList<Tabs> tab4 = new List<Tabs>() {
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)    , Enabled = true },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices),Enabled = true, Selected = true }
-                };
                 // Step 6.4
                 iCurStep++;
                 strCurrentStep = t.ListSteps[iCurStep].Name;
-                if (GetRadTabStrip(strRadTabID, tab4))
+                if (GetRadTabStrip(strRadTabID, tab3))
                 {
                     this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
                     this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
@@ -2415,51 +2302,26 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab5 = new List<Tabs>() {
                         new Tabs(AllTabs.CustomerInfo,iOrd++)     { Enabled = true },
                         new Tabs(AllTabs.ContactInfo,iOrd++)      { Enabled = true },
-                        new Tabs(AllTabs.CurrentSolution,iOrd++)  { Enabled = true, Selected = true},
-                        new Tabs(AllTabs.EDIServices,iOrd++)      { Enabled = true }
+                        new Tabs(AllTabs.EDIServices,iOrd++)      { Enabled = true, Selected = true }
                     };
 
                 Tabs CurrentSolutionTab = tab5.Where(f => f.Selected == true).FirstOrDefault();
                 SelectTabFromStrip(strRadTabID, CurrentSolutionTab.iOrdinalValue);
 
-                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).Clear();
-
                 // Step 6.5
                 iCurStep++;
                 strCurrentStep = t.ListSteps[iCurStep].Name;
-                if (driver.FindElement(By.Id("MainContent_ctl05")).Displayed)
-                {
-                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
-                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
-                    bRetVal = true;
-                }
-                else
-                {
-                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
-                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
-                    return false;
-                }
+                this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
+                bRetVal = true;
 
                 // Step 6.6
                 iCurStep++;
                 strCurrentStep = t.ListSteps[iCurStep].Name;
-                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
-                Thread.Sleep(2000);
-                SelectTabFromStrip(strRadTabID,3);
-                Thread.Sleep(1000);
-                if (!driver.FindElement(By.Id("MainContent_ctl05")).Displayed)
-                {
-                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
-                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
-                    bRetVal = true;
-                    driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
-                }
-                else
-                {
-                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
-                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
-                    return false;
-                }
+                this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
+                bRetVal = true;
+                driver.FindElement(By.Id("ctl00_MainContent_btnExit1_input")).Click();
             }
             catch (NoSuchElementException ex)
             {
@@ -2499,7 +2361,6 @@ namespace PuroFusionTestGui
                 Thread.Sleep(5000);
                 SelectDropdown("ctl00_MainContent_rddlBranch");
                 Thread.Sleep(4000);
-                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 
                 SelectDropdown("ctl00_MainContent_rddlSolutionType", SOLUTION_TYPE_EDI - 1);
                 Thread.Sleep(4000);
@@ -2509,7 +2370,6 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab2 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)       , Enabled = true, Selected = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)       },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)   },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices)  }
                 };
                 if (GetRadTabStrip(strRadTabID, tab2))
@@ -2543,7 +2403,6 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true, Selected = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
                 };
                 if (GetRadTabStrip(strRadTabID, tab))
@@ -2567,7 +2426,6 @@ namespace PuroFusionTestGui
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactEmail2")).SendKeys("test.person@test.com");
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_txtBxContactPhone2")).SendKeys("516 725-8956");
 
-                //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
                 Thread.Sleep(5000);
                 driver.FindElement(By.Id("ctl00_MainContent_contactGrid_ctl00_ctl02_ctl03_btnUpdate_input")).Click();
                 Thread.Sleep(5000);
@@ -2596,8 +2454,7 @@ namespace PuroFusionTestGui
                 IList<Tabs> tab3 = new List<Tabs>() {
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)     , Enabled = true },
                     new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)      , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution)  , Enabled = true, Selected = true },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) }
+                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices) , Enabled = true, Selected = true}
                 };
                 if (GetRadTabStrip(strRadTabID, tab3))
                 {
@@ -2611,32 +2468,13 @@ namespace PuroFusionTestGui
                     this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
                     return false;
                 }
-                driver.FindElement(By.Id("MainContent_txtareaCurrentSolution")).SendKeys("This is a test message for the Current Soltion.");
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-                driver.FindElement(By.Id("ctl00_MainContent_btnNextTab3")).Click();
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 
-                IList<Tabs> tab4 = new List<Tabs>() {
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CustomerInfo)    , Enabled = true },
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.ContactInfo)     , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.CurrentSolution) , Enabled = true},
-                    new Tabs() { Name = StringEnum.GetStringValue(AllTabs.EDIServices),Enabled = true, Selected = true }
-                };
                 // Step 7.4
                 iCurStep++;
                 strCurrentStep = t.ListSteps[iCurStep].Name;
-                if (GetRadTabStrip(strRadTabID, tab4))
-                {
-                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
-                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
-                    bRetVal = true;
-                }
-                else
-                {
-                    this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Failed");
-                    this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, DELETE_ICON, ToggleState.On, strCurrentStep, DELETE_ICON);
-                    return false;
-                }
+                this.listBox1.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del, strCurrentStep + " Passed");
+                this.radTreeView3.Dispatcher.BeginInvoke(DispatcherPriority.Normal, del2, t, OK_ICON, ToggleState.On, strCurrentStep, OK_ICON);
+                bRetVal = true;
 
                 driver.FindElement(By.Id("ctl00_MainContent_btnSubmitEDIServices_input")).Click();
                 Thread.Sleep(5000);
