@@ -610,27 +610,27 @@ namespace PuroFusionTestGui
                         grid.ItemsSource = ocWmsGroup.Concat<dtotblITBA>(qITBAs);
                         lbl.Content = strReportItem + " count: " + qITBAs.Count();
                     }
-                    else if ("PartialDiscoveryRequest" == strReportItem)
-                    {
-                        IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = o.GetPartialDiscoveryRequest();
-                        ObservableCollection<dtoPartialDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtoPartialDiscoveryRequest>();
-                        grid.ItemsSource = ocWmsGroup.Concat<dtoPartialDiscoveryRequest>(qDiscoveryRequest);
-                        lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
-                    }
-                    else if ("DiscoveryRequestBusContacts" == strReportItem)
-                    {
-                        IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = o.GetDiscoveryRequestBusContacts();
-                        ObservableCollection<dtoPartialDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtoPartialDiscoveryRequest>();
-                        grid.ItemsSource = ocWmsGroup.Concat<dtoPartialDiscoveryRequest>(qDiscoveryRequest);
-                        lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
-                    }
-                    else if ("DiscoveryRequestITContacts" == strReportItem)
-                    {
-                        IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = o.GetDiscoveryRequestITContacts();
-                        ObservableCollection<dtoPartialDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtoPartialDiscoveryRequest>();
-                        grid.ItemsSource = ocWmsGroup.Concat<dtoPartialDiscoveryRequest>(qDiscoveryRequest);
-                        lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
-                    }
+                    //else if ("PartialDiscoveryRequest" == strReportItem)
+                    //{
+                    //    IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = o.GetPartialDiscoveryRequest();
+                    //    ObservableCollection<dtoPartialDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtoPartialDiscoveryRequest>();
+                    //    grid.ItemsSource = ocWmsGroup.Concat<dtoPartialDiscoveryRequest>(qDiscoveryRequest);
+                    //    lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
+                    //}
+                    //else if ("DiscoveryRequestBusContacts" == strReportItem)
+                    //{
+                    //    IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = o.GetDiscoveryRequestBusContacts();
+                    //    ObservableCollection<dtoPartialDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtoPartialDiscoveryRequest>();
+                    //    grid.ItemsSource = ocWmsGroup.Concat<dtoPartialDiscoveryRequest>(qDiscoveryRequest);
+                    //    lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
+                    //}
+                    //else if ("DiscoveryRequestITContacts" == strReportItem)
+                    //{
+                    //    IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = o.GetDiscoveryRequestITContacts();
+                    //    ObservableCollection<dtoPartialDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtoPartialDiscoveryRequest>();
+                    //    grid.ItemsSource = ocWmsGroup.Concat<dtoPartialDiscoveryRequest>(qDiscoveryRequest);
+                    //    lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
+                    //}
                     else if ("CompareDiscReq-ToReq" == strReportItem)
                     {
                         o.strConn = comboBoxTouchDB.SelectedItem.ToString();
