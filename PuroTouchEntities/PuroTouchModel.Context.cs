@@ -68,6 +68,7 @@ namespace PuroTouchEntities
         public virtual DbSet<ZIPCodes> ZIPCodes { get; set; }
         public virtual DbSet<tblContact> tblContact { get; set; }
         public virtual DbSet<tblDiscoveryRequest> tblDiscoveryRequest { get; set; }
+        public virtual DbSet<tblDiscoveryRequest_> tblDiscoveryRequest_ { get; set; }
         public virtual DbSet<tblBillingSpecialist> tblBillingSpecialist { get; set; }
         public virtual DbSet<tblEDIAccounts> tblEDIAccounts { get; set; }
         public virtual DbSet<tblEDIOnboardingPhase> tblEDIOnboardingPhase { get; set; }
@@ -79,9 +80,8 @@ namespace PuroTouchEntities
         public virtual DbSet<tblStatusCodes> tblStatusCodes { get; set; }
         public virtual DbSet<tblTiming> tblTiming { get; set; }
         public virtual DbSet<tblTriggerMechanism> tblTriggerMechanism { get; set; }
-        public virtual DbSet<tblEDITranscations> tblEDITranscations { get; set; }
         public virtual DbSet<tblEDIRecipReqs> tblEDIRecipReqs { get; set; }
-        public virtual DbSet<tblStatusCodesCourierEDI> tblStatusCodesCourierEDI { get; set; }
-        public virtual DbSet<tblStatusCodesNonCourierEDI> tblStatusCodesNonCourierEDI { get; set; }
+        public virtual DbSet<tblEDITranscations> tblEDITranscations { get; set; }
+        public virtual DbSet<AutomatedTesting> AutomatedTesting { get; set; }
     }
 }
