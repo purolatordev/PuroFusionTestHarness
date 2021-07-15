@@ -6,7 +6,7 @@
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         xmlns:local="clr-namespace:PuroFusionTestGui"
         mc:Ignorable="d"
-        Title="MainWindow"  Height="950" Width="1850" WindowState="Maximized" Icon="Purolator-Icon-5.ico" Loaded="Window_Loaded" >
+        Title="MainWindow"  Height="950" Width="1850" WindowState="Maximized" Icon="OK.ico" Loaded="Window_Loaded" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -598,9 +598,7 @@
                                 <Button x:Name="TouchDBExportTopLeft" Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0"  Width="75" Height="25"  IsEnabled="True" Style="{StaticResource RoundedButton}" Click="btnExport_Click" />
                             </StackPanel>
                             <StackPanel Grid.Row="2" Orientation="Horizontal">
-                                <Label Content="database:"/>
-                                <ComboBox Height="23" Name="comboBoxTouchDB" Width="Auto" >
-                                </ComboBox>
+                                
                                 <Label Content="Last Name:"/>
                                 <TextBox Name="txtBxCommitLastName" Width="100" Padding="0,2,0,0"></TextBox>
                                 <Button Name="btnCommitUpdateTopLeft"  Margin="10,0,0,0" Padding="10,0,10,0" Height="25" VerticalAlignment="Bottom" Style="{StaticResource RoundedButton}" IsEnabled="False"   >Update</Button>
@@ -926,6 +924,7 @@
                                 <ComboBoxItem>Pass</ComboBoxItem>
                                 <ComboBoxItem>Failed</ComboBoxItem>
                             </ComboBox>
+                            <Button Name="btnWebTesterResetTree" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterResetTree_Click"  >Reset Tree</Button>
                         </StackPanel>
                         <telerik:RadTreeView x:Name="radTreeView3" Grid.Row="3" IsOptionElementsEnabled="True" Margin="8" Checked="radTreeView_Checked" Unchecked="radTreeView_Unchecked" >
                             <telerik:RadTreeView.Background>
@@ -947,6 +946,10 @@
                             <StackPanel Grid.Row="1" Orientation="Horizontal">
                                 <Button Name="btnWebTesterClear" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterClear_Click" >Clear</Button>
                                 <Button Name="btnWebTesterRunScript" Height="30" Margin="10,0,0,0" Padding="10,0,10,0" Style="{StaticResource RoundedButton}" IsEnabled="True" Click="btnWebTesterRunScript_Click" >Run Script</Button>
+                                <Label Name="lblWebTesterWarningMsg2" Content="Select db" Foreground="Red" Visibility="Hidden"  />
+                                <Label Content="database:"/>
+                                <ComboBox Height="23" Name="comboBoxTouchDB" Width="Auto" >
+                                </ComboBox>
                             </StackPanel>
                             <telerik:RadGridView x:Name="radGridWebTester" ToolTip="" Grid.Row="2" RowHeight="20"  ShowGroupPanel="True" >
                             </telerik:RadGridView>

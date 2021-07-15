@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestScripts >
+  <TestParams Test="Sales Shipping Test 1" iTotalSteps="5" dStep="1.0" Enabled="false" ></TestParams>
+  <TestParams Test="Sales Shipping Test 2" iTotalSteps="1" dStep="2.0" Enabled="true" ></TestParams>
+  <TestParams Test="Sales Shipping Test 3" iTotalSteps="3" dStep="3.0" Enabled="true" ></TestParams>
+  <TestParams Test="Sales Shipping Test 4" iTotalSteps="5" dStep="4.0" Enabled="true" ></TestParams>
+  <TestParams Test="Sales Shipping Test 5" iTotalSteps="5" dStep="5.0" Enabled="true" ></TestParams>
+  <TestParams Test="Sales Shipping Test 7" iTotalSteps="7" dStep="7.0" Enabled="false" ></TestParams>
+
+  <TestParams Test="Sales EDI Test 1" iTotalSteps="5" dStep="1.0" Enabled="false" ></TestParams>
+  <TestParams Test="Sales EDI Test 2" iTotalSteps="2" dStep="2.0" Enabled="true" ></TestParams>
+  <TestParams Test="Sales EDI Test 3" iTotalSteps="3" dStep="3.0" Enabled="true" ></TestParams>
+  <TestParams Test="Sales EDI Test 4" iTotalSteps="5" dStep="4.0" Enabled="true" ></TestParams>
+  <TestParams Test="Sales EDI Test 5" iTotalSteps="5" dStep="5.0" Enabled="true" ></TestParams>
+  <TestParams Test="Sales EDI Test 6" iTotalSteps="6" dStep="6.0" Enabled="true" ></TestParams>
+  <TestParams Test="Sales EDI Test 7" iTotalSteps="7" dStep="7.0" Enabled="true" ></TestParams>
+                          
+  <TestParams Test="Sales Both Test 1" iTotalSteps="6" dStep="1.0" Enabled="false" ></TestParams>
+  <TestParams Test="Sales Both Test 2" iTotalSteps="1" dStep="2.0" Enabled="true" ></TestParams>
+  <TestParams Test="Sales Both Test 3" iTotalSteps="4" dStep="3.0" Enabled="true" ></TestParams>
+  <TestParams Test="Sales Both Test 4" iTotalSteps="4" dStep="4.0" Enabled="true" ></TestParams>
+  <TestParams Test="Sales Both Test 5" iTotalSteps="5" dStep="5.0" Enabled="true" ></TestParams>
+  <TestParams Test="Sales Both Test 6" iTotalSteps="6" dStep="6.0" Enabled="true" ></TestParams>
+  <TestParams Test="Sales Both Test 7" iTotalSteps="6" dStep="7.0" Enabled="true" ></TestParams>
+                               
+</TestScripts>            

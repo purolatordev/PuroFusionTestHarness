@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutomatedTesting.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PuroTouchDBEntities.cs" />
     <Compile Include="PuroTouchModel.Context.cs">

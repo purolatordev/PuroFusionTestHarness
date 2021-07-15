@@ -21,6 +21,8 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using NUnit.Framework;
+using System.Xml;
+using System.Xml.Schema;
 
 namespace PuroFusionTestGui
 {
@@ -128,6 +130,7 @@ namespace PuroFusionTestGui
             new Tabs(AllTabs.AddlNotes)        { Visible = false },
             new Tabs(AllTabs.FileUploads)      { Visible = false }
         };
+        IList<TestParams> ToTest2 = new List<TestParams>();
         bool bUseTreeCheck = false;
         Step curStep;
         static bool bTimeTimer;
@@ -140,6 +143,8 @@ namespace PuroFusionTestGui
         const string STOP_ICON = @"C:\Src\images\CodeBreakpoint.ico";
         const string DELETE_ICON = @"C:\Src\images\Delete.ico";
         const string READY_ICON = @"C:\Src\images\CodeBreakpointRun.ico";
+
+        string strDBConn = "";
 
         const int SOLUTION_TYPE_SHIPPING = 1;
         const int SOLUTION_TYPE_EDI = 2;
@@ -172,6 +177,7 @@ namespace PuroFusionTestGui
             cmbBoxWebTesterSelectedTab.SelectedIndex = 0;
             lblWebTesterWarningMsg.Visibility = Visibility.Hidden;
 
+            LoadTestScripts();
             AddTreeViewItems5(ToTest2);
             curStep = new Step(ToTest2[0], 1);
             bTimeTimer = true;
@@ -187,10 +193,93 @@ namespace PuroFusionTestGui
             dispatcherTimer.Tick += new EventHandler(timerForTime_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             //dispatcherTimer.Start();
+        }
+
+        private void LoadTestScripts()
+        {
+            string strFileName = @"TestScriptsV1.xml";
+            XmlDocument doc = new XmlDocument();
+            doc.Load(strFileName);
+
+            foreach (XmlNode n in doc.GetElementsByTagName("TestParams"))
+            {
+                string strTest = n.Attributes["Test"].Value;
+                string striTotalSteps = n.Attributes["iTotalSteps"].Value;
+                string strdStep = n.Attributes["dStep"].Value;
+                string strEnabled = n.Attributes["Enabled"].Value;
+                AllTest allTest = AllTest.SalesBothTest1;
+                allTest = GetTheTest.Get(strTest);
+                TestParams tp = new TestParams(GetTheTest.Get(strTest), int.Parse(striTotalSteps), double.Parse(strdStep)) { Enabled = bool.Parse(strEnabled) };
+                ToTest2.Add(tp);
+            }
             
-            int er = 0;
-            er++;
-       }
+        }
+        private void LoadTestScripts2()
+        {
+            XmlReaderSettings xmlsettings = new XmlReaderSettings();
+            xmlsettings.Schemas.Add("http://www.company.com/blah", @"F:\src\Customer\Purolator\PuroFusion\PuroFusionTestHarness\PuroFusionUnitTesterGui\testscript.xsd");
+            xmlsettings.ValidationType = ValidationType.Schema;
+            xmlsettings.ValidationEventHandler += new ValidationEventHandler(booksSettingsValidationEventHandler);
+
+            XmlReader reader = XmlReader.Create(@"TestScriptsV1.xml", xmlsettings);
+
+            while (reader.Read()) 
+            {
+                switch (reader.NodeType)
+                {
+                    case XmlNodeType.Element:
+                        Console.Write("<{0}>", reader.Name);
+                        Console.Write("<{0}>", reader.Value);
+                        for (int attInd = 0; attInd < reader.AttributeCount; attInd++)
+                        {
+                            reader.MoveToAttribute(attInd);
+                            Console.WriteLine(reader.Name);
+                            Console.WriteLine(reader.Value);
+                        }
+                        reader.MoveToElement();
+                        break;
+                    case XmlNodeType.Text:
+                        Console.Write(reader.Value);
+                        break;
+                    case XmlNodeType.CDATA:
+                        Console.Write("<![CDATA[{0}]]>", reader.Value);
+                        break;
+                    case XmlNodeType.ProcessingInstruction:
+                        Console.Write("<?{0} {1}?>", reader.Name, reader.Value);
+                        break;
+                    case XmlNodeType.Comment:
+                        Console.Write("<!--{0}-->", reader.Value);
+                        break;
+                    case XmlNodeType.XmlDeclaration:
+                        Console.Write("<?xml version='1.0'?>");
+                        break;
+                    case XmlNodeType.Document:
+                        break;
+                    case XmlNodeType.DocumentType:
+                        Console.Write("<!DOCTYPE {0} [{1}]", reader.Name, reader.Value);
+                        break;
+                    case XmlNodeType.EntityReference:
+                        Console.Write(reader.Name);
+                        break;
+                    case XmlNodeType.EndElement:
+                        Console.Write("</{0}>", reader.Name);
+                        break;
+                }
+            }
+        }
+        void booksSettingsValidationEventHandler(object sender, ValidationEventArgs e)
+        {
+            if (e.Severity == XmlSeverityType.Warning)
+            {
+                Console.Write("WARNING: ");
+                Console.WriteLine(e.Message);
+            }
+            else if (e.Severity == XmlSeverityType.Error)
+            {
+                Console.Write("ERROR: ");
+                Console.WriteLine(e.Message);
+            }
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadTree();
@@ -1440,6 +1529,7 @@ namespace PuroFusionTestGui
                 }
                 ObservableCollection<TestParams> ocWmsGroup = new ObservableCollection<TestParams>();
                 radGridWebTester.ItemsSource = ocWmsGroup.Concat<TestParams>(ToTest2);
+                LoadTree();
             }
         }
         private Collection<RadTreeViewItem> GetAllItemContainers(System.Windows.Controls.ItemsControl itemsControl)
@@ -1503,6 +1593,7 @@ namespace PuroFusionTestGui
                 }
                 ObservableCollection<TestParams> ocWmsGroup = new ObservableCollection<TestParams>();
                 radGridWebTester.ItemsSource = ocWmsGroup.Concat<TestParams>(ToTest2);
+                LoadTree();
             }
         }
 
@@ -1614,6 +1705,33 @@ namespace PuroFusionTestGui
                 if (bNextTest)
                     break;
             }
+            PuroTouchServiceClass o = new PuroTouchServiceClass(strDBConn);
+            bool bPass = (strStepStatusIcon.Contains(OK_ICON)) ? true : false;
+            o.InsertAutoTestIntoDB(new dtoAutomatedTesting() { Category = StringEnum.GetStringValue(param.Category), Pass = bPass, RunDate = DateTime.Now, Step = strStep, TestName = param.Name  });
+            return;
+        }
+        public void SetInitTreeNodes(TestParams param)
+        {
+            ShowMessageDelegate2 del = new ShowMessageDelegate2(ShowMessage);
+            bool bNextTest = false;
+            var allTreeContainers = GetAllItemContainers(radTreeView3);
+            var q = allTreeContainers.Where(f => f.Header.ToString().Contains(StringEnum.GetStringValue(param.Category))).ToList();
+
+            foreach (RadTreeViewItem node in q[0].Items)
+            {
+                if (node.Header.ToString().Contains(StringEnum.GetStringValue(param.Tests)))
+                {
+                    node.DefaultImageSrc = (param.Enabled)? READY_ICON : STOP_ICON;
+                    node.CheckState = (param.Enabled) ? ToggleState.On : ToggleState.Off;
+                    foreach (RadTreeViewItem step in node.Items)
+                    {
+                        //step.CheckState = ToggleState.Off;
+                        step.DefaultImageSrc = (param.Enabled) ? READY_ICON : STOP_ICON;
+                    }
+                }
+                if (bNextTest)
+                    break;
+            }
             return;
         }
         private void btnWebTesterTreeNext_Click(object sender, RoutedEventArgs e)
@@ -1691,8 +1809,17 @@ namespace PuroFusionTestGui
 
         private void btnWebTesterRunScript_Click(object sender, RoutedEventArgs e)
         {
-            StartAsyncFileTrans(false,"test 1");
-            //RunTestScript(false);
+            string strConn = GetdbLocation(comboBoxTouchDB);
+            if (strConn != "na")
+            {
+                lblWebTesterWarningMsg2.Visibility = Visibility.Hidden;
+                LoadTree();
+                StartAsyncFileTrans(false, strConn);
+            }
+            else
+            {
+                lblWebTesterWarningMsg2.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnWebTesterLoadTree_Click(object sender, RoutedEventArgs e)
@@ -1763,6 +1890,11 @@ namespace PuroFusionTestGui
             radGridWebTester2.ItemsSource = ocWmsGroup.Concat<TestParams>(ToTest2);
 
             SelectTreeNode(qTurnOffTest, strCheckStatusIcon, ToggleVal, strStep, strStepStatusIcon);
+        }
+
+        private void btnWebTesterResetTree_Click(object sender, RoutedEventArgs e)
+        {
+            LoadTree();
         }
     }
     public class Tabs
@@ -2122,8 +2254,28 @@ namespace PuroFusionTestGui
                 retTab = AllTest.SalesEDITest2;
             else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest3))
                 retTab = AllTest.SalesEDITest3;
-            //else if (strTab == StringEnum.GetStringValue(AllTest.FileUploads))
-            //    retTab = AllTest.FileUploads;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest4))
+                retTab = AllTest.SalesEDITest4;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest5))
+                retTab = AllTest.SalesEDITest5;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest6))
+                retTab = AllTest.SalesEDITest6;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesEDITest7))
+                retTab = AllTest.SalesEDITest7;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesBothTest1))
+                retTab = AllTest.SalesBothTest1;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesBothTest2))
+                retTab = AllTest.SalesBothTest2;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesBothTest3))
+                retTab = AllTest.SalesBothTest3;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesBothTest4))
+                retTab = AllTest.SalesBothTest4;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesBothTest5))
+                retTab = AllTest.SalesBothTest5;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesBothTest6))
+                retTab = AllTest.SalesBothTest6;
+            else if (strTab == StringEnum.GetStringValue(AllTest.SalesBothTest7))
+                retTab = AllTest.SalesBothTest7;
             return retTab;
         }
     }
