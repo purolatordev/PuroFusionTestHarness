@@ -243,121 +243,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.tblBillingTypes' does not have a p
           <Property Name="EDIActualGoLive" Type="datetime" />
           <Property Name="idEDIOnboardingPhase" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="tblDiscoveryRequest_">
-          <Key>
-            <PropertyRef Name="idRequest" />
-          </Key>
-          <Property Name="idRequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="isNewRequest" Type="bit" />
-          <Property Name="SalesRepName" Type="varchar" MaxLength="255" />
-          <Property Name="SalesRepEmail" Type="varchar" MaxLength="255" />
-          <Property Name="idOnboardingPhase" Type="int" />
-          <Property Name="District" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerName" Type="varchar" MaxLength="255" />
-          <Property Name="Address" Type="varchar" MaxLength="255" />
-          <Property Name="City" Type="varchar" MaxLength="255" />
-          <Property Name="State" Type="varchar" MaxLength="255" />
-          <Property Name="Zipcode" Type="varchar" MaxLength="255" />
-          <Property Name="Country" Type="varchar" MaxLength="255" />
-          <Property Name="Commodity" Type="varchar" MaxLength="255" />
-          <Property Name="ProjectedRevenue" Type="money" />
-          <Property Name="CustomerBusContact" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerBusTitle" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerBusEmail" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerBusPhone" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerITContact" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerITTitle" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerITEmail" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerITPhone" Type="varchar" MaxLength="255" />
-          <Property Name="CurrentSolution" Type="varchar" MaxLength="3000" />
-          <Property Name="ProposedCustoms" Type="varchar" MaxLength="2000" />
-          <Property Name="CallDate1" Type="datetime" />
-          <Property Name="CallDate2" Type="datetime" />
-          <Property Name="CallDate3" Type="datetime" />
-          <Property Name="UpdatedBy" Type="varchar" MaxLength="100" />
-          <Property Name="UpdatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="ActiveFlag" Type="bit" />
-          <Property Name="SalesComments" Type="varchar" MaxLength="3000" />
-          <Property Name="idITBA" Type="int" />
-          <Property Name="idShippingChannel" Type="int" />
-          <Property Name="TargetGoLive" Type="datetime" />
-          <Property Name="ActualGoLive" Type="datetime" />
-          <Property Name="SolutionSummary" Type="varchar" MaxLength="3000" />
-          <Property Name="CustomerWebsite" Type="varchar" MaxLength="500" />
-          <Property Name="Branch" Type="nvarchar" MaxLength="50" />
-          <Property Name="idVendor" Type="int" />
-          <Property Name="worldpakFlag" Type="bit" />
-          <Property Name="thirdpartyFlag" Type="bit" />
-          <Property Name="customFlag" Type="bit" />
-          <Property Name="InvoiceType" Type="varchar" MaxLength="50" />
-          <Property Name="BilltoAccount" Type="varchar" MaxLength="50" />
-          <Property Name="FTPUsername" Type="varchar" MaxLength="255" />
-          <Property Name="FTPPassword" Type="varchar" MaxLength="255" />
-          <Property Name="CustomsSupportedFlag" Type="bit" />
-          <Property Name="ElinkFlag" Type="bit" />
-          <Property Name="PARS" Type="nchar" MaxLength="25" />
-          <Property Name="PASS" Type="nchar" MaxLength="25" />
-          <Property Name="CustomsBroker" Type="nchar" MaxLength="255" />
-          <Property Name="SupportUser" Type="varchar" MaxLength="50" />
-          <Property Name="SupportGroup" Type="varchar" MaxLength="50" />
-          <Property Name="Office" Type="varchar" MaxLength="50" />
-          <Property Name="Group" Type="varchar" MaxLength="50" />
-          <Property Name="MigrationDate" Type="datetime" />
-          <Property Name="PreMigrationSolution" Type="varchar" MaxLength="3000" />
-          <Property Name="PostMigrationSolution" Type="varchar" MaxLength="3000" />
-          <Property Name="ControlBranch" Type="varchar" MaxLength="10" />
-          <Property Name="ContractNumber" Type="varchar" MaxLength="25" />
-          <Property Name="ContractStartDate" Type="datetime" />
-          <Property Name="ContractEndDate" Type="datetime" />
-          <Property Name="ContractCurrency" Type="varchar" MaxLength="10" />
-          <Property Name="PaymentTerms" Type="varchar" MaxLength="255" />
-          <Property Name="CloseReason" Type="varchar" MaxLength="255" />
-          <Property Name="CRR" Type="varchar" MaxLength="255" />
-          <Property Name="BrokerNumber" Type="varchar" MaxLength="50" />
-          <Property Name="DataScrubFlag" Type="bit" />
-          <Property Name="EDICustomizedFlag" Type="bit" />
-          <Property Name="StrategicFlag" Type="bit" />
-          <Property Name="ReturnsAcctNbr" Type="varchar" MaxLength="25" />
-          <Property Name="ReturnsAddress" Type="varchar" MaxLength="255" />
-          <Property Name="ReturnsCity" Type="varchar" MaxLength="255" />
-          <Property Name="ReturnsState" Type="varchar" MaxLength="255" />
-          <Property Name="ReturnsZip" Type="varchar" MaxLength="25" />
-          <Property Name="ReturnsCountry" Type="varchar" MaxLength="25" />
-          <Property Name="ReturnsDestroyFlag" Type="bit" />
-          <Property Name="ReturnsCreateLabelFlag" Type="bit" />
-          <Property Name="WPKSandboxUsername" Type="varchar" MaxLength="50" />
-          <Property Name="WPKSandboxPwd" Type="varchar" MaxLength="50" />
-          <Property Name="WPKProdUsername" Type="varchar" MaxLength="50" />
-          <Property Name="WPKProdPwd" Type="varchar" MaxLength="50" />
-          <Property Name="WPKCustomExportFlag" Type="bit" />
-          <Property Name="WPKGhostScanFlag" Type="bit" />
-          <Property Name="WPKEastWestSplitFlag" Type="bit" />
-          <Property Name="WPKAddressUploadFlag" Type="bit" />
-          <Property Name="WPKProductUploadFlag" Type="bit" />
-          <Property Name="WPKDataEntryMethod" Type="varchar" MaxLength="50" />
-          <Property Name="WPKEquipmentFlag" Type="bit" />
-          <Property Name="EWSelectBy" Type="varchar" MaxLength="50" />
-          <Property Name="EWSortCodeFlag" Type="bit" />
-          <Property Name="EWEastSortCode" Type="varchar" MaxLength="50" />
-          <Property Name="EWWestSortCode" Type="varchar" MaxLength="50" />
-          <Property Name="EWSepCloseoutFlag" Type="bit" />
-          <Property Name="EWSepPUFlag" Type="bit" />
-          <Property Name="EWSortDetails" Type="varchar(max)" />
-          <Property Name="EWMissortDetails" Type="varchar(max)" />
-          <Property Name="CurrentGoLive" Type="datetime" />
-          <Property Name="PhaseChangeDate" Type="datetime" />
-          <Property Name="idRequestType" Type="int" />
-          <Property Name="CurrentlyShippingFlag" Type="bit" />
-          <Property Name="idShippingVendor" Type="int" />
-          <Property Name="OtherVendorName" Type="varchar" MaxLength="255" />
-          <Property Name="idBroker" Type="int" />
-          <Property Name="OtherBrokerName" Type="varchar" MaxLength="255" />
-          <Property Name="idVendorType" Type="int" />
-          <Property Name="Route" Type="varchar" MaxLength="2000" />
-          <Property Name="idSolutionType" Type="int" />
-        </EntityType>
         <EntityType Name="tblDiscoveryRequest_Archive">
           <Key>
             <PropertyRef Name="idRequest_Archive" />
@@ -697,7 +582,8 @@ warning 6002: The table/view 'PuroTouchDB.dbo.tblBillingTypes' does not have a p
           <Property Name="idTriggerMechanism" Type="int" Nullable="false" />
           <Property Name="idTiming" Type="int" Nullable="false" />
           <Property Name="TimeOfFile" Type="datetime" />
-          <Property Name="idStatusCodes" Type="int" Nullable="false" />
+          <Property Name="idStatusCodesNonCourierEDI" Type="int" Nullable="false" />
+          <Property Name="idStatusCodesCourierEDI" Type="int" Nullable="false" />
           <Property Name="EDITranscationType" Type="varchar" MaxLength="50" />
           <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
@@ -1017,6 +903,30 @@ warning 6002: The table/view 'PuroTouchDB.dbo.tblSolutionType' does not have a p
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ActiveFlag" Type="bit" />
         </EntityType>
+        <EntityType Name="tblStatusCodesCourierEDI">
+          <Key>
+            <PropertyRef Name="idStatusCodesCourierEDI" />
+          </Key>
+          <Property Name="idStatusCodesCourierEDI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusCode" Type="varchar" MaxLength="100" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="100" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ActiveFlag" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblStatusCodesNonCourierEDI">
+          <Key>
+            <PropertyRef Name="idStatusCodesNonCourierEDI" />
+          </Key>
+          <Property Name="idStatusCodesNonCourierEDI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusCode" Type="varchar" MaxLength="100" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="100" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ActiveFlag" Type="bit" />
+        </EntityType>
         <EntityType Name="tblTaskType">
           <Key>
             <PropertyRef Name="idTaskType" />
@@ -1200,15 +1110,27 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_idStatCode_EDIRecipReqs_StatCode">
-          <End Role="tblStatusCodes" Type="Self.tblStatusCodes" Multiplicity="1" />
+        <Association Name="FK_idStatCodeCourierEDI_StatusCode">
+          <End Role="tblStatusCodesCourierEDI" Type="Self.tblStatusCodesCourierEDI" Multiplicity="1" />
           <End Role="tblEDIRecipReqs" Type="Self.tblEDIRecipReqs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblStatusCodes">
-              <PropertyRef Name="idStatusCodes" />
+            <Principal Role="tblStatusCodesCourierEDI">
+              <PropertyRef Name="idStatusCodesCourierEDI" />
             </Principal>
             <Dependent Role="tblEDIRecipReqs">
-              <PropertyRef Name="idStatusCodes" />
+              <PropertyRef Name="idStatusCodesCourierEDI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idStatCodeNonCourierEDI_StatusCode">
+          <End Role="tblStatusCodesNonCourierEDI" Type="Self.tblStatusCodesNonCourierEDI" Multiplicity="1" />
+          <End Role="tblEDIRecipReqs" Type="Self.tblEDIRecipReqs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStatusCodesNonCourierEDI">
+              <PropertyRef Name="idStatusCodesNonCourierEDI" />
+            </Principal>
+            <Dependent Role="tblEDIRecipReqs">
+              <PropertyRef Name="idStatusCodesNonCourierEDI" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1270,7 +1192,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <EntitySet Name="tblCustomsTypes" EntityType="Self.tblCustomsTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDataEntryMethods" EntityType="Self.tblDataEntryMethods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDiscoveryRequest" EntityType="Self.tblDiscoveryRequest" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblDiscoveryRequest_" EntityType="Self.tblDiscoveryRequest_" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDiscoveryRequest_Archive" EntityType="Self.tblDiscoveryRequest_Archive" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDiscoveryRequestDetails" EntityType="Self.tblDiscoveryRequestDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDiscoveryRequestEDI" EntityType="Self.tblDiscoveryRequestEDI" Schema="dbo" store:Type="Tables" />
@@ -1307,6 +1228,8 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <EntitySet Name="tblShippingServices" EntityType="Self.tblShippingServices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblShippingVendor" EntityType="Self.tblShippingVendor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblStatusCodes" EntityType="Self.tblStatusCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStatusCodesCourierEDI" EntityType="Self.tblStatusCodesCourierEDI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStatusCodesNonCourierEDI" EntityType="Self.tblStatusCodesNonCourierEDI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTaskType" EntityType="Self.tblTaskType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblThirdPartyVendor" EntityType="Self.tblThirdPartyVendor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTiming" EntityType="Self.tblTiming" Schema="dbo" store:Type="Tables" />
@@ -1414,8 +1337,12 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             <End Role="tblDiscoveryRequest" EntitySet="tblDiscoveryRequest" />
             <End Role="tblEDIShipMethods" EntitySet="tblEDIShipMethods" />
           </AssociationSet>
-          <AssociationSet Name="FK_idStatCode_EDIRecipReqs_StatCode" Association="Self.FK_idStatCode_EDIRecipReqs_StatCode">
-            <End Role="tblStatusCodes" EntitySet="tblStatusCodes" />
+          <AssociationSet Name="FK_idStatCodeCourierEDI_StatusCode" Association="Self.FK_idStatCodeCourierEDI_StatusCode">
+            <End Role="tblStatusCodesCourierEDI" EntitySet="tblStatusCodesCourierEDI" />
+            <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idStatCodeNonCourierEDI_StatusCode" Association="Self.FK_idStatCodeNonCourierEDI_StatusCode">
+            <End Role="tblStatusCodesNonCourierEDI" EntitySet="tblStatusCodesNonCourierEDI" />
             <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
           </AssociationSet>
           <AssociationSet Name="FK_idTime_EDIRecipReqs_Timing" Association="Self.FK_idTime_EDIRecipReqs_Timing">
@@ -2118,7 +2045,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             <End Role="tblContact" EntitySet="tblContact" />
           </AssociationSet>
           <EntitySet Name="tblDiscoveryRequest" EntityType="PuroTouchDBModel.tblDiscoveryRequest" />
-          <EntitySet Name="tblDiscoveryRequest_" EntityType="PuroTouchDBModel.tblDiscoveryRequest_" />
           <AssociationSet Name="FK_idOnBPh_OnboardPhase" Association="PuroTouchDBModel.FK_idOnBPh_OnboardPhase">
             <End Role="tblOnboardingPhase" EntitySet="tblOnboardingPhase" />
             <End Role="tblDiscoveryRequest" EntitySet="tblDiscoveryRequest" />
@@ -2146,27 +2072,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             <End Role="tblEDIShipMethodTypes" EntitySet="tblEDIShipMethodTypes" />
             <End Role="tblEDIShipMethods" EntitySet="tblEDIShipMethods" />
           </AssociationSet>
-          <EntitySet Name="tblEDIRecipReqs" EntityType="PuroTouchDBModel.tblEDIRecipReqs" />
-          <AssociationSet Name="FK_idComMeth_EDIRecipReqs_ComMeth" Association="PuroTouchDBModel.FK_idComMeth_EDIRecipReqs_ComMeth">
-            <End Role="tblCommunicationMethod" EntitySet="tblCommunicationMethod" />
-            <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_idFileType_EDIRecipReqs_FileType" Association="PuroTouchDBModel.FK_idFileType_EDIRecipReqs_FileType">
-            <End Role="tblFileType" EntitySet="tblFileType" />
-            <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_idStatCode_EDIRecipReqs_StatCode" Association="PuroTouchDBModel.FK_idStatCode_EDIRecipReqs_StatCode">
-            <End Role="tblStatusCodes" EntitySet="tblStatusCodes" />
-            <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_idTime_EDIRecipReqs_Timing" Association="PuroTouchDBModel.FK_idTime_EDIRecipReqs_Timing">
-            <End Role="tblTiming" EntitySet="tblTiming" />
-            <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_idTrig_EDIRecipReqs_TrigMech" Association="PuroTouchDBModel.FK_idTrig_EDIRecipReqs_TrigMech">
-            <End Role="tblTriggerMechanism" EntitySet="tblTriggerMechanism" />
-            <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
-          </AssociationSet>
           <EntitySet Name="tblEDITranscations" EntityType="PuroTouchDBModel.tblEDITranscations" />
           <AssociationSet Name="FK_idReq_EDITran_DisReq" Association="PuroTouchDBModel.FK_idReq_EDITran_DisReq">
             <End Role="tblDiscoveryRequest" EntitySet="tblDiscoveryRequest" />
@@ -2176,13 +2081,40 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             <End Role="tblEDITranscations" EntitySet="tblEDITranscations" />
             <End Role="tblEDIAccounts" EntitySet="tblEDIAccounts" />
           </AssociationSet>
+          <AssociationSet Name="FK_idEDITransType_EDITransType" Association="PuroTouchDBModel.FK_idEDITransType_EDITransType">
+            <End Role="tblEDITranscationType" EntitySet="tblEDITranscationType" />
+            <End Role="tblEDITranscations" EntitySet="tblEDITranscations" />
+          </AssociationSet>
+          <EntitySet Name="tblEDIRecipReqs" EntityType="PuroTouchDBModel.tblEDIRecipReqs" />
+          <EntitySet Name="tblStatusCodesCourierEDI" EntityType="PuroTouchDBModel.tblStatusCodesCourierEDI" />
+          <EntitySet Name="tblStatusCodesNonCourierEDI" EntityType="PuroTouchDBModel.tblStatusCodesNonCourierEDI" />
+          <AssociationSet Name="FK_idComMeth_EDIRecipReqs_ComMeth" Association="PuroTouchDBModel.FK_idComMeth_EDIRecipReqs_ComMeth">
+            <End Role="tblCommunicationMethod" EntitySet="tblCommunicationMethod" />
+            <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idFileType_EDIRecipReqs_FileType" Association="PuroTouchDBModel.FK_idFileType_EDIRecipReqs_FileType">
+            <End Role="tblFileType" EntitySet="tblFileType" />
+            <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idStatCodeCourierEDI_StatusCode" Association="PuroTouchDBModel.FK_idStatCodeCourierEDI_StatusCode">
+            <End Role="tblStatusCodesCourierEDI" EntitySet="tblStatusCodesCourierEDI" />
+            <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idStatCodeNonCourierEDI_StatusCode" Association="PuroTouchDBModel.FK_idStatCodeNonCourierEDI_StatusCode">
+            <End Role="tblStatusCodesNonCourierEDI" EntitySet="tblStatusCodesNonCourierEDI" />
+            <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idTime_EDIRecipReqs_Timing" Association="PuroTouchDBModel.FK_idTime_EDIRecipReqs_Timing">
+            <End Role="tblTiming" EntitySet="tblTiming" />
+            <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
+          </AssociationSet>
           <AssociationSet Name="FK_idTrans_RecipReqs_Trans" Association="PuroTouchDBModel.FK_idTrans_RecipReqs_Trans">
             <End Role="tblEDITranscations" EntitySet="tblEDITranscations" />
             <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
           </AssociationSet>
-          <AssociationSet Name="FK_idEDITransType_EDITransType" Association="PuroTouchDBModel.FK_idEDITransType_EDITransType">
-            <End Role="tblEDITranscationType" EntitySet="tblEDITranscationType" />
-            <End Role="tblEDITranscations" EntitySet="tblEDITranscations" />
+          <AssociationSet Name="FK_idTrig_EDIRecipReqs_TrigMech" Association="PuroTouchDBModel.FK_idTrig_EDIRecipReqs_TrigMech">
+            <End Role="tblTriggerMechanism" EntitySet="tblTriggerMechanism" />
+            <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2339,121 +2271,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <NavigationProperty Name="tblEDIShipMethods" Relationship="PuroTouchDBModel.FK_idRequest_DiscoveryRequest" FromRole="tblDiscoveryRequest" ToRole="tblEDIShipMethods" />
           <NavigationProperty Name="tblEDITranscations" Relationship="PuroTouchDBModel.FK_idReq_EDITran_DisReq" FromRole="tblDiscoveryRequest" ToRole="tblEDITranscations" />
         </EntityType>
-        <EntityType Name="tblDiscoveryRequest_">
-          <Key>
-            <PropertyRef Name="idRequest" />
-          </Key>
-          <Property Name="idRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="isNewRequest" Type="Boolean" />
-          <Property Name="SalesRepName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="SalesRepEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="idOnboardingPhase" Type="Int32" />
-          <Property Name="District" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Zipcode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Commodity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="ProjectedRevenue" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="CustomerBusContact" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerBusTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerBusEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerBusPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerITContact" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerITTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerITEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerITPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CurrentSolution" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
-          <Property Name="ProposedCustoms" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="CallDate1" Type="DateTime" Precision="3" />
-          <Property Name="CallDate2" Type="DateTime" Precision="3" />
-          <Property Name="CallDate3" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ActiveFlag" Type="Boolean" />
-          <Property Name="SalesComments" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
-          <Property Name="idITBA" Type="Int32" />
-          <Property Name="idShippingChannel" Type="Int32" />
-          <Property Name="TargetGoLive" Type="DateTime" Precision="3" />
-          <Property Name="ActualGoLive" Type="DateTime" Precision="3" />
-          <Property Name="SolutionSummary" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerWebsite" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="idVendor" Type="Int32" />
-          <Property Name="worldpakFlag" Type="Boolean" />
-          <Property Name="thirdpartyFlag" Type="Boolean" />
-          <Property Name="customFlag" Type="Boolean" />
-          <Property Name="InvoiceType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BilltoAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FTPUsername" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="FTPPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomsSupportedFlag" Type="Boolean" />
-          <Property Name="ElinkFlag" Type="Boolean" />
-          <Property Name="PARS" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
-          <Property Name="PASS" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
-          <Property Name="CustomsBroker" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
-          <Property Name="SupportUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SupportGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Office" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Group" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MigrationDate" Type="DateTime" Precision="3" />
-          <Property Name="PreMigrationSolution" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
-          <Property Name="PostMigrationSolution" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
-          <Property Name="ControlBranch" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="ContractNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="ContractStartDate" Type="DateTime" Precision="3" />
-          <Property Name="ContractEndDate" Type="DateTime" Precision="3" />
-          <Property Name="ContractCurrency" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="PaymentTerms" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CloseReason" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CRR" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="BrokerNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DataScrubFlag" Type="Boolean" />
-          <Property Name="EDICustomizedFlag" Type="Boolean" />
-          <Property Name="StrategicFlag" Type="Boolean" />
-          <Property Name="ReturnsAcctNbr" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="ReturnsAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="ReturnsCity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="ReturnsState" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="ReturnsZip" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="ReturnsCountry" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="ReturnsDestroyFlag" Type="Boolean" />
-          <Property Name="ReturnsCreateLabelFlag" Type="Boolean" />
-          <Property Name="WPKSandboxUsername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="WPKSandboxPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="WPKProdUsername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="WPKProdPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="WPKCustomExportFlag" Type="Boolean" />
-          <Property Name="WPKGhostScanFlag" Type="Boolean" />
-          <Property Name="WPKEastWestSplitFlag" Type="Boolean" />
-          <Property Name="WPKAddressUploadFlag" Type="Boolean" />
-          <Property Name="WPKProductUploadFlag" Type="Boolean" />
-          <Property Name="WPKDataEntryMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="WPKEquipmentFlag" Type="Boolean" />
-          <Property Name="EWSelectBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EWSortCodeFlag" Type="Boolean" />
-          <Property Name="EWEastSortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EWWestSortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EWSepCloseoutFlag" Type="Boolean" />
-          <Property Name="EWSepPUFlag" Type="Boolean" />
-          <Property Name="EWSortDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="EWMissortDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CurrentGoLive" Type="DateTime" Precision="3" />
-          <Property Name="PhaseChangeDate" Type="DateTime" Precision="3" />
-          <Property Name="idRequestType" Type="Int32" />
-          <Property Name="CurrentlyShippingFlag" Type="Boolean" />
-          <Property Name="idShippingVendor" Type="Int32" />
-          <Property Name="OtherVendorName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="idBroker" Type="Int32" />
-          <Property Name="OtherBrokerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="idVendorType" Type="Int32" />
-          <Property Name="Route" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="idSolutionType" Type="Int32" />
-        </EntityType>
         <Association Name="FK_idOnBPh_OnboardPhase">
           <End Type="PuroTouchDBModel.tblOnboardingPhase" Role="tblOnboardingPhase" Multiplicity="0..1" />
           <End Type="PuroTouchDBModel.tblDiscoveryRequest" Role="tblDiscoveryRequest" Multiplicity="*" />
@@ -2593,7 +2410,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="ActiveFlag" Type="Boolean" />
-          <NavigationProperty Name="tblEDIRecipReqs" Relationship="PuroTouchDBModel.FK_idStatCode_EDIRecipReqs_StatCode" FromRole="tblStatusCodes" ToRole="tblEDIRecipReqs" />
         </EntityType>
         <EntityType Name="tblTiming">
           <Key>
@@ -2657,103 +2473,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="tblEDIRecipReqs">
-          <Key>
-            <PropertyRef Name="idEDIRecipReqs" />
-          </Key>
-          <Property Name="idEDIRecipReqs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RecipReqNum" Type="Int32" Nullable="false" />
-          <Property Name="idRequest" Type="Int32" Nullable="false" />
-          <Property Name="idEDITranscation" Type="Int32" Nullable="false" />
-          <Property Name="PanelTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idFileType" Type="Int32" Nullable="false" />
-          <Property Name="X12_ISA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="X12_GS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="X12_Qualifier" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idCommunicationMethod" Type="Int32" Nullable="false" />
-          <Property Name="FTPAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FolderPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="idTriggerMechanism" Type="Int32" Nullable="false" />
-          <Property Name="idTiming" Type="Int32" Nullable="false" />
-          <Property Name="TimeOfFile" Type="DateTime" Precision="3" />
-          <Property Name="idStatusCodes" Type="Int32" Nullable="false" />
-          <Property Name="EDITranscationType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ActiveFlag" Type="Boolean" />
-          <NavigationProperty Name="tblCommunicationMethod" Relationship="PuroTouchDBModel.FK_idComMeth_EDIRecipReqs_ComMeth" FromRole="tblEDIRecipReqs" ToRole="tblCommunicationMethod" />
-          <NavigationProperty Name="tblFileType" Relationship="PuroTouchDBModel.FK_idFileType_EDIRecipReqs_FileType" FromRole="tblEDIRecipReqs" ToRole="tblFileType" />
-          <NavigationProperty Name="tblStatusCodes" Relationship="PuroTouchDBModel.FK_idStatCode_EDIRecipReqs_StatCode" FromRole="tblEDIRecipReqs" ToRole="tblStatusCodes" />
-          <NavigationProperty Name="tblTiming" Relationship="PuroTouchDBModel.FK_idTime_EDIRecipReqs_Timing" FromRole="tblEDIRecipReqs" ToRole="tblTiming" />
-          <NavigationProperty Name="tblTriggerMechanism" Relationship="PuroTouchDBModel.FK_idTrig_EDIRecipReqs_TrigMech" FromRole="tblEDIRecipReqs" ToRole="tblTriggerMechanism" />
-          <NavigationProperty Name="tblEDITranscations" Relationship="PuroTouchDBModel.FK_idTrans_RecipReqs_Trans" FromRole="tblEDIRecipReqs" ToRole="tblEDITranscations" />
-        </EntityType>
-        <Association Name="FK_idComMeth_EDIRecipReqs_ComMeth">
-          <End Type="PuroTouchDBModel.tblCommunicationMethod" Role="tblCommunicationMethod" Multiplicity="1" />
-          <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCommunicationMethod">
-              <PropertyRef Name="idCommunicationMethod" />
-            </Principal>
-            <Dependent Role="tblEDIRecipReqs">
-              <PropertyRef Name="idCommunicationMethod" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_idFileType_EDIRecipReqs_FileType">
-          <End Type="PuroTouchDBModel.tblFileType" Role="tblFileType" Multiplicity="1" />
-          <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblFileType">
-              <PropertyRef Name="idFileType" />
-            </Principal>
-            <Dependent Role="tblEDIRecipReqs">
-              <PropertyRef Name="idFileType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_idStatCode_EDIRecipReqs_StatCode">
-          <End Type="PuroTouchDBModel.tblStatusCodes" Role="tblStatusCodes" Multiplicity="1" />
-          <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblStatusCodes">
-              <PropertyRef Name="idStatusCodes" />
-            </Principal>
-            <Dependent Role="tblEDIRecipReqs">
-              <PropertyRef Name="idStatusCodes" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_idTime_EDIRecipReqs_Timing">
-          <End Type="PuroTouchDBModel.tblTiming" Role="tblTiming" Multiplicity="1" />
-          <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblTiming">
-              <PropertyRef Name="idTiming" />
-            </Principal>
-            <Dependent Role="tblEDIRecipReqs">
-              <PropertyRef Name="idTiming" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_idTrig_EDIRecipReqs_TrigMech">
-          <End Type="PuroTouchDBModel.tblTriggerMechanism" Role="tblTriggerMechanism" Multiplicity="1" />
-          <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblTriggerMechanism">
-              <PropertyRef Name="idTriggerMechanism" />
-            </Principal>
-            <Dependent Role="tblEDIRecipReqs">
-              <PropertyRef Name="idTriggerMechanism" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="tblEDITranscations">
           <Key>
             <PropertyRef Name="idEDITranscation" />
@@ -2774,8 +2493,8 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <Property Name="ActiveFlag" Type="Boolean" />
           <NavigationProperty Name="tblDiscoveryRequest" Relationship="PuroTouchDBModel.FK_idReq_EDITran_DisReq" FromRole="tblEDITranscations" ToRole="tblDiscoveryRequest" />
           <NavigationProperty Name="tblEDIAccounts" Relationship="PuroTouchDBModel.FK_idTrans_Accts_Trans" FromRole="tblEDITranscations" ToRole="tblEDIAccounts" />
-          <NavigationProperty Name="tblEDIRecipReqs" Relationship="PuroTouchDBModel.FK_idTrans_RecipReqs_Trans" FromRole="tblEDITranscations" ToRole="tblEDIRecipReqs" />
           <NavigationProperty Name="tblEDITranscationType" Relationship="PuroTouchDBModel.FK_idEDITransType_EDITransType" FromRole="tblEDITranscations" ToRole="tblEDITranscationType" />
+          <NavigationProperty Name="tblEDIRecipReqs" Relationship="PuroTouchDBModel.FK_idTrans_RecipReqs_Trans" FromRole="tblEDITranscations" ToRole="tblEDIRecipReqs" />
         </EntityType>
         <Association Name="FK_idReq_EDITran_DisReq">
           <End Type="PuroTouchDBModel.tblDiscoveryRequest" Role="tblDiscoveryRequest" Multiplicity="1" />
@@ -2801,6 +2520,143 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_idEDITransType_EDITransType">
+          <End Type="PuroTouchDBModel.tblEDITranscationType" Role="tblEDITranscationType" Multiplicity="1" />
+          <End Type="PuroTouchDBModel.tblEDITranscations" Role="tblEDITranscations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEDITranscationType">
+              <PropertyRef Name="idEDITranscationType" />
+            </Principal>
+            <Dependent Role="tblEDITranscations">
+              <PropertyRef Name="idEDITranscationType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblEDIRecipReqs">
+          <Key>
+            <PropertyRef Name="idEDIRecipReqs" />
+          </Key>
+          <Property Name="idEDIRecipReqs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecipReqNum" Type="Int32" Nullable="false" />
+          <Property Name="idRequest" Type="Int32" Nullable="false" />
+          <Property Name="idEDITranscation" Type="Int32" Nullable="false" />
+          <Property Name="PanelTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idFileType" Type="Int32" Nullable="false" />
+          <Property Name="X12_ISA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="X12_GS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="X12_Qualifier" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idCommunicationMethod" Type="Int32" Nullable="false" />
+          <Property Name="FTPAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FolderPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="idTriggerMechanism" Type="Int32" Nullable="false" />
+          <Property Name="idTiming" Type="Int32" Nullable="false" />
+          <Property Name="TimeOfFile" Type="DateTime" Precision="3" />
+          <Property Name="idStatusCodesNonCourierEDI" Type="Int32" Nullable="false" />
+          <Property Name="idStatusCodesCourierEDI" Type="Int32" Nullable="false" />
+          <Property Name="EDITranscationType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ActiveFlag" Type="Boolean" />
+          <NavigationProperty Name="tblCommunicationMethod" Relationship="PuroTouchDBModel.FK_idComMeth_EDIRecipReqs_ComMeth" FromRole="tblEDIRecipReqs" ToRole="tblCommunicationMethod" />
+          <NavigationProperty Name="tblFileType" Relationship="PuroTouchDBModel.FK_idFileType_EDIRecipReqs_FileType" FromRole="tblEDIRecipReqs" ToRole="tblFileType" />
+          <NavigationProperty Name="tblStatusCodesCourierEDI" Relationship="PuroTouchDBModel.FK_idStatCodeCourierEDI_StatusCode" FromRole="tblEDIRecipReqs" ToRole="tblStatusCodesCourierEDI" />
+          <NavigationProperty Name="tblStatusCodesNonCourierEDI" Relationship="PuroTouchDBModel.FK_idStatCodeNonCourierEDI_StatusCode" FromRole="tblEDIRecipReqs" ToRole="tblStatusCodesNonCourierEDI" />
+          <NavigationProperty Name="tblTiming" Relationship="PuroTouchDBModel.FK_idTime_EDIRecipReqs_Timing" FromRole="tblEDIRecipReqs" ToRole="tblTiming" />
+          <NavigationProperty Name="tblEDITranscations" Relationship="PuroTouchDBModel.FK_idTrans_RecipReqs_Trans" FromRole="tblEDIRecipReqs" ToRole="tblEDITranscations" />
+          <NavigationProperty Name="tblTriggerMechanism" Relationship="PuroTouchDBModel.FK_idTrig_EDIRecipReqs_TrigMech" FromRole="tblEDIRecipReqs" ToRole="tblTriggerMechanism" />
+        </EntityType>
+        <EntityType Name="tblStatusCodesCourierEDI">
+          <Key>
+            <PropertyRef Name="idStatusCodesCourierEDI" />
+          </Key>
+          <Property Name="idStatusCodesCourierEDI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ActiveFlag" Type="Boolean" />
+          <NavigationProperty Name="tblEDIRecipReqs" Relationship="PuroTouchDBModel.FK_idStatCodeCourierEDI_StatusCode" FromRole="tblStatusCodesCourierEDI" ToRole="tblEDIRecipReqs" />
+        </EntityType>
+        <EntityType Name="tblStatusCodesNonCourierEDI">
+          <Key>
+            <PropertyRef Name="idStatusCodesNonCourierEDI" />
+          </Key>
+          <Property Name="idStatusCodesNonCourierEDI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ActiveFlag" Type="Boolean" />
+          <NavigationProperty Name="tblEDIRecipReqs" Relationship="PuroTouchDBModel.FK_idStatCodeNonCourierEDI_StatusCode" FromRole="tblStatusCodesNonCourierEDI" ToRole="tblEDIRecipReqs" />
+        </EntityType>
+        <Association Name="FK_idComMeth_EDIRecipReqs_ComMeth">
+          <End Type="PuroTouchDBModel.tblCommunicationMethod" Role="tblCommunicationMethod" Multiplicity="1" />
+          <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCommunicationMethod">
+              <PropertyRef Name="idCommunicationMethod" />
+            </Principal>
+            <Dependent Role="tblEDIRecipReqs">
+              <PropertyRef Name="idCommunicationMethod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idFileType_EDIRecipReqs_FileType">
+          <End Type="PuroTouchDBModel.tblFileType" Role="tblFileType" Multiplicity="1" />
+          <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFileType">
+              <PropertyRef Name="idFileType" />
+            </Principal>
+            <Dependent Role="tblEDIRecipReqs">
+              <PropertyRef Name="idFileType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idStatCodeCourierEDI_StatusCode">
+          <End Type="PuroTouchDBModel.tblStatusCodesCourierEDI" Role="tblStatusCodesCourierEDI" Multiplicity="1" />
+          <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStatusCodesCourierEDI">
+              <PropertyRef Name="idStatusCodesCourierEDI" />
+            </Principal>
+            <Dependent Role="tblEDIRecipReqs">
+              <PropertyRef Name="idStatusCodesCourierEDI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idStatCodeNonCourierEDI_StatusCode">
+          <End Type="PuroTouchDBModel.tblStatusCodesNonCourierEDI" Role="tblStatusCodesNonCourierEDI" Multiplicity="1" />
+          <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStatusCodesNonCourierEDI">
+              <PropertyRef Name="idStatusCodesNonCourierEDI" />
+            </Principal>
+            <Dependent Role="tblEDIRecipReqs">
+              <PropertyRef Name="idStatusCodesNonCourierEDI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idTime_EDIRecipReqs_Timing">
+          <End Type="PuroTouchDBModel.tblTiming" Role="tblTiming" Multiplicity="1" />
+          <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTiming">
+              <PropertyRef Name="idTiming" />
+            </Principal>
+            <Dependent Role="tblEDIRecipReqs">
+              <PropertyRef Name="idTiming" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_idTrans_RecipReqs_Trans">
           <End Type="PuroTouchDBModel.tblEDITranscations" Role="tblEDITranscations" Multiplicity="1" />
           <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
@@ -2813,15 +2669,15 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_idEDITransType_EDITransType">
-          <End Type="PuroTouchDBModel.tblEDITranscationType" Role="tblEDITranscationType" Multiplicity="1" />
-          <End Type="PuroTouchDBModel.tblEDITranscations" Role="tblEDITranscations" Multiplicity="*" />
+        <Association Name="FK_idTrig_EDIRecipReqs_TrigMech">
+          <End Type="PuroTouchDBModel.tblTriggerMechanism" Role="tblTriggerMechanism" Multiplicity="1" />
+          <End Type="PuroTouchDBModel.tblEDIRecipReqs" Role="tblEDIRecipReqs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblEDITranscationType">
-              <PropertyRef Name="idEDITranscationType" />
+            <Principal Role="tblTriggerMechanism">
+              <PropertyRef Name="idTriggerMechanism" />
             </Principal>
-            <Dependent Role="tblEDITranscations">
-              <PropertyRef Name="idEDITranscationType" />
+            <Dependent Role="tblEDIRecipReqs">
+              <PropertyRef Name="idTriggerMechanism" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3637,122 +3493,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblDiscoveryRequest_">
-            <EntityTypeMapping TypeName="PuroTouchDBModel.tblDiscoveryRequest_">
-              <MappingFragment StoreEntitySet="tblDiscoveryRequest_">
-                <ScalarProperty Name="idSolutionType" ColumnName="idSolutionType" />
-                <ScalarProperty Name="Route" ColumnName="Route" />
-                <ScalarProperty Name="idVendorType" ColumnName="idVendorType" />
-                <ScalarProperty Name="OtherBrokerName" ColumnName="OtherBrokerName" />
-                <ScalarProperty Name="idBroker" ColumnName="idBroker" />
-                <ScalarProperty Name="OtherVendorName" ColumnName="OtherVendorName" />
-                <ScalarProperty Name="idShippingVendor" ColumnName="idShippingVendor" />
-                <ScalarProperty Name="CurrentlyShippingFlag" ColumnName="CurrentlyShippingFlag" />
-                <ScalarProperty Name="idRequestType" ColumnName="idRequestType" />
-                <ScalarProperty Name="PhaseChangeDate" ColumnName="PhaseChangeDate" />
-                <ScalarProperty Name="CurrentGoLive" ColumnName="CurrentGoLive" />
-                <ScalarProperty Name="EWMissortDetails" ColumnName="EWMissortDetails" />
-                <ScalarProperty Name="EWSortDetails" ColumnName="EWSortDetails" />
-                <ScalarProperty Name="EWSepPUFlag" ColumnName="EWSepPUFlag" />
-                <ScalarProperty Name="EWSepCloseoutFlag" ColumnName="EWSepCloseoutFlag" />
-                <ScalarProperty Name="EWWestSortCode" ColumnName="EWWestSortCode" />
-                <ScalarProperty Name="EWEastSortCode" ColumnName="EWEastSortCode" />
-                <ScalarProperty Name="EWSortCodeFlag" ColumnName="EWSortCodeFlag" />
-                <ScalarProperty Name="EWSelectBy" ColumnName="EWSelectBy" />
-                <ScalarProperty Name="WPKEquipmentFlag" ColumnName="WPKEquipmentFlag" />
-                <ScalarProperty Name="WPKDataEntryMethod" ColumnName="WPKDataEntryMethod" />
-                <ScalarProperty Name="WPKProductUploadFlag" ColumnName="WPKProductUploadFlag" />
-                <ScalarProperty Name="WPKAddressUploadFlag" ColumnName="WPKAddressUploadFlag" />
-                <ScalarProperty Name="WPKEastWestSplitFlag" ColumnName="WPKEastWestSplitFlag" />
-                <ScalarProperty Name="WPKGhostScanFlag" ColumnName="WPKGhostScanFlag" />
-                <ScalarProperty Name="WPKCustomExportFlag" ColumnName="WPKCustomExportFlag" />
-                <ScalarProperty Name="WPKProdPwd" ColumnName="WPKProdPwd" />
-                <ScalarProperty Name="WPKProdUsername" ColumnName="WPKProdUsername" />
-                <ScalarProperty Name="WPKSandboxPwd" ColumnName="WPKSandboxPwd" />
-                <ScalarProperty Name="WPKSandboxUsername" ColumnName="WPKSandboxUsername" />
-                <ScalarProperty Name="ReturnsCreateLabelFlag" ColumnName="ReturnsCreateLabelFlag" />
-                <ScalarProperty Name="ReturnsDestroyFlag" ColumnName="ReturnsDestroyFlag" />
-                <ScalarProperty Name="ReturnsCountry" ColumnName="ReturnsCountry" />
-                <ScalarProperty Name="ReturnsZip" ColumnName="ReturnsZip" />
-                <ScalarProperty Name="ReturnsState" ColumnName="ReturnsState" />
-                <ScalarProperty Name="ReturnsCity" ColumnName="ReturnsCity" />
-                <ScalarProperty Name="ReturnsAddress" ColumnName="ReturnsAddress" />
-                <ScalarProperty Name="ReturnsAcctNbr" ColumnName="ReturnsAcctNbr" />
-                <ScalarProperty Name="StrategicFlag" ColumnName="StrategicFlag" />
-                <ScalarProperty Name="EDICustomizedFlag" ColumnName="EDICustomizedFlag" />
-                <ScalarProperty Name="DataScrubFlag" ColumnName="DataScrubFlag" />
-                <ScalarProperty Name="BrokerNumber" ColumnName="BrokerNumber" />
-                <ScalarProperty Name="CRR" ColumnName="CRR" />
-                <ScalarProperty Name="CloseReason" ColumnName="CloseReason" />
-                <ScalarProperty Name="PaymentTerms" ColumnName="PaymentTerms" />
-                <ScalarProperty Name="ContractCurrency" ColumnName="ContractCurrency" />
-                <ScalarProperty Name="ContractEndDate" ColumnName="ContractEndDate" />
-                <ScalarProperty Name="ContractStartDate" ColumnName="ContractStartDate" />
-                <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
-                <ScalarProperty Name="ControlBranch" ColumnName="ControlBranch" />
-                <ScalarProperty Name="PostMigrationSolution" ColumnName="PostMigrationSolution" />
-                <ScalarProperty Name="PreMigrationSolution" ColumnName="PreMigrationSolution" />
-                <ScalarProperty Name="MigrationDate" ColumnName="MigrationDate" />
-                <ScalarProperty Name="Group" ColumnName="Group" />
-                <ScalarProperty Name="Office" ColumnName="Office" />
-                <ScalarProperty Name="SupportGroup" ColumnName="SupportGroup" />
-                <ScalarProperty Name="SupportUser" ColumnName="SupportUser" />
-                <ScalarProperty Name="CustomsBroker" ColumnName="CustomsBroker" />
-                <ScalarProperty Name="PASS" ColumnName="PASS" />
-                <ScalarProperty Name="PARS" ColumnName="PARS" />
-                <ScalarProperty Name="ElinkFlag" ColumnName="ElinkFlag" />
-                <ScalarProperty Name="CustomsSupportedFlag" ColumnName="CustomsSupportedFlag" />
-                <ScalarProperty Name="FTPPassword" ColumnName="FTPPassword" />
-                <ScalarProperty Name="FTPUsername" ColumnName="FTPUsername" />
-                <ScalarProperty Name="BilltoAccount" ColumnName="BilltoAccount" />
-                <ScalarProperty Name="InvoiceType" ColumnName="InvoiceType" />
-                <ScalarProperty Name="customFlag" ColumnName="customFlag" />
-                <ScalarProperty Name="thirdpartyFlag" ColumnName="thirdpartyFlag" />
-                <ScalarProperty Name="worldpakFlag" ColumnName="worldpakFlag" />
-                <ScalarProperty Name="idVendor" ColumnName="idVendor" />
-                <ScalarProperty Name="Branch" ColumnName="Branch" />
-                <ScalarProperty Name="CustomerWebsite" ColumnName="CustomerWebsite" />
-                <ScalarProperty Name="SolutionSummary" ColumnName="SolutionSummary" />
-                <ScalarProperty Name="ActualGoLive" ColumnName="ActualGoLive" />
-                <ScalarProperty Name="TargetGoLive" ColumnName="TargetGoLive" />
-                <ScalarProperty Name="idShippingChannel" ColumnName="idShippingChannel" />
-                <ScalarProperty Name="idITBA" ColumnName="idITBA" />
-                <ScalarProperty Name="SalesComments" ColumnName="SalesComments" />
-                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CallDate3" ColumnName="CallDate3" />
-                <ScalarProperty Name="CallDate2" ColumnName="CallDate2" />
-                <ScalarProperty Name="CallDate1" ColumnName="CallDate1" />
-                <ScalarProperty Name="ProposedCustoms" ColumnName="ProposedCustoms" />
-                <ScalarProperty Name="CurrentSolution" ColumnName="CurrentSolution" />
-                <ScalarProperty Name="CustomerITPhone" ColumnName="CustomerITPhone" />
-                <ScalarProperty Name="CustomerITEmail" ColumnName="CustomerITEmail" />
-                <ScalarProperty Name="CustomerITTitle" ColumnName="CustomerITTitle" />
-                <ScalarProperty Name="CustomerITContact" ColumnName="CustomerITContact" />
-                <ScalarProperty Name="CustomerBusPhone" ColumnName="CustomerBusPhone" />
-                <ScalarProperty Name="CustomerBusEmail" ColumnName="CustomerBusEmail" />
-                <ScalarProperty Name="CustomerBusTitle" ColumnName="CustomerBusTitle" />
-                <ScalarProperty Name="CustomerBusContact" ColumnName="CustomerBusContact" />
-                <ScalarProperty Name="ProjectedRevenue" ColumnName="ProjectedRevenue" />
-                <ScalarProperty Name="Commodity" ColumnName="Commodity" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="District" ColumnName="District" />
-                <ScalarProperty Name="idOnboardingPhase" ColumnName="idOnboardingPhase" />
-                <ScalarProperty Name="SalesRepEmail" ColumnName="SalesRepEmail" />
-                <ScalarProperty Name="SalesRepName" ColumnName="SalesRepName" />
-                <ScalarProperty Name="isNewRequest" ColumnName="isNewRequest" />
-                <ScalarProperty Name="idRequest" ColumnName="idRequest" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblBillingSpecialist">
             <EntityTypeMapping TypeName="PuroTouchDBModel.tblBillingSpecialist">
               <MappingFragment StoreEntitySet="tblBillingSpecialist">
@@ -3910,6 +3650,26 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblEDITranscations">
+            <EntityTypeMapping TypeName="PuroTouchDBModel.tblEDITranscations">
+              <MappingFragment StoreEntitySet="tblEDITranscations">
+                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="TestSentMethod" ColumnName="TestSentMethod" />
+                <ScalarProperty Name="TestEnvironment" ColumnName="TestEnvironment" />
+                <ScalarProperty Name="SFTPFolder" ColumnName="SFTPFolder" />
+                <ScalarProperty Name="BatchInvoices" ColumnName="BatchInvoices" />
+                <ScalarProperty Name="CombinePayer" ColumnName="CombinePayer" />
+                <ScalarProperty Name="TotalRequests" ColumnName="TotalRequests" />
+                <ScalarProperty Name="idEDITranscationType" ColumnName="idEDITranscationType" />
+                <ScalarProperty Name="idRequest" ColumnName="idRequest" />
+                <ScalarProperty Name="idEDITranscation" ColumnName="idEDITranscation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblEDIRecipReqs">
             <EntityTypeMapping TypeName="PuroTouchDBModel.tblEDIRecipReqs">
               <MappingFragment StoreEntitySet="tblEDIRecipReqs">
@@ -3920,7 +3680,8 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="EDITranscationType" ColumnName="EDITranscationType" />
-                <ScalarProperty Name="idStatusCodes" ColumnName="idStatusCodes" />
+                <ScalarProperty Name="idStatusCodesCourierEDI" ColumnName="idStatusCodesCourierEDI" />
+                <ScalarProperty Name="idStatusCodesNonCourierEDI" ColumnName="idStatusCodesNonCourierEDI" />
                 <ScalarProperty Name="TimeOfFile" ColumnName="TimeOfFile" />
                 <ScalarProperty Name="idTiming" ColumnName="idTiming" />
                 <ScalarProperty Name="idTriggerMechanism" ColumnName="idTriggerMechanism" />
@@ -3942,23 +3703,29 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblEDITranscations">
-            <EntityTypeMapping TypeName="PuroTouchDBModel.tblEDITranscations">
-              <MappingFragment StoreEntitySet="tblEDITranscations">
+          <EntitySetMapping Name="tblStatusCodesCourierEDI">
+            <EntityTypeMapping TypeName="PuroTouchDBModel.tblStatusCodesCourierEDI">
+              <MappingFragment StoreEntitySet="tblStatusCodesCourierEDI">
                 <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="TestSentMethod" ColumnName="TestSentMethod" />
-                <ScalarProperty Name="TestEnvironment" ColumnName="TestEnvironment" />
-                <ScalarProperty Name="SFTPFolder" ColumnName="SFTPFolder" />
-                <ScalarProperty Name="BatchInvoices" ColumnName="BatchInvoices" />
-                <ScalarProperty Name="CombinePayer" ColumnName="CombinePayer" />
-                <ScalarProperty Name="TotalRequests" ColumnName="TotalRequests" />
-                <ScalarProperty Name="idEDITranscationType" ColumnName="idEDITranscationType" />
-                <ScalarProperty Name="idRequest" ColumnName="idRequest" />
-                <ScalarProperty Name="idEDITranscation" ColumnName="idEDITranscation" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="idStatusCodesCourierEDI" ColumnName="idStatusCodesCourierEDI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStatusCodesNonCourierEDI">
+            <EntityTypeMapping TypeName="PuroTouchDBModel.tblStatusCodesNonCourierEDI">
+              <MappingFragment StoreEntitySet="tblStatusCodesNonCourierEDI">
+                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="idStatusCodesNonCourierEDI" ColumnName="idStatusCodesNonCourierEDI" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

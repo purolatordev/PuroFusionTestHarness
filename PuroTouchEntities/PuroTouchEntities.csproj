@@ -134,9 +134,6 @@
     <Compile Include="tblDiscoveryRequestUploads_Archive.cs">
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tblDiscoveryRequest_.cs">
-      <DependentUpon>PuroTouchModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="tblDiscoveryRequest_Archive.cs">
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
@@ -219,6 +216,12 @@
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblStatusCodes.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblStatusCodesCourierEDI.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblStatusCodesNonCourierEDI.cs">
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTaskType.cs">

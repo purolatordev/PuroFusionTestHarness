@@ -39,8 +39,8 @@ namespace PuroTouchEntities
         public virtual tblDiscoveryRequest tblDiscoveryRequest { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblEDIAccounts> tblEDIAccounts { get; set; }
+        public virtual tblEDITranscationType tblEDITranscationType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblEDIRecipReqs> tblEDIRecipReqs { get; set; }
-        public virtual tblEDITranscationType tblEDITranscationType { get; set; }
     }
 }

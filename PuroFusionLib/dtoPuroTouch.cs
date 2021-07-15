@@ -335,7 +335,8 @@ namespace PuroFusionLib
         public int idTriggerMechanism { get; set; }
         public int idTiming { get; set; }
         public Nullable<System.DateTime> TimeOfFile { get; set; }
-        public int idStatusCodes { get; set; }
+        public int idStatusCodesCourierEDI { get; set; }
+        public int idStatusCodesNonCourierEDI { get; set; }
         public string EDITranscationType { get; set; }
         public int idEDITranscationType { get; set; }
         public string Category { get; set; }

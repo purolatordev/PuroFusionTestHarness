@@ -669,57 +669,57 @@ namespace PuroFusionLib
             }
             return qDiscoveryRequest;
         }
-        public IList<dtoPartialDiscoveryRequest> GetPartialDiscoveryRequest()
-        {
-            IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = new List<dtoPartialDiscoveryRequest>();
-            try
-            {
-                PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
-                qDiscoveryRequest = o.tblDiscoveryRequest_
-                 .Select(p => new dtoPartialDiscoveryRequest() { idRequest = p.idRequest, CustomerBusContact = p.CustomerBusContact.Substring(0, 20), CustomerBusTitle = p.CustomerBusTitle.Substring(0, 20), CustomerBusEmail = p.CustomerBusEmail.Substring(0, 20), CustomerBusPhone = p.CustomerBusPhone.Substring(0, 20), CustomerITContact = p.CustomerITContact.Substring(0, 20), CustomerITTitle = p.CustomerITTitle.Substring(0, 20), CustomerITEmail = p.CustomerITEmail.Substring(0, 20), CustomerITPhone = p.CustomerITPhone.Substring(0, 20), ActiveFlag = p.ActiveFlag })
-                 .Where(f => f.ActiveFlag == true)
-                 .ToList();
-            }
-            catch (Exception ex)
-            {
-                //retValue = ex.ToString();ProgramSubdiv
-            }
-            return qDiscoveryRequest;
-        }
-        public IList<dtoPartialDiscoveryRequest> GetDiscoveryRequestBusContacts()
-        {
-            IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = new List<dtoPartialDiscoveryRequest>();
-            try
-            {
-                PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
-                qDiscoveryRequest = o.tblDiscoveryRequest_
-                 .Select(p => new dtoPartialDiscoveryRequest() { idRequest = p.idRequest, CustomerBusContact = p.CustomerBusContact.Substring(0, 20), CustomerBusTitle = p.CustomerBusTitle.Substring(0, 20), CustomerBusEmail = p.CustomerBusEmail.Substring(0, 20), CustomerBusPhone = p.CustomerBusPhone.Substring(0, 20), CustomerITContact = p.CustomerITContact.Substring(0, 20), CustomerITTitle = p.CustomerITTitle.Substring(0, 20), CustomerITEmail = p.CustomerITEmail.Substring(0, 20), CustomerITPhone = p.CustomerITPhone.Substring(0, 20), ActiveFlag = p.ActiveFlag })
-                 .Where(f => f.ActiveFlag == true && !String.IsNullOrEmpty(f.CustomerBusContact))
-                 .ToList();
-            }
-            catch (Exception ex)
-            {
-                //retValue = ex.ToString();ProgramSubdiv
-            }
-            return qDiscoveryRequest;
-        }
-        public IList<dtoPartialDiscoveryRequest> GetDiscoveryRequestITContacts()
-        {
-            IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = new List<dtoPartialDiscoveryRequest>();
-            try
-            {
-                PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
-                qDiscoveryRequest = o.tblDiscoveryRequest_
-                 .Select(p => new dtoPartialDiscoveryRequest() { idRequest = p.idRequest, CustomerBusContact = p.CustomerBusContact.Substring(0, 20), CustomerBusTitle = p.CustomerBusTitle.Substring(0, 20), CustomerBusEmail = p.CustomerBusEmail.Substring(0, 20), CustomerBusPhone = p.CustomerBusPhone.Substring(0, 20), CustomerITContact = p.CustomerITContact.Substring(0, 20), CustomerITTitle = p.CustomerITTitle.Substring(0, 20), CustomerITEmail = p.CustomerITEmail.Substring(0, 20), CustomerITPhone = p.CustomerITPhone.Substring(0, 20), ActiveFlag = p.ActiveFlag })
-                 .Where(f => f.ActiveFlag == true && !String.IsNullOrEmpty(f.CustomerITContact))
-                 .ToList();
-            }
-            catch (Exception ex)
-            {
-                //retValue = ex.ToString();ProgramSubdiv
-            }
-            return qDiscoveryRequest;
-        }
+        //public IList<dtoPartialDiscoveryRequest> GetPartialDiscoveryRequest()
+        //{
+        //    IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = new List<dtoPartialDiscoveryRequest>();
+        //    try
+        //    {
+        //        PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+        //        qDiscoveryRequest = o.tblDiscoveryRequest_
+        //         .Select(p => new dtoPartialDiscoveryRequest() { idRequest = p.idRequest, CustomerBusContact = p.CustomerBusContact.Substring(0, 20), CustomerBusTitle = p.CustomerBusTitle.Substring(0, 20), CustomerBusEmail = p.CustomerBusEmail.Substring(0, 20), CustomerBusPhone = p.CustomerBusPhone.Substring(0, 20), CustomerITContact = p.CustomerITContact.Substring(0, 20), CustomerITTitle = p.CustomerITTitle.Substring(0, 20), CustomerITEmail = p.CustomerITEmail.Substring(0, 20), CustomerITPhone = p.CustomerITPhone.Substring(0, 20), ActiveFlag = p.ActiveFlag })
+        //         .Where(f => f.ActiveFlag == true)
+        //         .ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //retValue = ex.ToString();ProgramSubdiv
+        //    }
+        //    return qDiscoveryRequest;
+        //}
+        //public IList<dtoPartialDiscoveryRequest> GetDiscoveryRequestBusContacts()
+        //{
+        //    IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = new List<dtoPartialDiscoveryRequest>();
+        //    try
+        //    {
+        //        PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+        //        qDiscoveryRequest = o.tblDiscoveryRequest_
+        //         .Select(p => new dtoPartialDiscoveryRequest() { idRequest = p.idRequest, CustomerBusContact = p.CustomerBusContact.Substring(0, 20), CustomerBusTitle = p.CustomerBusTitle.Substring(0, 20), CustomerBusEmail = p.CustomerBusEmail.Substring(0, 20), CustomerBusPhone = p.CustomerBusPhone.Substring(0, 20), CustomerITContact = p.CustomerITContact.Substring(0, 20), CustomerITTitle = p.CustomerITTitle.Substring(0, 20), CustomerITEmail = p.CustomerITEmail.Substring(0, 20), CustomerITPhone = p.CustomerITPhone.Substring(0, 20), ActiveFlag = p.ActiveFlag })
+        //         .Where(f => f.ActiveFlag == true && !String.IsNullOrEmpty(f.CustomerBusContact))
+        //         .ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //retValue = ex.ToString();ProgramSubdiv
+        //    }
+        //    return qDiscoveryRequest;
+        //}
+        //public IList<dtoPartialDiscoveryRequest> GetDiscoveryRequestITContacts()
+        //{
+        //    IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = new List<dtoPartialDiscoveryRequest>();
+        //    try
+        //    {
+        //        PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+        //        qDiscoveryRequest = o.tblDiscoveryRequest_
+        //         .Select(p => new dtoPartialDiscoveryRequest() { idRequest = p.idRequest, CustomerBusContact = p.CustomerBusContact.Substring(0, 20), CustomerBusTitle = p.CustomerBusTitle.Substring(0, 20), CustomerBusEmail = p.CustomerBusEmail.Substring(0, 20), CustomerBusPhone = p.CustomerBusPhone.Substring(0, 20), CustomerITContact = p.CustomerITContact.Substring(0, 20), CustomerITTitle = p.CustomerITTitle.Substring(0, 20), CustomerITEmail = p.CustomerITEmail.Substring(0, 20), CustomerITPhone = p.CustomerITPhone.Substring(0, 20), ActiveFlag = p.ActiveFlag })
+        //         .Where(f => f.ActiveFlag == true && !String.IsNullOrEmpty(f.CustomerITContact))
+        //         .ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //retValue = ex.ToString();ProgramSubdiv
+        //    }
+        //    return qDiscoveryRequest;
+        //}
         #endregion
         #region tblContactType
         public IList<dtotblContactType> GettblContactType()
@@ -919,7 +919,7 @@ namespace PuroFusionLib
 
             List<dtotblEDIRecipReqs> qEDIRecipReqs = o.tblEDIRecipReqs
                                     //.Where(p => p.idEDIRecipReqs == idEDIRecipReqs)
-                                    .Select(p => new dtotblEDIRecipReqs() { idEDIRecipReqs = p.idEDIRecipReqs, RecipReqNum = p.RecipReqNum, PanelTitle = p.PanelTitle, idFileType = p.idFileType, X12_GS = p.X12_GS, X12_ISA = p.X12_ISA, X12_Qualifier = p.X12_Qualifier, idCommunicationMethod = p.idCommunicationMethod, FTPAddress = p.FTPAddress, UserName = p.UserName, Password = p.Password, FolderPath = p.FolderPath, Email = p.Email, idTriggerMechanism = p.idTriggerMechanism, idTiming = p.idTiming, TimeOfFile = p.TimeOfFile, idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, idEDITranscationType = p.tblEDITranscations.idEDITranscationType, EDITranscationType = p.EDITranscationType, idStatusCodes = p.idStatusCodes, Category = p.Category, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                    .Select(p => new dtotblEDIRecipReqs() { idEDIRecipReqs = p.idEDIRecipReqs, RecipReqNum = p.RecipReqNum, PanelTitle = p.PanelTitle, idFileType = p.idFileType, X12_GS = p.X12_GS, X12_ISA = p.X12_ISA, X12_Qualifier = p.X12_Qualifier, idCommunicationMethod = p.idCommunicationMethod, FTPAddress = p.FTPAddress, UserName = p.UserName, Password = p.Password, FolderPath = p.FolderPath, Email = p.Email, idTriggerMechanism = p.idTriggerMechanism, idTiming = p.idTiming, TimeOfFile = p.TimeOfFile, idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, idEDITranscationType = p.tblEDITranscations.idEDITranscationType, EDITranscationType = p.EDITranscationType, idStatusCodesCourierEDI = p.idStatusCodesCourierEDI, idStatusCodesNonCourierEDI = p.idStatusCodesNonCourierEDI, Category = p.Category, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
                                     .ToList();
             return qEDIRecipReqs;
         }
@@ -929,7 +929,7 @@ namespace PuroFusionLib
 
             List<dtotblEDIRecipReqs> qEDIRecipReqs = o.tblEDIRecipReqs
                                     .Where(p => p.idRequest == idRequest)
-                                    .Select(p => new dtotblEDIRecipReqs() { idEDIRecipReqs = p.idEDIRecipReqs, RecipReqNum = p.RecipReqNum, PanelTitle = p.PanelTitle, idFileType = p.idFileType, X12_GS = p.X12_GS, X12_ISA = p.X12_ISA, X12_Qualifier = p.X12_Qualifier, idCommunicationMethod = p.idCommunicationMethod, FTPAddress = p.FTPAddress, UserName = p.UserName, Password = p.Password, FolderPath = p.FolderPath, Email = p.Email, idTriggerMechanism = p.idTriggerMechanism, idTiming = p.idTiming, TimeOfFile = p.TimeOfFile, idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, idEDITranscationType = p.tblEDITranscations.idEDITranscationType, EDITranscationType = p.EDITranscationType, idStatusCodes = p.idStatusCodes, Category = p.Category ,ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                    .Select(p => new dtotblEDIRecipReqs() { idEDIRecipReqs = p.idEDIRecipReqs, RecipReqNum = p.RecipReqNum, PanelTitle = p.PanelTitle, idFileType = p.idFileType, X12_GS = p.X12_GS, X12_ISA = p.X12_ISA, X12_Qualifier = p.X12_Qualifier, idCommunicationMethod = p.idCommunicationMethod, FTPAddress = p.FTPAddress, UserName = p.UserName, Password = p.Password, FolderPath = p.FolderPath, Email = p.Email, idTriggerMechanism = p.idTriggerMechanism, idTiming = p.idTiming, TimeOfFile = p.TimeOfFile, idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, idEDITranscationType = p.tblEDITranscations.idEDITranscationType, EDITranscationType = p.EDITranscationType, idStatusCodesCourierEDI = p.idStatusCodesCourierEDI, idStatusCodesNonCourierEDI = p.idStatusCodesNonCourierEDI, Category = p.Category ,ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
                                     .ToList();
             return qEDIRecipReqs;
         }
@@ -939,7 +939,7 @@ namespace PuroFusionLib
 
             List<dtotblEDIRecipReqs> qEDIRecipReqs = o.tblEDIRecipReqs
                                     .Where(p => p.idEDITranscation == idEDITranscation)
-                                    .Select(p => new dtotblEDIRecipReqs() { idEDIRecipReqs = p.idEDIRecipReqs, RecipReqNum = p.RecipReqNum, PanelTitle = p.PanelTitle, idFileType = p.idFileType, X12_GS = p.X12_GS, X12_ISA = p.X12_ISA, X12_Qualifier = p.X12_Qualifier, idCommunicationMethod = p.idCommunicationMethod, FTPAddress = p.FTPAddress, UserName = p.UserName, Password = p.Password, FolderPath = p.FolderPath, Email = p.Email, idTriggerMechanism = p.idTriggerMechanism, idTiming = p.idTiming, TimeOfFile = p.TimeOfFile, idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, idEDITranscationType = p.tblEDITranscations.idEDITranscationType, EDITranscationType = p.EDITranscationType, idStatusCodes = p.idStatusCodes, Category = p.Category, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
+                                    .Select(p => new dtotblEDIRecipReqs() { idEDIRecipReqs = p.idEDIRecipReqs, RecipReqNum = p.RecipReqNum, PanelTitle = p.PanelTitle, idFileType = p.idFileType, X12_GS = p.X12_GS, X12_ISA = p.X12_ISA, X12_Qualifier = p.X12_Qualifier, idCommunicationMethod = p.idCommunicationMethod, FTPAddress = p.FTPAddress, UserName = p.UserName, Password = p.Password, FolderPath = p.FolderPath, Email = p.Email, idTriggerMechanism = p.idTriggerMechanism, idTiming = p.idTiming, TimeOfFile = p.TimeOfFile, idEDITranscation = p.idEDITranscation, idRequest = p.idRequest, idEDITranscationType = p.tblEDITranscations.idEDITranscationType, EDITranscationType = p.EDITranscationType, idStatusCodesCourierEDI = p.idStatusCodesCourierEDI, idStatusCodesNonCourierEDI = p.idStatusCodesNonCourierEDI, Category = p.Category, ActiveFlag = p.ActiveFlag, CreatedBy = p.CreatedBy, CreatedOn = p.CreatedOn, UpdatedBy = p.UpdatedBy, UpdatedOn = p.UpdatedOn })
                                     .ToList();
             return qEDIRecipReqs;
         }

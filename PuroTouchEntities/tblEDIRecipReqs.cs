@@ -32,7 +32,8 @@ namespace PuroTouchEntities
         public int idTriggerMechanism { get; set; }
         public int idTiming { get; set; }
         public Nullable<System.DateTime> TimeOfFile { get; set; }
-        public int idStatusCodes { get; set; }
+        public int idStatusCodesNonCourierEDI { get; set; }
+        public int idStatusCodesCourierEDI { get; set; }
         public string EDITranscationType { get; set; }
         public string Category { get; set; }
         public string CreatedBy { get; set; }
@@ -43,9 +44,10 @@ namespace PuroTouchEntities
     
         public virtual tblCommunicationMethod tblCommunicationMethod { get; set; }
         public virtual tblFileType tblFileType { get; set; }
-        public virtual tblStatusCodes tblStatusCodes { get; set; }
+        public virtual tblStatusCodesCourierEDI tblStatusCodesCourierEDI { get; set; }
+        public virtual tblStatusCodesNonCourierEDI tblStatusCodesNonCourierEDI { get; set; }
         public virtual tblTiming tblTiming { get; set; }
-        public virtual tblTriggerMechanism tblTriggerMechanism { get; set; }
         public virtual tblEDITranscations tblEDITranscations { get; set; }
+        public virtual tblTriggerMechanism tblTriggerMechanism { get; set; }
     }
 }
