@@ -1,8 +1,6 @@
-﻿
-
-CREATE VIEW [dbo].[vw_DiscoveryRequestSummary]
+﻿CREATE VIEW [dbo].[vw_DiscoveryRequestSummary]
 AS
-SELECT        dbo.tblDiscoveryRequest.idRequest, dbo.tblDiscoveryRequest.isNewRequest,tblSolutionType.SolutionType,vw_EDISpecialist.Name as EDISpecialistName, dbo.tblRequestTypes.RequestType, dbo.tblVendorType.VendorType, dbo.tblDiscoveryRequest.SalesRepName, 
+SELECT        dbo.tblDiscoveryRequest.idRequest, dbo.tblDiscoveryRequest.isNewRequest,tblSolutionType.SolutionType,vw_EDISpecialist.Name as EDISpecialistName,vw_EDISpecialist.ActiveDirectoryName EDISpecActiveDir, dbo.tblRequestTypes.RequestType, dbo.tblVendorType.VendorType, dbo.tblDiscoveryRequest.SalesRepName, 
                          dbo.tblDiscoveryRequest.SalesRepEmail, dbo.tblDiscoveryRequest.idOnboardingPhase, dbo.tblDiscoveryRequest.District, dbo.tblDiscoveryRequest.CustomerName, dbo.tblDiscoveryRequest.Address, 
                          dbo.tblDiscoveryRequest.City, dbo.tblDiscoveryRequest.State, dbo.tblDiscoveryRequest.Zipcode, dbo.tblDiscoveryRequest.Country, dbo.tblDiscoveryRequest.Commodity, dbo.tblDiscoveryRequest.ProjectedRevenue, 
                          dbo.tblDiscoveryRequest.CurrentSolution, 
@@ -21,7 +19,7 @@ FROM            dbo.tblDiscoveryRequest LEFT OUTER JOIN
 						 LEFT OUTER JOIN dbo.tblThirdPartyVendor ON dbo.tblDiscoveryRequest.idVendor = dbo.tblThirdPartyVendor.idThirdPartyVendor
 						 LEFT OUTER JOIN tblSolutionType on tblDiscoveryRequest.idSolutionType = tblSolutionType.idSolutionType
 						 LEFT OUTER JOIN vw_EDISpecialist on tblDiscoveryRequest.idEDISpecialist = vw_EDISpecialist.idEDISpecialist
-GROUP BY dbo.tblDiscoveryRequest.idRequest, dbo.tblDiscoveryRequest.isNewRequest, tblSolutionType.SolutionType,vw_EDISpecialist.Name,tblDiscoveryRequest.idEDISpecialist, dbo.tblRequestTypes.RequestType, dbo.tblVendorType.VendorType, dbo.tblDiscoveryRequest.SalesRepName, 
+GROUP BY dbo.tblDiscoveryRequest.idRequest, dbo.tblDiscoveryRequest.isNewRequest, tblSolutionType.SolutionType,vw_EDISpecialist.Name,vw_EDISpecialist.ActiveDirectoryName,tblDiscoveryRequest.idEDISpecialist, dbo.tblRequestTypes.RequestType, dbo.tblVendorType.VendorType, dbo.tblDiscoveryRequest.SalesRepName, 
                          dbo.tblDiscoveryRequest.SalesRepEmail, dbo.tblDiscoveryRequest.idOnboardingPhase, dbo.tblDiscoveryRequest.District, dbo.tblDiscoveryRequest.CustomerName, dbo.tblDiscoveryRequest.Address, 
                          dbo.tblDiscoveryRequest.City, dbo.tblDiscoveryRequest.State, dbo.tblDiscoveryRequest.Zipcode, dbo.tblDiscoveryRequest.Country, dbo.tblDiscoveryRequest.Commodity, dbo.tblDiscoveryRequest.ProjectedRevenue, 
                          dbo.tblDiscoveryRequest.CurrentSolution, 

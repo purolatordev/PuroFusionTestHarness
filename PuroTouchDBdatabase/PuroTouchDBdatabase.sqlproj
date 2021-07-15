@@ -89,7 +89,6 @@
     <Build Include="dbo\Tables\tblDiscoveryRequestNotes.sql" />
     <Build Include="dbo\Tables\tblEDIShipMethods.sql" />
     <Build Include="dbo\Tables\tblDiscoveryRequest_Archive.sql" />
-    <Build Include="dbo\Tables\tblDiscoveryRequest_v2.sql" />
     <Build Include="dbo\Tables\tblDiscoveryRequestNotes_Archive.sql" />
     <Build Include="dbo\Tables\tblDiscoveryRequestProducts_Archive.sql" />
     <Build Include="dbo\Tables\tblDiscoveryRequestServices_Archive.sql" />
@@ -106,7 +105,6 @@
     <Build Include="dbo\Tables\tblBillingTypeRel.sql" />
     <Build Include="dbo\Tables\tblCustomerProfile.sql" />
     <Build Include="dbo\Tables\tblEDITranscations.sql" />
-    <Build Include="dbo\Tables\tblDiscoveryRequest_v3.sql" />
     <Build Include="dbo\Tables\tblShippingProducts.sql" />
     <Build Include="dbo\Tables\tblAdditionalDistricts.sql" />
     <Build Include="dbo\Tables\tblDataEntryMethods.sql" />
@@ -124,7 +122,6 @@
     <Build Include="dbo\Tables\tblCustomsTypes.sql" />
     <Build Include="dbo\Tables\tblEDISpecialist.sql" />
     <Build Include="dbo\Tables\tblDiscoveryRequestProducts.sql" />
-    <Build Include="dbo\Tables\tblDiscoveryRequest_v4.sql" />
     <Build Include="dbo\Tables\tblDiscoveryRequestEquipment.sql" />
     <Build Include="dbo\Tables\tblDiscoveryRequestEDI.sql" />
     <Build Include="dbo\Tables\tblDiscoveryRequestDetails.sql" />
@@ -132,7 +129,6 @@
     <Build Include="dbo\Tables\tblDiscoveryRequestSvcsImport_.sql" />
     <Build Include="dbo\Tables\tblDiscoveryRequestImport2_.sql" />
     <Build Include="dbo\Tables\tblCloseReason.sql" />
-    <Build Include="dbo\Tables\tblDiscoveryRequest_.sql" />
     <Build Include="dbo\Tables\tblBillingSpecialist.sql" />
     <Build Include="dbo\Tables\tblContact.sql" />
     <Build Include="dbo\Views\vw_BillingSpecialist.sql" />
@@ -184,7 +180,6 @@
     <Build Include="dbo\Stored Procedures\sp_TopTenTimeSpent.sql" />
     <Build Include="dbo\Stored Procedures\sp_TopTenRevenue.sql" />
     <Build Include="dbo\Stored Procedures\sp_OnboardingTimePerITBA.sql" />
-    <Build Include="dbo\Tables\tblDiscoveryRequest_v5.sql" />
     <Build Include="dbo\Tables\tblEDIOnboardingPhase.sql" />
     <Build Include="dbo\Tables\tblDiscoveryRequest_v6.sql" />
     <Build Include="dbo\Tables\tblTriggerMechanism.sql" />
@@ -194,5 +189,9 @@
     <Build Include="dbo\Tables\tblEDIRecipReqs.sql" />
     <Build Include="dbo\Tables\tblEDIAccounts.sql" />
     <Build Include="dbo\Tables\tblDiscoveryRequest_v7.sql" />
+    <Build Include="dbo\Tables\tblStatusCodesNonCourierEDI.sql" />
+    <Build Include="dbo\Tables\tblStatusCodesCourierEDI.sql" />
+    <Build Include="dbo\Tables\tblFreightAuditorsDiscReq.sql" />
+    <Build Include="dbo\Tables\tblFreightAuditors.sql" />
   </ItemGroup>
 </Project>
