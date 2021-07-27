@@ -14,12 +14,6 @@ namespace PuroTouchEntities
     
     public partial class tblStatusCodesNonCourierEDI
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblStatusCodesNonCourierEDI()
-        {
-            this.tblEDIRecipReqs = new HashSet<tblEDIRecipReqs>();
-        }
-    
         public int idStatusCodesNonCourierEDI { get; set; }
         public string StatusCode { get; set; }
         public string UpdatedBy { get; set; }
@@ -27,8 +21,5 @@ namespace PuroTouchEntities
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<bool> ActiveFlag { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblEDIRecipReqs> tblEDIRecipReqs { get; set; }
     }
 }

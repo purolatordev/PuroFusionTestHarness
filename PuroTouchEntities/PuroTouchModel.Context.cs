@@ -80,9 +80,9 @@ namespace PuroTouchEntities
         public virtual DbSet<tblTiming> tblTiming { get; set; }
         public virtual DbSet<tblTriggerMechanism> tblTriggerMechanism { get; set; }
         public virtual DbSet<tblEDITranscations> tblEDITranscations { get; set; }
-        public virtual DbSet<tblEDIRecipReqs> tblEDIRecipReqs { get; set; }
         public virtual DbSet<tblStatusCodesCourierEDI> tblStatusCodesCourierEDI { get; set; }
         public virtual DbSet<tblStatusCodesNonCourierEDI> tblStatusCodesNonCourierEDI { get; set; }
+        public virtual DbSet<tblEDIRecipReqs> tblEDIRecipReqs { get; set; }
         public virtual DbSet<AutomatedTesting> AutomatedTesting { get; set; }
     }
 }

@@ -25,7 +25,7 @@
         <EntityTypeShape EntityType="PuroTouchDBModel.tblDRContacts" Width="1.5" PointX="14.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblEDISolutions" Width="1.5" PointX="8.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblEquipment" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PuroTouchDBModel.tblFileType" Width="1.5" PointX="27.625" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblFileType" Width="1.5" PointX="31.625" PointY="16.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblInductionPoints" Width="1.5" PointX="10.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblInvoiceType" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblITBA" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
@@ -69,8 +69,14 @@
         <AssociationConnector Association="PuroTouchDBModel.FK_idReq_EDITran_DisReq" />
         <AssociationConnector Association="PuroTouchDBModel.FK_idTrans_Accts_Trans" />
         <AssociationConnector Association="PuroTouchDBModel.FK_idEDITransType_EDITransType" />
-        <EntityTypeShape EntityType="PuroTouchDBModel.AutomatedTesting" Width="1.5" PointX="13.375" PointY="15.75" />
-      </Diagram>
+        <EntityTypeShape EntityType="PuroTouchDBModel.tblEDIRecipReqs" Width="1.5" PointX="32" PointY="19.625" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idComMeth_EDIRecipReqs_ComMeth" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idFileType_EDIRecipReqs_FileType" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idTime_EDIRecipReqs_Timing" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idTrans_RecipReqs_Trans" />
+        <AssociationConnector Association="PuroTouchDBModel.FK_idTrig_EDIRecipReqs_TrigMech" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.AutomatedTesting" Width="1.5" PointX="5.375" PointY="0.75" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
