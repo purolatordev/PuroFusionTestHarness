@@ -170,9 +170,11 @@ namespace PuroFusionTestGui
             comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal);
             comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal2);
             comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal3);
+            comboBoxTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocalA);
             comboBoxTestingTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal);
             comboBoxTestingTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal2);
             comboBoxTestingTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocal3);
+            comboBoxTestingTouchDB.Items.Add(PuroTouchServiceClass.ConnString.PatientLocalA);
 
             foreach (AllTabs i in Enum.GetValues(typeof(AllTabs)))
             {
@@ -254,6 +256,8 @@ namespace PuroFusionTestGui
                 connection = PuroTouchServiceClass.ConnString.FullPatientLocal2;
             else if (strDbVal == PuroTouchServiceClass.ConnString.PatientLocal3)
                 connection = PuroTouchServiceClass.ConnString.FullPatientLocal3;
+            else if (strDbVal == PuroTouchServiceClass.ConnString.PatientLocalA)
+                connection = PuroTouchServiceClass.ConnString.FullPatientLocalA;
             return connection;
         }
         private void btnExport_Click(object sender, RoutedEventArgs e)
