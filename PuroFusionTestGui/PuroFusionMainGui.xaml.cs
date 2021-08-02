@@ -642,19 +642,26 @@ namespace PuroFusionTestGui
             if (((RadGridView)sender).SelectedItem is dtotblEDITranscations)
             {
                 dtotblEDITranscations rec = ((dtotblEDITranscations)(((RadGridView)sender).SelectedItem));
-                string strConn = GetdbLocation(comboBoxTouchDB);
-                if (strConn != "na")
+                ComboBoxItem MachineNameItem = ((ComboBoxItem)comboBoxMainMachineName.SelectedItem);
+                String strMachineName = (MachineNameItem != null) ? MachineNameItem.Content.ToString() : null;
+                if (strMachineName != "na")
                 {
-                    PuroTouchServiceClass o = new PuroTouchServiceClass(strConn);
-                    List<dtotblEDIRecipReqs> qEDIRecipReqs = o.GetEDIRecipReqsByID(rec.idEDITranscation);
-                    ObservableCollection<dtotblEDIRecipReqs> ocWmsGroup4 = new ObservableCollection<dtotblEDIRecipReqs>();
-                    radGridTouchDBLowRight4.ItemsSource = ocWmsGroup4.Concat<dtotblEDIRecipReqs>(qEDIRecipReqs);
-                    lblTouchDBLowRight4.Content = "tblEDIRecipReqs count: " + qEDIRecipReqs.Count();
+                    ComboBoxItem DBNameItem = ((ComboBoxItem)comboBoxMaindatabase.SelectedItem);
+                    String strDBName = DBNameItem.Content.ToString();
+                    if (strDBName != null)
+                    {
+                        PuroTouchServiceClass o = new PuroTouchServiceClass();
+                        o.SetConnString(strMachineName, strDBName);
+                        List<dtotblEDIRecipReqs> qEDIRecipReqs = o.GetEDIRecipReqsByID(rec.idEDITranscation);
+                        ObservableCollection<dtotblEDIRecipReqs> ocWmsGroup4 = new ObservableCollection<dtotblEDIRecipReqs>();
+                        radGridTouchDBLowRight4.ItemsSource = ocWmsGroup4.Concat<dtotblEDIRecipReqs>(qEDIRecipReqs);
+                        lblTouchDBLowRight4.Content = "tblEDIRecipReqs count: " + qEDIRecipReqs.Count();
 
-                    List<clsEDIAccount> qEDIAccounts = o.GetEDIAccountByidEDITranscation(rec.idEDITranscation);
-                    ObservableCollection<clsEDIAccount> ocWmsGroup5 = new ObservableCollection<clsEDIAccount>();
-                    radGridTouchDBLowRight5.ItemsSource = ocWmsGroup5.Concat<clsEDIAccount>(qEDIAccounts);
-                    lblTouchDBLowRight5.Content = "tblEDIAccounts count: " + qEDIAccounts.Count();
+                        List<clsEDIAccount> qEDIAccounts = o.GetEDIAccountByidEDITranscation(rec.idEDITranscation);
+                        ObservableCollection<clsEDIAccount> ocWmsGroup5 = new ObservableCollection<clsEDIAccount>();
+                        radGridTouchDBLowRight5.ItemsSource = ocWmsGroup5.Concat<clsEDIAccount>(qEDIAccounts);
+                        lblTouchDBLowRight5.Content = "tblEDIAccounts count: " + qEDIAccounts.Count();
+                    }
                 }
             }
         }
