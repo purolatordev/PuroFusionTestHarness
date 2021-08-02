@@ -193,5 +193,8 @@
     <Build Include="dbo\Tables\tblStatusCodesCourierEDI.sql" />
     <Build Include="dbo\Tables\tblFreightAuditorsDiscReq.sql" />
     <Build Include="dbo\Tables\tblFreightAuditors.sql" />
+    <Build Include="dbo\Tables\tblStatusCodesAll.sql" />
+    <Build Include="dbo\Tables\AutomatedTesting.sql" />
+    <Build Include="Security\VIRTUALONE_virtual.sql" />
   </ItemGroup>
 </Project>

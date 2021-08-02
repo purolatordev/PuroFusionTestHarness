@@ -1,0 +1,2 @@
+﻿CREATE USER [VIRTUALONE\virtual] FOR LOGIN [VIRTUALONE\virtual];
+
