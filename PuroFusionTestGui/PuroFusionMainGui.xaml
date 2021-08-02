@@ -596,8 +596,19 @@
                                 <Button x:Name="TouchDBExportTopLeft" Content="Export"  Margin="10,0,0,0" Padding="10,0,10,0"  Width="75" Height="25"  IsEnabled="True" Style="{StaticResource RoundedButton}" Click="btnExport_Click" />
                             </StackPanel>
                             <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <Label Content="Machine Name:"/>
+                                <ComboBox Height="23" Name="comboBoxMainMachineName" Width="Auto" >
+                                    <ComboBoxItem>PI-DEV-SQL</ComboBoxItem>
+                                    <ComboBoxItem>PICER-DEV-sql01</ComboBoxItem>
+                                    <ComboBoxItem>VIRTUALONE\WIN10DEV2019</ComboBoxItem>
+                                    <ComboBoxItem>DESKTOP-OHSBG8J\SQL2019</ComboBoxItem>
+                                </ComboBox>
+                                <Label Content="Database:"/>
+                                <ComboBox Height="23" Name="comboBoxMaindatabase" Width="Auto" SelectedIndex="0"  >
+                                    <ComboBoxItem>PuroTouchDB</ComboBoxItem>
+                                </ComboBox>
                                 <Label Content="database:"/>
-                                <ComboBox Height="23" Name="comboBoxTouchDB" Width="Auto" >
+                                <ComboBox Height="23" Name="comboBoxTouchDB" Width="Auto" IsEnabled="False" >
                                 </ComboBox>
                             </StackPanel>
                             <telerik:RadGridView x:Name="radGridTouchDBTopLeft" ToolTip="" Grid.Row="3" RowHeight="20"  ShowGroupPanel="True" Filtered="radGridTouchDBTopLeft_Filtered" SelectionChanged="radGridTouchDBTopLeft_SelectionChanged"  >

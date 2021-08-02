@@ -291,11 +291,17 @@ namespace PuroFusionLib
             public static string PatientLocal = @"data source=VIRTUALONE\WIN10DEV2019;initial catalog=PuroTouchDB;integrated security=True;";
             public static string PatientLocal3 = @"data source=DESKTOP-OHSBG8J\SQL2019;initial catalog=PuroTouchDB;integrated security=True;";
             public static string PatientLocalA = @"data source=VIRTUALONE\WIN10DEV2019;initial catalog=PuroTouchDB_Prod;integrated security=True;";
+            
+            public static string CombineDataSource = @"data source=";
+            public static string CombineDataSourceCatalog = @";initial catalog=";
+            public static string CombineDataSourceSecurity = @";integrated security=True;";
 
             public static string FullPatientLocal = MetatData + SqlClient + Provider + PatientLocal + Framework;
             public static string FullPatientLocal2 = MetatData + SqlClient + Provider + PatientLocal2 + Framework;
             public static string FullPatientLocal3 = MetatData + SqlClient + Provider + PatientLocal3 + Framework;
             public static string FullPatientLocalA = MetatData + SqlClient + Provider + PatientLocalA + Framework;
+            public static string FullCombinedAddMachine = MetatData + SqlClient + Provider + CombineDataSource; // add machine name
+
         }
         public PuroTouchServiceClass()
         {
@@ -308,6 +314,13 @@ namespace PuroFusionLib
         public static string getConnectionString()
         {
             return @"Data Source=PI-DEV-SQL;Initial Catalog=PURO_APPS;User ID=PuroIT;Password=puro@123;";
+        }
+        public void SetConnString(string MachineName, string Catolog)
+        {
+            strConn = ConnString.FullCombinedAddMachine + MachineName + ConnString.CombineDataSourceCatalog + Catolog + ConnString.CombineDataSourceSecurity + ConnString.Framework;
+            string temp = ConnString.FullPatientLocal;
+            int er = 0;
+            er++;
         }
         [MethodImpl(MethodImplOptions.NoInlining)]
         public string GetCurrentMethod()

@@ -378,171 +378,179 @@ namespace PuroFusionTestGui
         }
         private void btnTouchDBLoadGrid_Click(object sender, RoutedEventArgs e)
         {
-            string strConn = GetdbLocation(comboBoxTouchDB);
-            if (strConn != "na")
+            //string strConn = GetdbLocation(comboBoxTouchDB);
+            ComboBoxItem MachineNameItem = ((ComboBoxItem)comboBoxMainMachineName.SelectedItem);
+            String strMachineName = (MachineNameItem != null) ? MachineNameItem.Content.ToString() : null;
+            if (strMachineName != "na")
             {
-                ComboBoxItem ReportItem = ((ComboBoxItem)comboBoxTouchDBMainReportNames.SelectedItem);
-                if (ReportItem == null)
+                ComboBoxItem DBNameItem = ((ComboBoxItem)comboBoxMaindatabase.SelectedItem);
+                String strDBName = DBNameItem.Content.ToString();
+                if (strDBName != null)
                 {
-                    lblTouchDBConnErrorMsg.Visibility = System.Windows.Visibility.Visible;
-                    lblTouchDBConnErrorMsg.Content = "Must select a report type";
-                }
-                else
-                {
-                    lblTouchDBConnErrorMsg.Visibility = System.Windows.Visibility.Collapsed;
+                    ComboBoxItem ReportItem = ((ComboBoxItem)comboBoxTouchDBMainReportNames.SelectedItem);
+                    if (ReportItem == null)
+                    {
+                        lblTouchDBConnErrorMsg.Visibility = System.Windows.Visibility.Visible;
+                        lblTouchDBConnErrorMsg.Content = "Must select a report type";
+                    }
+                    else
+                    {
+                        lblTouchDBConnErrorMsg.Visibility = System.Windows.Visibility.Collapsed;
 
-                    System.Windows.Controls.Label lbl = lblTouchDBTopLeftCount;
-                    RadGridView grid = this.radGridTouchDBTopLeft;
-                    #region Test which button pressed
-                    if (((Button)sender).Name == "btnTouchDBLoadGridTopLeft")
-                    {
-                        grid = this.radGridTouchDBTopLeft;
-                        lbl = lblTouchDBTopLeftCount;
-                    }
-                    else if (((Button)sender).Name == "btnTouchDBTopRightLoadGrid")
-                    {
-                        grid = this.radGridTouchDBTopRight;
-                        lbl = lblTouchDBTopRightCount;
-                    }
-                    else if (((Button)sender).Name == "btnTouchDBLoadGridBottomLeft")
-                    {
-                        grid = this.radGridTouchDBLowerLeft;
-                        lbl = lblTouchDBLowerLeftCount;
-                    }
-                    #endregion
-                    PuroTouchServiceClass o = new PuroTouchServiceClass(strConn);
-                    String strReportItem = ReportItem.Content.ToString();
-                    if ("tblDiscoveryRequest" == strReportItem)
-                    {
-                        IList<dtotblDiscoveryRequest> qDiscoveryRequest = o.GettblDiscoveryRequestDesc();
-                        ObservableCollection<dtotblDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtotblDiscoveryRequest>();
-                        grid.ItemsSource = ocWmsGroup.Concat<dtotblDiscoveryRequest>(qDiscoveryRequest);
-                        lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
-                    }
-                    else if ("Error Logs" == strReportItem)
-                    {
-                        List<clsExceptionLogging> qErrors = o.GetExceptionLogging();
-                        ObservableCollection<clsExceptionLogging> ocWmsGroup = new ObservableCollection<clsExceptionLogging>();
-                        grid.ItemsSource = ocWmsGroup.Concat<clsExceptionLogging>(qErrors);
-                        lbl.Content = strReportItem + " count: " + qErrors.Count();
-                    }
-                    else if ("Delete All Error Logs" == strReportItem)
-                    {
-                        o.RemoveAllExceptionLogs();
-                    }
-                    else if ("blContactType" == strReportItem)
-                    {
-                        IList<dtotblContactType> qtblContactType = o.GettblContactType();
-                        ObservableCollection<dtotblContactType> ocWmsGroup = new ObservableCollection<dtotblContactType>();
-                        grid.ItemsSource = ocWmsGroup.Concat<dtotblContactType>(qtblContactType);
-                        lbl.Content = strReportItem + " count: " + qtblContactType.Count();
-                    }
-                    else if ("tblContact" == strReportItem)
-                    {
-                        IList<dtotblContact> qtblContact = o.GettblContact();
-                        ObservableCollection<dtotblContact> ocWmsGroup = new ObservableCollection<dtotblContact>();
-                        grid.ItemsSource = ocWmsGroup.Concat<dtotblContact>(qtblContact);
-                        lbl.Content = strReportItem + " count: " + qtblContact.Count();
-                    }
-                    else if ("tblEDIRecipReq" == strReportItem)
-                    {
-                        List<dtotblEDIRecipReqs> qEDIRecipReq = o.GetEDIRecipReqs();
-                        ObservableCollection<dtotblEDIRecipReqs> ocWmsGroup = new ObservableCollection<dtotblEDIRecipReqs>();
-                        grid.ItemsSource = ocWmsGroup.Concat<dtotblEDIRecipReqs>(qEDIRecipReq);
-                        lbl.Content = strReportItem + " count: " + qEDIRecipReq.Count();
-                    }
-                    else if ("tblEDIAccounts" == strReportItem)
-                    {
-                        List<clsEDIAccount> qEDIAccounts = o.GetEDIAccounts();
-                        ObservableCollection<clsEDIAccount> ocWmsGroup = new ObservableCollection<clsEDIAccount>();
-                        grid.ItemsSource = ocWmsGroup.Concat<clsEDIAccount>(qEDIAccounts);
-                        lbl.Content = strReportItem + " count: " + qEDIAccounts.Count();
-                    }
-                    else if ("tblEDITranscations" == strReportItem)
-                    {
-                        IList<dtotblEDITranscations> qTransType = o.GetEDITransactions();
-                        ObservableCollection<dtotblEDITranscations> ocWmsGroup = new ObservableCollection<dtotblEDITranscations>();
-                        grid.ItemsSource = ocWmsGroup.Concat<dtotblEDITranscations>(qTransType);
-                        lbl.Content = strReportItem + " count: " + qTransType.Count();
-                    }
-                    else if ("tblEDITranscationType" == strReportItem)
-                    {
-                        IList<clsEDITransactionType> qTransType = o.GetEDITransactionTypes();
-                        ObservableCollection<clsEDITransactionType> ocWmsGroup = new ObservableCollection<clsEDITransactionType>();
-                        grid.ItemsSource = ocWmsGroup.Concat<clsEDITransactionType>(qTransType);
-                        lbl.Content = strReportItem + " count: " + qTransType.Count();
-                    }
-                    else if ("tblFileType" == strReportItem)
-                    {
-                        List<ClsFileType> qFileTypes = o.GetFileTypes();
-                        ObservableCollection<ClsFileType> ocWmsGroup = new ObservableCollection<ClsFileType>();
-                        grid.ItemsSource = ocWmsGroup.Concat<ClsFileType>(qFileTypes);
-                        lbl.Content = strReportItem + " count: " + qFileTypes.Count();
-                    }
-                    else if ("tblCommunicationMethod" == strReportItem)
-                    {
-                        IList<ClsCommunicationMethod> qCommMeth = o.GetCommunicationMethods();
-                        ObservableCollection<ClsCommunicationMethod> ocWmsGroup = new ObservableCollection<ClsCommunicationMethod>();
-                        grid.ItemsSource = ocWmsGroup.Concat<ClsCommunicationMethod>(qCommMeth);
-                        lbl.Content = strReportItem + " count: " + qCommMeth.Count();
-                    }
-                    else if ("tblTriggerMechanism" == strReportItem)
-                    {
-                        List<clsTriggerMechanism> qTrigMeth = o.GetTriggerMechanisms();
-                        ObservableCollection<clsTriggerMechanism> ocWmsGroup = new ObservableCollection<clsTriggerMechanism>();
-                        grid.ItemsSource = ocWmsGroup.Concat<clsTriggerMechanism>(qTrigMeth);
-                        lbl.Content = strReportItem + " count: " + qTrigMeth.Count();
-                    }
-                    else if ("tblContactGroup" == strReportItem)
-                    {
-                        IList<Counters> qtheCount = o.GettblContactGroupBy();
-                        ObservableCollection<Counters> ocWmsGroup = new ObservableCollection<Counters>();
-                        grid.ItemsSource = ocWmsGroup.Concat<Counters>(qtheCount);
-                        lbl.Content = strReportItem + " count: " + qtheCount.Count();
-                    }
-                    else if ("vw_ITBA" == strReportItem)
-                    {
-                        List<dtotblITBA> qITBAs = o.GetITBAs();
-                        ObservableCollection<dtotblITBA> ocWmsGroup = new ObservableCollection<dtotblITBA>();
-                        grid.ItemsSource = ocWmsGroup.Concat<dtotblITBA>(qITBAs);
-                        lbl.Content = strReportItem + " count: " + qITBAs.Count();
-                    }
-                    //else if ("PartialDiscoveryRequest" == strReportItem)
-                    //{
-                    //    IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = o.GetPartialDiscoveryRequest();
-                    //    ObservableCollection<dtoPartialDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtoPartialDiscoveryRequest>();
-                    //    grid.ItemsSource = ocWmsGroup.Concat<dtoPartialDiscoveryRequest>(qDiscoveryRequest);
-                    //    lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
-                    //}
-                    //else if ("DiscoveryRequestBusContacts" == strReportItem)
-                    //{
-                    //    IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = o.GetDiscoveryRequestBusContacts();
-                    //    ObservableCollection<dtoPartialDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtoPartialDiscoveryRequest>();
-                    //    grid.ItemsSource = ocWmsGroup.Concat<dtoPartialDiscoveryRequest>(qDiscoveryRequest);
-                    //    lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
-                    //}
-                    //else if ("DiscoveryRequestITContacts" == strReportItem)
-                    //{
-                    //    IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = o.GetDiscoveryRequestITContacts();
-                    //    ObservableCollection<dtoPartialDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtoPartialDiscoveryRequest>();
-                    //    grid.ItemsSource = ocWmsGroup.Concat<dtoPartialDiscoveryRequest>(qDiscoveryRequest);
-                    //    lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
-                    //}
-                    else if ("CompareDiscReq-ToReq" == strReportItem)
-                    {
-                        o.strConn = comboBoxTouchDB.SelectedItem.ToString();
-                        IList<dtoTableCompare> qTableCompare = o.GetDiscoveryDiff1("tblDiscoveryRequest_", "tblDiscoveryRequest");
-                        ObservableCollection<dtoTableCompare> ocWmsGroup = new ObservableCollection<dtoTableCompare>();
-                        grid.ItemsSource = ocWmsGroup.Concat<dtoTableCompare>(qTableCompare);
-                        lbl.Content = strReportItem + " count: " + qTableCompare.Count();
-                    }
-                    else if ("CompareDiscReqToReq-" == strReportItem)
-                    {
-                        o.strConn = comboBoxTouchDB.SelectedItem.ToString();
-                        IList<dtoTableCompare> qTableCompare = o.GetDiscoveryDiff1("tblDiscoveryRequest", "tblDiscoveryRequest_");
-                        ObservableCollection<dtoTableCompare> ocWmsGroup = new ObservableCollection<dtoTableCompare>();
-                        grid.ItemsSource = ocWmsGroup.Concat<dtoTableCompare>(qTableCompare);
-                        lbl.Content = strReportItem + " count: " + qTableCompare.Count();
+                        System.Windows.Controls.Label lbl = lblTouchDBTopLeftCount;
+                        RadGridView grid = this.radGridTouchDBTopLeft;
+                        #region Test which button pressed
+                        if (((Button)sender).Name == "btnTouchDBLoadGridTopLeft")
+                        {
+                            grid = this.radGridTouchDBTopLeft;
+                            lbl = lblTouchDBTopLeftCount;
+                        }
+                        else if (((Button)sender).Name == "btnTouchDBTopRightLoadGrid")
+                        {
+                            grid = this.radGridTouchDBTopRight;
+                            lbl = lblTouchDBTopRightCount;
+                        }
+                        else if (((Button)sender).Name == "btnTouchDBLoadGridBottomLeft")
+                        {
+                            grid = this.radGridTouchDBLowerLeft;
+                            lbl = lblTouchDBLowerLeftCount;
+                        }
+                        #endregion
+                        PuroTouchServiceClass o = new PuroTouchServiceClass(PuroTouchServiceClass.ConnString.FullPatientLocal);
+                        o.SetConnString(strMachineName, strDBName);
+                        String strReportItem = ReportItem.Content.ToString();
+                        if ("tblDiscoveryRequest" == strReportItem)
+                        {
+                            IList<dtotblDiscoveryRequest> qDiscoveryRequest = o.GettblDiscoveryRequestDesc();
+                            ObservableCollection<dtotblDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtotblDiscoveryRequest>();
+                            grid.ItemsSource = ocWmsGroup.Concat<dtotblDiscoveryRequest>(qDiscoveryRequest);
+                            lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
+                        }
+                        else if ("Error Logs" == strReportItem)
+                        {
+                            List<clsExceptionLogging> qErrors = o.GetExceptionLogging();
+                            ObservableCollection<clsExceptionLogging> ocWmsGroup = new ObservableCollection<clsExceptionLogging>();
+                            grid.ItemsSource = ocWmsGroup.Concat<clsExceptionLogging>(qErrors);
+                            lbl.Content = strReportItem + " count: " + qErrors.Count();
+                        }
+                        else if ("Delete All Error Logs" == strReportItem)
+                        {
+                            o.RemoveAllExceptionLogs();
+                        }
+                        else if ("blContactType" == strReportItem)
+                        {
+                            IList<dtotblContactType> qtblContactType = o.GettblContactType();
+                            ObservableCollection<dtotblContactType> ocWmsGroup = new ObservableCollection<dtotblContactType>();
+                            grid.ItemsSource = ocWmsGroup.Concat<dtotblContactType>(qtblContactType);
+                            lbl.Content = strReportItem + " count: " + qtblContactType.Count();
+                        }
+                        else if ("tblContact" == strReportItem)
+                        {
+                            IList<dtotblContact> qtblContact = o.GettblContact();
+                            ObservableCollection<dtotblContact> ocWmsGroup = new ObservableCollection<dtotblContact>();
+                            grid.ItemsSource = ocWmsGroup.Concat<dtotblContact>(qtblContact);
+                            lbl.Content = strReportItem + " count: " + qtblContact.Count();
+                        }
+                        else if ("tblEDIRecipReq" == strReportItem)
+                        {
+                            List<dtotblEDIRecipReqs> qEDIRecipReq = o.GetEDIRecipReqs();
+                            ObservableCollection<dtotblEDIRecipReqs> ocWmsGroup = new ObservableCollection<dtotblEDIRecipReqs>();
+                            grid.ItemsSource = ocWmsGroup.Concat<dtotblEDIRecipReqs>(qEDIRecipReq);
+                            lbl.Content = strReportItem + " count: " + qEDIRecipReq.Count();
+                        }
+                        else if ("tblEDIAccounts" == strReportItem)
+                        {
+                            List<clsEDIAccount> qEDIAccounts = o.GetEDIAccounts();
+                            ObservableCollection<clsEDIAccount> ocWmsGroup = new ObservableCollection<clsEDIAccount>();
+                            grid.ItemsSource = ocWmsGroup.Concat<clsEDIAccount>(qEDIAccounts);
+                            lbl.Content = strReportItem + " count: " + qEDIAccounts.Count();
+                        }
+                        else if ("tblEDITranscations" == strReportItem)
+                        {
+                            IList<dtotblEDITranscations> qTransType = o.GetEDITransactions();
+                            ObservableCollection<dtotblEDITranscations> ocWmsGroup = new ObservableCollection<dtotblEDITranscations>();
+                            grid.ItemsSource = ocWmsGroup.Concat<dtotblEDITranscations>(qTransType);
+                            lbl.Content = strReportItem + " count: " + qTransType.Count();
+                        }
+                        else if ("tblEDITranscationType" == strReportItem)
+                        {
+                            IList<clsEDITransactionType> qTransType = o.GetEDITransactionTypes();
+                            ObservableCollection<clsEDITransactionType> ocWmsGroup = new ObservableCollection<clsEDITransactionType>();
+                            grid.ItemsSource = ocWmsGroup.Concat<clsEDITransactionType>(qTransType);
+                            lbl.Content = strReportItem + " count: " + qTransType.Count();
+                        }
+                        else if ("tblFileType" == strReportItem)
+                        {
+                            List<ClsFileType> qFileTypes = o.GetFileTypes();
+                            ObservableCollection<ClsFileType> ocWmsGroup = new ObservableCollection<ClsFileType>();
+                            grid.ItemsSource = ocWmsGroup.Concat<ClsFileType>(qFileTypes);
+                            lbl.Content = strReportItem + " count: " + qFileTypes.Count();
+                        }
+                        else if ("tblCommunicationMethod" == strReportItem)
+                        {
+                            IList<ClsCommunicationMethod> qCommMeth = o.GetCommunicationMethods();
+                            ObservableCollection<ClsCommunicationMethod> ocWmsGroup = new ObservableCollection<ClsCommunicationMethod>();
+                            grid.ItemsSource = ocWmsGroup.Concat<ClsCommunicationMethod>(qCommMeth);
+                            lbl.Content = strReportItem + " count: " + qCommMeth.Count();
+                        }
+                        else if ("tblTriggerMechanism" == strReportItem)
+                        {
+                            List<clsTriggerMechanism> qTrigMeth = o.GetTriggerMechanisms();
+                            ObservableCollection<clsTriggerMechanism> ocWmsGroup = new ObservableCollection<clsTriggerMechanism>();
+                            grid.ItemsSource = ocWmsGroup.Concat<clsTriggerMechanism>(qTrigMeth);
+                            lbl.Content = strReportItem + " count: " + qTrigMeth.Count();
+                        }
+                        else if ("tblContactGroup" == strReportItem)
+                        {
+                            IList<Counters> qtheCount = o.GettblContactGroupBy();
+                            ObservableCollection<Counters> ocWmsGroup = new ObservableCollection<Counters>();
+                            grid.ItemsSource = ocWmsGroup.Concat<Counters>(qtheCount);
+                            lbl.Content = strReportItem + " count: " + qtheCount.Count();
+                        }
+                        else if ("vw_ITBA" == strReportItem)
+                        {
+                            List<dtotblITBA> qITBAs = o.GetITBAs();
+                            ObservableCollection<dtotblITBA> ocWmsGroup = new ObservableCollection<dtotblITBA>();
+                            grid.ItemsSource = ocWmsGroup.Concat<dtotblITBA>(qITBAs);
+                            lbl.Content = strReportItem + " count: " + qITBAs.Count();
+                        }
+                        //else if ("PartialDiscoveryRequest" == strReportItem)
+                        //{
+                        //    IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = o.GetPartialDiscoveryRequest();
+                        //    ObservableCollection<dtoPartialDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtoPartialDiscoveryRequest>();
+                        //    grid.ItemsSource = ocWmsGroup.Concat<dtoPartialDiscoveryRequest>(qDiscoveryRequest);
+                        //    lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
+                        //}
+                        //else if ("DiscoveryRequestBusContacts" == strReportItem)
+                        //{
+                        //    IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = o.GetDiscoveryRequestBusContacts();
+                        //    ObservableCollection<dtoPartialDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtoPartialDiscoveryRequest>();
+                        //    grid.ItemsSource = ocWmsGroup.Concat<dtoPartialDiscoveryRequest>(qDiscoveryRequest);
+                        //    lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
+                        //}
+                        //else if ("DiscoveryRequestITContacts" == strReportItem)
+                        //{
+                        //    IList<dtoPartialDiscoveryRequest> qDiscoveryRequest = o.GetDiscoveryRequestITContacts();
+                        //    ObservableCollection<dtoPartialDiscoveryRequest> ocWmsGroup = new ObservableCollection<dtoPartialDiscoveryRequest>();
+                        //    grid.ItemsSource = ocWmsGroup.Concat<dtoPartialDiscoveryRequest>(qDiscoveryRequest);
+                        //    lbl.Content = strReportItem + " count: " + qDiscoveryRequest.Count();
+                        //}
+                        else if ("CompareDiscReq-ToReq" == strReportItem)
+                        {
+                            o.strConn = comboBoxTouchDB.SelectedItem.ToString();
+                            IList<dtoTableCompare> qTableCompare = o.GetDiscoveryDiff1("tblDiscoveryRequest_", "tblDiscoveryRequest");
+                            ObservableCollection<dtoTableCompare> ocWmsGroup = new ObservableCollection<dtoTableCompare>();
+                            grid.ItemsSource = ocWmsGroup.Concat<dtoTableCompare>(qTableCompare);
+                            lbl.Content = strReportItem + " count: " + qTableCompare.Count();
+                        }
+                        else if ("CompareDiscReqToReq-" == strReportItem)
+                        {
+                            o.strConn = comboBoxTouchDB.SelectedItem.ToString();
+                            IList<dtoTableCompare> qTableCompare = o.GetDiscoveryDiff1("tblDiscoveryRequest", "tblDiscoveryRequest_");
+                            ObservableCollection<dtoTableCompare> ocWmsGroup = new ObservableCollection<dtoTableCompare>();
+                            grid.ItemsSource = ocWmsGroup.Concat<dtoTableCompare>(qTableCompare);
+                            lbl.Content = strReportItem + " count: " + qTableCompare.Count();
+                        }
                     }
                 }
             }
@@ -555,8 +563,13 @@ namespace PuroFusionTestGui
         {
             if (((RadGridView)sender).SelectedItem is dtotblDiscoveryRequest)
             {
-                string strConn = GetdbLocation(comboBoxTouchDB);
-                PuroTouchServiceClass o = new PuroTouchServiceClass(strConn);
+                //string strConn = GetdbLocation(comboBoxTouchDB);
+                ComboBoxItem MachineNameItem = ((ComboBoxItem)comboBoxMainMachineName.SelectedItem);
+                String strMachineName = (MachineNameItem != null) ? MachineNameItem.Content.ToString() : null;
+                ComboBoxItem DBNameItem = ((ComboBoxItem)comboBoxMaindatabase.SelectedItem);
+                String strDBName = DBNameItem.Content.ToString();
+                PuroTouchServiceClass o = new PuroTouchServiceClass();
+                o.SetConnString(strMachineName, strDBName);
                 dtotblDiscoveryRequest rec = ((dtotblDiscoveryRequest)(((RadGridView)sender).SelectedItem));
                 IList<dtotblContact> qtblContact = o.GetContactsByRequestID(rec.idRequest);
                 ObservableCollection<dtotblContact> ocWmsGroup = new ObservableCollection<dtotblContact>();
