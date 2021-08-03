@@ -197,4 +197,7 @@
     <Build Include="dbo\Tables\AutomatedTesting.sql" />
     <Build Include="Security\VIRTUALONE_virtual.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="PuroTouchtoPuroTouch_Prod.V1.scmp" />
+  </ItemGroup>
 </Project>
