@@ -30,7 +30,6 @@ namespace PuroTouchEntities
         public virtual DbSet<tblCommunicationMethod> tblCommunicationMethod { get; set; }
         public virtual DbSet<tblCustomsTypes> tblCustomsTypes { get; set; }
         public virtual DbSet<tblDataEntryMethods> tblDataEntryMethods { get; set; }
-        public virtual DbSet<tblDiscoveryRequest_Archive> tblDiscoveryRequest_Archive { get; set; }
         public virtual DbSet<tblDiscoveryRequestDetails> tblDiscoveryRequestDetails { get; set; }
         public virtual DbSet<tblDiscoveryRequestEDI> tblDiscoveryRequestEDI { get; set; }
         public virtual DbSet<tblDiscoveryRequestEquipment> tblDiscoveryRequestEquipment { get; set; }
@@ -84,5 +83,6 @@ namespace PuroTouchEntities
         public virtual DbSet<tblStatusCodesNonCourierEDI> tblStatusCodesNonCourierEDI { get; set; }
         public virtual DbSet<tblEDIRecipReqs> tblEDIRecipReqs { get; set; }
         public virtual DbSet<AutomatedTesting> AutomatedTesting { get; set; }
+        public virtual DbSet<tmp_tblDiscoveryRequestCustomerInfo> tmp_tblDiscoveryRequestCustomerInfo { get; set; }
     }
 }

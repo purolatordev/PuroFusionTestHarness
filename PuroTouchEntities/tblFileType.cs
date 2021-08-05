@@ -27,6 +27,7 @@ namespace PuroTouchEntities
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<bool> ActiveFlag { get; set; }
+        public bool NonCourierEDI { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblEDIRecipReqs> tblEDIRecipReqs { get; set; }

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="48f143cdd5c1431982f01c3aefa673a3" Name="Diagram1" ZoomLevel="66">
+      <Diagram DiagramId="48f143cdd5c1431982f01c3aefa673a3" Name="Diagram1" ZoomLevel="40">
         <EntityTypeShape EntityType="PuroTouchDBModel.tblBrokers" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblCloseReason" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PuroTouchDBModel.tblCommunicationMethod" Width="1.5" PointX="27.25" PointY="22.625" IsExpanded="true" />
@@ -76,6 +76,7 @@
         <AssociationConnector Association="PuroTouchDBModel.FK_idTrans_RecipReqs_Trans" />
         <AssociationConnector Association="PuroTouchDBModel.FK_idTrig_EDIRecipReqs_TrigMech" />
         <EntityTypeShape EntityType="PuroTouchDBModel.AutomatedTesting" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PuroTouchDBModel.tmp_tblDiscoveryRequestCustomerInfo" Width="1.5" PointX="5.375" PointY="3.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

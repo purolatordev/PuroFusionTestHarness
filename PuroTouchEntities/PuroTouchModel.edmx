@@ -32,7 +32,7 @@
           <Property Name="login" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PuroTouchDB.dbo.tblBillingTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PuroTouchDB_Prod.dbo.tblBillingTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tblBillingTypes">
           <Key>
             <PropertyRef Name="idBillingType" />
@@ -253,61 +253,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.tblBillingTypes' does not have a p
           <Property Name="EDICurrentGoLive" Type="datetime" />
           <Property Name="EDIActualGoLive" Type="datetime" />
           <Property Name="idEDIOnboardingPhase" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblDiscoveryRequest_Archive">
-          <Key>
-            <PropertyRef Name="idRequest_Archive" />
-          </Key>
-          <Property Name="idRequest_Archive" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idRequest" Type="int" Nullable="false" />
-          <Property Name="TableAction" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="isNewRequest" Type="bit" />
-          <Property Name="SalesRepName" Type="varchar" MaxLength="255" />
-          <Property Name="SalesRepEmail" Type="varchar" MaxLength="255" />
-          <Property Name="idOnboardingPhase" Type="int" />
-          <Property Name="District" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerName" Type="varchar" MaxLength="255" />
-          <Property Name="Address" Type="varchar" MaxLength="255" />
-          <Property Name="City" Type="varchar" MaxLength="255" />
-          <Property Name="State" Type="varchar" MaxLength="255" />
-          <Property Name="Zipcode" Type="varchar" MaxLength="255" />
-          <Property Name="Country" Type="varchar" MaxLength="255" />
-          <Property Name="Commodity" Type="varchar" MaxLength="255" />
-          <Property Name="ProjectedRevenue" Type="money" />
-          <Property Name="CustomerBusContact" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerBusTitle" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerBusEmail" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerBusPhone" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerITContact" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerITTitle" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerITEmail" Type="varchar" MaxLength="255" />
-          <Property Name="CustomerITPhone" Type="varchar" MaxLength="255" />
-          <Property Name="CurrentSolution" Type="varchar" MaxLength="3000" />
-          <Property Name="ProposedCustoms" Type="varchar" MaxLength="2000" />
-          <Property Name="CallDate1" Type="datetime" />
-          <Property Name="CallDate2" Type="datetime" />
-          <Property Name="CallDate3" Type="datetime" />
-          <Property Name="UpdatedBy" Type="varchar" MaxLength="100" />
-          <Property Name="UpdatedOn" Type="datetime" />
-          <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
-          <Property Name="CreatedOn" Type="datetime" />
-          <Property Name="ActiveFlag" Type="bit" />
-          <Property Name="SalesComments" Type="varchar" MaxLength="3000" />
-          <Property Name="idITBA" Type="int" />
-          <Property Name="idShippingChannel" Type="int" />
-          <Property Name="TargetGoLive" Type="datetime" />
-          <Property Name="ActualGoLive" Type="datetime" />
-          <Property Name="SolutionSummary" Type="varchar" MaxLength="3000" />
-          <Property Name="CustomerWebsite" Type="varchar" MaxLength="500" />
-          <Property Name="Branch" Type="nvarchar" MaxLength="50" />
-          <Property Name="idVendor" Type="int" />
-          <Property Name="worldpakFlag" Type="bit" />
-          <Property Name="thirdpartyFlag" Type="bit" />
-          <Property Name="customFlag" Type="bit" />
-          <Property Name="CloseReason" Type="varchar" MaxLength="255" />
-          <Property Name="DataScrubFlag" Type="bit" />
-          <Property Name="StrategicFlag" Type="bit" />
-          <Property Name="CurrentGoLive" Type="datetime" />
         </EntityType>
         <EntityType Name="tblDiscoveryRequestDetails">
           <Key>
@@ -717,6 +662,7 @@ warning 6002: The table/view 'PuroTouchDB.dbo.tblBillingTypes' does not have a p
           </Key>
           <Property Name="idFileType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FileType" Type="varchar" MaxLength="100" />
+          <Property Name="NonCourierEDI" Type="bit" Nullable="false" />
           <Property Name="UpdatedBy" Type="varchar" MaxLength="100" />
           <Property Name="UpdatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
@@ -782,7 +728,7 @@ warning 6002: The table/view 'PuroTouchDB.dbo.tblBillingTypes' does not have a p
           <Property Name="SortValue" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PuroTouchDB.dbo.tblProducts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PuroTouchDB_Prod.dbo.tblProducts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tblProducts">
           <Key>
             <PropertyRef Name="idProduct" />
@@ -796,7 +742,7 @@ warning 6002: The table/view 'PuroTouchDB.dbo.tblProducts' does not have a prima
           <Property Name="Modifieddate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PuroTouchDB.dbo.tblProductTypeRel' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PuroTouchDB_Prod.dbo.tblProductTypeRel' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tblProductTypeRel">
           <Key>
             <PropertyRef Name="idProductTypeRel" />
@@ -810,7 +756,7 @@ warning 6002: The table/view 'PuroTouchDB.dbo.tblProductTypeRel' does not have a
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PuroTouchDB.dbo.tblProductTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PuroTouchDB_Prod.dbo.tblProductTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tblProductTypes">
           <Key>
             <PropertyRef Name="idProductType" />
@@ -887,7 +833,7 @@ warning 6002: The table/view 'PuroTouchDB.dbo.tblProductTypes' does not have a p
           <Property Name="SortFlag" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PuroTouchDB.dbo.tblSolutionType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PuroTouchDB_Prod.dbo.tblSolutionType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tblSolutionType">
           <Key>
             <PropertyRef Name="idSolutionType" />
@@ -998,7 +944,23 @@ warning 6002: The table/view 'PuroTouchDB.dbo.tblSolutionType' does not have a p
           <Property Name="ActiveFlag" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PuroTouchDB_Prod.dbo.tmp_tblDiscoveryRequestCustomerInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tmp_tblDiscoveryRequestCustomerInfo">
+          <Key>
+            <PropertyRef Name="idRequest" />
+          </Key>
+          <Property Name="idRequest" Type="int" Nullable="false" />
+          <Property Name="CustomerBusContact" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerBusTitle" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerBusEmail" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerBusPhone" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerITContact" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerITTitle" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerITEmail" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerITPhone" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PuroTouchDB_Prod.dbo.ZIPCodes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ZIPCodes">
           <Key>
             <PropertyRef Name="ZipCode" />
@@ -1178,7 +1140,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <EntitySet Name="tblCustomsTypes" EntityType="Self.tblCustomsTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDataEntryMethods" EntityType="Self.tblDataEntryMethods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDiscoveryRequest" EntityType="Self.tblDiscoveryRequest" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblDiscoveryRequest_Archive" EntityType="Self.tblDiscoveryRequest_Archive" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDiscoveryRequestDetails" EntityType="Self.tblDiscoveryRequestDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDiscoveryRequestEDI" EntityType="Self.tblDiscoveryRequestEDI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDiscoveryRequestEquipment" EntityType="Self.tblDiscoveryRequestEquipment" Schema="dbo" store:Type="Tables" />
@@ -1275,6 +1236,19 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
     [tblSolutionType].[CreatedOn] AS [CreatedOn], 
     [tblSolutionType].[ActiveFlag] AS [ActiveFlag]
     FROM [dbo].[tblSolutionType] AS [tblSolutionType]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tmp_tblDiscoveryRequestCustomerInfo" EntityType="Self.tmp_tblDiscoveryRequestCustomerInfo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tmp_tblDiscoveryRequestCustomerInfo].[idRequest] AS [idRequest], 
+    [tmp_tblDiscoveryRequestCustomerInfo].[CustomerBusContact] AS [CustomerBusContact], 
+    [tmp_tblDiscoveryRequestCustomerInfo].[CustomerBusTitle] AS [CustomerBusTitle], 
+    [tmp_tblDiscoveryRequestCustomerInfo].[CustomerBusEmail] AS [CustomerBusEmail], 
+    [tmp_tblDiscoveryRequestCustomerInfo].[CustomerBusPhone] AS [CustomerBusPhone], 
+    [tmp_tblDiscoveryRequestCustomerInfo].[CustomerITContact] AS [CustomerITContact], 
+    [tmp_tblDiscoveryRequestCustomerInfo].[CustomerITTitle] AS [CustomerITTitle], 
+    [tmp_tblDiscoveryRequestCustomerInfo].[CustomerITEmail] AS [CustomerITEmail], 
+    [tmp_tblDiscoveryRequestCustomerInfo].[CustomerITPhone] AS [CustomerITPhone]
+    FROM [dbo].[tmp_tblDiscoveryRequestCustomerInfo] AS [tmp_tblDiscoveryRequestCustomerInfo]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ZIPCodes" EntityType="Self.ZIPCodes" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1404,61 +1378,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="ActiveFlag" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="tblDiscoveryRequest_Archive">
-          <Key>
-            <PropertyRef Name="idRequest_Archive" />
-          </Key>
-          <Property Name="idRequest_Archive" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idRequest" Type="Int32" Nullable="false" />
-          <Property Name="TableAction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="isNewRequest" Type="Boolean" />
-          <Property Name="SalesRepName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="SalesRepEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="idOnboardingPhase" Type="Int32" />
-          <Property Name="District" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Zipcode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Commodity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="ProjectedRevenue" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="CustomerBusContact" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerBusTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerBusEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerBusPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerITContact" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerITTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerITEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerITPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CurrentSolution" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
-          <Property Name="ProposedCustoms" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="CallDate1" Type="DateTime" Precision="3" />
-          <Property Name="CallDate2" Type="DateTime" Precision="3" />
-          <Property Name="CallDate3" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ActiveFlag" Type="Boolean" />
-          <Property Name="SalesComments" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
-          <Property Name="idITBA" Type="Int32" />
-          <Property Name="idShippingChannel" Type="Int32" />
-          <Property Name="TargetGoLive" Type="DateTime" Precision="3" />
-          <Property Name="ActualGoLive" Type="DateTime" Precision="3" />
-          <Property Name="SolutionSummary" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerWebsite" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="idVendor" Type="Int32" />
-          <Property Name="worldpakFlag" Type="Boolean" />
-          <Property Name="thirdpartyFlag" Type="Boolean" />
-          <Property Name="customFlag" Type="Boolean" />
-          <Property Name="CloseReason" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="DataScrubFlag" Type="Boolean" />
-          <Property Name="StrategicFlag" Type="Boolean" />
-          <Property Name="CurrentGoLive" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="tblDiscoveryRequestDetails">
           <Key>
@@ -1730,6 +1649,7 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="ActiveFlag" Type="Boolean" />
           <NavigationProperty Name="tblEDIRecipReqs" Relationship="PuroTouchDBModel.FK_idFileType_EDIRecipReqs_FileType" FromRole="tblFileType" ToRole="tblEDIRecipReqs" />
+          <Property Name="NonCourierEDI" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="tblInductionPoints">
           <Key>
@@ -1981,7 +1901,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <EntitySet Name="tblCommunicationMethod" EntityType="Self.tblCommunicationMethod" />
           <EntitySet Name="tblCustomsTypes" EntityType="Self.tblCustomsTypes" />
           <EntitySet Name="tblDataEntryMethods" EntityType="Self.tblDataEntryMethods" />
-          <EntitySet Name="tblDiscoveryRequest_Archive" EntityType="Self.tblDiscoveryRequest_Archive" />
           <EntitySet Name="tblDiscoveryRequestDetails" EntityType="Self.tblDiscoveryRequestDetails" />
           <EntitySet Name="tblDiscoveryRequestEDI" EntityType="Self.tblDiscoveryRequestEDI" />
           <EntitySet Name="tblDiscoveryRequestEquipment" EntityType="Self.tblDiscoveryRequestEquipment" />
@@ -2087,6 +2006,7 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
             <End Role="tblEDIRecipReqs" EntitySet="tblEDIRecipReqs" />
           </AssociationSet>
           <EntitySet Name="AutomatedTesting" EntityType="PuroTouchDBModel.AutomatedTesting" />
+          <EntitySet Name="tmp_tblDiscoveryRequestCustomerInfo" EntityType="PuroTouchDBModel.tmp_tblDiscoveryRequestCustomerInfo" />
         </EntityContainer>
         <EntityType Name="tblContact">
           <Key>
@@ -2633,6 +2553,20 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <Property Name="Pass" Type="Boolean" Nullable="false" />
           <Property Name="RunDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="tmp_tblDiscoveryRequestCustomerInfo">
+          <Key>
+            <PropertyRef Name="idRequest" />
+          </Key>
+          <Property Name="idRequest" Type="Int32" Nullable="false" />
+          <Property Name="CustomerBusContact" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerBusTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerBusEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerBusPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerITContact" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerITTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerITEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerITPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2701,62 +2635,6 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblDiscoveryRequest_Archive">
-            <EntityTypeMapping TypeName="PuroTouchDBModel.tblDiscoveryRequest_Archive">
-              <MappingFragment StoreEntitySet="tblDiscoveryRequest_Archive">
-                <ScalarProperty Name="idRequest_Archive" ColumnName="idRequest_Archive" />
-                <ScalarProperty Name="idRequest" ColumnName="idRequest" />
-                <ScalarProperty Name="TableAction" ColumnName="TableAction" />
-                <ScalarProperty Name="isNewRequest" ColumnName="isNewRequest" />
-                <ScalarProperty Name="SalesRepName" ColumnName="SalesRepName" />
-                <ScalarProperty Name="SalesRepEmail" ColumnName="SalesRepEmail" />
-                <ScalarProperty Name="idOnboardingPhase" ColumnName="idOnboardingPhase" />
-                <ScalarProperty Name="District" ColumnName="District" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Commodity" ColumnName="Commodity" />
-                <ScalarProperty Name="ProjectedRevenue" ColumnName="ProjectedRevenue" />
-                <ScalarProperty Name="CustomerBusContact" ColumnName="CustomerBusContact" />
-                <ScalarProperty Name="CustomerBusTitle" ColumnName="CustomerBusTitle" />
-                <ScalarProperty Name="CustomerBusEmail" ColumnName="CustomerBusEmail" />
-                <ScalarProperty Name="CustomerBusPhone" ColumnName="CustomerBusPhone" />
-                <ScalarProperty Name="CustomerITContact" ColumnName="CustomerITContact" />
-                <ScalarProperty Name="CustomerITTitle" ColumnName="CustomerITTitle" />
-                <ScalarProperty Name="CustomerITEmail" ColumnName="CustomerITEmail" />
-                <ScalarProperty Name="CustomerITPhone" ColumnName="CustomerITPhone" />
-                <ScalarProperty Name="CurrentSolution" ColumnName="CurrentSolution" />
-                <ScalarProperty Name="ProposedCustoms" ColumnName="ProposedCustoms" />
-                <ScalarProperty Name="CallDate1" ColumnName="CallDate1" />
-                <ScalarProperty Name="CallDate2" ColumnName="CallDate2" />
-                <ScalarProperty Name="CallDate3" ColumnName="CallDate3" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
-                <ScalarProperty Name="SalesComments" ColumnName="SalesComments" />
-                <ScalarProperty Name="idITBA" ColumnName="idITBA" />
-                <ScalarProperty Name="idShippingChannel" ColumnName="idShippingChannel" />
-                <ScalarProperty Name="TargetGoLive" ColumnName="TargetGoLive" />
-                <ScalarProperty Name="ActualGoLive" ColumnName="ActualGoLive" />
-                <ScalarProperty Name="SolutionSummary" ColumnName="SolutionSummary" />
-                <ScalarProperty Name="CustomerWebsite" ColumnName="CustomerWebsite" />
-                <ScalarProperty Name="Branch" ColumnName="Branch" />
-                <ScalarProperty Name="idVendor" ColumnName="idVendor" />
-                <ScalarProperty Name="worldpakFlag" ColumnName="worldpakFlag" />
-                <ScalarProperty Name="thirdpartyFlag" ColumnName="thirdpartyFlag" />
-                <ScalarProperty Name="customFlag" ColumnName="customFlag" />
-                <ScalarProperty Name="CloseReason" ColumnName="CloseReason" />
-                <ScalarProperty Name="DataScrubFlag" ColumnName="DataScrubFlag" />
-                <ScalarProperty Name="StrategicFlag" ColumnName="StrategicFlag" />
-                <ScalarProperty Name="CurrentGoLive" ColumnName="CurrentGoLive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3036,6 +2914,7 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
           <EntitySetMapping Name="tblFileType">
             <EntityTypeMapping TypeName="PuroTouchDBModel.tblFileType">
               <MappingFragment StoreEntitySet="tblFileType">
+                <ScalarProperty Name="NonCourierEDI" ColumnName="NonCourierEDI" />
                 <ScalarProperty Name="idFileType" ColumnName="idFileType" />
                 <ScalarProperty Name="FileType" ColumnName="FileType" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
@@ -3688,6 +3567,21 @@ warning 6002: The table/view 'PuroTouchDB.dbo.ZIPCodes' does not have a primary 
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="TestName" ColumnName="TestName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmp_tblDiscoveryRequestCustomerInfo">
+            <EntityTypeMapping TypeName="PuroTouchDBModel.tmp_tblDiscoveryRequestCustomerInfo">
+              <MappingFragment StoreEntitySet="tmp_tblDiscoveryRequestCustomerInfo">
+                <ScalarProperty Name="CustomerITPhone" ColumnName="CustomerITPhone" />
+                <ScalarProperty Name="CustomerITEmail" ColumnName="CustomerITEmail" />
+                <ScalarProperty Name="CustomerITTitle" ColumnName="CustomerITTitle" />
+                <ScalarProperty Name="CustomerITContact" ColumnName="CustomerITContact" />
+                <ScalarProperty Name="CustomerBusPhone" ColumnName="CustomerBusPhone" />
+                <ScalarProperty Name="CustomerBusEmail" ColumnName="CustomerBusEmail" />
+                <ScalarProperty Name="CustomerBusTitle" ColumnName="CustomerBusTitle" />
+                <ScalarProperty Name="CustomerBusContact" ColumnName="CustomerBusContact" />
+                <ScalarProperty Name="idRequest" ColumnName="idRequest" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

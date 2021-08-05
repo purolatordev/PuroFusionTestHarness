@@ -568,6 +568,7 @@
                                 <Label Content="Report Name:"  />
                                 <ComboBox Height="23" Name="comboBoxTouchDBMainReportNames" Width="Auto" >
                                     <ComboBoxItem>tblDiscoveryRequest</ComboBoxItem>
+                                    <ComboBoxItem>tblDiscoveryRequestCustomerInfo</ComboBoxItem>
                                     <ComboBoxItem>Error Logs</ComboBoxItem>
                                     <ComboBoxItem>Delete All Error Logs</ComboBoxItem>
                                     <ComboBoxItem>blContactType</ComboBoxItem>

@@ -137,9 +137,6 @@
     <Compile Include="tblDiscoveryRequestUploads_Archive.cs">
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tblDiscoveryRequest_Archive.cs">
-      <DependentUpon>PuroTouchModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="tblDRContacts.cs">
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
@@ -240,6 +237,9 @@
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblVendorType.cs">
+      <DependentUpon>PuroTouchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tmp_tblDiscoveryRequestCustomerInfo.cs">
       <DependentUpon>PuroTouchModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ZIPCodes.cs">

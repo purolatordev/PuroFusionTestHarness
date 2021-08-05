@@ -802,6 +802,51 @@ namespace PuroFusionLib
                                          .ToList();
             return qtblContact;
         }
+        public string InsertContact(dtotblContact data)
+        {
+            string errMsg = "";
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+            try
+            {
+                var contact = o.tblContact.Where(p => p.idRequest == data.idRequest && p.idContactType == data.idContactType).FirstOrDefault();
+                if (contact == null)
+                {
+                    tblContact oNewRow = new tblContact()
+                    {
+                        idRequest = data.idRequest,
+                        idContactType = data.idContactType,
+                        Name = data.Name,
+                        Title = data.Title,
+                        Phone = data.Phone,
+                        Email = data.Email,
+                        CreatedBy = data.CreatedBy,
+                        CreatedOn = data.CreatedOn,
+                        UpdatedBy = data.UpdatedBy,
+                        UpdatedOn = DateTime.Now,
+                        ActiveFlag = data.ActiveFlag
+                    };
+                    o.tblContact.Add(oNewRow);
+                }
+                else
+                {
+                    contact.Name = data.Name;
+                    contact.Title = data.Title;
+                    contact.Phone = data.Phone;
+                    contact.Email = data.Email;
+                    contact.CreatedBy = data.CreatedBy;
+                    contact.CreatedOn = data.CreatedOn;
+                    contact.UpdatedBy = data.UpdatedBy;
+                    contact.UpdatedOn = DateTime.Now;
+                    contact.ActiveFlag = data.ActiveFlag;
+                }
+                o.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                errMsg = ex.Message.ToString();
+            }
+            return errMsg;
+        }
         #endregion
         #region tblITBA
         public List<dtotblITBA> GetITBAs()
@@ -1098,9 +1143,33 @@ namespace PuroFusionLib
             }
             return errMsg;
         }
-        
-        #endregion
 
+        #endregion
+        #region tmp_tblDiscoveryRequestCustomerInfo
+        public void UpdateCustomerInfo()
+        {
+            PuroTouchDBEntities o = new PuroTouchDBEntities(strConn);
+
+            List<tmp_tblDiscoveryRequestCustomerInfo> qCustomerInfo = o.tmp_tblDiscoveryRequestCustomerInfo.ToList();
+            foreach(tmp_tblDiscoveryRequestCustomerInfo cust in qCustomerInfo)
+            {
+                if( !String.IsNullOrEmpty(cust.CustomerBusContact))
+                {
+                    dtotblContact data = new dtotblContact() { idRequest = cust.idRequest, idContactType = 1 ,Name = cust.CustomerBusContact, ActiveFlag = true, CreatedBy = "Scott.Cardinale", CreatedOn = DateTime.Now, Email = cust.CustomerBusEmail, Title = cust.CustomerBusTitle, UpdatedBy = "Scott.Cardinale", Phone = cust.CustomerBusPhone, UpdatedOn = DateTime.Now };
+                    InsertContact(data);
+                }
+                if(!String.IsNullOrEmpty(cust.CustomerITContact))
+                {
+                    dtotblContact data = new dtotblContact() { idRequest = cust.idRequest, idContactType = 2, Name = cust.CustomerITContact, ActiveFlag = true, CreatedBy = "Scott.Cardinale", CreatedOn = DateTime.Now, Email = cust.CustomerITEmail, Title = cust.CustomerITTitle, UpdatedBy = "Scott.Cardinale", Phone = cust.CustomerITPhone, UpdatedOn = DateTime.Now };
+                    InsertContact(data);
+                }
+            }
+
+            int er = 0;
+            er++;
+            return ;
+        }
+        #endregion
         #region Migration Strategy
         public IList<dtoTableCompare> GetDiscoveryDiff1()
         {
