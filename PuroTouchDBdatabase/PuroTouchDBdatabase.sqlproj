@@ -235,6 +235,8 @@
     <Build Include="Migration 1\Step 34 sp_email_OnboardingSnapshot2 Create.sql" />
     <Build Include="Migration 1\Step 36 AutomatedTesting Create.sql" />
     <Build Include="Migration 1\Step 37 tblDiscoveryRequest Foriegn Key Create.sql" />
+    <Build Include="Migration 1\Step 38 tblContactType Insert Data.sql" />
+    <Build Include="Migration 1\Step 39 tblCommunicationMethod Insert Data.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PuroTouchtoPuroTouch_Prod.V1.scmp" />

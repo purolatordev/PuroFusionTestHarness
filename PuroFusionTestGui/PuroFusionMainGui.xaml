@@ -606,6 +606,7 @@
                                 <Label Content="Database:"/>
                                 <ComboBox Height="23" Name="comboBoxMaindatabase" Width="Auto" SelectedIndex="0"  >
                                     <ComboBoxItem>PuroTouchDB</ComboBoxItem>
+                                    <ComboBoxItem>PuroTouchDB_Prod</ComboBoxItem>
                                 </ComboBox>
                                 <Label Content="database:"/>
                                 <ComboBox Height="23" Name="comboBoxTouchDB" Width="Auto" IsEnabled="False" >
