@@ -20,7 +20,7 @@ begin
 			DROP CONSTRAINT [PK_tblITBA]
 	end
 end
-
+go
 
 CREATE TABLE [dbo].[Tmp_tblITBA](
 	[idITBA] [int] IDENTITY(1,1) NOT NULL,

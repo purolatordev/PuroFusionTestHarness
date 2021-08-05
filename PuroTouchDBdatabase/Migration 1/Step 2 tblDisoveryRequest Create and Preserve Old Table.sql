@@ -1,4 +1,4 @@
---USE [PuroTouchDB_Prod]
+USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
 GO
 
@@ -21,6 +21,7 @@ begin
 			DROP CONSTRAINT [FK_idRequest_DiscoveryRequest]
 	end
 end
+go 
 
 IF OBJECT_ID(N'dbo.tblEDITranscations', N'U') IS NOT NULL
 begin
@@ -32,6 +33,7 @@ begin
 			DROP CONSTRAINT [FK_idReq_EDITran_DisReq]
 	end
 end
+go
 
 IF OBJECT_ID(N'dbo.tblFreightAuditorsDiscReq', N'U') IS NOT NULL
 begin
@@ -43,6 +45,7 @@ begin
 			DROP CONSTRAINT [FK_idRequest_tblFreightAuditorsDiscReq]
 	end
 end
+go
 
 IF OBJECT_ID(N'dbo.tblEDITranscations', N'U') IS NOT NULL
 begin
@@ -54,6 +57,7 @@ begin
 			DROP CONSTRAINT [FK_idReq_EDITran_DisReq]
 	end
 end
+go
 
 IF OBJECT_ID(N'dbo.tblEDIShipMethods', N'U') IS NOT NULL
 begin
@@ -65,6 +69,7 @@ begin
 			DROP CONSTRAINT [FK_idRequest_DiscoveryRequest]
 	end
 end
+go
 
 IF OBJECT_ID(N'dbo.tblDiscoveryRequest', N'U') IS NOT NULL
 begin
@@ -76,6 +81,7 @@ begin
 			DROP CONSTRAINT [PK_tblDiscoveryRequest]
 	end
 end
+go
 
 IF OBJECT_ID(N'dbo.tblDiscoveryRequest', N'U') IS NOT NULL
 begin
@@ -87,6 +93,7 @@ begin
 			DROP CONSTRAINT [FK_idOnBPh_OnboardPhase]
 	end
 end
+go
 
 IF OBJECT_ID(N'dbo.tblDiscoveryRequest', N'U') IS NOT NULL
 begin
@@ -98,6 +105,7 @@ begin
 			DROP CONSTRAINT [FK_idEDIOnboard_Disc_EDIOnB]
 	end
 end
+go
 
 create TABLE [dbo].[Tmp_tblDiscoveryRequest](
 	[idRequest] [int] IDENTITY(1,1) NOT NULL,
@@ -285,6 +293,7 @@ COMMIT
 
 
 
---select * from tblDiscoveryRequest_v3
+--select * from [Tmp_tblDiscoveryRequest]
+--select * from [tblDiscoveryRequest]
 --select CurrentlyShippingFlag,* from tblDiscoveryRequest
 

@@ -1,4 +1,4 @@
---USE [PuroTouchDB_Prod]
+USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
 GO
 
@@ -21,6 +21,7 @@ begin
 			DROP CONSTRAINT [PK_tblDiscoveryRequest_Archive]
 	end
 end
+go
 --drop table tblDiscoveryRequest_Archive
 
 create TABLE [dbo].[Tmp_tblDiscoveryRequest_Archive](
@@ -191,6 +192,7 @@ DROP TABLE dbo.tblDiscoveryRequest_Archive
 GO
 EXECUTE sp_rename N'dbo.[Tmp_tblDiscoveryRequest_Archive]', N'tblDiscoveryRequest_Archive', 'OBJECT' 
 GO
+commit
 
 --ALTER TABLE [tblDiscoveryRequest_Archive]
 --	ADD CONSTRAINT [PK_tblDiscoveryRequest_Archive] PRIMARY KEY ([idRequest_Archive]);

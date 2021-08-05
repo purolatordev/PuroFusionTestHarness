@@ -29,6 +29,7 @@ begin
 			DROP CONSTRAINT [FK_idEDIOnboard_Disc_EDIOnB]
 	end
 end
+go
 
 ALTER TABLE [dbo].[tblDiscoveryRequest] WITH CHECK ADD  CONSTRAINT [FK_idEDIOnboard_Disc_EDIOnB] FOREIGN KEY([idEDIOnboardingPhase])
 REFERENCES [dbo].[tblEDIOnboardingPhase]  ([idEDIOnboardingPhase])

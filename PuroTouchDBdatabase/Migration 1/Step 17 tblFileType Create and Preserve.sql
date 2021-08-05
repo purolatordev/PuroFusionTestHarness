@@ -1,4 +1,4 @@
-USE [PuroTouchDB]
+--USE [PuroTouchDB]
 USE [PuroTouchDB_Prod]
 GO
 /****** Object:  Table [dbo].[tblFileType]    Script Date: 2021/04/16 10:42:55 AM ******/
@@ -17,7 +17,7 @@ begin
 		drop table [tblFileType]
 	end
 end
-
+go
 
 CREATE TABLE [dbo].[tblFileType](
 	[idFileType] [int] IDENTITY(1,1) NOT NULL,
