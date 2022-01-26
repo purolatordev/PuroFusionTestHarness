@@ -237,6 +237,10 @@
     <Build Include="Migration 1\Step 37 tblDiscoveryRequest Foriegn Key Create.sql" />
     <Build Include="Migration 1\Step 38 tblContactType Insert Data.sql" />
     <Build Include="Migration 1\Step 39 tblCommunicationMethod Insert Data.sql" />
+    <Build Include="Migration 1\Step 40 sp_OnboardingTimePerITBA Alter SP.sql" />
+    <Build Include="Migration 1\Step 41 vw_EDIandITBACombined Create View.sql" />
+    <Build Include="Migration 1\Step 42 sp_OnboardingTimePerITBAOnlyEDI Create SP.sql" />
+    <Build Include="Migration 1\Step 43 Insert Data.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PuroTouchtoPuroTouch_Prod.V1.scmp" />

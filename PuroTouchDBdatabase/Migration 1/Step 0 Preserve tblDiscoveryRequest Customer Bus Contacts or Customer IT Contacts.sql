@@ -1,4 +1,5 @@
-USE [PuroTouchDB_Prod]
+--USE [PuroTouchDB_Prod]
+USE [PuroTouchDBv3]
 GO
 
 

@@ -1,5 +1,6 @@
-USE [PuroTouchDB_Prod]
+--USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
+USE [PuroTouchDBv3]
 GO
 
 /****** Object:  Table [dbo].[tblITBA]    Script Date: 8/3/2021 1:09:50 PM ******/
@@ -33,6 +34,7 @@ CREATE TABLE [dbo].[Tmp_tblITBA](
 	[ITBAemail] [varchar](255) NULL,
 	[ReceiveNewReqEmail] [bit] NULL,
 	[login] [varchar](50) NULL,
+	[EDIFlag] [bit] NOT NULL
  CONSTRAINT [PK_tblITBA] PRIMARY KEY CLUSTERED 
 (
 	[idITBA] ASC
@@ -49,12 +51,12 @@ IF EXISTS(SELECT * FROM dbo.[tblITBA])
 			(
 				idITBA,idEmployee,
 				UpdatedBy,UpdatedOn,CreatedBy,CreatedOn,ActiveFlag,
-				ITBAemail,ReceiveNewReqEmail,login
+				ITBAemail,ReceiveNewReqEmail,login,EDIFlag
 			)
 			SELECT  
 				idITBA,idEmployee,
 				UpdatedBy,UpdatedOn,CreatedBy,CreatedOn,ActiveFlag,
-				ITBAemail,ReceiveNewReqEmail,login
+				ITBAemail,ReceiveNewReqEmail,login,0
 			FROM dbo.[tblITBA] WITH (HOLDLOCK TABLOCKX)'
 		)
 GO
@@ -64,7 +66,8 @@ DROP TABLE dbo.tblITBA
 GO
 EXECUTE sp_rename N'dbo.[Tmp_tblITBA]', N'tblITBA', 'OBJECT' 
 GO
-
+ALTER TABLE [dbo].[tblITBA] ADD  CONSTRAINT [DF_tblITBA_EDIFlag]  DEFAULT ((0)) FOR [EDIFlag]
+GO
 COMMIT
 
 --ALTER TABLE [tblITBA]

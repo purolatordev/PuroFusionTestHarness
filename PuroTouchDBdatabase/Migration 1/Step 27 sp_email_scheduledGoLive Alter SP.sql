@@ -1,5 +1,6 @@
-USE [PuroTouchDB_Prod]
+--USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
+USE [PuroTouchDBv3]
 GO
 
 /****** Object:  StoredProcedure [dbo].[sp_email_scheduledGoLive]    Script Date: 8/3/2021 1:48:39 PM ******/

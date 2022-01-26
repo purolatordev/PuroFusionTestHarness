@@ -1,5 +1,6 @@
-USE [PuroTouchDB_Prod]
+--USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
+USE [PuroTouchDBv3]
 GO
 
 /****** Object:  Table [dbo].[tblITBA]    Script Date: 8/3/2021 1:09:50 PM ******/
