@@ -609,6 +609,7 @@
                                     <ComboBoxItem>PuroTouchDB</ComboBoxItem>
                                     <ComboBoxItem>PuroTouchDB_Prod</ComboBoxItem>
                                     <ComboBoxItem>PuroTouchDBv3</ComboBoxItem>
+                                    <ComboBoxItem>PuroTouchDBv4</ComboBoxItem>
                                 </ComboBox>
                                 <Label Content="database:"/>
                                 <ComboBox Height="23" Name="comboBoxTouchDB" Width="Auto" IsEnabled="False" >

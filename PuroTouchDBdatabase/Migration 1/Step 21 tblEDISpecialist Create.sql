@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv3]
+USE [PuroTouchDBv4]
 GO
 
 /****** Object:  Table [dbo].[tblEDISpecialist]    Script Date: 8/3/2021 1:36:29 PM ******/

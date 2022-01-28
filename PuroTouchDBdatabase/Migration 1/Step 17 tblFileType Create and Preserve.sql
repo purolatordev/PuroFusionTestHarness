@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv3]
+USE [PuroTouchDBv4]
 GO
 /****** Object:  Table [dbo].[tblFileType]    Script Date: 2021/04/16 10:42:55 AM ******/
 SET ANSI_NULLS ON

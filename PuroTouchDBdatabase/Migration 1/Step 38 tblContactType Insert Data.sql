@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv3]
+USE [PuroTouchDBv4]
 GO
 SET IDENTITY_INSERT [dbo].[tblContactType] ON 
 GO

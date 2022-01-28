@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv3]
+USE [PuroTouchDBv4]
 GO
 
 /****** Object:  View [dbo].[vw_DiscoveryRequests]    Script Date: 8/3/2021 1:30:22 PM ******/

@@ -1,9 +1,10 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv3]
+USE [PuroTouchDBv4]
 --delete from [dbo].[tblEDIOnboardingPhase]
 
 update tblDiscoveryRequest set idSolutionType = 1 where idSolutionType is null
+--select idSolutionType,* from tblDiscoveryRequest
 go
 
 SET IDENTITY_INSERT [dbo].[tblEDIOnboardingPhase] ON 

@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv3]
+USE [PuroTouchDBv4]
 GO
 
 /****** Object:  View [dbo].[vw_DiscoveryRequestSummary]    Script Date: 8/3/2021 1:33:56 PM ******/
@@ -9,6 +9,14 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
 
 ALTER VIEW [dbo].[vw_DiscoveryRequestSummary]
 AS
@@ -43,3 +51,5 @@ GROUP BY dbo.tblDiscoveryRequest.idRequest, dbo.tblDiscoveryRequest.isNewRequest
                          dbo.vw_ITBA.ActiveDirectoryName, dbo.tblShippingChannel.ShippingChannel, dbo.tblThirdPartyVendor.VendorName, 
 						 dbo.tblEDIOnboardingPhase.EDIOnboardingPhaseType,dbo.tblDiscoveryRequest.EDIActualGoLive,dbo.tblDiscoveryRequest.EDITargetGoLive,dbo.tblDiscoveryRequest.EDICurrentGoLive
 GO
+
+

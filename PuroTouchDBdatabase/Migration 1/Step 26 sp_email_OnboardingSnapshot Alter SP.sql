@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv3]
+USE [PuroTouchDBv4]
 GO
 
 /****** Object:  StoredProcedure [dbo].[sp_email_OnboardingSnapshot]    Script Date: 8/3/2021 1:46:06 PM ******/
