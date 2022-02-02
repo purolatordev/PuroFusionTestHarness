@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv4]
+USE [PuroTouchDBv6]
 GO
 CREATE TABLE [dbo].[tblAccountMasterDescriptions] (
     [Column]              NVARCHAR (255) NULL,
@@ -292,7 +292,7 @@ GO
 SET IDENTITY_INSERT [dbo].[tblTriggerMechanism] OFF
 GO
 
-CREATE TABLE [dbo].[tblEDIRecipReqs] (
+CREATE TABLE [dbo].[tblEDIRecipReq] (
     [idEDIRecipReqs]        INT            IDENTITY (1, 1) NOT NULL,
     [RecipReqNum]           INT            NOT NULL,
     [idRequest]             INT            NOT NULL,
@@ -622,7 +622,7 @@ CREATE TABLE [dbo].[tblStatusCodesAll] (
     [CreatedOn]            DATETIME      NULL,
     [ActiveFlag]           BIT           NULL,
     CONSTRAINT [PK_tblStatusCodesAll] PRIMARY KEY CLUSTERED ([idStatusCodesAll] ASC),
-    CONSTRAINT [FK_idEDIRecipReqs_tatusCodesAll_EDIRecipReqs] FOREIGN KEY ([idEDIRecipReqs]) REFERENCES [dbo].[tblEDIRecipReqs] ([idEDIRecipReqs]),
+    CONSTRAINT [FK_idEDIRecipReqs_tatusCodesAll_EDIRecipReqs] FOREIGN KEY ([idEDIRecipReqs]) REFERENCES [dbo].[tblEDIRecipReq] ([idEDIRecipReqs]),
     CONSTRAINT [FK_idEDITransType_StatCodesAll_EDITransType] FOREIGN KEY ([idEDITranscationType]) REFERENCES [dbo].[tblEDITranscationType] ([idEDITranscationType])
 );
 GO

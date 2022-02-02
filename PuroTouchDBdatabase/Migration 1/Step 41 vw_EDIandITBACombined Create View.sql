@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv4]
+USE [PuroTouchDBv6]
 GO
 
 /****** Object:  View [dbo].[vw_EDIandITBACombined]    Script Date: 2022/01/24 11:37:21 AM ******/

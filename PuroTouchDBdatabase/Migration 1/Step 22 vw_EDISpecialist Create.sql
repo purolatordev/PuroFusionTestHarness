@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv4]
+USE [PuroTouchDBv6]
 GO
 
 /****** Object:  View [dbo].[vw_EDISpecialist]    Script Date: 8/3/2021 1:35:29 PM ******/

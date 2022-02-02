@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv4]
+USE [PuroTouchDBv6]
 GO
 
 /****** Object:  StoredProcedure [dbo].[sp_scheduledGoLiveWithWIP]    Script Date: 8/3/2021 1:51:28 PM ******/
@@ -10,7 +10,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER  PROCEDURE [dbo].[sp_scheduledGoLiveWithWIP]
+alter  PROCEDURE [dbo].[sp_scheduledGoLiveWithWIP]
 
 AS
 BEGIN

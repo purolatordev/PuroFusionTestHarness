@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv4]
+USE [PuroTouchDBv6]
 GO
 
 /****** Object:  View [dbo].[vw_ITBA]    Script Date: 8/3/2021 1:42:50 PM ******/
@@ -9,8 +9,9 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+--drop table [vw_ITBA]
 
-ALTER VIEW [dbo].[vw_ITBA]
+alter VIEW [dbo].[vw_ITBA]
 AS
 SELECT        itba.idITBA, emp.FirstName + ' ' + emp.LastName AS ITBA, emp.ActiveDirectoryName, itba.ITBAemail, emp.idEmployee, itba.UpdatedBy, itba.UpdatedOn, 
                          itba.CreatedBy, itba.CreatedOn, itba.ActiveFlag, itba.ReceiveNewReqEmail, itba.login, itba.EDIFlag

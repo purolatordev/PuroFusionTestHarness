@@ -606,10 +606,12 @@
                                 </ComboBox>
                                 <Label Content="Database:"/>
                                 <ComboBox Height="23" Name="comboBoxMaindatabase" Width="Auto" SelectedIndex="0"  >
+                                    <ComboBoxItem>PuroFusion</ComboBoxItem>
                                     <ComboBoxItem>PuroTouchDB</ComboBoxItem>
                                     <ComboBoxItem>PuroTouchDB_Prod</ComboBoxItem>
                                     <ComboBoxItem>PuroTouchDBv3</ComboBoxItem>
                                     <ComboBoxItem>PuroTouchDBv4</ComboBoxItem>
+                                    <ComboBoxItem>PuroTouchDBv6</ComboBoxItem>
                                 </ComboBox>
                                 <Label Content="database:"/>
                                 <ComboBox Height="23" Name="comboBoxTouchDB" Width="Auto" IsEnabled="False" >

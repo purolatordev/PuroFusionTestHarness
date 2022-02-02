@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv4]
+USE [PuroTouchDBv6]
 --delete from [dbo].[tblEDIOnboardingPhase]
 
 update tblDiscoveryRequest set idSolutionType = 1 where idSolutionType is null

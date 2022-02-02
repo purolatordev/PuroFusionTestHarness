@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv4]
+USE [PuroTouchDBv6]
 GO
 
 /****** Object:  View [dbo].[vw_DiscoveryRequestSummary]    Script Date: 8/3/2021 1:33:56 PM ******/
@@ -16,9 +16,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+--drop table [vw_DiscoveryRequestSummary]
 
-
-ALTER VIEW [dbo].[vw_DiscoveryRequestSummary]
+alter VIEW [dbo].[vw_DiscoveryRequestSummary]
 AS
 SELECT        dbo.tblDiscoveryRequest.idRequest, dbo.tblDiscoveryRequest.isNewRequest,tblSolutionType.SolutionType,vw_EDISpecialist.Name as EDISpecialistName,vw_EDISpecialist.ActiveDirectoryName EDISpecActiveDir, dbo.tblRequestTypes.RequestType, dbo.tblVendorType.VendorType, dbo.tblDiscoveryRequest.SalesRepName, 
                          dbo.tblDiscoveryRequest.SalesRepEmail, dbo.tblDiscoveryRequest.idOnboardingPhase, dbo.tblDiscoveryRequest.District, dbo.tblDiscoveryRequest.CustomerName, dbo.tblDiscoveryRequest.Address, 

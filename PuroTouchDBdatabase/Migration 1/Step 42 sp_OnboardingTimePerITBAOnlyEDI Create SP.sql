@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv4]
+USE [PuroTouchDBv6]
 GO
 
 /****** Object:  StoredProcedure [dbo].[sp_OnboardingTimePerITBAOnlyEDI]    Script Date: 2022/01/24 11:39:38 AM ******/

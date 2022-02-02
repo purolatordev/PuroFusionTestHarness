@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv4]
+USE [PuroTouchDBv6]
 GO
 
 /****** Object:  StoredProcedure [dbo].[sp_TopTenTimeSpent]    Script Date: 8/3/2021 1:53:07 PM ******/
@@ -10,7 +10,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER  PROCEDURE [dbo].[sp_TopTenTimeSpent]
+alter  PROCEDURE [dbo].[sp_TopTenTimeSpent]
 (
 @fromdate DateTime,
 @todate DateTime,

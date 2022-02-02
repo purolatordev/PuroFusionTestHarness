@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv4]
+USE [PuroTouchDBv6]
 GO
 
 /****** Object:  View [dbo].[vw_DiscoveryRequests]    Script Date: 8/3/2021 1:30:22 PM ******/
@@ -10,8 +10,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+--drop table [vw_DiscoveryRequests]
 
-ALTER VIEW [dbo].[vw_DiscoveryRequests]
+alter VIEW [dbo].[vw_DiscoveryRequests]
 AS
 SELECT        dbo.tblDiscoveryRequest.idRequest, dbo.tblDiscoveryRequest.isNewRequest, dbo.tblRequestTypes.RequestType, dbo.tblDiscoveryRequest.SalesRepName, 
                          dbo.tblDiscoveryRequest.SalesRepEmail, dbo.tblDiscoveryRequest.idOnboardingPhase, dbo.tblDiscoveryRequest.District, 
@@ -33,4 +34,4 @@ FROM            dbo.tblDiscoveryRequest INNER JOIN
                          dbo.tblRequestTypes ON dbo.tblDiscoveryRequest.idRequestType = dbo.tblRequestTypes.idRequestType
 GO
 
-
+--select * from [vw_DiscoveryRequests]

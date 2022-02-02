@@ -1,6 +1,6 @@
 --USE [PuroTouchDB_Prod]
 --USE [PuroTouchDB]
-USE [PuroTouchDBv4]
+USE [PuroTouchDBv6]
 GO
 
 /****** Object:  StoredProcedure [dbo].[sp_email_OnboardingSnapshot]    Script Date: 8/3/2021 1:46:06 PM ******/
@@ -9,8 +9,9 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+--drop PROCEDURE [sp_email_OnboardingSnapshot]
 
-ALTER PROCEDURE [dbo].[sp_email_OnboardingSnapshot]
+alter PROCEDURE [dbo].[sp_email_OnboardingSnapshot]
 
 AS
 BEGIN
